@@ -1,7 +1,12 @@
 import React from "react";
+import Header from "../components/Header";
 
 const VendedorDetallesCliente = () => {
-  return <div> Esta es la vista VendedorDetallesCliente</div>;
+  return (
+    <div>
+      <Header />
+    </div>
+  );
 };
 
 export default VendedorDetallesCliente;

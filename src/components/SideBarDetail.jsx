@@ -23,7 +23,7 @@ function SideBarDetail() {
         <ul className="py-2.5">VIP: Sí</ul>
       </div>
       <div className="bg-white/10 text-white group-hover:bg-white/10 w-full group-active:scale-95 self-stretch pl-2 rounded flex bottom-3 left-0  space-x-2 transition-all duration-200 dark:group-hover:text-white dark:hover:text-white text-sm">
-        <Link to="/clients">Volver</Link>
+        <Link to="/vendedor_cliente">Volver</Link>
       </div>
     </div>
   );

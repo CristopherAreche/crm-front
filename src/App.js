@@ -10,7 +10,6 @@ function App() {
       <Routes>
         <Route exact path="/" element={<LandingPage />} />
         <Route exact path="/vendedor_cliente" element={<VendedorCliente />} />
-
         <Route
           exact
           path="/vendedor_detalles_cliente"

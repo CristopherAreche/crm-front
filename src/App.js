@@ -4,6 +4,7 @@ import LandingPage from "./views/LandingPage";
 import VendedorCliente from "./views/VendedorCliente";
 import VendedorDetallesCliente from "./views/VendedorDetallesCliente";
 
+
 function App() {
   return (
     <div className="App">

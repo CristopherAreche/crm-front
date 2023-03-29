@@ -1,12 +1,9 @@
 import React from 'react'
-import Header from './Header'
+
 const ClientProfile = () => {
   return (
-    <div className="bg-gray-100">
-      <div className="">
-        <Header mainText="Cliente" />
-      </div>
-      <div className="flex flex-col items-center gap-4 mt-10 ">
+    <div className="ml-96">
+      <div className="flex flex-col items-center gap-4 mt-10">
         <div>
           <h3 className="text-lg font-bold mb-2">Lista de tareas</h3>
           <table className="table-auto">

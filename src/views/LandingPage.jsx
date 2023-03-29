@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import imgLanding from '../assets/imgLanding.png'
 import spotlight1 from '../assets/svg/Spotlight1.svg'
 import spotlight2 from '../assets/svg/Spotlight2.svg'
@@ -28,7 +29,7 @@ const LandingPage = () => {
             <circle cx="12" cy="7" r="4" stroke="white" stroke-width="1.5"/>
             <path d="M12 14C9.17219 14 6.73601 15.6768 5.63151 18.0903C4.94205 19.5969 6.34315 21 8 21H16C17.6569 21 19.058 19.5969 18.3685 18.0903C17.264 15.6768 14.8278 14 12 14Z" stroke="white" stroke-width="1.5"/>
           </svg>
-          <button className="text-white font-medium hover:text-light transition-colors">LOG IN</button>
+          <Link to='/auth' className="text-white font-medium hover:text-light transition-colors">LOG IN</Link>
         </div>
       </section>
     </header>

@@ -50,7 +50,6 @@ const LandingPage = () => {
           </svg>
           <button className="text-white font-medium hover:text-light transition-colors">LOG IN</button>
         </div>
-      </section>
     </header>
     {/* Seccion Hero */}
     <section className='flex flex-col lg:flex-row items-center justify-center h-screen pt-16  lg:pt-0'>

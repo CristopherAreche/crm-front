@@ -16,12 +16,9 @@ function App() {
       <Routes>
         <Route exact path="/" element={<LandingPage />} />
         <Route exact path="/vendedor_cliente" element={<VendedorCliente />} />
-<<<<<<< HEAD
         <Route exact path="/auth" element={<AuthLayout/>}>
           <Route index element={<LoginPage />} />
         </Route>
-=======
->>>>>>> main
         <Route
           exact
           path="/vendedor_detalles_cliente"

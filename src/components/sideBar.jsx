@@ -13,9 +13,6 @@ function SideBar({
       <div className="text-center bg-gray-400 group-hover:bg-white/10 group-active:scale-95 self-stretch p-2 rounded space-x-2 transition-all duration-200 dark:group-hover:text-white dark:hover:text-white text-sm">
         <Link to="/">Resumen</Link>
       </div>
-      {/* <div
-        className={`bg-gray-400 text-center text-black group-hover:bg-white/10 w-full group-active:scale-95 self-stretch p-2 rounded items-center space-x-2 transition-all duration-200 dark:group-hover:text-white dark:hover:text-white text-sm`}
-      > */}
       <div
         className={`pl-2 bg-gray-400 text-black justify-center group-hover:bg-white/10 w-full group-active:scale-95 self-stretch rounded flex items-center space-x-2 transition-all duration-200 dark:group-hover:text-white dark:hover:text-white text-sm`}
       >

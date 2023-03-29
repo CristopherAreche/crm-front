@@ -2,8 +2,8 @@ import React from "react";
 import { Link } from "react-router-dom";
 const Header = ({ imageSrc, mainText }) => {
   return (
-    <div className="flex justify-center col-span-6 bg-gradient-to-br from-gray-600 to-gray-800">
-      <div className=" container mx-auto flex justify-between items-center">
+    <header className="col-span-6 bg-gradient-to-br from-gray-800 via-slate-900 to-gray-800 text-white py-6">
+      <div className="container mx-auto flex justify-between items-center">
         <img
           src="https://images-ext-1.discordapp.net/external/hkOouBr-w6nt1hkKmjFnwR8PIJQ4kd_l0zzYq6TAqKc/https/img.freepik.com/iconos-gratis/lanzamiento_318-795706.jpg?width=1024&height=1024"
           alt="logo"
@@ -13,12 +13,10 @@ const Header = ({ imageSrc, mainText }) => {
           {mainText}
         </h1>
         <Link to="#">
-          <p className="text-white underline decoration-solid text-sm">
-            Perfil
-          </p>
+          <p className=" underline decoration-solid">Perfil</p>
         </Link>
       </div>
-    </div>
+    </header>
   );
 };
 

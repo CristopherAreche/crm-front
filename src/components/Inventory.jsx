@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 const Inventory = () => {
   return (
@@ -11,10 +11,10 @@ const Inventory = () => {
         />
       </div>
       <div className="mt-4 w-1/2">
-        <select
-          className="border-gray-300 border-solid border-2 rounded-md p-2 w-96"
-        >
-          <option value="filtro" disabled>Selecciona una opcion</option>
+        <select className="border-gray-300 border-solid border-2 rounded-md p-2 w-96">
+          <option value="filtro" disabled>
+            Selecciona una opcion
+          </option>
           <option value="filtro">Filtros</option>
           <option value="ordenamiento">Ordenamientos</option>
         </select>

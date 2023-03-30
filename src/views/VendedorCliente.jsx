@@ -2,7 +2,7 @@ import React from "react";
 import ClientList from "../components/ClientList";
 import Header from "../components/Header";
 import SearchBar from "../components/SearchBar";
-import SideBar from "../components/sideBar";
+import SideBar from "../components/SideBar";
 import SideBarRight from "../components/SideBarRight";
 import FilterButton from "../components/FilterButton";
 
@@ -22,7 +22,6 @@ const VendedorCliente = () => {
         <SearchBar />
         <FilterButton />
         <ClientList />
-        {/* un comentario */}
       </div>
     </body>
   );

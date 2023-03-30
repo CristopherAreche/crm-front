@@ -2,16 +2,16 @@ import React from "react";
 
 const Inventory = () => {
   return (
-    <div className="flex flex-col items-end">
-      <div className="mt-10 w-1/2">
+    <div className="col-start-11 col-end-13 row-start-2 row-end-7 flex flex-col pt-20 items-center">
+      <div className="">
         <input
           type="text"
           placeholder="Buscar en inventario"
-          className="border-gray-300 border-solid border-2 rounded-md p-2 w-96"
+          className="border-gray-300 border-solid border-2 rounded-md p-2"
         />
       </div>
-      <div className="mt-4 w-1/2">
-        <select className="border-gray-300 border-solid border-2 rounded-md p-2 w-96">
+      <div className="mt-3">
+        <select className="border-gray-300 border-solid border-2 rounded-md p-2">
           <option value="filtro" disabled>
             Selecciona una opcion
           </option>

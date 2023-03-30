@@ -5,6 +5,7 @@ import DateFilter from "../components/filter/DateFilter";
 import TaskListTable from "../components/TaskListTable";
 import RegisterActivityTable from "../components/RegisterActivityTable";
 import Inventory from "../components/Inventory";
+import ActivityFilter from "../components/filter/ActivitiesFilter";
 
 const VendedorDetallesCliente = () => {
   return (
@@ -27,6 +28,7 @@ const VendedorDetallesCliente = () => {
           </h3>
         </div>
         <DateFilter />
+        <ActivityFilter />
         <RegisterActivityTable />
         <Inventory />
       </div>

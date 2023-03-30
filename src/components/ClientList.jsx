@@ -3,7 +3,7 @@ import React from "react";
 const ClientList = () => {
   return (
     <div className="flex justify-center items-center flex-col row-start-5 col-start-4 col-end-10 ">
-      <table className=" shadow-1xl border-2xl border-gray-500 w-full">
+      <table className="bg-green-200 shadow-1xl border-2xl border-gray-500 w-full">
         <thead className="text-black">
           <tr>
             <th className="py-3 px-3 bg-gray-300">CB</th>
@@ -62,6 +62,71 @@ const ClientList = () => {
               />
             </td>
             <td className="py-3 px-6"> Ricardo</td>
+            <td className="py-3 px-6"> 100</td>
+            <td className="py-3 px-6"> Incompleto</td>
+            <td className="py-3 px-6"> No</td>
+          </tr>
+          <tr className="cursor-pointer duration-300 border-[1px]">
+            <td>
+              <input
+                id="default-checkbox"
+                type="checkbox"
+                className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+              />
+            </td>
+            <td className="py-3 px-6"> Matias</td>
+            <td className="py-3 px-6"> 100</td>
+            <td className="py-3 px-6"> Incompleto</td>
+            <td className="py-3 px-6"> No</td>
+          </tr>
+          <tr className="cursor-pointer duration-300 border-[1px]">
+            <td>
+              <input
+                id="default-checkbox"
+                type="checkbox"
+                className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+              />
+            </td>
+            <td className="py-3 px-6"> Matias</td>
+            <td className="py-3 px-6"> 100</td>
+            <td className="py-3 px-6"> Incompleto</td>
+            <td className="py-3 px-6"> No</td>
+          </tr>
+          <tr className="cursor-pointer duration-300 border-[1px]">
+            <td>
+              <input
+                id="default-checkbox"
+                type="checkbox"
+                className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+              />
+            </td>
+            <td className="py-3 px-6"> Matias</td>
+            <td className="py-3 px-6"> 100</td>
+            <td className="py-3 px-6"> Incompleto</td>
+            <td className="py-3 px-6"> No</td>
+          </tr>
+          <tr className="cursor-pointer duration-300 border-[1px]">
+            <td>
+              <input
+                id="default-checkbox"
+                type="checkbox"
+                className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+              />
+            </td>
+            <td className="py-3 px-6"> Matias</td>
+            <td className="py-3 px-6"> 100</td>
+            <td className="py-3 px-6"> Incompleto</td>
+            <td className="py-3 px-6"> No</td>
+          </tr>
+          <tr className="cursor-pointer duration-300 border-[1px]">
+            <td>
+              <input
+                id="default-checkbox"
+                type="checkbox"
+                className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+              />
+            </td>
+            <td className="py-3 px-6"> Matias</td>
             <td className="py-3 px-6"> 100</td>
             <td className="py-3 px-6"> Incompleto</td>
             <td className="py-3 px-6"> No</td>

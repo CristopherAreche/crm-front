@@ -7,6 +7,7 @@ import VendedorCliente from "./views/VendedorCliente";
 import VendedorDetallesCliente from "./views/VendedorDetallesCliente";
 import LoginPage from "./views/auth/LoginPage";
 import AuthLayout from "./layouts/AuthLayout";
+import ActivitiesFilter from "./components/filter/ActivitiesFilter";
 
 function App() {
   return (

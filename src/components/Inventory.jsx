@@ -17,6 +17,7 @@ const Inventory = () => {
           <option value="filtro" disabled>Seleccionar</option>
           <option value="filtro">Filtros</option>
           <option value="ordenamiento">Ordenamientos</option>
+          <option value="busqueda">Something</option>
         </select>
       </div>
     </div>

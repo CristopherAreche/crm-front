@@ -11,7 +11,6 @@ import { Link } from 'react-router-dom'
             </svg>
             Volver atras 
         </Link>
-       
       </div>
      <h2 className='text-xl text-white font-bold tracking-widest hover:text-light transition-colors cursor-pointer z-10'>LOGO</h2>
       <h3 className='text-2xl font-medium text-light'>Hey, Hola de nuevo ✋</h3>

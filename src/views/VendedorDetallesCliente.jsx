@@ -4,15 +4,16 @@ import SideBarDetail from "../components/SideBarDetail";
 import Header from "../components/Header";
 const VendedorDetallesCliente = () => {
   return (
-    <div className="">
-      <Header mainText="Cliente" />
-      <section className="fixed ml-60">
-        <ClientProfile />
-      </section>
-      <div className="fixed">
+    <body>
+      <div
+        className=" h-screen grid grid-cols-12 grid-rows-12"
+        style={{ gridTemplateRows: "5em" }}
+      >
+        <Header mainText="Cliente" />
         <SideBarDetail />
+        <ClientProfile />
       </div>
-    </div>
+    </body>
   );
 };
 

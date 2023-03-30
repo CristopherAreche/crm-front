@@ -1,20 +1,20 @@
-import React from 'react'
+import React from "react";
 
 const ClientProfile = () => {
   return (
-    <div className="ml-96">
-      <div className="flex flex-col items-center gap-4 mt-10">
-        <div>
-          <h3 className="text-lg font-bold mb-2">Lista de tareas</h3>
-          <table className="table-auto">
+    <div className="col-start-4 col-end-11 row-start-3">
+      <div className="flex flex-col items-center gap-4">
+        <h3 className="font-bold text-[2em] mb-2">Lista de tareas</h3>
+        <div className="w-full">
+          <table className="w-full">
             <thead>
               <tr>
-                <th className="px-4 py-2">#</th>
-                <th className="px-4 py-2">Descripción</th>
-                <th className="px-4 py-2">Estado</th>
+                <th className="px-4 py-2 bg-gray-300">#</th>
+                <th className="px-4 py-2 bg-gray-300">Descripción</th>
+                <th className="px-4 py-2 bg-gray-300">Estado</th>
               </tr>
             </thead>
-            <tbody>
+            <tbody className="text-center">
               <tr>
                 <td className="border px-4 py-2">1</td>
                 <td className="border px-4 py-2">...</td>
@@ -33,17 +33,17 @@ const ClientProfile = () => {
             </tbody>
           </table>
         </div>
-        <div>
-          <h3 className="text-lg font-bold mb-2">Actividades registradas</h3>
-          <table className="table-auto">
+        <h3 className=" text-[2em] font-bold mb-2">Actividades registradas</h3>
+        <div className=" w-full">
+          <table className="table-auto w-full">
             <thead>
               <tr>
-                <th className="px-4 py-2">#</th>
-                <th className="px-4 py-2">Descripción</th>
-                <th className="px-4 py-2">Fecha</th>
+                <th className="px-4 py-2 bg-gray-300">#</th>
+                <th className="px-4 py-2 bg-gray-300">Descripción</th>
+                <th className="px-4 py-2 bg-gray-300">Fecha</th>
               </tr>
             </thead>
-            <tbody>
+            <tbody className="text-center">
               <tr>
                 <td className="border px-4 py-2">1</td>
                 <td className="border px-4 py-2">...</td>
@@ -64,7 +64,7 @@ const ClientProfile = () => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default ClientProfile
+export default ClientProfile;

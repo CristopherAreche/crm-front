@@ -8,20 +8,23 @@ import FilterButton from "../components/FilterButton";
 
 const VendedorCliente = () => {
   return (
-    <body className="bg-gradient-to-br from-gray-600 to-gray-800">
-    <div className="h-screen grid grid-cols-6 grid-rows-6">
-      <Header mainText="Cliente" />
-      <SideBar clients={"Cliente"} />
-      <SideBarRight />
-      <h2 className="flex justify-center pt-[2.5em] text-[2em] font-bold text-white col-span-4 row-start-2">
-        Lista de Clientes
-      </h2>
-      <SearchBar />
-
-      <ClientList />
-
-    </div>
-  </body>
+    <body>
+      <div
+        className="h-screen grid grid-cols-12 grid-rows-12"
+        style={{ gridTemplateRows: "5em" }}
+      >
+        <Header mainText="Cliente" />
+        <SideBar clients={"Cliente"} />
+        <SideBarRight />
+        <h2 className="flex justify-center pt-[2.5em] text-[2em] font-bold text-gray-600 col-start-5 col-end-9 row-start-2">
+          Lista de Clientes
+        </h2>
+        <SearchBar />
+        <FilterButton />
+        <ClientList />
+        {/* un comentario */}
+      </div>
+    </body>
   );
 };
 

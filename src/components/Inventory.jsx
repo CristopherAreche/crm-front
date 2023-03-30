@@ -14,10 +14,9 @@ const Inventory = () => {
         <select
           className="border-gray-300 border-solid border-2 rounded-md p-2 w-96"
         >
-          <option value="filtro" disabled>Seleccionar</option>
+          <option value="filtro" disabled>Selecciona una opcion</option>
           <option value="filtro">Filtros</option>
           <option value="ordenamiento">Ordenamientos</option>
-          <option value="busqueda">Something</option>
         </select>
       </div>
     </div>

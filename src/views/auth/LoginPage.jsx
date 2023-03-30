@@ -28,7 +28,7 @@ import { Link } from 'react-router-dom'
         <div className='text-end'>
             <p className='bg-gradient-to-r from-primary  to-secondary text-transparent bg-clip-text hover:underline hover:text-light transition-all cursor-pointer'>Olvidaste tu contraseña?</p>
         </div>
-        <button className='bg-gradient-to-r from-primary to-secondary py-2 px-4 rounded-md font-bold text-lg hover:scale-[1.02] transition-all'>Login</button>
+        <Link to='/seller-dash' className='text-center bg-gradient-to-r from-primary to-secondary py-2 px-4 rounded-md font-bold text-lg hover:scale-[1.02] transition-all'>Login</Link>
      </form>
      <section className='flex gap-x-2 items-center justify-center w-full bg-white py-2 hover:scale-[1.03] transition-all cursor-pointer rounded-md'>
        <img src='https://img.freepik.com/iconos-gratis/buscar_318-265146.jpg' alt='logo google' className='w-8 h-8'/>

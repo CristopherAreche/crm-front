@@ -12,7 +12,7 @@ function DateFilter() {
     setValue(newValue);
   };
   return (
-    <div className="w-1/5">
+    <div className="col-start-6 col-end-8 row-start-5 row-end-6 flex justify-center items-center">
       <Datepicker
         inputClassName=" font-bold text-center bg-cyan-950 dark:bg-green-900 text-white"
         primaryColor={"blue"}

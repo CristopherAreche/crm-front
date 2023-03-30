@@ -6,6 +6,7 @@ module.exports = {
   ],
   theme: {
     extend: {
+      display: ["group-focus"],
       colors: {
         base: "#010922",
         "base-light": "#353D57",

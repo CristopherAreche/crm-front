@@ -22,6 +22,7 @@ const VendedorCliente = () => {
         <SearchBar />
         <FilterButton />
         <ClientList />
+        {/* un comentario */}
       </div>
     </body>
   );

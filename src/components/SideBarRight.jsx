@@ -9,7 +9,7 @@ function SideBarRight({
   routeInventario,
 }) {
   return (
-    <div className="relative px-4 py-[10em] space-y-7 flex flex-col col-start-6 col-end-7 row-start-2 row-end-7 bg-gradient-to-br from-gray-600 to-gray-800">
+    <div className="relative px-4 py-[10em] space-y-7 flex flex-col col-start-11 col-end-13 row-start-2 row-end-7 bg-white">
       <div className="text-center bg-gray-400 text-black group-hover:bg-white/10 group-active:scale-95 self-stretch p-2 rounded space-x-2 transition-all duration-200 dark:group-hover:text-white dark:hover:text-white text-sm">
         <Link to="/vendedor_detalles_cliente">Detalles</Link>
       </div>

@@ -8,17 +8,16 @@ import VendedorDetallesCliente from "./views/VendedorDetallesCliente";
 import LoginPage from "./views/auth/LoginPage";
 import AuthLayout from "./layouts/AuthLayout";
 
-
-
 function App() {
   return (
     <div className="App">
       <Routes>
         <Route exact path="/" element={<LandingPage />} />
         <Route exact path="/vendedor_cliente" element={<VendedorCliente />} />
-        <Route exact path="/auth" element={<AuthLayout/>}>
+        <Route exact path="/auth" element={<AuthLayout />}>
           <Route index element={<LoginPage />} />
         </Route>
+
         <Route
           exact
           path="/vendedor_detalles_cliente"

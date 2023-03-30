@@ -2,8 +2,8 @@ import React from "react";
 
 const ClientList = () => {
   return (
-    <div className=" flex justify-center items-center flex-col row-start-5 col-start-3 col-end-5 ">
-      <table className="shadow-1xl border-2 border-gray-500 w-full">
+    <div className="flex justify-center items-center flex-col row-start-5 col-start-4 col-end-10 ">
+      <table className=" shadow-1xl border-2xl border-gray-500 w-full">
         <thead className="text-black">
           <tr>
             <th className="py-3 px-3 bg-gray-300">CB</th>

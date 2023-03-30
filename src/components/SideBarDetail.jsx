@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 function SideBarDetail() {
   return (
-    <div className="pt-10 px-3 col-span-2 row-start-2 row-end-7 flex flex-col items-center space-y-7 w-52 bg-gradient-to-br  from-gray-600 to-gray-800 h-screen">
+    <div className=" pt-10 px-3 col-start-1 col-end-2 row-start-2 row-end-7 flex flex-col items-center space-y-7 w-52 bg-gradient-to-br  from-gray-600 to-gray-800">
       <div className="bg-white/10 text-white group-hover:bg-white/10 w-full group-active:scale-95 self-stretch pl-2 rounded flex-col items-center space-x-2 transition-all duration-200 dark:group-hover:text-white dark:hover:text-white text-sm">
         <button> Registrar llamada</button>
       </div>

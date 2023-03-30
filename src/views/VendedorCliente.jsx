@@ -4,6 +4,7 @@ import Header from "../components/Header";
 import SearchBar from "../components/SearchBar";
 import SideBar from "../components/SideBar";
 import SideBarRight from "../components/SideBarRight";
+import FilterButton from "../components/FilterButton";
 
 const VendedorCliente = () => {
   return (

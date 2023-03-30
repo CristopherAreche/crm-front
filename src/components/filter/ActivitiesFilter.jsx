@@ -1,7 +1,7 @@
 function ActivitiesFilter() {
   return (
     <div className="bg-gray-600 w-1/4 h-8 p-px">
-      <label className=" text-lg font-semibold items-cente">
+      <label className=" text-lg font-semibold items-center">
         Tipo de actividad:
         <select className="">
           <option value="All">All...</option>

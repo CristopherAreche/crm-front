@@ -2,6 +2,7 @@ import React from "react";
 import ClientProfile from "../components/ClientProfile";
 import SideBarDetail from "../components/SideBarDetail";
 import Header from "../components/Header";
+
 const VendedorDetallesCliente = () => {
   return (
     <div className="">

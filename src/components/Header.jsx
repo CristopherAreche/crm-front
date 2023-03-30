@@ -21,3 +21,6 @@ const Header = ({ imageSrc, mainText }) => {
 };
 
 export default Header;
+
+
+

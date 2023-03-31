@@ -1,34 +1,59 @@
 import { Link } from "react-router-dom";
+import { AiOutlineMail, AiOutlinePhone } from "react-icons/ai";
+import { BiTask } from "react-icons/bi";
+import {
+  RiBarChart2Line,
+  RiTeamLine,
+  RiLogoutCircleRLine,
+  // RiMenu3Fill,
+  // RiCloseFill,
+} from "react-icons/ri";
+import { useState } from "react";
+// import spotlight1 from "../assets/svg/Spotlight1.svg";
+// import spotlight2 from "../assets/svg/Spotlight2.svg";
 import { useSelector } from "react-redux";
 
 function SideBarDetail() {
-  const clientState = useSelector((state) => state.client);
-
+  const [isOpen, setIsOpen] = useState(false);
   return (
-    <div className=" pt-10 px-3 col-start-1 col-end-2 row-start-2 row-end-7 flex flex-col items-center space-y-7 w-52 bg-gradient-to-br  from-gray-600 to-gray-800">
-      <div className="bg-white/10 text-white group-hover:bg-white/10 w-full group-active:scale-95 self-stretch pl-2 rounded flex-col items-center space-x-2 transition-all duration-200 dark:group-hover:text-white dark:hover:text-white text-sm">
-        <button> Registrar llamada</button>
+    <section
+      className={`${
+        isOpen ? "left-0" : "-left-full"
+      } bg-base-light/40 w-68 lg:w-full  flex flex-col gap-y-8 justify-between py-4 px-12 lg:static h-full z-40 transition-all duration-200 lg:left-0 border-r border-light/40 `}
+    >
+      <section className="flex flex-col gap-y-4">
+        <h1 className="mt-6 text-4xl font-bold tracking-widest text-center border-b border-light/40 pb-8">
+          LOGO
+        </h1>
+        <p className="flex justify-center gap-x-4 items-center text-xl text-gray-300 font-medium py-2 rounded-lg cursor-pointer  px-4 hover:bg-base/20 hover:text-gray-100 transition-all">
+          Gaspar@gmail.com
+        </p>
+        <p className="justify-center text-[2.6em] flex gap-x-4 items-center text-xl text-gray-300 font-medium py-2 rounded-lg cursor-pointer  px-4 hover:bg-base/20  hover:text-gray-100 transition-all">
+          Gaspar
+        </p>
+        <div className="flex justify-evenly">
+          <BiTask className="bg-slate-600 text-[3.5em] rounded-full p-3" />
+          <AiOutlineMail className="bg-slate-600 text-[3.5em] rounded-full p-3" />
+          <AiOutlinePhone className="bg-slate-600 text-[3.5em] rounded-full p-3" />
+        </div>
+        <div className="my-2 flex flex-col justify-center items-center">
+          <p className="text-[2em] font-bold">$34,321</p>
+          <p>Total pagado</p>
+        </div>
+        <div className="px-8 my-2 flex flex-wrap justify-between text-black">
+          <div className="bg-yellow-400 py-3 px-6 rounded-lg">VIP</div>
+          <div className="bg-blue-400 py-3 px-6 rounded-lg">Categoria</div>
+        </div>
+      </section>
+      <div className=" flex justify-center">
+        <Link
+          to="/vendedor_cliente"
+          className="flex items-center gap-x-2 py-2 rounded-lg cursor-pointer text-gray-300 px-4 text-lg hover:bg-base/20 hover:text-gray-100 transition-all"
+        >
+          <RiLogoutCircleRLine className="text-3xl" /> Volver
+        </Link>
       </div>
-      <div className="bg-white/10 text-white group-hover:bg-white/10 w-full group-active:scale-95 self-stretch pl-2 rounded flex-col items-center space-x-2 transition-all duration-200 dark:group-hover:text-white dark:hover:text-white text-sm">
-        <button>Enviar corrreo</button>
-      </div>
-
-      <div className="bg-white/10 text-white group-hover:bg-white/10 w-full group-active:scale-95 self-stretch pl-2 rounded flex-col items-center space-x-2 transition-all duration-200 dark:group-hover:text-white dark:hover:text-white text-sm">
-        <button>Agendar tarea</button>
-      </div>
-
-      <div className="bg-white/10 py-4 text-white group-hover:bg-white/10 w-full group-active:scale-95 self-stretch pl-2 rounded flex-col items-center space-x-2 transition-all duration-200 dark:group-hover:text-white dark:hover:text-white text-base">
-        <ul className="py-2.5">Nombre: Gaspar </ul>
-        <ul className="py-2.5">Correo: gaspar@gmail </ul>
-        <ul className="py-2.5">Telefono: 22222222</ul>
-        <ul className="py-2.5">Total Comprado: $50</ul>
-        <ul className="py-2.5">Preferencia:(categoria)</ul>
-        <ul className="py-2.5">VIP: Sí</ul>
-      </div>
-      <div className="bg-red-500 text-white group-hover:bg-white/10 w-full group-active:scale-95 self-stretch pl-2 rounded flex bottom-3 left-0  space-x-2 transition-all duration-200 dark:group-hover:text-white dark:hover:text-white text-sm justify-center">
-        <Link to="/vendedor_cliente">Volver</Link>
-      </div>
-    </div>
+    </section>
   );
 }
 

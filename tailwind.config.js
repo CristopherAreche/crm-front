@@ -19,3 +19,5 @@ module.exports = {
 
   plugins: [],
 };
+
+module.exports.colors = module.exports.theme.extend.colors;

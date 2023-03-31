@@ -1,50 +1,54 @@
 import { createSlice } from "@reduxjs/toolkit";
+import {
+  getClient,
+  getClients,
+  postClient,
+  putClient,
+} from "../../services/clientsServices";
 
 const initialState = {
   clients: [],
-  client: [
-    {
-      name: "",
-      email: "",
-      phone: "",
-      vip: "",
-    },
-  ],
-  clientDetail: [],
+  clientDetail: {},
 };
 export const clientSlice = createSlice({
-  name: "client",
+  name: "clients",
   initialState,
   reducers: {
-    // getAllClients: (state, action) => {
-    //   fetch("https://crm.up.railway.app/api/clients")
-    //     .then((res) => {
-    //       res.json;
-    //     })
-    //     .then((data) => {
-    //       const clients = data;
-    //     });
+    getAllClients: async (state, action) => {
+      const allClients = await getClients();
+      state.clients = allClients;
+    },
 
-    //   clients = action.payload;
-    // },
-    addClient: (state, action) => {},
+    addClient: async (state, action) => {
+      await postClient(action.payload);
+      state.clients.push(action.payload);
+    },
 
-    editClient: (state, action) => {
+    editClient: async (state, action) => {
+      await putClient(action.payload);
+
       const { id, name, email, phone } = action.payload;
-      const foundClient = state.find((client) => client.id === action.payload);
+      const foundClient = state.clients.find((client) => client.id === id);
       if (foundClient) {
         foundClient.name = name;
         foundClient.email = email;
         foundClient.phone = phone;
       }
     },
-    getDetailClient: (state, action) => {
-      const { name, email, phone, vip, enable } = action.payload;
-      state.name = name;
-      state.email = email;
-      state.phone = phone;
-      state.vip = vip;
-      state.enable = enable;
+    getDetailClient: async (state, action) => {
+      const { id } = action.payload;
+      const clientDetail = await getClient(id);
+
+      state.clientDetail = clientDetail;
+    },
+
+    enableClient: async (state, action) => {
+      await putClient(action.payload);
+      const { id, enable } = action.payload;
+      const foundClient = state.clients.find((client) => client.id === id);
+      if (foundClient) {
+        foundClient.enable = enable;
+      }
     },
   },
 });

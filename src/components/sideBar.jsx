@@ -1,4 +1,14 @@
 import { Link } from "react-router-dom";
+import {
+  RiBarChart2Line,
+  RiTeamLine,
+  RiLogoutCircleRLine,
+  // RiMenu3Fill,
+  // RiCloseFill,
+} from "react-icons/ri";
+import { useState } from "react";
+// import spotlight1 from "../assets/svg/Spotlight1.svg";
+// import spotlight2 from "../assets/svg/Spotlight2.svg";
 
 function SideBar({
   clients,
@@ -8,28 +18,39 @@ function SideBar({
   inventario,
   routeInventario,
 }) {
+  const [isOpen, setIsOpen] = useState(false);
   return (
-    <div className="px-4 py-[10em] space-y-7 col-span-2 row-start-2 row-end-7 flex flex-col bg-gradient-to-br from-gray-800 via-slate-800 to-gray-900">
-      <div className="text-center bg-gray-400 group-hover:bg-white/10 group-active:scale-95 self-stretch p-2 rounded space-x-2 transition-all duration-200 dark:group-hover:text-white dark:hover:text-white text-sm">
-        <Link to="/">Resumen</Link>
+    <section
+      className={`${
+        isOpen ? "left-0" : "-left-full"
+      } bg-base-light/40 w-68 lg:w-full  flex flex-col gap-y-8 justify-between py-4 px-12 lg:static h-full z-40 transition-all duration-200 lg:left-0 border-r border-light/40 `}
+    >
+      <section className="flex flex-col gap-y-10">
+        <h1 className="mt-6 text-4xl font-bold tracking-widest text-center border-b border-light/40 pb-8">
+          LOGO
+        </h1>
+        <Link
+          to="#"
+          className="flex gap-x-4 items-center text-xl text-gray-300 font-medium py-2 rounded-lg cursor-pointer  px-4 hover:bg-base/20 hover:text-gray-100 transition-all"
+        >
+          <RiBarChart2Line className="text-4xl" /> Resumen
+        </Link>
+        <Link
+          to="#"
+          className="flex gap-x-4 items-center text-xl text-gray-300 font-medium py-2 rounded-lg cursor-pointer  px-4 hover:bg-base/20  hover:text-gray-100 transition-all"
+        >
+          <RiTeamLine className="text-4xl" /> Clientes
+        </Link>
+      </section>
+      <div>
+        <Link
+          to="/"
+          className="flex items-center gap-x-2 py-2 rounded-lg cursor-pointer text-gray-300 px-4 text-lg hover:bg-base/20 hover:text-gray-100 transition-all"
+        >
+          <RiLogoutCircleRLine className="text-2xl" /> Cerrar Sesion
+        </Link>
       </div>
-      <div
-        className={`pl-2 bg-gray-400 text-black justify-center group-hover:bg-white/10 w-full group-active:scale-95 self-stretch rounded flex items-center space-x-2 transition-all duration-200 dark:group-hover:text-white dark:hover:text-white text-sm`}
-      >
-        <Link to={routeClients}>{clients}</Link>
-      </div>
-      <div className="text-center bg-gray-400 text-black group-hover:bg-white/10 w-full group-active:scale-95 self-stretch pl-2 rounded items-center space-x-2 transition-all duration-200 dark:group-hover:text-white dark:hover:text-white text-sm">
-        <Link to={routeSalesMans}>{salesMans}</Link>
-      </div>
-
-      <div className="text-center bg-gray-400 text-black group-hover:bg-white/10 w-full group-active:scale-95 self-stretch pl-2 rounded items-center space-x-2 transition-all duration-200 dark:group-hover:text-white dark:hover:text-white text-sm">
-        <Link to={routeInventario}>{inventario}</Link>
-      </div>
-
-      <div className=" text-center bg-red-500 text-white group-hover:bg-white/10 group-active:scale-95 p-2 rounded bottom-5  space-x-2 transition-all duration-200 dark:group-hover:text-white dark:hover:text-white text-sm">
-        <Link to="/">Salir</Link>
-      </div>
-    </div>
+    </section>
   );
 }
 

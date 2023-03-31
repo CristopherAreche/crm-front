@@ -36,7 +36,7 @@ const LandingPage = () => {
             </button>
           </Link>
           <Link
-            to="/auth"
+            to="/login"
             className=" flex gap-x-1 items-center text-white font-medium hover:text-light transition-colors b"
           >
             <RiUserLine className="text-2xl" /> LOG IN
@@ -75,7 +75,7 @@ const LandingPage = () => {
         {/* Hero Image */}
         <img
           src={imgLanding}
-          className="w-96 lg:w-[30rem] 2xl:w-[40rem]"
+          className="animate-pulse w-96 lg:w-[30rem] 2xl:w-[40rem]"
           alt="3D icon of computer"
         />
       </section>

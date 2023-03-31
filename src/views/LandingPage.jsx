@@ -36,7 +36,7 @@ const LandingPage = () => {
             </button>
           </Link>
           <Link
-            to="/login"
+            to="/auth"
             className=" flex gap-x-1 items-center text-white font-medium hover:text-light transition-colors b"
           >
             <RiUserLine className="text-2xl" /> LOG IN

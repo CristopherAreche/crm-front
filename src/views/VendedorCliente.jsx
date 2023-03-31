@@ -10,7 +10,7 @@ import spotlight2 from '../assets/svg/Spotlight2.svg'
 const VendedorCliente = () => {
   return (
     <main className="bg-base h-screen text-white grid grid-cols-8">
-      <SideBar />
+      <SideBar typeSidebar='seller-clients' />
       <section className="col-span-6 h-[100vh] overflow-y-auto z-40 lg:px-6 flex flex-col items-center w-[100vw] lg:w-auto">
         <Header />
         <FilterTop />

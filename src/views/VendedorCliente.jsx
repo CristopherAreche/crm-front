@@ -5,6 +5,7 @@ import SearchBar from "../components/SearchBar";
 import SideBar from "../components/SideBar";
 import SideBarRight from "../components/SideBarRight";
 import FilterButton from "../components/FilterButton";
+import CreateClient from "../components/forms/CreateClient";
 
 const VendedorCliente = () => {
   return (
@@ -22,8 +23,10 @@ const VendedorCliente = () => {
         <SearchBar />
         <FilterButton />
         <ClientList />
+
         {/* un comentario */}
       </div>
+      <CreateClient isVisible />
     </body>
   );
 };

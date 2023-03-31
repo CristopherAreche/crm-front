@@ -15,7 +15,7 @@ function SideBarRight({
       </div>
 
       <div className=" text-center bg-gray-400 text-black group-hover:bg-white/10 w-full group-active:scale-95 self-stretch p-2 rounded items-center space-x-2 transition-all duration-200 dark:group-hover:text-white dark:hover:text-white text-sm">
-        <Link to={routeClients}>Agregar</Link>
+        <button>Agregar</button>
       </div>
       <div className="text-center bg-gray-400 text-black group-hover:bg-white/10 w-full group-active:scale-95 self-stretch p-2 rounded items-center space-x-2 transition-all duration-200 dark:group-hover:text-white dark:hover:text-white text-sm">
         <Link to={routeSalesMans}>Editar</Link>

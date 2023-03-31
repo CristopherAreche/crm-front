@@ -14,7 +14,7 @@ function DateFilter() {
   return (
     <div className="col-start-5 col-end-7 row-start-5 row-end-6 flex justify-center items-center">
       <Datepicker
-        inputClassName=" font-bold text-center bg-cyan-950 dark:bg-green-900 text-white"
+        inputClassName=" font-bold text-center bg-gray-900 dark:bg-green-900 text-white"
         primaryColor={"blue"}
         useRange={false}
         value={value}

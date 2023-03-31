@@ -11,15 +11,9 @@ import {
 import { useState } from "react";
 // import spotlight1 from "../assets/svg/Spotlight1.svg";
 // import spotlight2 from "../assets/svg/Spotlight2.svg";
+import { useSelector } from "react-redux";
 
-function SideBarDetail({
-  clients,
-  routeClients,
-  salesMans,
-  routeSalesMans,
-  inventario,
-  routeInventario,
-}) {
+function SideBarDetail() {
   const [isOpen, setIsOpen] = useState(false);
   return (
     <section

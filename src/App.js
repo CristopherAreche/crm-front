@@ -23,7 +23,6 @@ function App() {
           element={<VendedorDetallesCliente />}
         />
         <Route exact path="/vendedor_cliente" element={<VendedorCliente />} />
-
         {/* Layouts Routes */}
         <Route exact path="/auth" element={<AuthLayout />}>
           <Route index element={<LoginPage />} />

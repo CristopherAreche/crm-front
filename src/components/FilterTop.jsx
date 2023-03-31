@@ -2,17 +2,17 @@ import React from "react";
 
 const FilterTop = () => {
   return (
-    <div className="text-white text-bold flex justify-evenly p-[0.6em] w-[80%] bg-[#24314c] rounded-full">
-      <button className="h-[2em] rounded-full bg-[#2c3860] w-[8em]">
+    <section className="text-white text-bold flex justify-evenly w-full bg-base-light/40 items-center py-2 rounded-md">
+      <button className="rounded-xl py-2 px-3 bg-[#2c3860]">
         A - Z
       </button>
-      <button className="h-[2em] rounded-full bg-[#2c3860] w-[8em]">
+      <button className="rounded-xl py-2 px-3 bg-[#2c3860]">
         Z - A
       </button>
-      <button className="h-[2em] rounded-full bg-[#2c3860] w-[8em]">ENC</button>
-      <button className="h-[2em] rounded-full bg-[#2c3860] w-[8em]">ENI</button>
-      <button className="h-[2em] rounded-full bg-[#2c3860] w-[8em]">VIP</button>
-    </div>
+      <button className="rounded-xl py-2 px-3 bg-[#2c3860]">ENC</button>
+      <button className="rounded-xl py-2 px-3 bg-[#2c3860]">ENI</button>
+      <button className="rounded-xl py-2 px-3 bg-[#2c3860]">VIP</button>
+    </section>
   );
 };
 

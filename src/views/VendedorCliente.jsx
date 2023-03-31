@@ -26,7 +26,7 @@ const VendedorCliente = () => {
 
         {/* un comentario */}
       </div>
-      <CreateClient isVisible />
+      <CreateClient />
     </body>
   );
 };

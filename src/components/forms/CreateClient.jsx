@@ -1,11 +1,18 @@
 import { useState } from "react";
 import validation from "./validation";
+import { useDispatch } from "react-redux";
+import { addClient } from "../../app/store/clientSlice";
 
 function CreateClient({ isVisible }) {
+  const dispatch = useDispatch();
+
   const [clientData, setClientData] = useState({
     name: "",
     email: "",
     phone: "",
+    vip: false,
+    enable: true,
+    salesmanId: "1",
   });
 
   const [errors, setErros] = useState({
@@ -36,12 +43,16 @@ function CreateClient({ isVisible }) {
     if (errors.name || errors.email || errors.phone) {
       alert("Por favor revise los datos introducidos. ");
     } else {
+      dispatch(addClient(clientData));
       //aca va el dispatch
 
       setClientData({
         name: "",
         email: "",
         phone: "",
+        vip: false,
+        enable: true,
+        salesmanId: "1",
       });
     }
   };

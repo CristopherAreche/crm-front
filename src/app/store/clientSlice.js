@@ -10,15 +10,40 @@ import {
 const initialState = {
   clients: [],
   clientDetail: {},
+  clientSelected: "",
+  message: "",
   status: "idle",
   error: null,
 };
+
 export const clientSlice = createSlice({
   name: "clients",
   initialState,
-  reducers: {},
+  reducers: {
+    clientCheckbox: (state, action) => {
+      state.clientSelected = action.payload;
+    },
+  },
+
   extraReducers: (builder) => {
     builder
+      .addCase(postClient.fulfilled, (state, action) => {
+        state.clients.push(action.payload);
+        console.log(state.clients);
+      })
+      .addCase(postClient.rejected, (state, action) => {
+        state.message = action.payload;
+      })
+      .addCase(putClient.fulfilled, (state, action) => {
+        const { id, name, email, phone } = action.payload;
+
+        const foundClient = state.clients.find((client) => client.id === id);
+        if (foundClient) {
+          foundClient.name = name;
+          foundClient.email = email;
+          foundClient.phone = phone;
+        }
+      })
       .addCase(getClients.pending, (state) => {
         state.status = "loading";
       })
@@ -29,49 +54,17 @@ export const clientSlice = createSlice({
       .addCase(getClients.rejected, (state, action) => {
         state.status = "failed";
         state.error = action.error.message;
+      })
+
+      .addCase(getClient.fulfilled, (state, action) => {
+        state.clientDetail = action.payload;
+      })
+
+      .addCase(getClientName.fulfilled, (state, action) => {
+        state.clients = action.payload;
       });
-  },
-
-  addClient: async (state, action) => {
-    await postClient(action.payload);
-    state.clients.push(action.payload);
-  },
-
-  editClient: async (state, action) => {
-    await putClient(action.payload);
-
-    const { id, name, email, phone } = action.payload;
-    const foundClient = state.clients.find((client) => client.id === id);
-    if (foundClient) {
-      foundClient.name = name;
-      foundClient.email = email;
-      foundClient.phone = phone;
-    }
-  },
-  getDetailClient: async (state, action) => {
-    const { id } = action.payload;
-    const clientDetail = await getClient(id);
-
-    state.clientDetail = clientDetail;
-  },
-
-  clientName: async (state, action) => {
-    const { name } = action.payload;
-    const ClientName = await getClientName(name);
-    state.clientDetail = ClientName;
-    console.log(ClientName);
-  },
-
-  enableClient: async (state, action) => {
-    await putClient(action.payload);
-    const { id, enable } = action.payload;
-    const foundClient = state.clients.find((client) => client.id === id);
-    if (foundClient) {
-      foundClient.enable = enable;
-    }
   },
 });
 
-export const { addClient, getAllClients, getDetailClient, clientName } =
-  clientSlice.actions;
+export const { getDetailClient, clientName } = clientSlice.actions;
 export default clientSlice.reducer;

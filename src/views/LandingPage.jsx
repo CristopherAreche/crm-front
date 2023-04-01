@@ -28,10 +28,8 @@ const LandingPage = () => {
           </div>
           {/* Botones */}
           <div className="flex gap-x-4 z-[2]">
-            <Link to="/vendedor_cliente">
-              <button className="bg-gradient-to-r from-primary to-secondary px-4 py-2 rounded-xl text-white font-medium text-lg lg:text-2xl hover:scale-[1.03] transition-all flex gap-x-1 items-center">
+            <Link to="/auth/register" className="bg-gradient-to-r from-primary to-secondary px-4 py-2 rounded-xl text-white font-medium text-lg lg:text-2xl hover:scale-[1.03] transition-all flex gap-x-1 items-center">
                 Empezar Ahora
-              </button>
             </Link>
             <button className="border-2 border-secondary rounded-xl p-2 px-4 text-lg lg:text-2xl hover:scale-[1.03] hover:text-white transition-all text-light font-medium flex items-center gap-x-1">
               Descubre mas

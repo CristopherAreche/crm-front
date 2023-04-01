@@ -1,4 +1,3 @@
-import React from "react";
 import SideBar from "../components/sideBar";
 import Header from "../components/Header";
 import ClientList from "../components/ClientList";
@@ -11,12 +10,16 @@ const VendedorCliente = () => {
   return (
     <main className="bg-base h-screen text-white grid grid-cols-8">
       <SideBar typeSidebar="seller-clients" />
-      <section className="col-span-6 h-[100vh] overflow-y-auto z-40 lg:px-6 flex flex-col items-center w-[100vw] lg:w-auto">
+
+      {/* View Clients */}
+      <section className="col-span-6 h-[100vh] overflow-y-auto z-40 flex flex-col  items-center w-[100vw] lg:w-auto">
         <Header />
         <FilterTop />
         <ClientList />
         <FilterBottom />
       </section>
+
+      {/* Luces */}
       <img
         src={spotlight1}
         className="absolute top-0 left-0 opacity-80 z-[1]"

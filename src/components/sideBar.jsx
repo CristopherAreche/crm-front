@@ -5,8 +5,8 @@ import {
   RiLogoutCircleRLine,
   RiCloseFill,
   RiMenu3Fill,
-  // RiMenu3Fill,
-  // RiCloseFill,
+  RiUserSettingsLine,
+  RiTyphoonFill
 } from "react-icons/ri";
 import { useState } from "react";
 import ClientSideBarDetail from "./ClientSideBarDetail";
@@ -18,26 +18,26 @@ function SideBar({ typeSidebar }) {
       <section
         className={`${
           isOpen ? "left-0" : "-left-full"
-        } col-span-2 bg-base-light/70 lg:bg-base-light/40 w-68 lg:w-80  flex flex-col gap-y-8 justify-between py-4 px-12 fixed lg:static  h-full z-50 transition-all duration-200 lg:left-0 border-r border-light/40`}
+        } col-span-2 bg-base-light/80 lg:bg-base-light/40 w-68 lg:w-72  flex flex-col gap-y-8 justify-between py-4 fixed lg:static  h-full z-50 transition-all duration-200 lg:left-0 `}
       >
         <section className="flex flex-col gap-y-4">
-          <h1 className="text-4xl font-bold tracking-widest text-center border-b border-light/40 text-white pb-8">
-            LOGO
+          <h1 className="text-3xl flex items-center justify-center gap-x-2 px-8 font-bold tracking-widest border-b border-light/40 pb-4 pt-2">
+            <RiTyphoonFill className="text-white"/> <span className="bg-gradient-to-r from-primary  to-secondary text-end  text-transparent bg-clip-text hover:underline hover:text-light transition-all cursor-pointer">CRM</span>
           </h1>
           {/* Contenido Dinamico */}
           {typeSidebar === "seller-clients" && (
             <>
               <Link
                 to="/seller-dash"
-                className="flex gap-x-4 items-center text-xl text-gray-300 font-medium py-2 rounded-lg cursor-pointer  px-4 hover:bg-base/20 hover:text-gray-100 transition-all"
+                className="flex gap-x-6 items-center text-lg text-gray-200 font-medium  py-2  cursor-pointer  px-8 hover:bg-light/20 hover:text-gray-100 transition-all"
               >
-                <RiBarChart2Line className="text-4xl" /> Resumen
+                <RiBarChart2Line className="text-3xl text-secondary" /> Resumen
               </Link>
               <Link
                 to="/seller-dash/clients"
-                className="flex gap-x-4 items-center text-xl text-gray-300 font-medium py-2 rounded-lg cursor-pointer  px-4 hover:bg-base/20  hover:text-gray-100 transition-all"
+                className="flex gap-x-6 items-center text-lg text-gray-200 font-medium  py-2  cursor-pointer  px-8 hover:bg-light/20  hover:text-gray-100 transition-all"
               >
-                <RiTeamLine className="text-4xl" /> Clientes
+                <RiTeamLine className="text-3xl text-secondary" /> Clientes
               </Link>
             </>
           )}
@@ -46,11 +46,12 @@ function SideBar({ typeSidebar }) {
         <div>
           {typeSidebar === "seller-clients" && (
             <>
+              <Link className="flex items-center gap-x-6 py-2  cursor-pointer text-gray-200 font-medium px-8 text-lg hover:bg-light/20 hover:text-gray-100 transition-all mb-4"><RiUserSettingsLine className="text-2xl text-secondary"/>Configuracion</Link>
               <Link
                 to="/"
-                className="flex items-center gap-x-2 py-2 rounded-lg cursor-pointer text-gray-300 px-4 text-lg hover:bg-base/20 hover:text-gray-100 transition-all"
+                className="flex items-center gap-x-6 py-2  cursor-pointer text-gray-200 font-medium px-8 text-lg hover:bg-light/20 hover:text-gray-100 transition-all"
               >
-                <RiLogoutCircleRLine className="text-2xl" /> Cerrar Sesion
+                <RiLogoutCircleRLine className="text-2xl text-secondary" /> Cerrar Sesion
               </Link>
             </>
           )}
@@ -58,9 +59,9 @@ function SideBar({ typeSidebar }) {
             <>
               <Link
                 to="/vendedor_cliente"
-                className="flex items-center gap-x-2 py-2 rounded-lg cursor-pointer text-gray-300 px-4 text-lg hover:bg-base/20 hover:text-gray-100 transition-all"
+                className="flex items-center gap-x-6 py-2  cursor-pointer text-gray-200 font-medium px-8 text-lg hover:bg-light/20 hover:text-gray-100 transition-all"
               >
-                <RiLogoutCircleRLine className="text-3xl" /> Volver
+                <RiLogoutCircleRLine className="text-2xl text-secondary" /> Volver
               </Link>
             </>
           )}

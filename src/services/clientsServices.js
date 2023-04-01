@@ -1,11 +1,10 @@
-import axios from "axios";
 import { createAsyncThunk } from "@reduxjs/toolkit";
+import axios from "axios";
 
-export const getClients = async () => {
-  const res = await axios("https://crm.up.railway.app/api/client");
-  const data = res.data;
-  return data;
-};
+export const getClients = createAsyncThunk("clients/getClients", async () => {
+  const response = await axios.get("https://crm.up.railway.app/api/client");
+  return response.data;
+});
 
 export const postClient = createAsyncThunk(
   `clients/postClient`,
@@ -45,8 +44,24 @@ export const putClient = createAsyncThunk(
   }
 );
 
-export const getClient = async (id) => {
-  const res = await axios(`https://crm.up.railway.app/api/client?id=${id}`);
-  const data = res.data;
-  return data;
-};
+export const getClient = createAsyncThunk("clients/getClient", async (id) => {
+  try {
+    const res = await axios(`https://crm.up.railway.app/api/client?id=${id}`);
+    const data = res.data;
+    return data;
+  } catch (error) {
+    alert(error.response.data.error);
+    return error.response.data.error;
+  }
+});
+
+export const getClientName = createAsyncThunk(
+  "clients/getClientName",
+  async (name) => {
+    const res = await axios(
+      "https://crm.up.railway.app/api/client?name=" + name
+    );
+    const data = res.data;
+    return data;
+  }
+);

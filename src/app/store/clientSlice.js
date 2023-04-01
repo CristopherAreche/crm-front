@@ -4,25 +4,16 @@ import {
   getClients,
   postClient,
   putClient,
+  getClientName,
 } from "../../services/clientsServices";
 
 const initialState = {
-  clients: [
-    {
-      id: "918b3e73-2a97-42e1-8549-3fec796cfd11",
-      name: "prueba ",
-      email: "prueba",
-      phone: "prueba",
-      vip: false,
-      enable: true,
-      createdAt: "2023-04-01T15:10:03.874Z",
-      updatedAt: "2023-04-01T15:10:03.874Z",
-      salesmanId: "9e3fa495-ae30-49d0-8644-819fd5cfe767",
-    },
-  ],
+  clients: [],
   clientDetail: {},
   clientSelected: "",
   message: "",
+  status: "idle",
+  error: null,
 };
 
 export const clientSlice = createSlice({
@@ -32,25 +23,18 @@ export const clientSlice = createSlice({
     clientCheckbox: (state, action) => {
       state.clientSelected = action.payload;
     },
+  },
 
-    getAllClients: async (state, action) => {
-      const allClients = await getClients();
-      state.clients = allClients;
-    },
-
-    extraReducers: (builder) => {
-      builder
-        .addCase(postClient.fulfilled, (state, action) => {
-          state.clients.push(action.payload);
-          console.log(state.clients);
-        })
-        .addCase(postClient.rejected, (state, action) => {
-          state.message = action.payload;
-        });
-    },
-
-    extraReducers: (builder) => {
-      builder.addCase(putClient.fulfilled, (state, action) => {
+  extraReducers: (builder) => {
+    builder
+      .addCase(postClient.fulfilled, (state, action) => {
+        state.clients.push(action.payload);
+        console.log(state.clients);
+      })
+      .addCase(postClient.rejected, (state, action) => {
+        state.message = action.payload;
+      })
+      .addCase(putClient.fulfilled, (state, action) => {
         const { id, name, email, phone } = action.payload;
 
         const foundClient = state.clients.find((client) => client.id === id);
@@ -59,26 +43,28 @@ export const clientSlice = createSlice({
           foundClient.email = email;
           foundClient.phone = phone;
         }
+      })
+      .addCase(getClients.pending, (state) => {
+        state.status = "loading";
+      })
+      .addCase(getClients.fulfilled, (state, action) => {
+        state.status = "succeeded";
+        state.data = action.payload;
+      })
+      .addCase(getClients.rejected, (state, action) => {
+        state.status = "failed";
+        state.error = action.error.message;
+      })
+
+      .addCase(getClient.fulfilled, (state, action) => {
+        state.clientDetail = action.payload;
+      })
+
+      .addCase(getClientName.fulfilled, (state, action) => {
+        state.clients = action.payload;
       });
-    },
-
-    getDetailClient: async (state, action) => {
-      const { id } = action.payload;
-      const clientDetail = await getClient(id);
-
-      state.clientDetail = clientDetail;
-    },
-
-    enableClient: async (state, action) => {
-      await putClient(action.payload);
-      const { id, enable } = action.payload;
-      const foundClient = state.clients.find((client) => client.id === id);
-      if (foundClient) {
-        foundClient.enable = enable;
-      }
-    },
   },
 });
 
-export const { getAllClients, getDetailClient } = clientSlice.actions;
+export const { getDetailClient, clientName } = clientSlice.actions;
 export default clientSlice.reducer;

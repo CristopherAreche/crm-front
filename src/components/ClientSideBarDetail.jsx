@@ -5,12 +5,15 @@ import { BiTask } from 'react-icons/bi';
 const ClientSideBarDetail = () => {
   return (
     <>
-    <p className="text-light font-medium text-center">
-      <span className='text-gray-400'>Email:</span> shanna@melissa.tv
-    </p>
     <h4 className="text-light text-3xl text-center font-medium">
         Ervin Howell
     </h4>
+    <p className="text-light text-sm font-medium text-center">
+      <span className='text-gray-400'>Email:</span> shanna@melissa.tv
+    </p>
+    <p className="text-light text-sm font-medium text-center">
+      <span className='text-gray-400'>Telefono:</span> 010-692-6593 x09125
+    </p>
     <div className="flex justify-center gap-x-4">
       <BiTask className="bg-light p-3 box-content text-xl rounded-full " />
       <AiOutlineMail className="bg-light text-xl rounded-full p-3 box-content " />

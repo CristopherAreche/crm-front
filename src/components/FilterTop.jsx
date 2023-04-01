@@ -1,17 +1,32 @@
-import React from "react";
+import { RiArrowDropRightLine } from "react-icons/ri";
 
 const FilterTop = () => {
   return (
-    <section className="text-white text-bold flex justify-evenly w-full bg-base-light/40 items-center py-2 rounded-md">
-      <button className="rounded-xl py-2 px-3 bg-[#2c3860]">
-        A - Z
-      </button>
-      <button className="rounded-xl py-2 px-3 bg-[#2c3860]">
-        Z - A
-      </button>
-      <button className="rounded-xl py-2 px-3 bg-[#2c3860]">ENC</button>
-      <button className="rounded-xl py-2 px-3 bg-[#2c3860]">ENI</button>
-      <button className="rounded-xl py-2 px-3 bg-[#2c3860]">VIP</button>
+    <section className="text-white text-bold flex justify-evenly w-full  lg:items-center py-2 border-b-2 border-light/10  flex-row flex-wrap lg:flex-nowrap lg:pt-6 ">
+      <div className="flex gap-x-2 items-center">
+        <p className="text-gray-300 text-sm font-medium">Alfabeticamente:</p>
+        <button className="rounded-xl  text-sm font-medium flex items-center hover:text-gray-400 group">
+          A-Z <RiArrowDropRightLine className="text-3xl text-secondary group-hover:rotate-90 transition-all"/>
+        </button>
+      </div>
+      <div className="flex gap-x-2 items-center">
+        <p className="text-gray-300 text-sm font-medium">Total:</p>
+        <button className="rounded-xl  text-sm font-medium flex items-center hover:text-gray-400 group">
+          Max <RiArrowDropRightLine className="text-3xl text-secondary group-hover:rotate-90 transition-all"/>
+        </button>
+      </div>
+      <div className="flex gap-x-2 items-center">
+        <p className="text-gray-300 text-sm font-medium">VIP:</p>
+        <button className="rounded-xl  text-sm font-medium flex items-center hover:text-gray-400 group">
+          Todos <RiArrowDropRightLine className="text-3xl text-secondary group-hover:rotate-90 transition-all"/>
+        </button>
+      </div>
+      <div className="flex gap-x-2 items-center">
+        <p className="text-gray-300 text-sm font-medium">Estado:</p>
+        <button className="rounded-xl  text-sm font-medium flex items-center hover:text-gray-400 group">
+          Todos <RiArrowDropRightLine className="text-3xl text-secondary group-hover:rotate-90 transition-all"/>
+        </button>
+      </div>
     </section>
   );
 };

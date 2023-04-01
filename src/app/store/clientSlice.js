@@ -25,6 +25,7 @@ export const clientSlice = createSlice({
       .addCase(getClients.fulfilled, (state, action) => {
         state.status = "succeeded";
         state.data = action.payload;
+        state.clients = action.payload;
       })
       .addCase(getClients.rejected, (state, action) => {
         state.status = "failed";

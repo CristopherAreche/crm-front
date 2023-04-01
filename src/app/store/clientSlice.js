@@ -21,7 +21,7 @@ const initialState = {
     },
   ],
   clientDetail: {},
-  clientSelected: "918b3e73-2a97-42e1-8549-3fec796cfd11",
+  clientSelected: "",
   message: "",
 };
 

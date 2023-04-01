@@ -11,15 +11,15 @@ export const postClient = createAsyncThunk(
   `clients/postClient`,
   async (payload) => {
     try {
-      const data = await axios.post(
+      const { data } = await axios.post(
         "https://crm.up.railway.app/api/client",
         payload
       );
-      alert("Cliente creado con éxito");
+      console.log(data);
+      alert("Cliente creado correctamente");
 
       return data;
     } catch (error) {
-      console.log(error);
       alert(error.response.data.error);
       return error.response.data.error;
     }
@@ -30,12 +30,13 @@ export const putClient = createAsyncThunk(
   `clients/putClient`,
   async (payload) => {
     try {
-      const data = await axios.put(
+      const { data } = await axios.put(
         "https://crm.up.railway.app/api/client",
         payload
       );
 
-      alert("Cliente modificado con éxito");
+      alert(data);
+
       return data;
     } catch (error) {
       alert(error.response.data.error);
@@ -45,7 +46,7 @@ export const putClient = createAsyncThunk(
 );
 
 export const getClient = async (id) => {
-  const res = await axios(`https://crm.up.railway.app/api/client/${id}`);
+  const res = await axios(`https://crm.up.railway.app/api/client?id=${id}`);
   const data = res.data;
   return data;
 };

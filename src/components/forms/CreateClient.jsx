@@ -8,7 +8,7 @@ function CreateClient({ isVisible, onClose }) {
   const clientId = useSelector((state) => state.clients.clientSelected);
 
   const clients = useSelector((state) => state.clients.clients);
-  console.log(clients);
+  console.log(clients, "este es el original");
   const handleClose = (e) => {
     if (e.target.id === "wrapper") onClose();
   };
@@ -47,10 +47,10 @@ function CreateClient({ isVisible, onClose }) {
     event.preventDefault();
     if (errors.name || errors.email || errors.phone) {
       alert("Por favor revise los datos introducidos. ");
+    } else if (clientId) {
+      dispatch(putClient(clientData));
+      console.log(clients, "este es el modificado");
     } else {
-      if (clientId) dispatch(putClient(clientData));
-      console.log(clientData);
-
       dispatch(postClient(clientData));
       //aca va el dispatch
 

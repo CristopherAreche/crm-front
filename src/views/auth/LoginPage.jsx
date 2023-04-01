@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 const LoginPage = () => {
   return (
-    <section className="flex flex-col items-start justify-center min-h-screen px-20 gap-y-4">
+    <section className="flex flex-col items-start justify-center min-h-screen px-8 lg:px-20 gap-y-4">
       <div className="block lg:hidden absolute top-4 left-4">
         <Link
           to="/"
@@ -40,7 +40,7 @@ const LoginPage = () => {
         </div>
         <div className="flex justify-between">
           <Link to='/auth/register' className="bg-gradient-to-r text-light  hover:underline hover:text-white transition-all cursor-pointer">No tienes cuenta? Registrate</Link>
-          <p className="bg-gradient-to-r from-primary  to-secondary text-transparent bg-clip-text hover:underline hover:text-light transition-all cursor-pointer">
+          <p className="bg-gradient-to-r from-primary  to-secondary text-end  text-transparent bg-clip-text hover:underline hover:text-light transition-all cursor-pointer">
             Olvidaste tu contraseña?
           </p>
         </div>

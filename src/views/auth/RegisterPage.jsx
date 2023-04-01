@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 const RegisterPage = () => {
   return (
-    <section className="flex flex-col items-start justify-center min-h-screen px-20 gap-y-4">
+    <section className="flex flex-col items-start justify-center min-h-screen px-8 lg:px-20 gap-y-4">
       <div className="block lg:hidden absolute top-4 left-4">
         <Link
           to="/"

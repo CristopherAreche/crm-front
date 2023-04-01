@@ -53,6 +53,6 @@ export const clientSlice = createSlice({
   },
 });
 
-export const { addClient, getAllClients, getDetailClient } =
+export const { addClient, getDetailClient, extraReducers } =
   clientSlice.actions;
 export default clientSlice.reducer;

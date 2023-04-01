@@ -16,10 +16,10 @@ const FilterBottom = () => {
         Editar
       </button>
       <button className="h-[2em] rounded-full bg-[#2c3860] w-[8em]">
-        Deshabilitar
+        Habilitar
       </button>
       <button className="h-[2em] rounded-full bg-[#2c3860] w-[8em]">
-        Eliminar
+        Deshabilitar
       </button>
     </div>
   );

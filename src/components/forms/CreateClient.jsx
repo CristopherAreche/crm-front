@@ -3,8 +3,11 @@ import validation from "./validation";
 import { useDispatch } from "react-redux";
 import { addClient } from "../../app/store/clientSlice";
 
-function CreateClient({ isVisible }) {
+function CreateClient({ isVisible, onClose }) {
   const dispatch = useDispatch();
+  const handleClose = (e) => {
+    if (e.target.id === "wrapper") onClose();
+  };
 
   const [clientData, setClientData] = useState({
     name: "",
@@ -58,59 +61,77 @@ function CreateClient({ isVisible }) {
   };
   if (!isVisible) return null;
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-25 backdrop-blur-sm flex justify-center items-center">
-      <form className="w-[600px] bg-white p-2 rounded " onSubmit={handleSubmit}>
-        <div>
-          <label className="" htmlFor="name">
-            Nombre completo:
-          </label>
-          <input
-            className=""
-            type="text"
-            value={clientData.name}
-            name="name"
-            onChange={handleInputChange}
-          />
-          {errors.name && <span style={{ color: "red" }}> {errors.name}</span>}
-        </div>
+    <div
+      className="fixed inset-0  bg-black bg-opacity-25 backdrop-blur-sm flex justify-center items-center"
+      id="wrapper"
+      onClick={handleClose}
+    >
+      {" "}
+      <div>
+        <form
+          className="w-[600px] space-x-2 space-y-3.5  bg-base-light/70 p-3 rounded "
+          onSubmit={handleSubmit}
+        >
+          <div>
+            <label className="m-3 py-2" htmlFor="name">
+              Nombre completo:
+            </label>
+            <input
+              className="bg-base-light/70 "
+              type="text"
+              value={clientData.name}
+              name="name"
+              onChange={handleInputChange}
+            />
+            {errors.name && (
+              <span style={{ color: "red" }}> {errors.name}</span>
+            )}
+          </div>
 
-        <div>
-          <label className="" htmlFor="phone">
-            Teléfono:{" "}
-          </label>
-          <input
-            className=""
-            type="text"
-            value={clientData.phone}
-            name="phone"
-            onChange={handleInputChange}
-          />
-          {errors.summary && (
-            <span style={{ color: "red" }}> {errors.phone}</span>
-          )}
-        </div>
+          <div>
+            <label className="" htmlFor="phone">
+              Teléfono:{" "}
+            </label>
+            <input
+              className="bg-base-light/70"
+              type="text"
+              value={clientData.phone}
+              name="phone"
+              onChange={handleInputChange}
+            />
+            {errors.summary && (
+              <span style={{ color: "red" }}> {errors.phone}</span>
+            )}
+          </div>
 
-        <div>
-          <label className="" htmlFor="email">
-            Correo:{" "}
-          </label>
-          <input
-            className=""
-            type="text"
-            value={clientData.email}
-            name="email"
-            onChange={handleInputChange}
-          />
-          {errors.summary && (
-            <span style={{ color: "red" }}> {errors.email}</span>
-          )}
-        </div>
+          <div>
+            <label className="" htmlFor="email">
+              Correo:{" "}
+            </label>
+            <input
+              className="bg-base-light/70"
+              type="text"
+              value={clientData.email}
+              name="email"
+              onChange={handleInputChange}
+            />
+            {errors.summary && (
+              <span style={{ color: "red" }}> {errors.email}</span>
+            )}
+          </div>
 
-        <button className="p-2" type="submit">
-          AGREGAR
-        </button>
-        <button>CERRAR</button>
-      </form>
+          <button className="p-2" type="submit">
+            GUARDAR
+          </button>
+          <button
+            onClick={() => {
+              onClose();
+            }}
+          >
+            CERRAR
+          </button>
+        </form>
+      </div>
     </div>
   );
 }

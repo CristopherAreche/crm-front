@@ -50,6 +50,7 @@ export const clientSlice = createSlice({
       .addCase(getClients.fulfilled, (state, action) => {
         state.status = "succeeded";
         state.data = action.payload;
+        state.clients = action.payload;
       })
       .addCase(getClients.rejected, (state, action) => {
         state.status = "failed";
@@ -66,5 +67,6 @@ export const clientSlice = createSlice({
   },
 });
 
-export const { getDetailClient, clientName } = clientSlice.actions;
+export const { getDetailClient, clientName, clientCheckbox } =
+  clientSlice.actions;
 export default clientSlice.reducer;

@@ -17,7 +17,8 @@ function CreateClient({ isVisible, onClose }) {
     name: "",
     email: "",
     phone: "",
-    salesmanId: "9e3fa495-ae30-49d0-8644-819fd5cfe767",
+    enable: true,
+    salesmanId: "1c6f128e-1996-49b5-bc46-87672c60b0a9",
   });
 
   const [errors, setErros] = useState({
@@ -49,24 +50,32 @@ function CreateClient({ isVisible, onClose }) {
       alert("Por favor revise los datos introducidos. ");
     } else if (clientId) {
       dispatch(putClient(clientData));
-      console.log(clients, "este es el modificado");
     } else {
       dispatch(postClient(clientData));
-      //aca va el dispatch
 
       setClientData({
         name: "",
         email: "",
         phone: "",
-
-        salesmanId: "9e3fa495-ae30-49d0-8644-819fd5cfe767",
+        enable: true,
+        salesmanId: "1c6f128e-1996-49b5-bc46-87672c60b0a9",
       });
+      onClose();
     }
   };
 
   useEffect(() => {
     if (clientId) {
-      setClientData(clients.find((client) => client.id === clientId));
+      const obj = clients.find((client) => client.id === clientId);
+
+      setClientData({
+        name: obj.name,
+        email: obj.email,
+        phone: obj.phone,
+        enable: true,
+
+        salesmanId: "1c6f128e-1996-49b5-bc46-87672c60b0a9",
+      });
     }
   }, [clientId, clients]);
 

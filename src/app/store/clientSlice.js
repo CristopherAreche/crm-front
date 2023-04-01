@@ -4,6 +4,7 @@ import {
   getClients,
   postClient,
   putClient,
+  getClientName,
 } from "../../services/clientsServices";
 
 const initialState = {
@@ -42,6 +43,13 @@ export const clientSlice = createSlice({
       state.clientDetail = clientDetail;
     },
 
+    clientName: async (state, action) => {
+      const { name } = action.payload;
+      const ClientName = await getClientName(name);
+      state.clientDetail = ClientName;
+      console.log(ClientName)
+    },
+
     enableClient: async (state, action) => {
       await putClient(action.payload);
       const { id, enable } = action.payload;
@@ -53,6 +61,6 @@ export const clientSlice = createSlice({
   },
 });
 
-export const { addClient, getDetailClient, extraReducers } =
+export const { addClient, getAllClients, getDetailClient, clientName } =
   clientSlice.actions;
 export default clientSlice.reducer;

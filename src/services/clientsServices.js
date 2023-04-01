@@ -6,6 +6,7 @@ export const getClients = createAsyncThunk("clients/getClients", async () => {
   return response.data;
 });
 
+<<<<<<< HEAD
 //POR FAVOR NO ME BORRES... solo estoy aqui espero que el endpoint funcione correctamente.
 //att:cristopher
 export const getClientActivity = createAsyncThunk(
@@ -19,19 +20,64 @@ export const getClientActivity = createAsyncThunk(
 export const postClient = async (payload) => {
   return await axios.post("https://crm.up.railway.app/api/client", payload);
 };
+=======
+export const postClient = createAsyncThunk(
+  `clients/postClient`,
+  async (payload) => {
+    try {
+      const { data } = await axios.post(
+        "https://crm.up.railway.app/api/client",
+        payload
+      );
+      console.log(data);
+      alert("Cliente creado correctamente");
+>>>>>>> main
 
-export const putClient = async (payload) => {
-  return await axios.put("https://crm.up.railway.app/api/client", payload);
-};
+      return data;
+    } catch (error) {
+      alert(error.response.data.error);
+      return error.response.data.error;
+    }
+  }
+);
 
-export const getClient = async (id) => {
-  const res = await axios(`https://crm.up.railway.app/api/client/${id}`);
-  const data = res.data;
-  return data;
-};
+export const putClient = createAsyncThunk(
+  `clients/putClient`,
+  async (payload) => {
+    try {
+      const { data } = await axios.put(
+        "https://crm.up.railway.app/api/client",
+        payload
+      );
 
-export const getClientName = async (name) => {
-  const res = await axios("https://crm.up.railway.app/api/client?name=" + name);
-  const data = res.data;
-  return data;
-};
+      alert(data);
+
+      return data;
+    } catch (error) {
+      alert(error.response.data.error);
+      return error.response.data.error;
+    }
+  }
+);
+
+export const getClient = createAsyncThunk("clients/getClient", async (id) => {
+  try {
+    const res = await axios(`https://crm.up.railway.app/api/client?id=${id}`);
+    const data = res.data;
+    return data;
+  } catch (error) {
+    alert(error.response.data.error);
+    return error.response.data.error;
+  }
+});
+
+export const getClientName = createAsyncThunk(
+  "clients/getClientName",
+  async (name) => {
+    const res = await axios(
+      "https://crm.up.railway.app/api/client?name=" + name
+    );
+    const data = res.data;
+    return data;
+  }
+);

@@ -1,6 +1,6 @@
-import {RiSearchLine} from "react-icons/ri";
+import { RiSearchLine } from "react-icons/ri";
 import { useState } from "react";
-import { getAllClients, clientName } from "../app/store/clientSlice";
+import { getClients, getClientName } from "../services/clientsServices";
 import { useDispatch } from "react-redux";
 const SearchBar = () => {
   const [search, setSearch] = useState("");
@@ -8,35 +8,31 @@ const SearchBar = () => {
   const dispatch = useDispatch();
 
   const handleChange = (event) => {
-    if(event.target.value===""){
-      dispatch(getAllClients())
+    if (event.target.value === "") {
+      dispatch(getClients());
     }
     setSearch(event.target.value);
   };
 
   const handleSearch = () => {
-    dispatch(clientName(search));
+    dispatch(getClientName(search));
   };
-  
+
   const handleSubmit = (event) => {
     event.preventDefault();
-    dispatch(clientName(search));
+    dispatch(getClientName(search));
   };
 
   const handleKeyPress = (event) => {
-    if (event.key === 'Enter') {
-      if(search.length!==0){
+    if (event.key === "Enter") {
+      if (search.length !== 0) {
         handleSearch();
-      }
-      else dispatch((getAllClients()));
+      } else dispatch(getClients());
     }
   };
 
-
-
-
   return (
-    <div className="relative"  >
+    <div className="relative">
       <input
         placeholder="Buscar..."
         className="py-2 pl-10 pr-6 rounded-full w-80 bg-base-light/40 outline-none "
@@ -46,7 +42,7 @@ const SearchBar = () => {
         onSubmit={handleSubmit}
         onKeyPress={handleKeyPress}
       />
-      <RiSearchLine className="absolute top-1/2 -translate-y-1/2 left-4 text-xl text-light/70"/>
+      <RiSearchLine className="absolute top-1/2 -translate-y-1/2 left-4 text-xl text-light/70" />
     </div>
   );
 };

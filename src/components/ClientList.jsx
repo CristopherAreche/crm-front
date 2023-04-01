@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getClients } from "../services/clientsServices";
+import { clientCheckbox } from "../app/store/clientSlice";
 
 const ClientList = () => {
   const dispatch = useDispatch();
@@ -19,13 +20,14 @@ const ClientList = () => {
 
   const handleCheckboxChange = (clientId) => {
     setSelectedClients({ [clientId]: true });
+    dispatch(clientCheckbox(clientId));
   };
 
   if (clientsStatus === "loading") {
     return <div className="text-white">Loading...</div>;
   } else if (clientsStatus === "succeeded") {
     return (
-      <section className="w-[22rem] mx-auto overflow-x-auto lg:min-w-full pt-14 pb-4 lg:py-6 lg:px-8 overflow-hidden mb-12 lg:mb-0 ">
+      <section className="w-[22rem] mx-auto overflow-x-auto lg:min-w-full pt-14 pb-4 lg:py-6 lg:px-8   lg:mb-0 ">
         <header className="flex justify-between w-screen lg:w-full px-8 py-4   bg-base-light/30 rounded-tr-md rounded-tl-md  ">
           <h3 className=" text-xl font-medium text-light flex items-center gap-x-2">
             {" "}
@@ -68,12 +70,12 @@ const ClientList = () => {
                 <td className="whitespace-nowrap  px-6 py-4  font-medium text-secondary hover:text-secondary/80 hover:underline transition-all">
                   <Link to="/vendedor_detalles_cliente">{item.name}</Link>
                 </td>
-                <td className="whitespace-nowrap  px-6 py-4"> {item.phone}</td>
-                <td className="whitespace-nowrap  px-6 py-4 text-emerald-200">
+                <td className="whitespace-nowrap  px-6 py-4">$653</td>
+                <td className={`whitespace-nowrap  px-6 py-4 ${item.enable ? 'text-emerald-200' : 'text-red-200'}`}>
                   {" "}
-                  {item.id}
+                  {item.enable ? 'Habilitado' : 'Desabilitado'}
                 </td>
-                <td className="whitespace-nowrap  px-6 py-4"> {item.vip}</td>
+                <td className={`whitespace-nowrap  px-6 py-4 ${item.vip ? 'text-orange-200' : 'text-white'}`}> {item.vip ? 'Si' : 'No'}</td>
               </tr>
             ))}
           </tbody>
@@ -82,8 +84,6 @@ const ClientList = () => {
     );
   } else if (clientsStatus === "failed") {
     return <div>{clientsError}</div>;
-  } else {
-    return null;
   }
 };
 export default ClientList;

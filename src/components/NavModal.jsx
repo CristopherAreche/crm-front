@@ -16,19 +16,19 @@ const NavModal = ({isOpen, onOpen}) => {
         </h2>
         <ul className="flex flex-col gap-y-4 z-10 mb-4">
             <li className="font-medium text-xl 
-            py-4 hover:bg-base/40 text-light/80 hover:text-white transition-all cursor-pointer">
+            py-4 hover:bg-base/40 text-gray-300 hover:text-white transition-all cursor-pointer">
                 Precios
             </li>
             <li className="font-medium text-xl 
-            py-4 hover:bg-base/40 text-light/80 hover:text-white transition-all cursor-pointer">
+            py-4 hover:bg-base/40 text-gray-300 hover:text-white transition-all cursor-pointer">
                 Soporte
             </li>
             <li className="font-medium text-xl
-            py-4 hover:bg-base/40 text-light/80 hover:text-white transition-all cursor-pointer">
+            py-4 hover:bg-base/40 text-gray-300 hover:text-white transition-all cursor-pointer">
                 Central de ayuda
             </li>
             <li className="font-medium text-xl 
-            py-4 hover:bg-base/40 text-light/80 hover:text-white transition-all cursor-pointer">
+            py-4 hover:bg-base/40 text-gray-300 hover:text-white transition-all cursor-pointer">
                 Sobre nosotros
             </li>
         </ul>

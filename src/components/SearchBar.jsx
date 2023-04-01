@@ -17,7 +17,7 @@ const SearchBar = () => {
   const handleSearch = () => {
     dispatch(clientName(search));
   };
-   
+  
   const handleSubmit = (event) => {
     event.preventDefault();
     dispatch(clientName(search));

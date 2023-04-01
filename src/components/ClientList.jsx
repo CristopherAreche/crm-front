@@ -4,10 +4,10 @@ import { Link } from "react-router-dom";
 
 const ClientList = () => {
   return (
-    <div className="w-[22rem] mx-auto overflow-x-auto lg:min-w-full  py-6 lg:px-8 overflow-hidden  ">
-      <div className="flex justify-between  w-full px-8 py-2   bg-base-light/30 rounded-tr-md rounded-tl-md">
+    <section className="w-[22rem] mx-auto overflow-x-auto lg:min-w-full pt-14 pb-4 lg:py-6 lg:px-8 overflow-hidden mb-12 lg:mb-0 ">
+      <header className="flex justify-between w-screen lg:w-full px-8 py-4   bg-base-light/30 rounded-tr-md rounded-tl-md  ">
         <h3 className=" text-xl font-medium text-light flex items-center gap-x-2"> <RiFilter3Line className="text-2xl"/>Tus clientes</h3>
-      </div>
+      </header>
       <table className="min-w-full text-center text-sm font-regular shadow-md rounded-sm  ">
         <thead className=" font-medium text-light/75  dark:bg-base-light/30 rounded-md">
           <tr>
@@ -72,7 +72,7 @@ const ClientList = () => {
           </tr>
         </tbody>
       </table>
-    </div>
+    </section>
   );
 };
 

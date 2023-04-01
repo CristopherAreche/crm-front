@@ -45,7 +45,7 @@ function SideBar({ typeSidebar }) {
         <div>
           {typeSidebar === "seller-clients" && (
             <>
-              <Link className="flex items-center gap-x-2 py-2 rounded-lg cursor-pointer text-gray-300 px-4 text-lg hover:bg-base/20 hover:text-gray-100 transition-all"><RiUserSettingsLine className="text-2xl"/>Configuracion</Link>
+              <Link className="flex items-center gap-x-2 py-2 rounded-lg cursor-pointer text-gray-300 px-4 text-lg hover:bg-base/20 hover:text-gray-100 transition-all mb-4"><RiUserSettingsLine className="text-2xl"/>Configuracion</Link>
               <Link
                 to="/"
                 className="flex items-center gap-x-2 py-2 rounded-lg cursor-pointer text-gray-300 px-4 text-lg hover:bg-base/20 hover:text-gray-100 transition-all"

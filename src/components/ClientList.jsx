@@ -1,6 +1,9 @@
 import React from "react";
+import { useDispatch } from "react-redux";
 
 const ClientList = () => {
+  const dispatch = useDispatch();
+  // cuando se selecciona el cb dispatch(clientCheckbox)
   return (
     <div className="w-[22rem] mx-auto overflow-x-auto lg:min-w-full py-6   lg:px-8 overflow-hidden mb-4">
       <table className="min-w-full text-center text-sm font-regular shadow-md rounded-sm   border-separate ">

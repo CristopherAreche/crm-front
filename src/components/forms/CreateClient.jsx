@@ -1,10 +1,14 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import validation from "./validation";
-import { useDispatch } from "react-redux";
-import { addClient } from "../../app/store/clientSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { postClient, putClient } from "../../services/clientsServices";
 
 function CreateClient({ isVisible, onClose }) {
   const dispatch = useDispatch();
+  const clientId = useSelector((state) => state.clients.clientSelected);
+
+  const clients = useSelector((state) => state.clients.clients);
+  console.log(clients);
   const handleClose = (e) => {
     if (e.target.id === "wrapper") onClose();
   };
@@ -13,9 +17,7 @@ function CreateClient({ isVisible, onClose }) {
     name: "",
     email: "",
     phone: "",
-    vip: false,
-    enable: true,
-    salesmanId: "1",
+    salesmanId: "9e3fa495-ae30-49d0-8644-819fd5cfe767",
   });
 
   const [errors, setErros] = useState({
@@ -46,19 +48,28 @@ function CreateClient({ isVisible, onClose }) {
     if (errors.name || errors.email || errors.phone) {
       alert("Por favor revise los datos introducidos. ");
     } else {
-      dispatch(addClient(clientData));
+      if (clientId) dispatch(putClient(clientData));
+      console.log(clientData);
+
+      dispatch(postClient(clientData));
       //aca va el dispatch
 
       setClientData({
         name: "",
         email: "",
         phone: "",
-        vip: false,
-        enable: true,
-        salesmanId: "1",
+
+        salesmanId: "9e3fa495-ae30-49d0-8644-819fd5cfe767",
       });
     }
   };
+
+  useEffect(() => {
+    if (clientId) {
+      setClientData(clients.find((client) => client.id === clientId));
+    }
+  }, [clientId, clients]);
+
   if (!isVisible) return null;
   return (
     <div

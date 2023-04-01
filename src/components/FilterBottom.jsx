@@ -1,27 +1,36 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import {
+  RiAddFill,
+  RiDeleteBin6Line,
+  RiEdit2Line,
+  RiUserUnfollowLine,
+} from "react-icons/ri";
+import CreateClient from "./forms/CreateClient";
+import { useState } from "react";
 
 const FilterBottom = () => {
+  const [showModal, setShowModal] = useState(false);
   return (
-    <div className=" text-white flex justify-evenly p-[0.6em] w-[80%] bg-[#24314c] rounded-full">
-      <Link to="/vendedor_detalles_cliente">
-        <button className="h-[2em] rounded-full bg-[#2c3860] w-[8em]">
-          Detalles
-        </button>
-      </Link>
-      <button className="h-[2em] rounded-full bg-[#2c3860] w-[8em]">
-        Agregar
+    <section className=" text-white text-bold flex justify-evenly w-full  items-center rounded-md flex-wrap gap-4">
+      <button
+        className=" rounded-xl py-2 px-3 shadow-emerald-400/20 hover:scale-[1.03] hover:bg-emerald-400/80 transition-all shadow-md bg-emerald-400 "
+        onClick={() => setShowModal(true)}
+      >
+        <RiAddFill className="text-2xl" />
       </button>
-      <button className="h-[2em] rounded-full bg-[#2c3860] w-[8em]">
-        Editar
+      <button
+        className=" rounded-xl py-2 px-3 shadow-indigo-400/20 hover:scale-[1.03] hover:bg-indigo-400/60 transition-all shadow-md bg-indigo-400 "
+        onClick={() => setShowModal(true)}
+      >
+        <RiEdit2Line className="text-2xl" />
       </button>
-      <button className="h-[2em] rounded-full bg-[#2c3860] w-[8em]">
-        Habilitar
+      <button className=" rounded-xl py-2 px-3 shadow-gray-500/20 hover:scale-[1.03] hover:bg-gray-500/60 transition-all shadow-md bg-gray-500 ">
+        <RiUserUnfollowLine className="text-2xl" />
       </button>
-      <button className="h-[2em] rounded-full bg-[#2c3860] w-[8em]">
-        Deshabilitar
+      <button className=" rounded-xl py-2 px-3 shadow-red-400/20 hover:scale-[1.03] hover:bg-red-400/60 transition-all shadow-md bg-red-400 ">
+        <RiDeleteBin6Line className="text-2xl" />
       </button>
-    </div>
+      <CreateClient isVisible={showModal} onClose={() => setShowModal(false)} />
+    </section>
   );
 };
 

@@ -19,3 +19,9 @@ export const getClient = async (id) => {
   const data = res.data;
   return data;
 };
+
+export const getClientName = async (name) => {
+  const res = await axios("https://crm.up.railway.app/api/client?name=" + name);
+  const data = res.data;
+  return data;
+};

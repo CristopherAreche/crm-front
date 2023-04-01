@@ -1,11 +1,9 @@
-import React from "react";
 import SearchBar from "./SearchBar";
 const Header = ({ imageSrc, mainText }) => {
   return (
-    <div className="text-white w-[100%] p-8  flex items-center justify-between ">
-      <h2 className=" text-[2em] font-bold">CLIENTES</h2>
+    <div className="text-white w-full py-4 lg:pt-12 lg:px-4 flex flex-col lg:flex-row items-center  lg:justify-between gap-y-2">
+      <h2 className=" text-3xl  text-light font-bold">CLIENTES</h2>
       <SearchBar />
-      <button className=" text-[1.5em] mr-6">Perfil</button>
     </div>
   );
 };

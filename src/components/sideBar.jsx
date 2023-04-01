@@ -3,54 +3,77 @@ import {
   RiBarChart2Line,
   RiTeamLine,
   RiLogoutCircleRLine,
-  // RiMenu3Fill,
-  // RiCloseFill,
+  RiCloseFill,
+  RiMenu3Fill,
+  RiUserSettingsLine,
+  RiTyphoonFill
 } from "react-icons/ri";
 import { useState } from "react";
-// import spotlight1 from "../assets/svg/Spotlight1.svg";
-// import spotlight2 from "../assets/svg/Spotlight2.svg";
+import ClientSideBarDetail from "./ClientSideBarDetail";
 
-function SideBar({
-  clients,
-  routeClients,
-  salesMans,
-  routeSalesMans,
-  inventario,
-  routeInventario,
-}) {
+function SideBar({ typeSidebar }) {
   const [isOpen, setIsOpen] = useState(false);
   return (
-    <section
-      className={`${
-        isOpen ? "left-0" : "-left-full"
-      } bg-base-light/40 w-68 lg:w-full  flex flex-col gap-y-8 justify-between py-4 px-12 lg:static h-full z-40 transition-all duration-200 lg:left-0 border-r border-light/40 `}
-    >
-      <section className="flex flex-col gap-y-10">
-        <h1 className="mt-6 text-4xl font-bold tracking-widest text-center border-b border-light/40 pb-8">
-          LOGO
-        </h1>
-        <Link
-          to="#"
-          className="flex gap-x-4 items-center text-xl text-gray-300 font-medium py-2 rounded-lg cursor-pointer  px-4 hover:bg-base/20 hover:text-gray-100 transition-all"
-        >
-          <RiBarChart2Line className="text-4xl" /> Resumen
-        </Link>
-        <Link
-          to="#"
-          className="flex gap-x-4 items-center text-xl text-gray-300 font-medium py-2 rounded-lg cursor-pointer  px-4 hover:bg-base/20  hover:text-gray-100 transition-all"
-        >
-          <RiTeamLine className="text-4xl" /> Clientes
-        </Link>
+    <>
+      <section
+        className={`${
+          isOpen ? "left-0" : "-left-full"
+        } col-span-2 bg-base-light/80 lg:bg-base-light/40 w-68 lg:w-72  flex flex-col gap-y-8 justify-between py-4 fixed lg:static  h-full z-50 transition-all duration-200 lg:left-0 `}
+      >
+        <section className="flex flex-col gap-y-4">
+          <h1 className="text-3xl flex items-center justify-center gap-x-2 px-8 font-bold tracking-widest border-b border-light/40 pb-4 pt-2">
+            <RiTyphoonFill className="text-white"/> <span className="bg-gradient-to-r from-primary  to-secondary text-end  text-transparent bg-clip-text hover:underline hover:text-light transition-all cursor-pointer">CRM</span>
+          </h1>
+          {/* Contenido Dinamico */}
+          {typeSidebar === "seller-clients" && (
+            <>
+              <Link
+                to="/seller-dash"
+                className="flex gap-x-6 items-center text-lg text-gray-200 font-medium  py-2  cursor-pointer  px-8 hover:bg-light/20 hover:text-gray-100 transition-all"
+              >
+                <RiBarChart2Line className="text-3xl text-secondary" /> Resumen
+              </Link>
+              <Link
+                to="/seller-dash/clients"
+                className="flex gap-x-6 items-center text-lg text-gray-200 font-medium  py-2  cursor-pointer  px-8 hover:bg-light/20  hover:text-gray-100 transition-all"
+              >
+                <RiTeamLine className="text-3xl text-secondary" /> Clientes
+              </Link>
+            </>
+          )}
+          {typeSidebar === "client-detail" && <ClientSideBarDetail />}
+        </section>
+        <div>
+          {typeSidebar === "seller-clients" && (
+            <>
+              <Link className="flex items-center gap-x-6 py-2  cursor-pointer text-gray-200 font-medium px-8 text-lg hover:bg-light/20 hover:text-gray-100 transition-all mb-4"><RiUserSettingsLine className="text-2xl text-secondary"/>Configuracion</Link>
+              <Link
+                to="/"
+                className="flex items-center gap-x-6 py-2  cursor-pointer text-gray-200 font-medium px-8 text-lg hover:bg-light/20 hover:text-gray-100 transition-all"
+              >
+                <RiLogoutCircleRLine className="text-2xl text-secondary" /> Cerrar Sesion
+              </Link>
+            </>
+          )}
+          {typeSidebar === "client-detail" && (
+            <>
+              <Link
+                to="/vendedor_cliente"
+                className="flex items-center gap-x-6 py-2  cursor-pointer text-gray-200 font-medium px-8 text-lg hover:bg-light/20 hover:text-gray-100 transition-all"
+              >
+                <RiLogoutCircleRLine className="text-2xl text-secondary" /> Volver
+              </Link>
+            </>
+          )}
+        </div>
       </section>
-      <div>
-        <Link
-          to="/"
-          className="flex items-center gap-x-2 py-2 rounded-lg cursor-pointer text-gray-300 px-4 text-lg hover:bg-base/20 hover:text-gray-100 transition-all"
-        >
-          <RiLogoutCircleRLine className="text-2xl" /> Cerrar Sesion
-        </Link>
-      </div>
-    </section>
+      <button
+        className="absolute bottom-6 right-4 text-4xl lg:hidden hover:bg-base-light/60 rounded-full py-1 px-2 box-content z-50 text-light"
+        onClick={() => setIsOpen(!isOpen)}
+      >
+        {isOpen ? <RiCloseFill /> : <RiMenu3Fill />}
+      </button>
+    </>
   );
 }
 

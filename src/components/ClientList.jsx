@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getClients } from "../services/clientsServices";
+import { clientCheckbox } from "../app/store/clientSlice";
 
 const ClientList = () => {
   const dispatch = useDispatch();
@@ -19,6 +20,7 @@ const ClientList = () => {
 
   const handleCheckboxChange = (clientId) => {
     setSelectedClients({ [clientId]: true });
+    dispatch(clientCheckbox(clientId));
   };
 
   if (clientsStatus === "loading") {

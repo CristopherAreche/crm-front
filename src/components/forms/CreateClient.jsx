@@ -1,10 +1,14 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import validation from "./validation";
-import { useDispatch } from "react-redux";
-import { addClient } from "../../app/store/clientSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { postClient, putClient } from "../../services/clientsServices";
 
 function CreateClient({ isVisible, onClose }) {
   const dispatch = useDispatch();
+  const clientId = useSelector((state) => state.clients.clientSelected);
+
+  const clients = useSelector((state) => state.clients.clients);
+  console.log(clients, "este es el original");
   const handleClose = (e) => {
     if (e.target.id === "wrapper") onClose();
   };
@@ -13,9 +17,8 @@ function CreateClient({ isVisible, onClose }) {
     name: "",
     email: "",
     phone: "",
-    vip: false,
     enable: true,
-    salesmanId: "1",
+    salesmanId: "1c6f128e-1996-49b5-bc46-87672c60b0a9",
   });
 
   const [errors, setErros] = useState({
@@ -45,20 +48,37 @@ function CreateClient({ isVisible, onClose }) {
     event.preventDefault();
     if (errors.name || errors.email || errors.phone) {
       alert("Por favor revise los datos introducidos. ");
+    } else if (clientId) {
+      dispatch(putClient(clientData));
     } else {
-      dispatch(addClient(clientData));
-      //aca va el dispatch
+      dispatch(postClient(clientData));
 
       setClientData({
         name: "",
         email: "",
         phone: "",
-        vip: false,
         enable: true,
-        salesmanId: "1",
+        salesmanId: "1c6f128e-1996-49b5-bc46-87672c60b0a9",
       });
+      onClose();
     }
   };
+
+  useEffect(() => {
+    if (clientId) {
+      const obj = clients.find((client) => client.id === clientId);
+
+      setClientData({
+        name: obj.name,
+        email: obj.email,
+        phone: obj.phone,
+        enable: true,
+
+        salesmanId: "1c6f128e-1996-49b5-bc46-87672c60b0a9",
+      });
+    }
+  }, [clientId, clients]);
+
   if (!isVisible) return null;
   return (
     <div

@@ -17,6 +17,8 @@ const VendedorCliente = () => {
         <ClientList />
         <FilterBottom />
       </section>
+
+      {/* Luces */}
       <img
         src={spotlight1}
         className="absolute top-0 left-0 opacity-80 z-[1]"

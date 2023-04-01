@@ -1,37 +1,31 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import {RiAddFill, RiDeleteBin6Line, RiEdit2Line, RiUserUnfollowLine} from "react-icons/ri";
 import CreateClient from "./forms/CreateClient";
 import { useState } from "react";
 
 const FilterBottom = () => {
   const [showModal, setShowModal] = useState(false);
   return (
-    <div className=" text-white text-bold flex justify-evenly w-full bg-base-light/40 items-center py-4 rounded-md flex-wrap gap-4">
-      <Link to="/vendedor_detalles_cliente">
-        <button className=" rounded-xl py-2 px-3 shadow-orange-400/20 shadow-md bg-orange-400 ">
-          Detalles
-        </button>
-      </Link>
+    <section className=" text-white text-bold flex justify-evenly w-full  items-center rounded-md flex-wrap gap-4">
       <button
-        className=" rounded-xl py-2 px-3 shadow-emerald-400/20 shadow-md bg-emerald-400 "
+        className=" rounded-xl py-2 px-3 shadow-emerald-400/20 hover:scale-[1.03] hover:bg-emerald-400/80 transition-all shadow-md bg-emerald-400 "
         onClick={() => setShowModal(true)}
       >
-        Agregar
+        <RiAddFill className="text-2xl"/>
       </button>
       <button
-        className=" rounded-xl py-2 px-3 shadow-indigo-400/20 shadow-md bg-indigo-400 "
+        className=" rounded-xl py-2 px-3 shadow-indigo-400/20 hover:scale-[1.03] hover:bg-indigo-400/60 transition-all shadow-md bg-indigo-400 "
         onClick={() => setShowModal(true)}
       >
-        Editar
+        <RiEdit2Line className="text-2xl"/>
       </button>
-      <button className=" rounded-xl py-2 px-3 shadow-gray-500/20 shadow-md bg-gray-500 ">
-        Deshabilitar
+      <button className=" rounded-xl py-2 px-3 shadow-gray-500/20 hover:scale-[1.03] hover:bg-gray-500/60 transition-all shadow-md bg-gray-500 ">
+        <RiUserUnfollowLine className="text-2xl"/>
       </button>
-      <button className=" rounded-xl py-2 px-3 shadow-red-400/20 shadow-md bg-red-400 ">
-        Eliminar
+      <button className=" rounded-xl py-2 px-3 shadow-red-400/20 hover:scale-[1.03] hover:bg-red-400/60 transition-all shadow-md bg-red-400 ">
+        <RiDeleteBin6Line className="text-2xl"/>
       </button>
       <CreateClient isVisible={showModal} onClose={() => setShowModal(false)} />
-    </div>
+    </section>
   );
 };
 

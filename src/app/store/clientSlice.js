@@ -28,6 +28,12 @@ export const clientSlice = createSlice({
     searchClients: (state, action) => {
       state.clients = action.payload;
     },
+    sortClients: (state, action) => {
+      const { order } = action.payload;
+      state.clients.sort((a, b) =>
+        order === "asc" ? a.name.localeCompare(b.name) : b.name.localeCompare(a.name),
+      );
+    }
   },
 
   extraReducers: (builder) => {
@@ -70,7 +76,7 @@ export const clientSlice = createSlice({
   },
 });
 
-export const { getDetailClient, clientName, clientCheckbox, searchClients} =
+export const { getDetailClient, clientName, clientCheckbox, searchClients, sortClients} =
   clientSlice.actions;
 
 

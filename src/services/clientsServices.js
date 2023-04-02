@@ -73,5 +73,4 @@ export const getClientName = createAsyncThunk(
     );
     const data = res.data;
     return data;
-  }
-);
+  });

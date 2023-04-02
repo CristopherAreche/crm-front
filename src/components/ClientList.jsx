@@ -3,14 +3,14 @@ import { Link } from "react-router-dom";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getClients } from "../services/clientsServices";
-import { clientCheckbox } from "../app/store/clientSlice";
 
 const ClientList = () => {
   const dispatch = useDispatch();
-  const clients = useSelector((state) => state.clients);
+  const clients = useSelector((state) => state.clients.clients);
   const clientsStatus = useSelector((state) => state.clients.status);
   const clientsError = useSelector((state) => state.clients.error);
   const [selectedClients, setSelectedClients] = useState({});
+  const [searchText, setSearchText] = useState("");
 
   useEffect(() => {
     if (clientsStatus === "idle") {
@@ -20,9 +20,12 @@ const ClientList = () => {
 
   const handleCheckboxChange = (clientId) => {
     setSelectedClients({ [clientId]: true });
-    dispatch(clientCheckbox(clientId));
   };
 
+ 
+  const filteredClients = clients.filter((client) =>
+    client.name.toLowerCase().includes(searchText.toLowerCase())
+  );
   if (clientsStatus === "loading") {
     return <div className="text-white">Loading...</div>;
   } else if (clientsStatus === "succeeded") {
@@ -56,7 +59,7 @@ const ClientList = () => {
             </tr>
           </thead>
           <tbody className=" dark:border-light dark:bg-base-light/60">
-            {clients.data.map((item) => (
+            {filteredClients.map((item) => (
               <tr key={item.id} className="border-b dark:border-base/30">
                 <td className="whitespace-nowrap  px-6 py-4 font-medium">
                   <input

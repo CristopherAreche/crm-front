@@ -54,6 +54,22 @@ export const putClient = createAsyncThunk(
   }
 );
 
+export const putDisableClient = createAsyncThunk(
+  'clients/putDisableClient',
+  async (id) => {
+    try {
+      const { data } = await axios.put(
+        `https://crm.up.railway.app/api/client?id=${id}`,
+        {enable : false}
+      )
+      return data
+    } catch (error) {
+      return error.response.data.error;
+      
+    }
+  }
+)
+
 export const getClient = createAsyncThunk("clients/getClient", async (id) => {
   try {
     const res = await axios(`https://crm.up.railway.app/api/client?id=${id}`);

@@ -5,6 +5,7 @@ import {
   postClient,
   putClient,
   getClientName,
+  putDisableClient,
 } from "../../services/clientsServices";
 
 
@@ -66,7 +67,13 @@ export const clientSlice = createSlice({
       })
       .addCase(getClientName.fulfilled, (state, action) => {
         state.clients = action.payload;
-      });
+      })
+      
+      .addCase(putDisableClient.fulfilled, (state, action) => {
+        console.log(action.payload)
+        const clientFounded = state.clients.find((client) => client.id === state.clientSelected)
+        if (clientFounded) clientFounded.enable = false
+      })
   },
 });
 

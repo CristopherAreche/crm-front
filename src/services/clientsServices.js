@@ -6,16 +6,6 @@ export const getClients = createAsyncThunk("clients/getClients", async () => {
   return response.data;
 });
 
-//POR FAVOR NO ME BORRES... solo estoy aqui espero que el endpoint funcione correctamente.
-//att:cristopher
-export const getClientActivity = createAsyncThunk(
-  "activities/getClientActivity",
-  async () => {
-    const response = await axios.get("https://crm.up.railway.app/api/activity");
-    return response.data;
-  }
-);
-
 export const postClient = createAsyncThunk(
   `clients/postClient`,
   async (payload) => {
@@ -61,6 +51,22 @@ export const putDisableClient = createAsyncThunk(
       const { data } = await axios.put(
         `https://crm.up.railway.app/api/client?id=${id}`,
         {enable : false}
+      )
+      return data
+    } catch (error) {
+      return error.response.data.error;
+      
+    }
+  }
+)
+
+export const putEnableClient = createAsyncThunk(
+  'clients/putEnableClient',
+  async (id) => {
+    try {
+      const { data } = await axios.put(
+        `https://crm.up.railway.app/api/client?id=${id}`,
+        {enable : true}
       )
       return data
     } catch (error) {

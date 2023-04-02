@@ -6,6 +6,7 @@ import {
   putClient,
   getClientName,
   putDisableClient,
+  putEnableClient,
 } from "../../services/clientsServices";
 
 const initialState = {
@@ -62,9 +63,11 @@ export const clientSlice = createSlice({
         state.status = "failed";
         state.error = action.error.message;
       })
+
       .addCase(getClient.fulfilled, (state, action) => {
         state.clientDetail = action.payload;
       })
+
       .addCase(getClientName.fulfilled, (state, action) => {
         state.clients = action.payload;
       })
@@ -85,22 +88,17 @@ export const clientSlice = createSlice({
         console.log(state.clients);
       })
       .addCase(putDisableClient.fulfilled, (state, action) => {
-        console.log(action.payload);
-        const clientFounded = state.clients.find(
-          (client) => client.id === state.clientSelected
-        );
-        if (clientFounded) clientFounded.enable = false;
-      });
+        const clientFounded = state.clients.find((client) => client.id === state.clientSelected)
+        if (clientFounded) clientFounded.enable = false
+      })
+
+      .addCase(putEnableClient.fulfilled, (state, action) => {
+        const clientFounded = state.clients.find((client) => client.id === state.clientSelected)
+        if (clientFounded) clientFounded.enable = true
+      })
   },
 });
 
-export const {
-  cleanDetail,
-  getDetailClient,
-  clientName,
-  clientCheckbox,
-  searchClients,
-  sortClients,
-} = clientSlice.actions;
-
+export const { getDetailClient, clientName, clientCheckbox, searchClients, cleanDetail, sortClients } =
+  clientSlice.actions;
 export default clientSlice.reducer;

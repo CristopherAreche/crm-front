@@ -44,21 +44,11 @@ export const clientSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(postClient.fulfilled, (state, action) => {
-        state.clients.push(action.payload);
+        state.clients.unshift(action.payload);
         console.log(state.clients);
       })
       .addCase(postClient.rejected, (state, action) => {
         state.message = action.payload;
-      })
-      .addCase(putClient.fulfilled, (state, action) => {
-        const { id, name, email, phone } = action.payload;
-
-        const foundClient = state.clients.find((client) => client.id === id);
-        if (foundClient) {
-          foundClient.name = name;
-          foundClient.email = email;
-          foundClient.phone = phone;
-        }
       })
       .addCase(getClients.pending, (state) => {
         state.status = "loading";
@@ -79,6 +69,21 @@ export const clientSlice = createSlice({
         state.clients = action.payload;
       })
 
+      .addCase(putClient.fulfilled, (state, action) => {
+        const { id, name, email, phone } = action.payload;
+        console.log(action);
+        const indexClient = state.clients.findIndex(
+          (client) => client.id === id
+        );
+        console.log(id);
+        console.log(indexClient);
+        if (indexClient !== -1) {
+          state.clients[indexClient].name = name;
+          state.clients[indexClient].email = email;
+          state.clients[indexClient].phone = phone;
+        }
+        console.log(state.clients);
+      })
       .addCase(putDisableClient.fulfilled, (state, action) => {
         console.log(action.payload);
         const clientFounded = state.clients.find(

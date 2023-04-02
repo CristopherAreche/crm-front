@@ -7,10 +7,9 @@ import {
   getClientName,
 } from "../../services/clientsServices";
 
-
 const initialState = {
   clients: [],
-  clientDetail: {},
+  clientDetail: [],
   clientSelected: "",
   message: "",
   status: "idle",
@@ -27,6 +26,9 @@ export const clientSlice = createSlice({
     },
     searchClients: (state, action) => {
       state.clients = action.payload;
+    },
+    cleanDetail: (state, action) => {
+      state.clientDetail = [];
     },
   },
 
@@ -70,8 +72,12 @@ export const clientSlice = createSlice({
   },
 });
 
-export const { getDetailClient, clientName, clientCheckbox, searchClients} =
-  clientSlice.actions;
-
+export const {
+  cleanDetail,
+  getDetailClient,
+  clientName,
+  clientCheckbox,
+  searchClients,
+} = clientSlice.actions;
 
 export default clientSlice.reducer;

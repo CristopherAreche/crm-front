@@ -17,7 +17,7 @@ function CreateClient({ isVisible, onClose }) {
     email: "",
     phone: "",
     enable: true,
-    salesmanId: "1c6f128e-1996-49b5-bc46-87672c60b0a9",
+    salesmanId: "12e43696-1549-484b-94b6-6bb214ed73ab",
   });
 
   const [errors, setErros] = useState({
@@ -59,7 +59,7 @@ function CreateClient({ isVisible, onClose }) {
         email: "",
         phone: "",
         enable: true,
-        salesmanId: "1c6f128e-1996-49b5-bc46-87672c60b0a9",
+        salesmanId: "12e43696-1549-484b-94b6-6bb214ed73ab",
       });
       onClose();
     }
@@ -76,7 +76,7 @@ function CreateClient({ isVisible, onClose }) {
         phone: obj.phone,
         enable: true,
 
-        salesmanId: "1c6f128e-1996-49b5-bc46-87672c60b0a9",
+        salesmanId: "12e43696-1549-484b-94b6-6bb214ed73ab",
       });
     }
   }, [clientId, clients, dispatch]);

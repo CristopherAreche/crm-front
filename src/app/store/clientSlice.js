@@ -8,10 +8,9 @@ import {
   putDisableClient,
 } from "../../services/clientsServices";
 
-
 const initialState = {
   clients: [],
-  clientDetail: {},
+  clientDetail: [],
   clientSelected: "",
   message: "",
   status: "idle",
@@ -29,12 +28,17 @@ export const clientSlice = createSlice({
     searchClients: (state, action) => {
       state.clients = action.payload;
     },
+    cleanDetail: (state, action) => {
+      state.clientDetail = [];
+    },
     sortClients: (state, action) => {
       const { order } = action.payload;
       state.clients.sort((a, b) =>
-        order === "asc" ? a.name.localeCompare(b.name) : b.name.localeCompare(a.name),
+        order === "asc"
+          ? a.name.localeCompare(b.name)
+          : b.name.localeCompare(a.name)
       );
-    }
+    },
   },
 
   extraReducers: (builder) => {
@@ -74,17 +78,24 @@ export const clientSlice = createSlice({
       .addCase(getClientName.fulfilled, (state, action) => {
         state.clients = action.payload;
       })
-      
+
       .addCase(putDisableClient.fulfilled, (state, action) => {
-        console.log(action.payload)
-        const clientFounded = state.clients.find((client) => client.id === state.clientSelected)
-        if (clientFounded) clientFounded.enable = false
-      })
+        console.log(action.payload);
+        const clientFounded = state.clients.find(
+          (client) => client.id === state.clientSelected
+        );
+        if (clientFounded) clientFounded.enable = false;
+      });
   },
 });
 
-export const { getDetailClient, clientName, clientCheckbox, searchClients, sortClients} =
-  clientSlice.actions;
-
+export const {
+  cleanDetail,
+  getDetailClient,
+  clientName,
+  clientCheckbox,
+  searchClients,
+  sortClients,
+} = clientSlice.actions;
 
 export default clientSlice.reducer;

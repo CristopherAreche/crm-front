@@ -49,6 +49,8 @@ function CreateClient({ isVisible, onClose }) {
       alert("Por favor revise los datos introducidos. ");
     } else if (clientId) {
       dispatch(putClient(clientData));
+      console.log(clientData);
+      onClose();
     } else {
       dispatch(postClient(clientData));
 
@@ -68,6 +70,7 @@ function CreateClient({ isVisible, onClose }) {
       const obj = clients.find((client) => client.id === clientId);
 
       setClientData({
+        id: clientId,
         name: obj.name,
         email: obj.email,
         phone: obj.phone,
@@ -76,7 +79,7 @@ function CreateClient({ isVisible, onClose }) {
         salesmanId: "1c6f128e-1996-49b5-bc46-87672c60b0a9",
       });
     }
-  }, [clientId, clients]);
+  }, [clientId, clients, dispatch]);
 
   if (!isVisible) return null;
   return (

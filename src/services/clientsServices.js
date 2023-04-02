@@ -6,6 +6,16 @@ export const getClients = createAsyncThunk("clients/getClients", async () => {
   return response.data;
 });
 
+//POR FAVOR NO ME BORRES... solo estoy aqui espero que el endpoint funcione correctamente.
+//att:cristopher
+export const getClientActivity = createAsyncThunk(
+  "activities/getClientActivity",
+  async () => {
+    const response = await axios.get("https://crm.up.railway.app/api/activity");
+    return response.data;
+  }
+);
+
 export const postClient = createAsyncThunk(
   `clients/postClient`,
   async (payload) => {

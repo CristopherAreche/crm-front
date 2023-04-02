@@ -48,7 +48,7 @@ const LoginPage = () => {
           to="/vendedor_cliente"
           className="text-center bg-gradient-to-r from-primary to-secondary py-2 px-4 rounded-md font-bold text-lg hover:scale-[1.02] transition-all"
         >
-          Login
+          Iniciar Sesión
         </Link>
       </form>
       <section className="flex gap-x-2 items-center justify-center w-full bg-white py-2 hover:scale-[1.03] transition-all cursor-pointer rounded-md">

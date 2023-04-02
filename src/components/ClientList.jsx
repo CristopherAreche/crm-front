@@ -7,14 +7,16 @@ import { clientCheckbox } from "../app/store/clientSlice";
 
 const ClientList = () => {
   const dispatch = useDispatch();
-  const clients = useSelector((state) => state.clients);
+  const clients = useSelector((state) => state.clients.clients);
   const clientsStatus = useSelector((state) => state.clients.status);
   const clientsError = useSelector((state) => state.clients.error);
   const [selectedClients, setSelectedClients] = useState({});
+  const [searchText, setSearchText] = useState("");
 
   useEffect(() => {
     if (clientsStatus === "idle") {
       dispatch(getClients());
+      //dispatch
     }
   }, [clientsStatus, dispatch]);
 
@@ -23,7 +25,9 @@ const ClientList = () => {
     dispatch(clientCheckbox(clientId));
   };
 
-
+  const filteredClients = clients.filter((client) =>
+    client.name.toLowerCase().includes(searchText.toLowerCase())
+  );
   if (clientsStatus === "loading") {
     return <div className="text-white">Loading...</div>;
   } else if (clientsStatus === "succeeded") {
@@ -57,7 +61,7 @@ const ClientList = () => {
             </tr>
           </thead>
           <tbody className=" dark:border-light dark:bg-base-light/60">
-            {clients.data.map((item) => (
+            {filteredClients.map((item) => (
               <tr key={item.id} className="border-b dark:border-base/30">
                 <td className="whitespace-nowrap  px-6 py-4 font-medium">
                   <input
@@ -72,11 +76,22 @@ const ClientList = () => {
                   <Link to="/vendedor_detalles_cliente">{item.name}</Link>
                 </td>
                 <td className="whitespace-nowrap  px-6 py-4">$653</td>
-                <td className={`whitespace-nowrap  px-6 py-4 ${item.enable ? 'text-emerald-200' : 'text-red-200'}`}>
+                <td
+                  className={`whitespace-nowrap  px-6 py-4 ${
+                    item.enable ? "text-emerald-200" : "text-red-200"
+                  }`}
+                >
                   {" "}
-                  {JSON.stringify(item.enable)}
+                  {item.enable ? "Habilitado" : "Desabilitado"}
                 </td>
-                <td className={`whitespace-nowrap  px-6 py-4 ${item.vip ? 'text-orange-200' : 'text-white'}`}> {item.vip ? 'Si' : 'No'}</td>
+                <td
+                  className={`whitespace-nowrap  px-6 py-4 ${
+                    item.vip ? "text-orange-200" : "text-white"
+                  }`}
+                >
+                  {" "}
+                  {item.vip ? "Si" : "No"}
+                </td>
               </tr>
             ))}
           </tbody>

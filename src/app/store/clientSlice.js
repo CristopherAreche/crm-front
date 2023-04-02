@@ -8,6 +8,7 @@ import {
   putDisableClient,
 } from "../../services/clientsServices";
 
+
 const initialState = {
   clients: [],
   clientDetail: {},
@@ -15,6 +16,7 @@ const initialState = {
   message: "",
   status: "idle",
   error: null,
+  searchClients: [],
 };
 
 export const clientSlice = createSlice({
@@ -23,7 +25,10 @@ export const clientSlice = createSlice({
   reducers: {
     clientCheckbox: (state, action) => {
       state.clientSelected = action.payload;
-    }
+    },
+    searchClients: (state, action) => {
+      state.clients = action.payload;
+    },
   },
 
   extraReducers: (builder) => {
@@ -57,11 +62,9 @@ export const clientSlice = createSlice({
         state.status = "failed";
         state.error = action.error.message;
       })
-
       .addCase(getClient.fulfilled, (state, action) => {
         state.clientDetail = action.payload;
       })
-
       .addCase(getClientName.fulfilled, (state, action) => {
         state.clients = action.payload;
       })
@@ -74,6 +77,8 @@ export const clientSlice = createSlice({
   },
 });
 
-export const { getDetailClient, clientName, clientCheckbox } =
+export const { getDetailClient, clientName, clientCheckbox, searchClients} =
   clientSlice.actions;
+
+
 export default clientSlice.reducer;

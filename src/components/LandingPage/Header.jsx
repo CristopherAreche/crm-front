@@ -40,7 +40,7 @@ const Header = () => {
             to="/auth"
             className=" flex gap-x-1 items-center text-white font-medium hover:text-light transition-colors b"
         >
-            <RiUserLine className="text-2xl" /> LOG IN
+            <RiUserLine className="text-2xl" /> Iniciar Sesión
         </Link>
         </section>
     </header>

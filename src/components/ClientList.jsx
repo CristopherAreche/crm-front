@@ -21,7 +21,7 @@ const ClientList = () => {
 
   const handleCheckboxChange = (clientId) => {
     setSelectedClients({ [clientId]: true });
-    dispatch(clientCheckbox());
+    dispatch(clientCheckbox(clientId));
   };
 
   const filteredClients = clients.filter((client) =>

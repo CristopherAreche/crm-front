@@ -8,7 +8,6 @@ function CreateClient({ isVisible, onClose }) {
   const clientId = useSelector((state) => state.clients.clientSelected);
 
   const clients = useSelector((state) => state.clients.clients);
-  console.log(clients, "este es el original");
   const handleClose = (e) => {
     if (e.target.id === "wrapper") onClose();
   };

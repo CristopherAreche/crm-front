@@ -23,6 +23,7 @@ const ClientList = () => {
     dispatch(clientCheckbox(clientId));
   };
 
+
   if (clientsStatus === "loading") {
     return <div className="text-white">Loading...</div>;
   } else if (clientsStatus === "succeeded") {
@@ -73,7 +74,7 @@ const ClientList = () => {
                 <td className="whitespace-nowrap  px-6 py-4">$653</td>
                 <td className={`whitespace-nowrap  px-6 py-4 ${item.enable ? 'text-emerald-200' : 'text-red-200'}`}>
                   {" "}
-                  {item.enable ? 'Habilitado' : 'Desabilitado'}
+                  {JSON.stringify(item.enable)}
                 </td>
                 <td className={`whitespace-nowrap  px-6 py-4 ${item.vip ? 'text-orange-200' : 'text-white'}`}> {item.vip ? 'Si' : 'No'}</td>
               </tr>

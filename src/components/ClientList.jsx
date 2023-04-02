@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getClients } from "../services/clientsServices";
+import { clientCheckbox } from "../app/store/clientSlice";
 
 const ClientList = () => {
   const dispatch = useDispatch();
@@ -15,14 +16,15 @@ const ClientList = () => {
   useEffect(() => {
     if (clientsStatus === "idle") {
       dispatch(getClients());
+      //dispatch
     }
   }, [clientsStatus, dispatch]);
 
   const handleCheckboxChange = (clientId) => {
     setSelectedClients({ [clientId]: true });
+    dispatch(clientCheckbox(clientId));
   };
 
- 
   const filteredClients = clients.filter((client) =>
     client.name.toLowerCase().includes(searchText.toLowerCase())
   );
@@ -74,11 +76,22 @@ const ClientList = () => {
                   <Link to="/vendedor_detalles_cliente">{item.name}</Link>
                 </td>
                 <td className="whitespace-nowrap  px-6 py-4">$653</td>
-                <td className={`whitespace-nowrap  px-6 py-4 ${item.enable ? 'text-emerald-200' : 'text-red-200'}`}>
+                <td
+                  className={`whitespace-nowrap  px-6 py-4 ${
+                    item.enable ? "text-emerald-200" : "text-red-200"
+                  }`}
+                >
                   {" "}
-                  {item.enable ? 'Habilitado' : 'Desabilitado'}
+                  {item.enable ? "Habilitado" : "Desabilitado"}
                 </td>
-                <td className={`whitespace-nowrap  px-6 py-4 ${item.vip ? 'text-orange-200' : 'text-white'}`}> {item.vip ? 'Si' : 'No'}</td>
+                <td
+                  className={`whitespace-nowrap  px-6 py-4 ${
+                    item.vip ? "text-orange-200" : "text-white"
+                  }`}
+                >
+                  {" "}
+                  {item.vip ? "Si" : "No"}
+                </td>
               </tr>
             ))}
           </tbody>

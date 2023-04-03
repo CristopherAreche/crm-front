@@ -2,11 +2,15 @@ import { RiArrowDropRightLine } from "react-icons/ri";
 import { useDispatch } from "react-redux";
 import { sortClients, sortVipClients, sortEnabledClients} from "../app/store/clientSlice";
 import { getClients} from "../services/clientsServices";
+import { useSelector } from "react-redux";
 
 
 
 const FilterTop = () => {
+  
  const dispatch = useDispatch();
+ 
+ const clients=useSelector((state)=>state.clients.clients);
 
  const handleOrderChange = (e) => {
   const value = e.target.value;

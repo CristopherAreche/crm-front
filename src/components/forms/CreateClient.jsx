@@ -6,7 +6,7 @@ import { RiUserLine, RiPhoneLine, RiMailLine } from "react-icons/ri";
 function CreateClient({ isVisible, onClose }) {
   const dispatch = useDispatch();
   const clientId = useSelector((state) => state.clients.clientSelected);
-
+  const salesmanId = "00b971ac-b220-4457-bada-89476cb64f0e";
   const clients = useSelector((state) => state.clients.clients);
   const handleClose = (e) => {
     if (e.target.id === "wrapper") onClose();
@@ -17,7 +17,7 @@ function CreateClient({ isVisible, onClose }) {
     email: "",
     phone: "",
     enable: true,
-    salesmanId: "b30c034d-76cf-4e2f-b68a-3c27722204a4",
+    salesmanId,
   });
 
   const [errors, setErros] = useState({
@@ -59,7 +59,7 @@ function CreateClient({ isVisible, onClose }) {
         email: "",
         phone: "",
         enable: true,
-        salesmanId: "b30c034d-76cf-4e2f-b68a-3c27722204a4",
+        salesmanId,
       });
       onClose();
     }
@@ -75,7 +75,7 @@ function CreateClient({ isVisible, onClose }) {
         email: obj.email,
         phone: obj.phone,
         enable: obj.enable,
-        salesmanId: "12e43696-1549-484b-94b6-6bb214ed73ab",
+        salesmanId,
       });
     }
   }, [clientId, clients, dispatch]);

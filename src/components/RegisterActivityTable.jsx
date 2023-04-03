@@ -1,19 +1,26 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { obtainActivities } from "../app/store/clientActivitiesSlice.js";
+import { useParams } from "react-router-dom";
+import { SpinningCircles } from "react-loading-icons";
 
 const RegisterActivityTable = () => {
   const dispatch = useDispatch();
   const activities = useSelector((state) => state.activities.activities);
   const activitiesStatus = useSelector((state) => state.activities.status);
   const activitiesError = useSelector((state) => state.activities.error);
+  const { id } = useParams();
 
   useEffect(() => {
-    dispatch(obtainActivities());
+    dispatch(obtainActivities(id));
   }, [dispatch]);
 
   if (activitiesStatus === "loading") {
-    return <div>Loading...</div>;
+    return (
+      <div className="pt-2 flex justify-center">
+        <SpinningCircles />
+      </div>
+    );
   }
 
   if (activitiesStatus === "failed") {
@@ -22,7 +29,6 @@ const RegisterActivityTable = () => {
 
   return (
     <section className="w-auto overflow-x-auto lg:min-w-full   overflow-hidden mb-4 text-white">
-      
       <table className="min-w-full text-center text-sm font-regular shadow-md rounded-sm">
         <thead className=" font-medium text-white  dark:bg-base-light/30 rounded-md">
           <tr>
@@ -41,13 +47,13 @@ const RegisterActivityTable = () => {
           {activities.map((item, index) => (
             <tr key={index} className="border-b dark:border-base/30">
               <td className="whitespace-nowrap  px-6 py-4 font-medium">
-                {item.metodo}
+                {item.method}
               </td>
               <td className="whitespace-nowrap  px-6 py-4  font-medium">
-                {item.estado}
+                {item.state}
               </td>
               <td className="whitespace-nowrap  px-6 py-4">
-                {item.fechaCreacion}
+                {item.createdAt.split("T")[0]}
               </td>
             </tr>
           ))}

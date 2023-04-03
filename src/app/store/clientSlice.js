@@ -12,7 +12,7 @@ import {
 const initialState = {
   clients: [],
   clientDetail: [],
-  clientSelected: "",
+  clientSelected: null,
   message: "",
   status: "idle",
   error: null,
@@ -23,7 +23,7 @@ export const clientSlice = createSlice({
   name: "clients",
   initialState,
   reducers: {
-    clientCheckbox: (state, action) => {
+    selectedClientCheckbox: (state, action) => {
       state.clientSelected = action.payload;
     },
     searchClients: (state, action) => {
@@ -55,7 +55,7 @@ export const clientSlice = createSlice({
           ? a.enable.localeCompare(b.name)
           : b.enable.localeCompare(a.name)
       );
-    }
+    },
   },
 
   extraReducers: (builder) => {
@@ -104,18 +104,30 @@ export const clientSlice = createSlice({
         console.log(state.clients);
       })
       .addCase(putDisableClient.fulfilled, (state, action) => {
-        console.log(action.payload)
-        const clientFounded = state.clients.find((client) => client.id === state.clientSelected)
-        if (clientFounded) clientFounded.enable = false
+        console.log(action.payload);
+        const clientFounded = state.clients.find(
+          (client) => client.id === state.clientSelected
+        );
+        if (clientFounded) clientFounded.enable = false;
       })
 
       .addCase(putEnableClient.fulfilled, (state, action) => {
-        const clientFounded = state.clients.find((client) => client.id === state.clientSelected)
-        if (clientFounded) clientFounded.enable = true
-      })
+        const clientFounded = state.clients.find(
+          (client) => client.id === state.clientSelected
+        );
+        if (clientFounded) clientFounded.enable = true;
+      });
   },
 });
 
-export const { getDetailClient, clientName, clientCheckbox, searchClients, sortClients, sortVipClients, sortEnabledClients, cleanDetail} =
-  clientSlice.actions;
+export const {
+  getDetailClient,
+  clientName,
+  selectedClientCheckbox,
+  searchClients,
+  sortClients,
+  sortVipClients,
+  sortEnabledClients,
+  cleanDetail,
+} = clientSlice.actions;
 export default clientSlice.reducer;

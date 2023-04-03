@@ -6,7 +6,6 @@ import { RiUserLine, RiPhoneLine, RiMailLine } from "react-icons/ri";
 function CreateClient({ isVisible, onClose }) {
   const dispatch = useDispatch();
   const clientId = useSelector((state) => state.clients.clientSelected);
-
   const clients = useSelector((state) => state.clients.clients);
   const handleClose = (e) => {
     if (e.target.id === "wrapper") onClose();
@@ -49,11 +48,9 @@ function CreateClient({ isVisible, onClose }) {
       alert("Por favor revise los datos introducidos. ");
     } else if (clientId) {
       dispatch(putClient(clientData));
-      console.log(clientData);
       onClose();
     } else {
       dispatch(postClient(clientData));
-
       setClientData({
         name: "",
         email: "",
@@ -68,16 +65,14 @@ function CreateClient({ isVisible, onClose }) {
   useEffect(() => {
     if (clientId) {
       const obj = clients.find((client) => client.id === clientId);
-
-      setClientData({
-        id: clientId,
-        name: obj.name,
-        email: obj.email,
-        phone: obj.phone,
-        enable: obj.enable,
-        salesmanId: "12e43696-1549-484b-94b6-6bb214ed73ab",
-      });
-    }
+      setClientData(obj);
+    }else setClientData({
+      name: "",
+      email: "",
+      phone: "",
+      enable: true,
+      salesmanId: "b30c034d-76cf-4e2f-b68a-3c27722204a4",
+    })
   }, [clientId, clients, dispatch]);
 
   if (!isVisible) return null;
@@ -92,6 +87,7 @@ function CreateClient({ isVisible, onClose }) {
         className="w-96 bg-base-light/70 py-6 px-4 rounded-md flex flex-col gap-y-4"
         onSubmit={handleSubmit}
       >
+        <h4 className="text-xl font-medium text-light">{clientId ? 'Actualizar cliente' : 'Guardar un cliente'}</h4>
         <section className="flex flex-col gap-y-2">
           <label className="text-sm font-medium text-light" htmlFor="name">
             Nombre completo:
@@ -149,6 +145,7 @@ function CreateClient({ isVisible, onClose }) {
 
         <footer className="flex justify-between items-center">
           <button
+            type='button'
             className="p-2 rounded-md font-medium text-base bg-gray-300 shadow-md shadow-gray-300/20 hover:bg-gray-300/80 transition-all"
             onClick={() => {
               onClose();
@@ -160,7 +157,7 @@ function CreateClient({ isVisible, onClose }) {
             className="p-2 bg-emerald-400 shadow-md shadow-emerald-400/20 rounded-md hover:bg-emerald-400/80 transition-all"
             type="submit"
           >
-            GUARDAR
+            {clientId ? 'Actualizar' : 'Guardar'}
           </button>
         </footer>
       </form>

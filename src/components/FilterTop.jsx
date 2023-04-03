@@ -1,20 +1,18 @@
 import { RiArrowDropRightLine } from "react-icons/ri";
 import { useDispatch } from "react-redux";
-import { sortClients, sortVipClients, sortEnabledClients, sortPurchases} from "../app/store/clientSlice";
-import { getClients} from "../services/clientsServices";
-import { useSelector } from "react-redux";
+import { sortClients, sortVipClients, sortEnabledClients, sortPurchases, resetClients} from "../app/store/clientSlice";
 
 const FilterTop = () => {
   
  const dispatch = useDispatch();
  
-
  const handleOrderChange = (e) => {
   const value = e.target.value;
+  let order = ""
   if(value==="todos"){
-    dispatch(getClients());
-  }
-  const order = e.target.value;
+    order = "todos"
+  } else if (value === "asc") order = "asc"
+  else order = "desc"
   dispatch(sortClients({ order }));
 };
 
@@ -22,8 +20,7 @@ const handleVipOrderChange = (e) => {
   const value = e.target.value;
   let order = "";
   if (value === "todos") {
-    dispatch(getClients());
-    return;
+    order = "todos"
   } else if (value === "asc") {
     order = "asc";
   } else if (value === "desc") {
@@ -36,8 +33,7 @@ const handleEnableOrderChange = (e) => {
   const value = e.target.value;
   let orderEn = "";
   if (value === "todos") {
-    dispatch(getClients());
-    return;
+    orderEn = "todos"
   } else if (value === "asc") {
     orderEn = "asc";
   } else if (value === "desc") {
@@ -46,12 +42,11 @@ const handleEnableOrderChange = (e) => {
   dispatch(sortEnabledClients({ orderEn }));
 };
 
- const handlePurchasesOrderChange = (e) => {
+const handlePurchasesOrderChange = (e) => {
   const value = e.target.value;
   let orderP = "";
   if (value === "todos") {
-    dispatch(getClients());
-    return;
+    orderP = "todos"
   } else if (value === "asc") {
     orderP = "asc";
   } else if (value === "desc") {
@@ -60,8 +55,9 @@ const handleEnableOrderChange = (e) => {
   dispatch(sortPurchases({ orderP }));
 };
 
+
 const handleClearFilters = () => {
-  dispatch(getClients());
+  dispatch(resetClients())
   document.querySelectorAll('select').forEach(select => select.value = 'todos');
 };
 
@@ -69,7 +65,7 @@ const handleClearFilters = () => {
   return (
     <section className="text-white text-bold flex justify-evenly w-full  lg:items-center py-2 border-b-2 border-light/10  flex-row flex-wrap lg:flex-nowrap lg:pt-6 ">
       <div className="flex gap-x-2 items-center">
-        <button className="bg-slate-700 rounded-lg mr-12" onClick={handleClearFilters}  >Limpiar Filtros</button>
+        <button className="bg-slate-700 rounded-lg mr-12 px-4" onClick={handleClearFilters}  >Limpiar Filtros</button>
         <p className="text-gray-300 text-sm font-medium">Alfabeticamente:</p>
         <select name="" id="" className= "bg-slate-700 rounded-lg " onChange={handleOrderChange}>
         <option value="todos">Todos</option>

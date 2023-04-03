@@ -36,7 +36,7 @@ const ClientSideBarDetail = () => {
       </div>
       <div className=" flex flex-col gap-y-1 justify-center items-center">
         <p className="text-4xl text-secondary font-medium">
-          {clientDetail.totalPurchased}
+          $ {clientDetail.totalPurchased}
         </p>
         <p className="text-light text-lg ">Total pagado</p>
       </div>

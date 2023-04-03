@@ -18,7 +18,7 @@ const ClientList = () => {
       dispatch(getClients());
       //dispatch
     }
-  }, [clientsStatus, dispatch]);
+  }, [clientsStatus, dispatch, clients]);
 
   const handleCheckboxChange = (clientId) => {
     setSelectedClients({ [clientId]: true });

@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import validation from "./validation";
 import { useDispatch, useSelector } from "react-redux";
 import { postClient, putClient } from "../../services/clientsServices";
-import { RiUserLine, RiPhoneLine, RiMailLine } from 'react-icons/ri'
+import { RiUserLine, RiPhoneLine, RiMailLine } from "react-icons/ri";
 function CreateClient({ isVisible, onClose }) {
   const dispatch = useDispatch();
   const clientId = useSelector((state) => state.clients.clientSelected);
@@ -17,7 +17,7 @@ function CreateClient({ isVisible, onClose }) {
     email: "",
     phone: "",
     enable: true,
-    salesmanId: "12e43696-1549-484b-94b6-6bb214ed73ab",
+    salesmanId: "b30c034d-76cf-4e2f-b68a-3c27722204a4",
   });
 
   const [errors, setErros] = useState({
@@ -59,7 +59,7 @@ function CreateClient({ isVisible, onClose }) {
         email: "",
         phone: "",
         enable: true,
-        salesmanId: "12e43696-1549-484b-94b6-6bb214ed73ab",
+        salesmanId: "b30c034d-76cf-4e2f-b68a-3c27722204a4",
       });
       onClose();
     }
@@ -88,81 +88,82 @@ function CreateClient({ isVisible, onClose }) {
       onClick={handleClose}
     >
       {" "}
-        <form
-          className="w-96 bg-base-light/70 py-6 px-4 rounded-md flex flex-col gap-y-4"
-          onSubmit={handleSubmit}
-        >
-          <section className="flex flex-col gap-y-2">
-            <label className="text-sm font-medium text-light" htmlFor="name">
-              Nombre completo:
-            </label>
-            <div className="relative">
-              <input
-                className="bg-base-light/70 py-1 rounded-md outline-none pl-8 pr-4 w-full"
-                type="text"
-                value={clientData.name}
-                name="name"
-                onChange={handleInputChange}
-              />
-              <RiUserLine className="absolute top-1/2 -translate-y-1/2 left-2 text-xl text-secondary "/>
-            </div>
-            {errors.name && (
-              <span style={{ color: "red" }}> {errors.name}</span>
-            )}
-          </section>
-
-          <section className="flex flex-col gap-y-2">
-            <label className="text-sm font-medium text-light" htmlFor="phone">
-              Teléfono:{" "}
-            </label>
-           <div className="relative">
+      <form
+        className="w-96 bg-base-light/70 py-6 px-4 rounded-md flex flex-col gap-y-4"
+        onSubmit={handleSubmit}
+      >
+        <section className="flex flex-col gap-y-2">
+          <label className="text-sm font-medium text-light" htmlFor="name">
+            Nombre completo:
+          </label>
+          <div className="relative">
             <input
-                className="bg-base-light/70 py-1 rounded-md outline-none pl-8 pr-4 w-full"
-                type="text"
-                value={clientData.phone}
-                name="phone"
-                onChange={handleInputChange}
-              />
-              <RiPhoneLine className="absolute top-1/2 -translate-y-1/2 left-2 text-xl text-secondary "/>
-           </div>
-            {errors.summary && (
-              <span style={{ color: "red" }}> {errors.phone}</span>
-            )}
-          </section>
+              className="bg-base-light/70 py-1 rounded-md outline-none pl-8 pr-4 w-full"
+              type="text"
+              value={clientData.name}
+              name="name"
+              onChange={handleInputChange}
+            />
+            <RiUserLine className="absolute top-1/2 -translate-y-1/2 left-2 text-xl text-secondary " />
+          </div>
+          {errors.name && <span style={{ color: "red" }}> {errors.name}</span>}
+        </section>
 
-          <section className="flex flex-col gap-y-2">
-            <label className="text-sm font-medium text-light" htmlFor="email">
-              Correo:{" "}
-            </label>
-            <div className="relative">
-              <input
+        <section className="flex flex-col gap-y-2">
+          <label className="text-sm font-medium text-light" htmlFor="phone">
+            Teléfono:{" "}
+          </label>
+          <div className="relative">
+            <input
+              className="bg-base-light/70 py-1 rounded-md outline-none pl-8 pr-4 w-full"
+              type="text"
+              value={clientData.phone}
+              name="phone"
+              onChange={handleInputChange}
+            />
+            <RiPhoneLine className="absolute top-1/2 -translate-y-1/2 left-2 text-xl text-secondary " />
+          </div>
+          {errors.summary && (
+            <span style={{ color: "red" }}> {errors.phone}</span>
+          )}
+        </section>
+
+        <section className="flex flex-col gap-y-2">
+          <label className="text-sm font-medium text-light" htmlFor="email">
+            Correo:{" "}
+          </label>
+          <div className="relative">
+            <input
               className="bg-base-light/70 py-1 rounded-md outline-none pl-8 pr-4 w-full"
               type="text"
               value={clientData.email}
               name="email"
               onChange={handleInputChange}
-              />
-              <RiMailLine className="absolute top-1/2 -translate-y-1/2 left-2 text-xl text-secondary "/>
-            </div>
-            {errors.summary && (
-              <span style={{ color: "red" }}> {errors.email}</span>
-            )}
-          </section>
+            />
+            <RiMailLine className="absolute top-1/2 -translate-y-1/2 left-2 text-xl text-secondary " />
+          </div>
+          {errors.summary && (
+            <span style={{ color: "red" }}> {errors.email}</span>
+          )}
+        </section>
 
-          <footer className="flex justify-between items-center">
-            <button
-              className="p-2 rounded-md font-medium text-base bg-gray-300 shadow-md shadow-gray-300/20 hover:bg-gray-300/80 transition-all"
-              onClick={() => {
-                onClose();
-              }}
-            >
-              CERRAR
-            </button>
-            <button className="p-2 bg-emerald-400 shadow-md shadow-emerald-400/20 rounded-md hover:bg-emerald-400/80 transition-all" type="submit">
-              GUARDAR
-            </button>
-          </footer>
-        </form>
+        <footer className="flex justify-between items-center">
+          <button
+            className="p-2 rounded-md font-medium text-base bg-gray-300 shadow-md shadow-gray-300/20 hover:bg-gray-300/80 transition-all"
+            onClick={() => {
+              onClose();
+            }}
+          >
+            CERRAR
+          </button>
+          <button
+            className="p-2 bg-emerald-400 shadow-md shadow-emerald-400/20 rounded-md hover:bg-emerald-400/80 transition-all"
+            type="submit"
+          >
+            GUARDAR
+          </button>
+        </footer>
+      </form>
     </div>
   );
 }

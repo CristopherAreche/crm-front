@@ -40,6 +40,22 @@ export const clientSlice = createSlice({
           : b.name.localeCompare(a.name)
       );
     },
+    sortVipClients: (state, action) => {
+      const { order } = action.payload;
+      state.clients.sort((a, b) =>
+        order === "asc"
+          ? a.vip.localeCompare(b.name)
+          : b.vip.localeCompare(a.name)
+      );
+    },
+    sortEnabledClients: (state, action) => {
+      const { orderEn } = action.payload;
+      state.clients.sort((a, b) =>
+        orderEn === "asc"
+          ? a.enable.localeCompare(b.name)
+          : b.enable.localeCompare(a.name)
+      );
+    }
   },
 
   extraReducers: (builder) => {
@@ -100,6 +116,6 @@ export const clientSlice = createSlice({
   },
 });
 
-export const { getDetailClient, clientName, clientCheckbox, searchClients, cleanDetail, sortClients } =
+export const { getDetailClient, clientName, clientCheckbox, searchClients, sortClients, sortVipClients, sortEnabledClients, cleanDetail} =
   clientSlice.actions;
 export default clientSlice.reducer;

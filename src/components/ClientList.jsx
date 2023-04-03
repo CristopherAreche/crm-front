@@ -1,4 +1,4 @@
-import { RiFilter3Line } from "react-icons/ri";
+import { RiFilter3Line, RiLoader4Fill } from "react-icons/ri";
 import { Link } from "react-router-dom";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -29,7 +29,7 @@ const ClientList = () => {
     client.name.toLowerCase().includes(searchText.toLowerCase())
   );
   if (clientsStatus === "loading") {
-    return <div className="text-white">Loading...</div>;
+    return <RiLoader4Fill className="animate-spin text-4xl text-secondary mt-8"/>
   } else if (clientsStatus === "succeeded") {
     return (
       <section className="w-[22rem] mx-auto overflow-x-auto lg:min-w-full pt-14 pb-4 lg:py-6 lg:px-4   lg:mb-0 ">

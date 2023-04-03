@@ -73,10 +73,23 @@ export const clientSlice = createSlice({
     state.clients = clientsSorted
     
     },
+    sortPurchases: (state, action) => {
+      const { orderP } = action.payload;
+      const allClients = [...state.copyClients]
+      const clientsSorted = orderP === 'todos'
+      ? allClients
+      : allClients.sort((a, b) =>
+      orderP === "asc" ? a.totalPurchased - b.totalPurchased : b.totalPurchased - a.totalPurchased
+    )
+
+    state.clients = clientsSorted
+    
+    },
 
     resetClients : (state, action) => {
       state.clients = state.copyClients
     }
+   
   },
 
   extraReducers: (builder) => {
@@ -140,6 +153,6 @@ export const clientSlice = createSlice({
       });
   },
 });
-export const { getDetailClient, clientName, clientCheckbox, searchClients, sortClients, sortVipClients, sortEnabledClients, cleanDetail, cleanClientSelect, selectedClientCheckbox, resetClients} =
+export const { getDetailClient, clientName, clientCheckbox, searchClients, sortClients, sortVipClients, sortEnabledClients, cleanDetail, cleanClientSelect, selectedClientCheckbox, sortPurchases, resetClients} =
   clientSlice.actions;
 export default clientSlice.reducer;

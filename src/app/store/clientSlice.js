@@ -26,6 +26,9 @@ export const clientSlice = createSlice({
     clientCheckbox: (state, action) => {
       state.clientSelected = action.payload;
     },
+    cleanClientSelect : (state, action) => {
+      state.clientSelected = ''
+    },
     searchClients: (state, action) => {
       state.clients = action.payload;
     },
@@ -116,6 +119,6 @@ export const clientSlice = createSlice({
   },
 });
 
-export const { getDetailClient, clientName, clientCheckbox, searchClients, sortClients, sortVipClients, sortEnabledClients, cleanDetail} =
+export const { getDetailClient, clientName, clientCheckbox, searchClients, sortClients, sortVipClients, sortEnabledClients, cleanDetail, cleanClientSelect} =
   clientSlice.actions;
 export default clientSlice.reducer;

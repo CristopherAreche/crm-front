@@ -12,6 +12,7 @@ const VendedorDetallesCliente = () => {
   return (
     <main className="bg-base h-screen grid grid-cols-8 ">
       <SideBar typeSidebar="client-detail" />
+      {/* View Client Detail */}
       <section className="col-span-6 w-[100vw] lg:w-auto  z-40 h-full overflow-y-auto px-8 py-6">
         <TaskList />
         <section className="flex flex-col gap-y-2">
@@ -20,6 +21,7 @@ const VendedorDetallesCliente = () => {
             Actividades
           </h4>
           <DateFilter />
+          
           <RegisterActivityTable />
         </section>
       </section>

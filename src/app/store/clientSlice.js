@@ -117,6 +117,6 @@ export const clientSlice = createSlice({
       });
   },
 });
-export const { getDetailClient, clientName, selectedClientCheckbox, searchClients, sortClients, sortVipClients, sortEnabledClients, cleanDetail, cleanClientSelect} =
+export const { getDetailClient, clientName, clientCheckbox, searchClients, sortClients, sortVipClients, sortEnabledClients, cleanDetail, cleanClientSelect, selectedClientCheckbox} =
   clientSlice.actions;
 export default clientSlice.reducer;

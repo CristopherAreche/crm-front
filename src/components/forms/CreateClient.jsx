@@ -67,16 +67,14 @@ function CreateClient({ isVisible, onClose }) {
   useEffect(() => {
     if (clientId) {
       const obj = clients.find((client) => client.id === clientId);
-
-      setClientData({
-        id: clientId,
-        name: obj.name,
-        email: obj.email,
-        phone: obj.phone,
-        enable: obj.enable,
-        salesmanId,
-      });
-    }
+      setClientData({...obj, salesmanId});
+    } else setClientData({
+      name: "",
+      email: "",
+      phone: "",
+      enable: true,
+      salesmanId,
+  })
   }, [clientId, clients, dispatch]);
 
   if (!isVisible) return null;

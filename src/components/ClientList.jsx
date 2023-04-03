@@ -15,7 +15,8 @@ const ClientList = () => {
 
   useEffect(() => {
     if (clientsStatus === "idle") {
-      dispatch(getClients());
+      if(!clients.length){
+      dispatch(getClients());}
       //dispatch
     }
   }, [clientsStatus, dispatch, clients]);

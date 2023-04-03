@@ -83,6 +83,7 @@ export const clientSlice = createSlice({
       })
 
       .addCase(putDisableClient.fulfilled, (state, action) => {
+        console.log(action.payload)
         const clientFounded = state.clients.find((client) => client.id === state.clientSelected)
         if (clientFounded) clientFounded.enable = false
       })

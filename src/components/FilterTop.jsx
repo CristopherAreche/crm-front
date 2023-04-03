@@ -1,6 +1,6 @@
 import { RiArrowDropRightLine } from "react-icons/ri";
 import { useDispatch } from "react-redux";
-import { sortClients, sortVipClients, sortEnabledClients, resetClients} from "../app/store/clientSlice";
+import { sortClients, sortVipClients, sortEnabledClients, sortPurchases, resetClients} from "../app/store/clientSlice";
 
 const FilterTop = () => {
   
@@ -42,6 +42,20 @@ const handleEnableOrderChange = (e) => {
   dispatch(sortEnabledClients({ orderEn }));
 };
 
+const handlePurchasesOrderChange = (e) => {
+  const value = e.target.value;
+  let orderP = "";
+  if (value === "todos") {
+    orderP = "todos"
+  } else if (value === "asc") {
+    orderP = "asc";
+  } else if (value === "desc") {
+    orderP = "desc";
+  }
+  dispatch(sortPurchases({ orderP }));
+};
+
+
 const handleClearFilters = () => {
   dispatch(resetClients())
   document.querySelectorAll('select').forEach(select => select.value = 'todos');
@@ -61,9 +75,11 @@ const handleClearFilters = () => {
       </div>
       <div className="flex gap-x-2 items-center">
         <p className="text-gray-300 text-sm font-medium">Total:</p>
-        <button className="rounded-xl  text-sm font-medium flex items-center hover:text-gray-400 group">
-          Max <RiArrowDropRightLine className="text-3xl text-secondary group-hover:rotate-90 transition-all"/>
-        </button>
+        <select name="" id="" className= "bg-slate-700 rounded-lg " onChange={handlePurchasesOrderChange}>
+        <option value="todos">Todos</option>
+          <option value="desc">Max</option>
+          <option value="asc">Min</option>
+        </select>
       </div>
       <div className="flex gap-x-2 items-center">
         <p className="text-gray-300 text-sm font-medium">Estado:</p>

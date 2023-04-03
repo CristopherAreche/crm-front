@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { RiArrowDropRightLine } from "react-icons/ri";
 import { useDispatch } from "react-redux";
 import { sortClients, sortVipClients, sortEnabledClients} from "../app/store/clientSlice";
@@ -48,6 +47,7 @@ const handleEnableOrderChange = (e) => {
 
 const handleClearFilters = () => {
   dispatch(getClients());
+  document.querySelectorAll('select').forEach(select => select.value = 'todos');
 };
 
 
@@ -56,7 +56,7 @@ const handleClearFilters = () => {
       <div className="flex gap-x-2 items-center">
         <button className="bg-slate-700 rounded-lg mr-12" onClick={handleClearFilters}  >Limpiar Filtros</button>
         <p className="text-gray-300 text-sm font-medium">Alfabeticamente:</p>
-        <select name="" id="" className= "bg-slate-700 rounded-lg " onChange={handleOrderChange}  >
+        <select name="" id="" className= "bg-slate-700 rounded-lg " onChange={handleOrderChange}>
         <option value="todos">Todos</option>
           <option value="asc">A-Z</option>
           <option value="desc">Z-A</option>
@@ -70,7 +70,7 @@ const handleClearFilters = () => {
       </div>
       <div className="flex gap-x-2 items-center">
         <p className="text-gray-300 text-sm font-medium">Estado:</p>
-        <select name="" id="" className= "bg-slate-700 rounded-lg " onChange={handleEnableOrderChange}  >
+        <select name="" id="" className= "bg-slate-700 rounded-lg " onChange={handleEnableOrderChange}>
         <option value="todos">Todos</option>
           <option value="desc">Si</option>
           <option value="asc">No</option>
@@ -78,7 +78,7 @@ const handleClearFilters = () => {
       </div>
       <div className="flex gap-x-2 items-center">
         <p className="text-gray-300 text-sm font-medium">VIP:</p>
-        <select name="" id="" className= "bg-slate-700 rounded-lg " onChange={handleVipOrderChange}  >
+        <select name="" id="" className= "bg-slate-700 rounded-lg " onChange={handleVipOrderChange}>
         <option value="todos">Todos</option>
           <option value="desc">Si</option>
           <option value="asc">No</option>

@@ -23,7 +23,7 @@ export const clientSlice = createSlice({
   name: "clients",
   initialState,
   reducers: {
-    clientCheckbox: (state, action) => {
+    selectedClientCheckbox: (state, action) => {
       state.clientSelected = action.payload;
     },
     cleanClientSelect : (state, action) => {
@@ -58,7 +58,7 @@ export const clientSlice = createSlice({
           ? a.enable.localeCompare(b.name)
           : b.enable.localeCompare(a.name)
       );
-    }
+    },
   },
 
   extraReducers: (builder) => {
@@ -107,18 +107,20 @@ export const clientSlice = createSlice({
         console.log(state.clients);
       })
       .addCase(putDisableClient.fulfilled, (state, action) => {
-        console.log(action.payload)
-        const clientFounded = state.clients.find((client) => client.id === state.clientSelected)
-        if (clientFounded) clientFounded.enable = false
+        const clientFounded = state.clients.find(
+          (client) => client.id === state.clientSelected
+        );
+        if (clientFounded) clientFounded.enable = false;
       })
 
       .addCase(putEnableClient.fulfilled, (state, action) => {
-        const clientFounded = state.clients.find((client) => client.id === state.clientSelected)
-        if (clientFounded) clientFounded.enable = true
-      })
+        const clientFounded = state.clients.find(
+          (client) => client.id === state.clientSelected
+        );
+        if (clientFounded) clientFounded.enable = true;
+      });
   },
 });
-
 export const { getDetailClient, clientName, clientCheckbox, searchClients, sortClients, sortVipClients, sortEnabledClients, cleanDetail, cleanClientSelect} =
   clientSlice.actions;
 export default clientSlice.reducer;

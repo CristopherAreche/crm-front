@@ -26,6 +26,9 @@ export const clientSlice = createSlice({
     selectedClientCheckbox: (state, action) => {
       state.clientSelected = action.payload;
     },
+    cleanClientSelect : (state, action) => {
+      state.clientSelected = ''
+    },
     searchClients: (state, action) => {
       state.clients = action.payload;
     },
@@ -51,7 +54,7 @@ export const clientSlice = createSlice({
       state.clients.sort((a, b) =>
         orderEn === "asc" ? a.enable - b.enable : b.enable - a.enable
       );
-    }
+    },
   },
 
   extraReducers: (builder) => {
@@ -100,18 +103,20 @@ export const clientSlice = createSlice({
         console.log(state.clients);
       })
       .addCase(putDisableClient.fulfilled, (state, action) => {
-        console.log(action.payload)
-        const clientFounded = state.clients.find((client) => client.id === state.clientSelected)
-        if (clientFounded) clientFounded.enable = false
+        const clientFounded = state.clients.find(
+          (client) => client.id === state.clientSelected
+        );
+        if (clientFounded) clientFounded.enable = false;
       })
 
       .addCase(putEnableClient.fulfilled, (state, action) => {
-        const clientFounded = state.clients.find((client) => client.id === state.clientSelected)
-        if (clientFounded) clientFounded.enable = true
-      })
+        const clientFounded = state.clients.find(
+          (client) => client.id === state.clientSelected
+        );
+        if (clientFounded) clientFounded.enable = true;
+      });
   },
 });
-
-export const { getDetailClient, clientName, selectedClientCheckbox, searchClients, sortClients, sortVipClients, sortEnabledClients, cleanDetail} =
+export const { getDetailClient, clientName, clientCheckbox, searchClients, sortClients, sortVipClients, sortEnabledClients, cleanDetail, cleanClientSelect} =
   clientSlice.actions;
 export default clientSlice.reducer;

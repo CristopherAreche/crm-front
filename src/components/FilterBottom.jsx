@@ -13,7 +13,7 @@ const FilterBottom = () => {
   const [showModal, setShowModal] = useState(false);
 
   const dispatch = useDispatch()
-  const {clientSelected} = useSelector(state => state)
+  const {clientSelected} = useSelector(state => state.clients)
   const onDisabled = () => dispatch(putDisableClient(clientSelected))
   const onEnabled = () => dispatch(putEnableClient(clientSelected))
 

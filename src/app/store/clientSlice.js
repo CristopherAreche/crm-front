@@ -104,7 +104,6 @@ export const clientSlice = createSlice({
         console.log(state.clients);
       })
       .addCase(putDisableClient.fulfilled, (state, action) => {
-        console.log(action.payload);
         const clientFounded = state.clients.find(
           (client) => client.id === state.clientSelected
         );
@@ -125,9 +124,9 @@ export const {
   clientName,
   selectedClientCheckbox,
   searchClients,
+  cleanDetail,
   sortClients,
   sortVipClients,
   sortEnabledClients,
-  cleanDetail,
 } = clientSlice.actions;
 export default clientSlice.reducer;

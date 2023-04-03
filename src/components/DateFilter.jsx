@@ -1,7 +1,13 @@
 import { useState } from "react";
 import Datepicker from "react-tailwindcss-datepicker";
+import { useDispatch } from "react-redux";
+import {
+  dateFilter,
+  obtainActivities,
+} from "../app/store/clientActivitiesSlice";
 
 function DateFilter() {
+  const dispatch = useDispatch();
   const [value, setValue] = useState({
     startDate: null,
     endDate: null,
@@ -10,11 +16,13 @@ function DateFilter() {
   const handleValueChange = (newValue) => {
     console.log("newValue:", newValue);
     setValue(newValue);
+
+    dispatch(dateFilter(newValue));
   };
   return (
     <div className="w-full lg:w-96">
       <Datepicker
-        inputClassName=" font-bold text-center bg-base-light/60 dark:bg-base-light/60 text-white"
+        inputClassName=" font-bold text-center bg-base-light/60 dark:bg-base-light/60 text-black"
         primaryColor={"blue"}
         useRange={false}
         value={value}

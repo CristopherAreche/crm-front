@@ -28,7 +28,6 @@ const ClientList = () => {
   const toggleCheckBox = (clientId) => {
     if (clientId === clientSelected) {
       setIsSelected(!isSelected);
-      dispatch(selectedClientCheckbox(""));
     }
   };
 

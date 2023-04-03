@@ -5,7 +5,7 @@ import { useParams } from "react-router-dom";
 
 const RegisterActivityTable = () => {
   const dispatch = useDispatch();
-  const activities = useSelector((state) => state.activities.activities);
+  const activities = useSelector((state) => state.activities.activitiesFilter);
   const activitiesStatus = useSelector((state) => state.activities.status);
   const activitiesError = useSelector((state) => state.activities.error);
   const { id } = useParams();

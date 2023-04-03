@@ -34,7 +34,7 @@ export const putClient = createAsyncThunk(
         payload
       );
 
-      alert(data);
+      alert("Cliente actualizado correctamente");
 
       return data;
     } catch (error) {

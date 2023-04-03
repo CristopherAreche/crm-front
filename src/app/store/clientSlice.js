@@ -23,7 +23,7 @@ export const clientSlice = createSlice({
   name: "clients",
   initialState,
   reducers: {
-    clientCheckbox: (state, action) => {
+    selectedClientCheckbox: (state, action) => {
       state.clientSelected = action.payload;
     },
     searchClients: (state, action) => {
@@ -43,17 +43,13 @@ export const clientSlice = createSlice({
     sortVipClients: (state, action) => {
       const { order } = action.payload;
       state.clients.sort((a, b) =>
-        order === "asc"
-          ? a.vip.localeCompare(b.name)
-          : b.vip.localeCompare(a.name)
+        order === "asc" ? a.vip - b.vip : b.vip - a.vip
       );
     },
     sortEnabledClients: (state, action) => {
       const { orderEn } = action.payload;
       state.clients.sort((a, b) =>
-        orderEn === "asc"
-          ? a.enable.localeCompare(b.name)
-          : b.enable.localeCompare(a.name)
+        orderEn === "asc" ? a.enable - b.enable : b.enable - a.enable
       );
     }
   },
@@ -116,6 +112,6 @@ export const clientSlice = createSlice({
   },
 });
 
-export const { getDetailClient, clientName, clientCheckbox, searchClients, sortClients, sortVipClients, sortEnabledClients, cleanDetail} =
+export const { getDetailClient, clientName, selectedClientCheckbox, searchClients, sortClients, sortVipClients, sortEnabledClients, cleanDetail} =
   clientSlice.actions;
 export default clientSlice.reducer;

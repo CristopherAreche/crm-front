@@ -1,12 +1,12 @@
 import { createSlice } from "@reduxjs/toolkit";
-import getActivities from "../../services/fake_api";
 import { createAsyncThunk } from "@reduxjs/toolkit";
+import axios from "axios";
 
 export const obtainActivities = createAsyncThunk(
-  "d/obtainActivities",
-  async () => {
-    const response = await getActivities();
-    return response;
+  "activities/getClientActivity",
+  async (id) => {
+    const response = await axios.get("https://crm.up.railway.app/api/activity");
+    return response.data.filter((res) => res.clientId === id);
   }
 );
 

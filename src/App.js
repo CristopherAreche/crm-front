@@ -12,15 +12,15 @@ function App() {
       <Route exact path="/" element={<LandingPage />} />
       <Route
         exact
-        path="/vendedor_detalles_cliente"
+        path="/vendedor_detalles_cliente/:id"
         element={<VendedorDetallesCliente />}
       />
       <Route exact path="/vendedor_cliente" element={<VendedorCliente />} />
 
       <Route exact path="/auth" element={<AuthLayout />}>
-          <Route index element={<LoginPage />} />
-          <Route path='register' element={<RegisterPage />}/>
-        </Route>
+        <Route index element={<LoginPage />} />
+        <Route path="register" element={<RegisterPage />} />
+      </Route>
     </Routes>
   );
 }

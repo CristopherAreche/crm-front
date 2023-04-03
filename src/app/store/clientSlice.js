@@ -5,12 +5,13 @@ import {
   postClient,
   putClient,
   getClientName,
+  putDisableClient,
+  putEnableClient,
 } from "../../services/clientsServices";
-
 
 const initialState = {
   clients: [],
-  clientDetail: {},
+  clientDetail: [],
   clientSelected: "",
   message: "",
   status: "idle",
@@ -28,10 +29,15 @@ export const clientSlice = createSlice({
     searchClients: (state, action) => {
       state.clients = action.payload;
     },
+    cleanDetail: (state, action) => {
+      state.clientDetail = [];
+    },
     sortClients: (state, action) => {
       const { order } = action.payload;
       state.clients.sort((a, b) =>
-        order === "asc" ? a.name.localeCompare(b.name) : b.name.localeCompare(a.name),
+        order === "asc"
+          ? a.name.localeCompare(b.name)
+          : b.name.localeCompare(a.name)
       );
     },
     sortVipClients: (state, action) => {
@@ -51,21 +57,11 @@ export const clientSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(postClient.fulfilled, (state, action) => {
-        state.clients.push(action.payload);
+        state.clients.unshift(action.payload);
         console.log(state.clients);
       })
       .addCase(postClient.rejected, (state, action) => {
         state.message = action.payload;
-      })
-      .addCase(putClient.fulfilled, (state, action) => {
-        const { id, name, email, phone } = action.payload;
-
-        const foundClient = state.clients.find((client) => client.id === id);
-        if (foundClient) {
-          foundClient.name = name;
-          foundClient.email = email;
-          foundClient.phone = phone;
-        }
       })
       .addCase(getClients.pending, (state) => {
         state.status = "loading";
@@ -79,17 +75,43 @@ export const clientSlice = createSlice({
         state.status = "failed";
         state.error = action.error.message;
       })
+
       .addCase(getClient.fulfilled, (state, action) => {
         state.clientDetail = action.payload;
       })
+
       .addCase(getClientName.fulfilled, (state, action) => {
         state.clients = action.payload;
-      });
+      })
+
+      .addCase(putClient.fulfilled, (state, action) => {
+        const { id, name, email, phone } = action.payload;
+        console.log(action);
+        const indexClient = state.clients.findIndex(
+          (client) => client.id === id
+        );
+        console.log(id);
+        console.log(indexClient);
+        if (indexClient !== -1) {
+          state.clients[indexClient].name = name;
+          state.clients[indexClient].email = email;
+          state.clients[indexClient].phone = phone;
+        }
+        console.log(state.clients);
+      })
+      .addCase(putDisableClient.fulfilled, (state, action) => {
+        console.log(action.payload)
+        const clientFounded = state.clients.find((client) => client.id === state.clientSelected)
+        if (clientFounded) clientFounded.enable = false
+      })
+
+      .addCase(putEnableClient.fulfilled, (state, action) => {
+        const clientFounded = state.clients.find((client) => client.id === state.clientSelected)
+        if (clientFounded) clientFounded.enable = true
+      })
   },
 });
 
-export const { getDetailClient, clientName, clientCheckbox, searchClients, sortClients, sortVipClients, sortEnabledClients} =
+export const { getDetailClient, clientName, clientCheckbox, searchClients, sortClients, sortVipClients, sortEnabledClients, cleanDetail} =
   clientSlice.actions;
-
-
 export default clientSlice.reducer;

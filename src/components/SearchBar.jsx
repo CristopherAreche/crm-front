@@ -2,6 +2,7 @@ import { useState } from "react";
 import { getClients} from "../services/clientsServices";
 import { searchClients } from "../app/store/clientSlice";
 import { useDispatch, useSelector} from "react-redux";
+import { RiSearchLine } from "react-icons/ri";
 
 const SearchBar = () => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -42,6 +43,7 @@ const SearchBar = () => {
         onChange={handleChange}
         onKeyPress={handleKeyPress}
       />
+      <RiSearchLine className="absolute top-1/2 -translate-y-1/2 left-4 text-xl text-light/60"/>
     </div>
   );
 };

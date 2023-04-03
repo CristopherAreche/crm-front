@@ -18,7 +18,7 @@ const ClientList = () => {
       dispatch(getClients());
       //dispatch
     }
-  }, [clientsStatus, dispatch]);
+  }, [clientsStatus, dispatch, clients]);
 
   const handleCheckboxChange = (clientId) => {
     setSelectedClients({ [clientId]: true });
@@ -32,7 +32,7 @@ const ClientList = () => {
     return <div className="text-white">Loading...</div>;
   } else if (clientsStatus === "succeeded") {
     return (
-      <section className="w-[22rem] mx-auto overflow-x-auto lg:min-w-full pt-14 pb-4 lg:py-6 lg:px-8   lg:mb-0 ">
+      <section className="w-[22rem] mx-auto overflow-x-auto lg:min-w-full pt-14 pb-4 lg:py-6 lg:px-4   lg:mb-0 ">
         <header className="flex justify-between w-screen lg:w-full px-8 py-4   bg-base-light/30 rounded-tr-md rounded-tl-md  ">
           <h3 className=" text-xl font-medium text-light flex items-center gap-x-2">
             {" "}
@@ -73,7 +73,9 @@ const ClientList = () => {
                   />
                 </td>
                 <td className="whitespace-nowrap  px-6 py-4  font-medium text-secondary hover:text-secondary/80 hover:underline transition-all">
-                  <Link to="/vendedor_detalles_cliente">{item.name}</Link>
+                  <Link to={`/vendedor_detalles_cliente/${item.id}`}>
+                    {item.name}
+                  </Link>
                 </td>
                 <td className="whitespace-nowrap  px-6 py-4">$653</td>
                 <td

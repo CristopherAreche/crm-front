@@ -78,7 +78,7 @@ export const clientSlice = createSlice({
       const allClients = [...state.copyClients]
       const clientsSorted = orderP === 'todos'
       ? allClients
-      : allClients.sort((a, b) =>
+      : state.clients.sort((a, b) =>
       orderP === "asc" ? a.totalPurchased - b.totalPurchased : b.totalPurchased - a.totalPurchased
     )
 

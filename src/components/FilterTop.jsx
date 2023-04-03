@@ -3,8 +3,9 @@ import { useDispatch } from "react-redux";
 import { sortClients, sortVipClients, sortEnabledClients, resetClients} from "../app/store/clientSlice";
 
 const FilterTop = () => {
+  
  const dispatch = useDispatch();
-
+ 
  const handleOrderChange = (e) => {
   const value = e.target.value;
   let order = ""

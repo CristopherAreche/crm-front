@@ -54,7 +54,7 @@ export const clientSlice = createSlice({
       const allClients = [...state.copyClients]
       const clientsSorted = order === 'todos'
       ? allClients
-      : allClients.sort((a, b) =>
+      : state.clients.sort((a, b) =>
       order === "asc" ? a.vip - b.vip : b.vip - a.vip
       );
 
@@ -63,10 +63,10 @@ export const clientSlice = createSlice({
     },
     sortEnabledClients: (state, action) => {
       const { orderEn } = action.payload;
-      const allClients = [...state.copyClients]
+      const allClients = [...state.clients]
       const clientsSorted = orderEn === 'todos'
       ? allClients
-      : allClients.sort((a, b) =>
+      : state.clients.sort((a, b) =>
       orderEn === "asc" ? a.enable - b.enable : b.enable - a.enable
     )
 

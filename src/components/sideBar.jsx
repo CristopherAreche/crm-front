@@ -28,13 +28,13 @@ function SideBar({ typeSidebar }) {
           {typeSidebar === "seller-clients" && (
             <>
               <Link
-                to="/seller-dash"
+                to="#"
                 className="flex gap-x-6 items-center text-lg text-gray-200 font-medium  py-2  cursor-pointer  px-8 hover:bg-light/20 hover:text-gray-100 transition-all"
               >
                 <RiBarChart2Line className="text-3xl text-secondary" /> Resumen
               </Link>
               <Link
-                to="/seller-dash/clients"
+                to="#"
                 className="flex gap-x-6 items-center text-lg text-gray-200 font-medium  py-2  cursor-pointer  px-8 hover:bg-light/20  hover:text-gray-100 transition-all"
               >
                 <RiTeamLine className="text-3xl text-secondary" /> Clientes

@@ -12,7 +12,6 @@ const ClientList = () => {
   const clientsError = useSelector((state) => state.clients.error);
   const [clientSelected, setClientSelected] = useState("");
   const [isSelected, setIsSelected] = useState(false);
-  const [searchText, setSearchText] = useState("");
 
   useEffect(() => {
     if (clientsStatus === "idle") {
@@ -31,9 +30,6 @@ const ClientList = () => {
     }
   };
 
-  const filteredClients = clients.filter((client) =>
-    client.name.toLowerCase().includes(searchText.toLowerCase())
-  );
 
   if (clientsStatus === "loading") {
     return <RiLoader4Fill className="animate-spin text-4xl text-secondary mt-8"/>
@@ -68,7 +64,8 @@ const ClientList = () => {
             </tr>
           </thead>
           <tbody className=" dark:border-light dark:bg-base-light/60">
-            {filteredClients?.map((item) => (
+            {Array.isArray(clients) &&
+            clients?.map((item) => (
               <tr key={item.id} className="border-b dark:border-base/30">
                 <td className="whitespace-nowrap  px-6 py-4 font-medium">
                 <input

@@ -31,6 +31,10 @@ const ClientList = () => {
     }
   };
 
+  const filteredClients = clients.filter((client) =>
+    client.name.toLowerCase().includes(searchText.toLowerCase())
+  );
+
   if (clientsStatus === "loading") {
     return <RiLoader4Fill className="animate-spin text-4xl text-secondary mt-8"/>
   } else if (clientsStatus === "succeeded") {
@@ -64,19 +68,19 @@ const ClientList = () => {
             </tr>
           </thead>
           <tbody className=" dark:border-light dark:bg-base-light/60">
-            {clients?.map((item) => (
+            {filteredClients?.map((item) => (
               <tr key={item.id} className="border-b dark:border-base/30">
                 <td className="whitespace-nowrap  px-6 py-4 font-medium">
-                  <input
-                    id={`checkbox-${item.id}`}
-                    type="checkbox"
-                    className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
-                    checked={item.id === clientSelected && isSelected}
-                    onChange={() => {
+                <input
+                      id={`checkbox-${item.id}`}
+                      type="checkbox"
+                      className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                      checked={item.id === clientSelected && isSelected}
+                      onChange={() => {
                       handleCheckboxChange(item);
                       toggleCheckBox(clientSelected);
-                    }}
-                  />
+                      }}
+                    />
                 </td>
                 <td className="whitespace-nowrap  px-6 py-4  font-medium text-secondary hover:text-secondary/80 hover:underline transition-all">
                   <Link to={`/vendedor_detalles_cliente/${item.id}`}>

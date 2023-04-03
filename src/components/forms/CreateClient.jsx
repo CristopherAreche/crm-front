@@ -6,6 +6,8 @@ import { RiUserLine, RiPhoneLine, RiMailLine } from "react-icons/ri";
 function CreateClient({ isVisible, onClose }) {
   const dispatch = useDispatch();
   const clientId = useSelector((state) => state.clients.clientSelected);
+  const salesmanId="00b971ac-b220-4457-bada-89476cb64f0e"
+
   const clients = useSelector((state) => state.clients.clients);
   const handleClose = (e) => {
     if (e.target.id === "wrapper") onClose();
@@ -16,7 +18,7 @@ function CreateClient({ isVisible, onClose }) {
     email: "",
     phone: "",
     enable: true,
-    salesmanId: "b30c034d-76cf-4e2f-b68a-3c27722204a4",
+    salesmanId,
   });
 
   const [errors, setErros] = useState({
@@ -56,7 +58,7 @@ function CreateClient({ isVisible, onClose }) {
         email: "",
         phone: "",
         enable: true,
-        salesmanId: "b30c034d-76cf-4e2f-b68a-3c27722204a4",
+        salesmanId,
       });
       onClose();
     }
@@ -65,14 +67,16 @@ function CreateClient({ isVisible, onClose }) {
   useEffect(() => {
     if (clientId) {
       const obj = clients.find((client) => client.id === clientId);
-      setClientData(obj);
-    }else setClientData({
-      name: "",
-      email: "",
-      phone: "",
-      enable: true,
-      salesmanId: "b30c034d-76cf-4e2f-b68a-3c27722204a4",
-    })
+
+      setClientData({
+        id: clientId,
+        name: obj.name,
+        email: obj.email,
+        phone: obj.phone,
+        enable: obj.enable,
+        salesmanId,
+      });
+    }
   }, [clientId, clients, dispatch]);
 
   if (!isVisible) return null;

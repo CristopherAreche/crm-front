@@ -46,17 +46,13 @@ export const clientSlice = createSlice({
     sortVipClients: (state, action) => {
       const { order } = action.payload;
       state.clients.sort((a, b) =>
-        order === "asc"
-          ? a.vip.localeCompare(b.name)
-          : b.vip.localeCompare(a.name)
+        order === "asc" ? a.vip - b.vip : b.vip - a.vip
       );
     },
     sortEnabledClients: (state, action) => {
       const { orderEn } = action.payload;
       state.clients.sort((a, b) =>
-        orderEn === "asc"
-          ? a.enable.localeCompare(b.name)
-          : b.enable.localeCompare(a.name)
+        orderEn === "asc" ? a.enable - b.enable : b.enable - a.enable
       );
     },
   },

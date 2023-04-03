@@ -1,6 +1,5 @@
 import { useState } from "react";
-import { getClients} from "../services/clientsServices";
-import { searchClients } from "../app/store/clientSlice";
+import { resetClients, searchClients } from "../app/store/clientSlice";
 import { useDispatch, useSelector} from "react-redux";
 import { RiSearchLine } from "react-icons/ri";
 
@@ -13,7 +12,7 @@ const SearchBar = () => {
 
   const handleChange = (event) => {
     if(event.target.value===""){
-      dispatch(getClients())
+      dispatch(resetClients())
     }
     setSearchTerm(event.target.value);
   };
@@ -29,7 +28,7 @@ const SearchBar = () => {
       if(searchTerm.length!==0){
         handleSearch();
       }
-      else dispatch((getClients()));
+      else dispatch((resetClients()));
     }
   };
 

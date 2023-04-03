@@ -36,39 +36,15 @@ export const clientSlice = createSlice({
     },
     sortVipClients: (state, action) => {
       const { order } = action.payload;
-    
-      // Divide los clientes en dos grupos: vip y no vip
-      const vipClients = state.clients.filter((client) => client.vip);
-      const nonVipClients = state.clients.filter((client) => !client.vip);
-    
-      // Ordena los clientes vip por su propiedad "vip"
-      vipClients.sort((a, b) =>
-        order === "asc" ? a.vip.localeCompare(b.vip) : b.vip.localeCompare(a.vip)
+      state.clients.sort((a, b) =>
+        order === "asc" ? a.vip - b.vip : b.vip - a.vip
       );
-    
-      // Junta los clientes vip ordenados con los no vip sin ordenar
-      const sortedClients = [...vipClients, ...nonVipClients];
-    
-      // Actualiza el estado con los clientes ordenados
-      state.clients = sortedClients;
     },
     sortEnabledClients: (state, action) => {
-      const { order } = action.payload;
-    
-      // Divide los clientes en dos grupos: habilitados y no habilitados
-      const enabledClients = state.clients.filter((client) => client.enabled);
-      const disabledClients = state.clients.filter((client) => !client.enabled);
-    
-      // Ordena los clientes habilitados por su propiedad "enabled"
-      enabledClients.sort((a, b) =>
-        order === "asc" ? a.enabled.localeCompare(b.enabled) : b.enabled.localeCompare(a.enabled)
+      const { orderEn } = action.payload;
+      state.clients.sort((a, b) =>
+        orderEn === "asc" ? a.enable - b.enable : b.enable - a.enable
       );
-    
-      // Junta los clientes habilitados ordenados con los no habilitados sin ordenar
-      const sortedEClients = [...enabledClients, ...disabledClients];
-    
-      // Actualiza el estado con los clientes ordenados
-      state.clients = sortedEClients;
     }
   },
 

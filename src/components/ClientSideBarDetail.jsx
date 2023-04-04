@@ -27,7 +27,7 @@ const ClientSideBarDetail = () => {
         <span className="text-gray-400">Email:</span> {clientDetail.email}
       </p>
       <p className="text-light text-sm font-medium text-center">
-        <span className="text-gray-400">Telefono:</span> {clientDetail.phone}
+        <span className="text-gray-400">Teléfono:</span> {clientDetail.phone}
       </p>
       <div className="flex justify-center gap-x-4">
         <BiTask className="bg-light p-3 box-content text-xl rounded-full " />

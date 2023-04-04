@@ -28,13 +28,13 @@ const RegisterActivityTable = () => {
         <thead className=" font-medium text-white  dark:bg-base-light/30 rounded-md">
           <tr>
             <th scope="col" className=" px-6 py-4">
-              Metodo
+              Método
             </th>
             <th scope="col" className=" px-6 py-4">
               Estado
             </th>
             <th scope="col" className=" px-6 py-4">
-              Fecha de creacion
+              Fecha de creación
             </th>
           </tr>
         </thead>

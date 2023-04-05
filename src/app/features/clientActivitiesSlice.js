@@ -1,5 +1,5 @@
-import { createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
+import { createSlice } from "@reduxjs/toolkit";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
 export const obtainActivities = createAsyncThunk(
@@ -9,7 +9,6 @@ export const obtainActivities = createAsyncThunk(
     return response.data.filter((res) => res.clientId === id);
   }
 );
-
 const activitySlice = createSlice({
   name: "activities",
   initialState: {

@@ -1,6 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
-import clientReducer from "./clientSlice";
-import activityReducer from "./clientActivitiesSlice";
+import clientReducer from "../features/clientSlice";
+import activityReducer from "../features/clientActivitiesSlice";
 
 export const store = configureStore({
   reducer: {

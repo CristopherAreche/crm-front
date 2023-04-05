@@ -5,7 +5,7 @@ import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { getClient } from "../services/clientsServices";
-import { cleanDetail } from "../app/store/clientSlice";
+import { cleanDetail } from "../app/features/clientSlice";
 
 const ClientSideBarDetail = () => {
   const dispatch = useDispatch();
@@ -21,9 +21,19 @@ const ClientSideBarDetail = () => {
   return (
     <section className="flex items-center flex-col gap-y-3 px-8 w-full">
       <div className="relative">
-        <img src="https://via.placeholder.com/150" alt="placeholder" className="w-28 h-28 rounded-full "/>
-        <div className={`${clientDetail.enable ? 'bg-green-400 shadow-green-400/10' : 'bg-gray-400 shadow-gray-400/10'} text-xs text-center rounded-full py-1 px-2 font-bold text-white shadow-md absolute bottom-0 right-0`}>
-            {clientDetail.enable ? 'Habilitado' : 'Deshabilitado'}
+        <img
+          src="https://via.placeholder.com/150"
+          alt="placeholder"
+          className="w-28 h-28 rounded-full "
+        />
+        <div
+          className={`${
+            clientDetail.enable
+              ? "bg-green-400 shadow-green-400/10"
+              : "bg-gray-400 shadow-gray-400/10"
+          } text-xs text-center rounded-full py-1 px-2 font-bold text-white shadow-md absolute bottom-0 right-0`}
+        >
+          {clientDetail.enable ? "Habilitado" : "Deshabilitado"}
         </div>
       </div>
       <h4 className="text-light text-2xl  text-center font-medium">
@@ -49,10 +59,9 @@ const ClientSideBarDetail = () => {
 
       {clientDetail.vip === true ? (
         <div className="bg-yellow-400 py-2 px-4  rounded-lg font-medium text-base-light shadow-md shadow-yellow-400/10">
-            VIP
+          VIP
         </div>
       ) : null}
-
     </section>
   );
 };

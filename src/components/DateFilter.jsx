@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 import {
   dateFilter,
   obtainActivities,
-} from "../app/store/clientActivitiesSlice";
+} from "../app/features/clientActivitiesSlice";
 
 function DateFilter() {
   const dispatch = useDispatch();

@@ -1,10 +1,9 @@
-import { RiFilter3Line } from "react-icons/ri";
+import { RiFilter3Line, RiLoader4Fill } from "react-icons/ri";
 import { Link } from "react-router-dom";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getClients } from "../services/clientsServices";
 import { selectedClientCheckbox } from "../app/features/clientSlice";
-import { SpinningCircles } from "react-loading-icons";
 
 const ClientList = () => {
   const dispatch = useDispatch();
@@ -34,8 +33,8 @@ const ClientList = () => {
 
   if (clientsStatus === "loading") {
     return (
-      <div className="text-white pt-5">
-        <SpinningCircles />
+      <div className="flex justify-center w-full">
+        <RiLoader4Fill className="animate-spin text-4xl text-secondary mt-8" />
       </div>
     );
   } else if (clientsStatus === "succeeded") {
@@ -84,9 +83,7 @@ const ClientList = () => {
                     />
                   </td>
                   <td className="whitespace-nowrap  px-6 py-4  font-medium text-secondary hover:text-secondary/80 hover:underline transition-all">
-                    <Link to={`/vendedor_detalles_cliente/${item.id}`}>
-                      {item.name}
-                    </Link>
+                    <Link to={`/cliente/${item.id}`}>{item.name}</Link>
                   </td>
                   <td className="whitespace-nowrap  px-6 py-4">
                     ${item.totalPurchased}

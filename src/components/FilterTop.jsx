@@ -75,7 +75,7 @@ const FilterTop = () => {
         >
           Limpiar Filtros
         </button>
-        <p className="text-gray-300 text-sm font-medium">Alfabeticamente:</p>
+        <p className="text-gray-300 text-sm font-medium">Alfabéticamente:</p>
         <select
           name=""
           id=""

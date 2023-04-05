@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getClients } from "../services/clientsServices";
-import { selectedClientCheckbox } from "../app/store/clientSlice";
+import { selectedClientCheckbox } from "../app/features/clientSlice";
 import { SpinningCircles } from "react-loading-icons";
 
 const ClientList = () => {
@@ -68,15 +68,18 @@ const ClientList = () => {
             </tr>
           </thead>
           <tbody className=" dark:border-light dark:bg-base-light/60">
-            {filteredClients.map((item) => (
+            {clients.map((item) => (
               <tr key={item.id} className="border-b dark:border-base/30">
                 <td className="whitespace-nowrap  px-6 py-4 font-medium">
                   <input
                     id={`checkbox-${item.id}`}
                     type="checkbox"
                     className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
-                    checked={!!selectedClients[item.id]}
-                    onChange={() => handleCheckboxChange(item.id)}
+                    checked={item.id === clientSelected && isSelected}
+                    onChange={() => {
+                      handleCheckboxChange(item);
+                      toggleCheckBox(clientSelected);
+                    }}
                   />
                 </td>
                 <td className="whitespace-nowrap  px-6 py-4  font-medium text-secondary hover:text-secondary/80 hover:underline transition-all">

@@ -1,4 +1,4 @@
-import SideBar from "../components/sideBar";
+import SideBar from "../components/SideBar";
 import Header from "../components/Header";
 import ClientList from "../components/ClientList";
 import FilterBottom from "../components/FilterBottom";

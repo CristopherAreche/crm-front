@@ -2,13 +2,13 @@ import { Link } from "react-router-dom";
 import imgLanding from "../assets/imgLanding.png";
 import spotlight1 from "../assets/svg/Spotlight1.svg";
 import spotlight2 from "../assets/svg/Spotlight2.svg";
-import Header from "../components/LandingPage/Header";
+import LandingHeader from "../components/LandingHeader";
 const LandingPage = () => {
   return (
     <main className="bg-base h-screen overflow-hidden px-10 lg:px-20 ">
       {/* TODO : Componetizar Landing */}
       {/* Seccion Header */}
-      <Header />
+      <LandingHeader />
       {/* Seccion Hero */}
       <section className="flex flex-col lg:flex-row items-start lg:items-center justify-center h-screen pt-12  lg:pt-0">
         {/* Hero Info */}
@@ -28,8 +28,11 @@ const LandingPage = () => {
           </div>
           {/* Botones */}
           <div className="flex gap-x-4 z-[2]">
-            <Link to="/auth/register" className="bg-gradient-to-r from-primary to-secondary px-4 py-2 rounded-xl text-white font-medium text-lg lg:text-2xl hover:scale-[1.03] transition-all flex gap-x-1 items-center">
-                Empezar Ahora
+            <Link
+              to="/auth/register"
+              className="bg-gradient-to-r from-primary to-secondary px-4 py-2 rounded-xl text-white font-medium text-lg lg:text-2xl hover:scale-[1.03] transition-all flex gap-x-1 items-center"
+            >
+              Empezar Ahora
             </Link>
             <button className="border-2 border-secondary rounded-xl p-2 px-4 text-lg lg:text-2xl hover:scale-[1.03] hover:text-white transition-all text-light font-medium flex items-center gap-x-1">
               Descubre mas

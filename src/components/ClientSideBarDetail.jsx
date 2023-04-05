@@ -5,7 +5,7 @@ import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { getClient } from "../services/clientsServices";
-import { cleanDetail } from "../app/store/clientSlice";
+import { cleanDetail } from "../app/features/clientSlice";
 
 const ClientSideBarDetail = () => {
   const dispatch = useDispatch();
@@ -38,7 +38,7 @@ const ClientSideBarDetail = () => {
         <p className="text-4xl text-secondary font-medium">
           $ {clientDetail.totalPurchased}
         </p>
-        <p className="text-light text-lg ">Total pagado</p>
+        <p className="text-light text-lg ">Total en compras</p>
       </div>
       <div className="flex justify-center gap-x-4">
         {clientDetail.vip === true ? (
@@ -49,11 +49,11 @@ const ClientSideBarDetail = () => {
 
         {clientDetail.enable === true ? (
           <div className="bg-green-400 py-3 px-6 rounded-lg font-medium text-base-light shadow-md shadow-green-400/10">
-            Enable
+            Habilitado
           </div>
         ) : (
           <div className="bg-gray-400 py-3 px-6 rounded-lg font-medium text-base-light shadow-md shadow-green-400/10">
-            Disable
+            Deshabilitado
           </div>
         )}
       </div>

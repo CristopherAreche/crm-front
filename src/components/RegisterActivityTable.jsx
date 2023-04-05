@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { obtainActivities } from "../app/store/clientActivitiesSlice.js";
+import { obtainActivities } from "../app/features/clientActivitiesSlice.js";
 import { useParams } from "react-router-dom";
 import { SpinningCircles } from "react-loading-icons";
 

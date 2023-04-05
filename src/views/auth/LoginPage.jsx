@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { RiArrowLeftLine, RiMailLine, RiLock2Line } from "react-icons/ri";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import { useAuth0 } from "@auth0/auth0-react";
 
 const LoginPage = () => {
   const [passWord, setPassWord] = useState("");
@@ -16,6 +17,7 @@ const LoginPage = () => {
     "La Contraseña debe ser de 8 Caracteres o mas y debe de contener Mayusculas, Minusculas, Numeros, sin espacios ni caracteres especiales";
   const textErrorGeneral = "Nombre de Usuario y/o Contraseña no Validos";
   const navigate = useNavigate();
+  const { loginWithRedirect } = useAuth0();
 
   const login = () => {
     if (
@@ -137,12 +139,16 @@ const LoginPage = () => {
         </Link>
       </form>
       <section className="flex gap-x-2 items-center justify-center w-full bg-white py-2 hover:scale-[1.03] transition-all cursor-pointer rounded-md">
-        <img
+      <img
           src="https://img.freepik.com/iconos-gratis/buscar_318-265146.jpg"
           alt="logo google"
-          className="w-8 h-8"
+          className="w-8 h-8 mr-4"
         />
-        <p className="text-base font-medium ">Ingresar con Google</p>
+        <button className="text-base font-medium " onClick={()=>loginWithRedirect({ screen_hint: "signup" })}>Ingresa con Google o Microsoft</button>
+        <img
+          src="https://cdn-icons-png.flaticon.com/512/732/732221.png?w=740&t=st=1680637866~exp=1680638466~hmac=6099a6118528d9a0e0b89bc5f7d0c78b31b9f71b84a7c81bc034269616924215"
+          alt="logo microsoft"
+          className="w-8 h-8 ml-4"/>
       </section>
     </section>
   );

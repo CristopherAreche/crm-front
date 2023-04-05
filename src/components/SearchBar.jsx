@@ -1,34 +1,35 @@
 import { useState } from "react";
-import { resetClients, searchClients } from "../app/store/clientSlice";
-import { useDispatch, useSelector} from "react-redux";
+import { resetClients, searchClients } from "../app/features/clientSlice";
+import { useDispatch, useSelector } from "react-redux";
 import { RiSearchLine } from "react-icons/ri";
 
 const SearchBar = () => {
-  const [searchTerm, setSearchTerm] = useState("");
-
   const dispatch = useDispatch();
-  
+  const [searchTerm, setSearchTerm] = useState("");
   const clients = useSelector((state) => state.clients.clients);
 
   const handleChange = (event) => {
-    if(event.target.value===""){
-      dispatch(resetClients())
+    if (event.target.value === "") {
+      dispatch(resetClients());
     }
     setSearchTerm(event.target.value);
   };
 
   const handleSearch = () => {
-    dispatch(searchClients(clients.filter((client) =>
-      client.name.toLowerCase().includes(searchTerm.toLowerCase())
-    )));
+    dispatch(
+      searchClients(
+        clients.filter((client) =>
+          client.name.toLowerCase().includes(searchTerm.toLowerCase())
+        )
+      )
+    );
   };
 
   const handleKeyPress = (event) => {
-    if (event.key === 'Enter') {
-      if(searchTerm.length!==0){
+    if (event.key === "Enter") {
+      if (searchTerm.length !== 0) {
         handleSearch();
-      }
-      else dispatch((resetClients()));
+      } else dispatch(resetClients());
     }
   };
 
@@ -42,10 +43,9 @@ const SearchBar = () => {
         onChange={handleChange}
         onKeyPress={handleKeyPress}
       />
-      <RiSearchLine className="absolute top-1/2 -translate-y-1/2 left-4 text-xl text-light/60"/>
+      <RiSearchLine className="absolute top-1/2 -translate-y-1/2 left-4 text-xl text-light/60" />
     </div>
   );
 };
 
 export default SearchBar;
-

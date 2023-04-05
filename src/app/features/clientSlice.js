@@ -11,9 +11,9 @@ import {
 
 const initialState = {
   clients: [],
-  copyClients : [],
+  copyClients: [],
   clientDetail: [],
-  clientSelected: "",
+  clientSelected: null,
   message: "",
   status: "idle",
   error: null,
@@ -27,8 +27,8 @@ export const clientSlice = createSlice({
     selectedClientCheckbox: (state, action) => {
       state.clientSelected = action.payload;
     },
-    cleanClientSelect : (state, action) => {
-      state.clientSelected = ''
+    cleanClientSelect: (state, action) => {
+      state.clientSelected = "";
     },
     searchClients: (state, action) => {
       state.clients = action.payload;
@@ -38,60 +38,56 @@ export const clientSlice = createSlice({
     },
     sortClients: (state, action) => {
       const { order } = action.payload;
-      const allClients = [...state.copyClients]
-      const clientsSorted = order === 'todos'
-      ? allClients
-      : state.clients.sort((a, b) =>
-      order === "asc"
-        ? a.name.localeCompare(b.name)
-        : b.name.localeCompare(a.name)
-    );
-    state.clients = clientsSorted
-      
+      const allClients = [...state.copyClients];
+      const clientsSorted =
+        order === "todos"
+          ? allClients
+          : state.clients.sort((a, b) =>
+              order === "asc"
+                ? a.name.localeCompare(b.name)
+                : b.name.localeCompare(a.name)
+            );
+      state.clients = clientsSorted;
     },
     sortVipClients: (state, action) => {
       const { order } = action.payload;
-      const allClients = [...state.copyClients]
-      const clientsSorted = order === 'todos'
-      ? allClients
-      : state.clients.sort((a, b) =>
-      order === "asc" ? a.vip - b.vip : b.vip - a.vip
-      );
-
-      state.clients = clientsSorted
-     
+      const allClients = [...state.copyClients];
+      const clientsSorted =
+        order === "todos"
+          ? allClients
+          : state.clients.sort((a, b) =>
+              order === "asc" ? a.vip - b.vip : b.vip - a.vip
+            );
+      state.clients = clientsSorted;
     },
     sortEnabledClients: (state, action) => {
       const { orderEn } = action.payload;
-      const allClients = [...state.copyClients]
-      const clientsSorted = orderEn === 'todos'
-      ? allClients
-      : state.clients.sort((a, b) =>
-      orderEn === "asc" ? a.enable - b.enable : b.enable - a.enable
-    )
-
-      state.clients = clientsSorted
-    
+      const allClients = [...state.copyClients];
+      const clientsSorted =
+        orderEn === "todos"
+          ? allClients
+          : state.clients.sort((a, b) =>
+              orderEn === "asc" ? a.enable - b.enable : b.enable - a.enable
+            );
+      state.clients = clientsSorted;
     },
     sortPurchases: (state, action) => {
       const { orderP } = action.payload;
-      const allClients = [...state.copyClients]
-      const clientsSorted = orderP === 'todos'
-      ? allClients
-      : state.clients.sort((a, b) =>
-      orderP === "asc" ? a.totalPurchased - b.totalPurchased : b.totalPurchased - a.totalPurchased
-    )
-
-    state.clients = clientsSorted
-    
+      const allClients = [...state.copyClients];
+      const clientsSorted =
+        orderP === "todos"
+          ? allClients
+          : state.clients.sort((a, b) =>
+              orderP === "asc"
+                ? a.totalPurchased - b.totalPurchased
+                : b.totalPurchased - a.totalPurchased
+            );
+      state.clients = clientsSorted;
     },
-
-    resetClients : (state, action) => {
-      state.clients = state.copyClients
-    }
-   
+    resetClients: (state, action) => {
+      state.clients = state.copyClients;
+    },
   },
-
   extraReducers: (builder) => {
     builder
       .addCase(postClient.fulfilled, (state, action) => {
@@ -107,7 +103,7 @@ export const clientSlice = createSlice({
       .addCase(getClients.fulfilled, (state, action) => {
         state.status = "succeeded";
         state.data = action.payload;
-        state.copyClients = action.payload
+        state.copyClients = action.payload;
         state.clients = action.payload;
       })
       .addCase(getClients.rejected, (state, action) => {
@@ -122,7 +118,6 @@ export const clientSlice = createSlice({
       .addCase(getClientName.fulfilled, (state, action) => {
         state.clients = action.payload;
       })
-
       .addCase(putClient.fulfilled, (state, action) => {
         const { id, name, email, phone } = action.payload;
         console.log(action);
@@ -144,7 +139,6 @@ export const clientSlice = createSlice({
         );
         if (clientFounded) clientFounded.enable = false;
       })
-
       .addCase(putEnableClient.fulfilled, (state, action) => {
         const clientFounded = state.clients.find(
           (client) => client.id === state.clientSelected
@@ -153,6 +147,18 @@ export const clientSlice = createSlice({
       });
   },
 });
-export const { getDetailClient, clientName, clientCheckbox, searchClients, sortClients, sortVipClients, sortEnabledClients, cleanDetail, cleanClientSelect, selectedClientCheckbox, sortPurchases, resetClients} =
-  clientSlice.actions;
+export const {
+  getDetailClient,
+  clientName,
+  clientCheckbox,
+  searchClients,
+  sortClients,
+  sortVipClients,
+  sortEnabledClients,
+  cleanDetail,
+  cleanClientSelect,
+  selectedClientCheckbox,
+  sortPurchases,
+  resetClients,
+} = clientSlice.actions;
 export default clientSlice.reducer;

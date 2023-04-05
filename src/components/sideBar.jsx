@@ -1,7 +1,5 @@
 import { Link } from "react-router-dom";
 import {
-  RiBarChart2Line,
-  RiTeamLine,
   RiLogoutCircleRLine,
   RiCloseFill,
   RiMenu3Fill,

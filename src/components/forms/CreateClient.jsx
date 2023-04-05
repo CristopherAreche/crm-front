@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import validation from "./validation";
+import validation from "../../utils/validation";
 import { useDispatch, useSelector } from "react-redux";
 import { postClient, putClient } from "../../services/clientsServices";
 import { RiUserLine, RiPhoneLine, RiMailLine } from "react-icons/ri";
@@ -23,7 +23,7 @@ function CreateClient({ isVisible, onClose }) {
     salesmanId,
   });
 
-  const [errors, setErros] = useState({
+  const [errors, setErrors] = useState({
     name: "",
     email: "",
     phone: "",
@@ -38,7 +38,7 @@ function CreateClient({ isVisible, onClose }) {
       [property]: value,
     });
 
-    setErros(
+    setErrors(
       validation({
         ...clientData,
         [property]: value,

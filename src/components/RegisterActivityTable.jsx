@@ -1,7 +1,8 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { obtainActivities } from "../app/store/clientActivitiesSlice.js";
+import { obtainActivities } from "../app/features/clientActivitiesSlice.js";
 import { useParams } from "react-router-dom";
+import { SpinningCircles } from "react-loading-icons";
 
 const RegisterActivityTable = () => {
   const dispatch = useDispatch();
@@ -15,7 +16,11 @@ const RegisterActivityTable = () => {
   }, [dispatch]);
 
   if (activitiesStatus === "loading") {
-    return <div>Loading...</div>;
+    return (
+      <div className="pt-2 flex justify-center">
+        <SpinningCircles />
+      </div>
+    );
   }
 
   if (activitiesStatus === "failed") {

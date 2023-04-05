@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getClients } from "../services/clientsServices";
-import { selectedClientCheckbox } from "../app/store/clientSlice";
+import { selectedClientCheckbox } from "../app/features/clientSlice";
 
 const ClientList = () => {
   const dispatch = useDispatch();
@@ -15,9 +15,9 @@ const ClientList = () => {
 
   useEffect(() => {
     if (clientsStatus === "idle") {
-      if(!clients.length){
-      dispatch(getClients());}
-      //dispatch
+      if (!clients.length) {
+        dispatch(getClients());
+      }
     }
   }, [clientsStatus, dispatch, clients]);
 
@@ -31,15 +31,17 @@ const ClientList = () => {
     }
   };
 
-
   if (clientsStatus === "loading") {
-    return <div className='flex justify-center w-full'><RiLoader4Fill className="animate-spin text-4xl text-secondary mt-8"/></div>
+    return (
+      <div className="flex justify-center w-full">
+        <RiLoader4Fill className="animate-spin text-4xl text-secondary mt-8" />
+      </div>
+    );
   } else if (clientsStatus === "succeeded") {
     return (
       <section className="w-[22rem] mx-auto overflow-x-auto lg:min-w-full pt-14 pb-4 lg:py-6 lg:px-4   lg:mb-0 ">
         <header className="flex justify-between w-screen lg:w-full px-8 py-4   bg-base-light/30 rounded-tr-md rounded-tl-md  ">
           <h3 className=" text-xl font-medium text-light flex items-center gap-x-2">
-            {" "}
             <RiFilter3Line className="text-2xl" />
             Tus clientes
           </h3>
@@ -66,49 +68,49 @@ const ClientList = () => {
           </thead>
           <tbody className=" dark:border-light dark:bg-base-light/60">
             {Array.isArray(clients) &&
-            clients?.map((item) => (
-              <tr key={item.id} className="border-b dark:border-base/30">
-                <td className="whitespace-nowrap  px-6 py-4 font-medium">
-                <input
+              clients?.map((item) => (
+                <tr key={item.id} className="border-b dark:border-base/30">
+                  <td className="whitespace-nowrap  px-6 py-4 font-medium">
+                    <input
                       id={`checkbox-${item.id}`}
                       type="checkbox"
                       className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
                       checked={item.id === clientSelected && isSelected}
                       onChange={() => {
-                      handleCheckboxChange(item);
-                      toggleCheckBox(clientSelected);
+                        handleCheckboxChange(item);
+                        toggleCheckBox(clientSelected);
                       }}
                     />
-                </td>
-                <td className="whitespace-nowrap  px-6 py-4  font-medium text-secondary hover:text-secondary/80 hover:underline transition-all">
-                  <Link to={`/cliente/${item.id}`}>
-                    {item.name}
-                  </Link>
-                </td>
-                <td className="whitespace-nowrap  px-6 py-4">${item.totalPurchased}</td>
-                <td
-                  className={`whitespace-nowrap  px-6 py-4 ${
-                    item.enable ? "text-emerald-200" : "text-red-200"
-                  }`}
-                >
-                  {" "}
-                  {item.enable ? "Habilitado" : "Desabilitado"}
-                </td>
-                <td
-                  className={`whitespace-nowrap  px-6 py-4 ${
-                    item.vip ? "text-orange-200" : "text-white"
-                  }`}
-                >
-                  {" "}
-                  {item.vip ? "Si" : "No"}
-                </td>
-              </tr>
-            ))}
+                  </td>
+                  <td className="whitespace-nowrap  px-6 py-4  font-medium text-secondary hover:text-secondary/80 hover:underline transition-all">
+                    <Link to={`/cliente/${item.id}`}>{item.name}</Link>
+                  </td>
+                  <td className="whitespace-nowrap  px-6 py-4">
+                    ${item.totalPurchased}
+                  </td>
+                  <td
+                    className={`whitespace-nowrap  px-6 py-4 ${
+                      item.enable ? "text-emerald-200" : "text-red-200"
+                    }`}
+                  >
+                    {" "}
+                    {item.enable ? "Habilitado" : "Desabilitado"}
+                  </td>
+                  <td
+                    className={`whitespace-nowrap  px-6 py-4 ${
+                      item.vip ? "text-orange-200" : "text-white"
+                    }`}
+                  >
+                    {" "}
+                    {item.vip ? "Si" : "No"}
+                  </td>
+                </tr>
+              ))}
           </tbody>
         </table>
       </section>
     );
-  } else if (clientsStatus === "failed") {
+  } else if (clientsError === "failed") {
     return <div>{clientsError}</div>;
   }
 };

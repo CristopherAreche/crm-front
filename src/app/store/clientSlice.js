@@ -96,8 +96,8 @@ export const clientSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(postClient.fulfilled, (state, action) => {
-        state.clients.unshift(action.payload);
-        console.log(state.clients);
+        if (typeof action.payload !== "string")
+          state.clients = [...state.clients, action.payload];
       })
       .addCase(postClient.rejected, (state, action) => {
         state.message = action.payload;

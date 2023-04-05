@@ -3,10 +3,12 @@ import validation from "./validation";
 import { useDispatch, useSelector } from "react-redux";
 import { postClient, putClient } from "../../services/clientsServices";
 import { RiUserLine, RiPhoneLine, RiMailLine } from "react-icons/ri";
+import swal from "sweetalert";
+
 function CreateClient({ isVisible, onClose }) {
   const dispatch = useDispatch();
   const clientId = useSelector((state) => state.clients.clientSelected);
-  const salesmanId="00b971ac-b220-4457-bada-89476cb64f0e"
+  const salesmanId = "00b971ac-b220-4457-bada-89476cb64f0e";
 
   const clients = useSelector((state) => state.clients.clients);
   const handleClose = (e) => {
@@ -47,10 +49,28 @@ function CreateClient({ isVisible, onClose }) {
   const handleSubmit = (event) => {
     event.preventDefault();
     if (errors.name || errors.email || errors.phone) {
-      alert("Por favor revise los datos introducidos. ");
+      swal("Error", "Por favor revise los datos introducidos. ", "error");
     } else if (clientId) {
-      dispatch(putClient(clientData));
-      onClose();
+      swal({
+        title: "Estas seguro que deseas modificar los datos del cliente?",
+        text: `${clientData}`,
+        icon: "warning",
+        buttons: true,
+        dangerMode: true,
+      }).then((edit) => {
+        if (edit) {
+          swal(
+            "El cliente fue modificado",
+            dispatch(putClient(clientData)),
+            onClose(),
+            {
+              icon: "success",
+            }
+          );
+        } else {
+          swal("El cliente no se ha modificado");
+        }
+      });
     } else {
       dispatch(postClient(clientData));
       setClientData({
@@ -67,14 +87,15 @@ function CreateClient({ isVisible, onClose }) {
   useEffect(() => {
     if (clientId) {
       const obj = clients.find((client) => client.id === clientId);
-      setClientData({...obj, salesmanId});
-    } else setClientData({
-      name: "",
-      email: "",
-      phone: "",
-      enable: true,
-      salesmanId,
-  })
+      setClientData({ ...obj, salesmanId });
+    } else
+      setClientData({
+        name: "",
+        email: "",
+        phone: "",
+        enable: true,
+        salesmanId,
+      });
   }, [clientId, clients, dispatch]);
 
   if (!isVisible) return null;
@@ -89,7 +110,9 @@ function CreateClient({ isVisible, onClose }) {
         className="w-96 bg-base-light/70 py-6 px-4 rounded-md flex flex-col gap-y-4"
         onSubmit={handleSubmit}
       >
-        <h4 className="text-xl font-medium text-light">{clientId ? 'Actualizar cliente' : 'Guardar un cliente'}</h4>
+        <h4 className="text-xl font-medium text-light">
+          {clientId ? "Actualizar cliente" : "Guardar un cliente"}
+        </h4>
         <section className="flex flex-col gap-y-2">
           <label className="text-sm font-medium text-light" htmlFor="name">
             Nombre completo:
@@ -147,7 +170,7 @@ function CreateClient({ isVisible, onClose }) {
 
         <footer className="flex justify-between items-center">
           <button
-            type='button'
+            type="button"
             className="p-2 rounded-md font-medium text-base bg-gray-300 shadow-md shadow-gray-300/20 hover:bg-gray-300/80 transition-all"
             onClick={() => {
               onClose();
@@ -159,7 +182,7 @@ function CreateClient({ isVisible, onClose }) {
             className="p-2 bg-emerald-400 shadow-md shadow-emerald-400/20 rounded-md hover:bg-emerald-400/80 transition-all"
             type="submit"
           >
-            {clientId ? 'Actualizar' : 'Guardar'}
+            {clientId ? "Actualizar" : "Guardar"}
           </button>
         </footer>
       </form>

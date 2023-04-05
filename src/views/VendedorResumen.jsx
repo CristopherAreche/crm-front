@@ -1,5 +1,5 @@
-import tasksImage from '../assets/Other 01 18.png'
-import productImage from '../assets/Other 16.png'
+import tasksImage from '../assets/tasksImage.png'
+import productImage from '../assets/productImage.png'
 import {RiTimeLine, RiArrowDropRightLine, RiArrowDropLeftLine, RiRefundLine} from 'react-icons/ri'
 import { useAuth0 } from "@auth0/auth0-react";
 
@@ -125,14 +125,14 @@ const VendedorResumen = () => {
                 itemsLastesProducst.map(item => (
                   <article key={item.product} className='flex items-center justify-between bg-base-light/30 pr-2 shadow-md rounded-md'>
                     <div className='flex items-center gap-x-2'>
-                      <img src={item.source} className='w-20 h-20 object-cover rounded-tl-md rounded-bl-md' alt='product'/>
+                      <img src={item.source} className='w-16 h-16 object-cover rounded-tl-md rounded-bl-md' alt='product'/>
                       <div>
                         <p className='text-sm font-medium text-light/90'>{item.product}</p>
                         <p className='text-xs text-light/80'>{item.stock} en stock</p>
                       </div>
 
                     </div>
-                    <p className='flex gap-x-1 items-center text-sm font-medium text-secondary'><RiTimeLine/> {item.lastest}</p>
+                    <p className='flex gap-x-1 items-center text-sm font-medium text-secondary'><RiTimeLine/> {item.lastest}h</p>
                   </article>
                 ))
               }

@@ -3,7 +3,7 @@ import RegisterActivityTable from "../components/RegisterActivityTable";
 import TaskList from "../components/TaskList";
 import DateFilter from "../components/DateFilter";
 import ActivitiesFilter from "../components/ActivitiesFilter";
-import SideBar from "../components/SideBar";
+import SideBar from "../components/sideBar";
 import spotlight1 from "../assets/svg/Spotlight1.svg";
 import spotlight2 from "../assets/svg/Spotlight2.svg";
 import { RiBarChart2Line } from "react-icons/ri";

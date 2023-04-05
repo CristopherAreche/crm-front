@@ -38,9 +38,9 @@ const AuthLayout = () => {
           </div>
         </article>
       </section>
-      <section className="flex-1 z-[2]">
+      <main className="flex-1 z-[2]">
         <Outlet />
-      </section>
+      </main>
       <img
         src={spotlight1}
         className="absolute top-0 right-0 opacity-80 z-[1]"

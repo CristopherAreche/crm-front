@@ -1,7 +1,7 @@
 import tasksImage from '../assets/Other 01 18.png'
 import productImage from '../assets/Other 16.png'
 import {RiTimeLine, RiArrowDropRightLine, RiArrowDropLeftLine, RiRefundLine} from 'react-icons/ri'
-
+import { useAuth0 } from "@auth0/auth0-react";
 
 const itemsLastesProducst = [
   {
@@ -45,12 +45,13 @@ const itemsResume = [
 
 
 const VendedorResumen = () => {
+  const {user} = useAuth0();
   return (
     <section className="py-6 lg:pr-4 ">
         {/* Seccion Top */}
         <section className=" flex flex-col gap-y-4  lg:items-start mb-12">
              <div className='flex flex-col lg:flex-row lg:justify-between items-center w-full gap-y-4'>
-              <h2 className="text-4xl font-bold tracking-wider text-light/90 text-center lg:text-start">Buenos dias, <span className='bg-gradient-to-r from-primary  to-secondary text-transparent bg-clip-text'>Jerome</span>
+              <h2 className="text-4xl font-bold tracking-wider text-light/90 text-center lg:text-start">Buenos dias, <span className='bg-gradient-to-r from-primary  to-secondary text-transparent bg-clip-text'>{user?.name} </span>
               </h2>
               <div className='flex gap-x-4'>
                 {
@@ -63,7 +64,7 @@ const VendedorResumen = () => {
                 }
               </div>
              </div> 
-              <p className='text-light/90 text-center lg:text-start'>Aqui podras ver seguir tus actividades y encontrar tu proceso.</p>
+              <p className='text-light/90 text-center lg:text-start'>Aqui podras ver, seguir tus actividades y encontrar tu proceso.</p>
             {/* Section Resume */}
             <section className=' flex flex-wrap gap-3 lg:justify-start lg:flex-nowrap  justify-center lg:gap-4 '>
              <div className="bg-base-light/30 px-4 rounded-md flex flex-col items-center justify-center gap-y-4 ">

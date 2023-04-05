@@ -1,12 +1,14 @@
 import { RiBarChart2Line, RiTeamLine } from 'react-icons/ri'
 import { Link } from 'react-router-dom'
-
+import { useAuth0 } from "@auth0/auth0-react";
 const SellerSideBar = () => {
+    const { user } = useAuth0();
+    
   return (
     <>
         <section className='flex flex-col gap-y-2 items-center mb-6'>
-            <img src="https://via.placeholder.com/150" alt="placeholder" className="w-28 h-28 rounded-full "/>
-            <h3 className='text-light font-medium text-lg'>Jerome Wilson</h3>
+            <img src="" alt="imagen" className="w-28 h-28 rounded-full "/>
+            <h3 className='text-light font-medium text-lg'>{user?.name}</h3>
         </section>
         <section className='flex flex-col gap-y-4 '>
             <Link

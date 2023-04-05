@@ -10,7 +10,7 @@ import { store } from "./app/store/store";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <Auth0Provider domain="dev-tthzw3uiioypptkj.us.auth0.com" clientId="flqFB9wWez8Ld0z3i40ZYJhmO9LRvEHU"  redirectUri={`${window.location.origin}/vendedor_cliente`} >
+  <Auth0Provider domain="dev-tthzw3uiioypptkj.us.auth0.com" clientId="flqFB9wWez8Ld0z3i40ZYJhmO9LRvEHU"  redirectUri={`${window.location.origin}/vendedor`} >
   <Provider store={store}>
 
     <BrowserRouter>

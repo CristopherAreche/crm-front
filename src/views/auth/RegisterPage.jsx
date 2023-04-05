@@ -59,7 +59,6 @@ const RegisterPage = () => {
           Registrate
         </Link>
       </form>
-      <p>O</p>
       <section className="flex gap-x-2 items-center justify-center w-full bg-white py-2 hover:scale-[1.03] transition-all cursor-pointer rounded-md">
         <img
           src="https://img.freepik.com/iconos-gratis/buscar_318-265146.jpg"

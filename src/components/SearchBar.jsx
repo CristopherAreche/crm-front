@@ -1,19 +1,16 @@
 import { useState } from "react";
-import { getClients } from "../services/clientsServices";
-import { searchClients } from "../app/features/clientSlice";
+import { resetClients, searchClients } from "../app/features/clientSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { RiSearchLine } from "react-icons/ri";
 
 const SearchBar = () => {
-  const [searchTerm, setSearchTerm] = useState("");
-
   const dispatch = useDispatch();
-
+  const [searchTerm, setSearchTerm] = useState("");
   const clients = useSelector((state) => state.clients.clients);
 
   const handleChange = (event) => {
     if (event.target.value === "") {
-      dispatch(getClients());
+      dispatch(resetClients());
     }
     setSearchTerm(event.target.value);
   };
@@ -32,7 +29,7 @@ const SearchBar = () => {
     if (event.key === "Enter") {
       if (searchTerm.length !== 0) {
         handleSearch();
-      } else dispatch(getClients());
+      } else dispatch(resetClients());
     }
   };
 

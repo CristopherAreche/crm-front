@@ -13,10 +13,33 @@ const activitySlice = createSlice({
   name: "activities",
   initialState: {
     activities: [],
+    activitiesFilter: [],
     status: "idle",
     error: null,
   },
-  reducers: {},
+  reducers: {
+    dateFilter: (state, action) => {
+      console.log(action.payload);
+      if (action.payload.startDate != null) {
+        const start = Number(action.payload.startDate.split("-").join(""));
+
+        const end = Number(action.payload.endDate.split("-").join(""));
+
+        const activitiesFilter = state.activities.filter((activities) => {
+          const dateActivity = Number(
+            activities.createdAt.split("T")[0].split("-").join("")
+          );
+
+          if (dateActivity >= start && dateActivity <= end) {
+            return activities;
+          }
+        });
+        state.activitiesFilter = activitiesFilter;
+      } else {
+        state.activitiesFilter = state.activities;
+      }
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(obtainActivities.pending, (state) => {
@@ -25,6 +48,7 @@ const activitySlice = createSlice({
       .addCase(obtainActivities.fulfilled, (state, action) => {
         state.status = "succeeded";
         state.activities = action.payload;
+        state.activitiesFilter = action.payload;
       })
       .addCase(obtainActivities.rejected, (state, action) => {
         state.status = "failed";
@@ -33,4 +57,5 @@ const activitySlice = createSlice({
   },
 });
 
+export const { dateFilter } = activitySlice.actions;
 export default activitySlice.reducer;

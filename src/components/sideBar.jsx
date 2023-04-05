@@ -6,7 +6,7 @@ import {
   RiCloseFill,
   RiMenu3Fill,
   RiUserSettingsLine,
-  RiTyphoonFill
+  RiTyphoonFill,
 } from "react-icons/ri";
 import { useState } from "react";
 import ClientSideBarDetail from "./ClientSideBarDetail";
@@ -22,19 +22,22 @@ function SideBar({ typeSidebar }) {
       >
         <section className="flex flex-col gap-y-4">
           <h1 className="text-3xl flex items-center justify-center gap-x-2 px-8 font-bold tracking-widest border-b border-light/40 pb-4 pt-2">
-            <RiTyphoonFill className="text-white"/> <span className="bg-gradient-to-r from-primary  to-secondary text-end  text-transparent bg-clip-text hover:underline hover:text-light transition-all cursor-pointer">CRM</span>
+            <RiTyphoonFill className="text-white" />{" "}
+            <span className="bg-gradient-to-r from-primary  to-secondary text-end  text-transparent bg-clip-text hover:underline hover:text-light transition-all cursor-pointer">
+              CRM
+            </span>
           </h1>
           {/* Contenido Dinamico */}
           {typeSidebar === "seller-clients" && (
             <>
               <Link
-                to="/seller-dash"
+                to="#"
                 className="flex gap-x-6 items-center text-lg text-gray-200 font-medium  py-2  cursor-pointer  px-8 hover:bg-light/20 hover:text-gray-100 transition-all"
               >
                 <RiBarChart2Line className="text-3xl text-secondary" /> Resumen
               </Link>
               <Link
-                to="/seller-dash/clients"
+                to="#"
                 className="flex gap-x-6 items-center text-lg text-gray-200 font-medium  py-2  cursor-pointer  px-8 hover:bg-light/20  hover:text-gray-100 transition-all"
               >
                 <RiTeamLine className="text-3xl text-secondary" /> Clientes
@@ -46,12 +49,16 @@ function SideBar({ typeSidebar }) {
         <div>
           {typeSidebar === "seller-clients" && (
             <>
-              <Link className="flex items-center gap-x-6 py-2  cursor-pointer text-gray-200 font-medium px-8 text-lg hover:bg-light/20 hover:text-gray-100 transition-all mb-4"><RiUserSettingsLine className="text-2xl text-secondary"/>Configuracion</Link>
+              <Link className="flex items-center gap-x-6 py-2  cursor-pointer text-gray-200 font-medium px-8 text-lg hover:bg-light/20 hover:text-gray-100 transition-all mb-4">
+                <RiUserSettingsLine className="text-2xl text-secondary" />
+                Configuracion
+              </Link>
               <Link
                 to="/"
                 className="flex items-center gap-x-6 py-2  cursor-pointer text-gray-200 font-medium px-8 text-lg hover:bg-light/20 hover:text-gray-100 transition-all"
               >
-                <RiLogoutCircleRLine className="text-2xl text-secondary" /> Cerrar Sesion
+                <RiLogoutCircleRLine className="text-2xl text-secondary" />{" "}
+                Cerrar Sesion
               </Link>
             </>
           )}
@@ -61,7 +68,8 @@ function SideBar({ typeSidebar }) {
                 to="/vendedor_cliente"
                 className="flex items-center gap-x-6 py-2  cursor-pointer text-gray-200 font-medium px-8 text-lg hover:bg-light/20 hover:text-gray-100 transition-all"
               >
-                <RiLogoutCircleRLine className="text-2xl text-secondary" /> Volver
+                <RiLogoutCircleRLine className="text-2xl text-secondary" />{" "}
+                Volver
               </Link>
             </>
           )}

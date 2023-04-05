@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import validation from "./validation";
+import validation from "../../utils/validation";
 import { useDispatch, useSelector } from "react-redux";
 import { postClient, putClient } from "../../services/clientsServices";
 import { RiUserLine, RiPhoneLine, RiMailLine } from "react-icons/ri";
@@ -20,7 +20,7 @@ function CreateClient({ isVisible, onClose }) {
     salesmanId,
   });
 
-  const [errors, setErros] = useState({
+  const [errors, setErrors] = useState({
     name: "",
     email: "",
     phone: "",
@@ -35,7 +35,7 @@ function CreateClient({ isVisible, onClose }) {
       [property]: value,
     });
 
-    setErros(
+    setErrors(
       validation({
         ...clientData,
         [property]: value,
@@ -66,15 +66,14 @@ function CreateClient({ isVisible, onClose }) {
   useEffect(() => {
     if (clientId) {
       const obj = clients.find((client) => client.id === clientId);
-
-      setClientData(obj);
+      setClientData({ ...obj, salesmanId });
     } else
       setClientData({
         name: "",
         email: "",
         phone: "",
         enable: true,
-        salesmanId: "b30c034d-76cf-4e2f-b68a-3c27722204a4",
+        salesmanId,
       });
   }, [clientId, clients, dispatch]);
 

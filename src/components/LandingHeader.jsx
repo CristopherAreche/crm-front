@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { RiAlignRight, RiUserLine, RiCloseLine } from "react-icons/ri";
+import { RiAlignRight, RiUserLine } from "react-icons/ri";
 import { Link } from "react-router-dom";
 import NavModal from "./NavModal";
 

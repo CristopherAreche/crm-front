@@ -13,12 +13,12 @@ const ClientList = () => {
   const clientsError = useSelector((state) => state.clients.error);
   const [clientSelected, setClientSelected] = useState("");
   const [isSelected, setIsSelected] = useState(false);
-  const [searchText, setSearchText] = useState("");
 
   useEffect(() => {
     if (clientsStatus === "idle") {
-      dispatch(getClients());
-      //dispatch
+      if (!clients.length) {
+        dispatch(getClients());
+      }
     }
   }, [clientsStatus, dispatch, clients]);
 
@@ -68,46 +68,47 @@ const ClientList = () => {
             </tr>
           </thead>
           <tbody className=" dark:border-light dark:bg-base-light/60">
-            {clients.map((item) => (
-              <tr key={item.id} className="border-b dark:border-base/30">
-                <td className="whitespace-nowrap  px-6 py-4 font-medium">
-                  <input
-                    id={`checkbox-${item.id}`}
-                    type="checkbox"
-                    className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
-                    checked={item.id === clientSelected && isSelected}
-                    onChange={() => {
-                      handleCheckboxChange(item);
-                      toggleCheckBox(clientSelected);
-                    }}
-                  />
-                </td>
-                <td className="whitespace-nowrap  px-6 py-4  font-medium text-secondary hover:text-secondary/80 hover:underline transition-all">
-                  <Link to={`/vendedor_detalles_cliente/${item.id}`}>
-                    {item.name}
-                  </Link>
-                </td>
-                <td className="whitespace-nowrap  px-6 py-4">
-                  ${item.totalPurchased}
-                </td>
-                <td
-                  className={`whitespace-nowrap  px-6 py-4 ${
-                    item.enable ? "text-emerald-200" : "text-red-200"
-                  }`}
-                >
-                  {" "}
-                  {item.enable ? "Habilitado" : "Desabilitado"}
-                </td>
-                <td
-                  className={`whitespace-nowrap  px-6 py-4 ${
-                    item.vip ? "text-orange-200" : "text-white"
-                  }`}
-                >
-                  {" "}
-                  {item.vip ? "Si" : "No"}
-                </td>
-              </tr>
-            ))}
+            {Array.isArray(clients) &&
+              clients?.map((item) => (
+                <tr key={item.id} className="border-b dark:border-base/30">
+                  <td className="whitespace-nowrap  px-6 py-4 font-medium">
+                    <input
+                      id={`checkbox-${item.id}`}
+                      type="checkbox"
+                      className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                      checked={item.id === clientSelected && isSelected}
+                      onChange={() => {
+                        handleCheckboxChange(item);
+                        toggleCheckBox(clientSelected);
+                      }}
+                    />
+                  </td>
+                  <td className="whitespace-nowrap  px-6 py-4  font-medium text-secondary hover:text-secondary/80 hover:underline transition-all">
+                    <Link to={`/vendedor_detalles_cliente/${item.id}`}>
+                      {item.name}
+                    </Link>
+                  </td>
+                  <td className="whitespace-nowrap  px-6 py-4">
+                    ${item.totalPurchased}
+                  </td>
+                  <td
+                    className={`whitespace-nowrap  px-6 py-4 ${
+                      item.enable ? "text-emerald-200" : "text-red-200"
+                    }`}
+                  >
+                    {" "}
+                    {item.enable ? "Habilitado" : "Desabilitado"}
+                  </td>
+                  <td
+                    className={`whitespace-nowrap  px-6 py-4 ${
+                      item.vip ? "text-orange-200" : "text-white"
+                    }`}
+                  >
+                    {" "}
+                    {item.vip ? "Si" : "No"}
+                  </td>
+                </tr>
+              ))}
           </tbody>
         </table>
       </section>

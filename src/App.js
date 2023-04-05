@@ -16,7 +16,6 @@ function App() {
         element={<VendedorDetallesCliente />}
       />
       <Route exact path="/vendedor_cliente" element={<VendedorCliente />} />
-
       <Route exact path="/auth" element={<AuthLayout />}>
         <Route index element={<LoginPage />} />
         <Route path="register" element={<RegisterPage />} />

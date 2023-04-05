@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { RiArrowLeftLine, RiMailLine, RiLock2Line } from "react-icons/ri";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import swal from "sweetalert";
 import { useAuth0 } from "@auth0/auth0-react";
 
 const LoginPage = () => {
@@ -27,7 +28,7 @@ const LoginPage = () => {
       setAccess(true);
       navigate("/vendedor");
     } else {
-      alert("username y password incorrectos");
+      swal("Error", "Nombre de usuario o contraseña incorrectos", "error");
     }
   };
 

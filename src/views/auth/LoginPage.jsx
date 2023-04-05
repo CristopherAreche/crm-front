@@ -23,7 +23,7 @@ const LoginPage = () => {
       userName === "cristopherareche764@gmail.com"
     ) {
       setAccess(true);
-      navigate("/vendedor_cliente");
+      navigate("/vendedor");
     } else {
       alert("username y password incorrectos");
     }
@@ -130,7 +130,7 @@ const LoginPage = () => {
         </div>
         <Link
           onClick={login}
-          to={access ? "/vendedor_cliente" : null}
+          to={access ? "/vendedor" : null}
           className="text-center bg-gradient-to-r from-primary to-secondary py-2 px-4 rounded-md font-bold text-lg hover:scale-[1.02] transition-all"
         >
           Iniciar Sesión

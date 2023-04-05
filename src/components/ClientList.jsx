@@ -33,7 +33,7 @@ const ClientList = () => {
 
 
   if (clientsStatus === "loading") {
-    return <RiLoader4Fill className="animate-spin text-4xl text-secondary mt-8"/>
+    return <div className='flex justify-center w-full'><RiLoader4Fill className="animate-spin text-4xl text-secondary mt-8"/></div>
   } else if (clientsStatus === "succeeded") {
     return (
       <section className="w-[22rem] mx-auto overflow-x-auto lg:min-w-full pt-14 pb-4 lg:py-6 lg:px-4   lg:mb-0 ">
@@ -81,7 +81,7 @@ const ClientList = () => {
                     />
                 </td>
                 <td className="whitespace-nowrap  px-6 py-4  font-medium text-secondary hover:text-secondary/80 hover:underline transition-all">
-                  <Link to={`/vendedor_detalles_cliente/${item.id}`}>
+                  <Link to={`/cliente/${item.id}`}>
                     {item.name}
                   </Link>
                 </td>

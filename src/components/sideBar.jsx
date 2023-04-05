@@ -8,11 +8,13 @@ import {
 } from "react-icons/ri";
 import { useState } from "react";
 import ClientSideBarDetail from "./ClientSideBarDetail";
+import { useAuth0 } from "@auth0/auth0-react";
 import SellerSideBar from "./SellerSideBar";
 import BossSideBar from "./BossSideBar";
 
 function SideBar({ typeSidebar }) {
   const [isOpen, setIsOpen] = useState(false);
+  const { logout } = useAuth0();
   return (
     <>
       <section
@@ -51,13 +53,13 @@ function SideBar({ typeSidebar }) {
             ))}
           {typeSidebar === "client-detail" && (
             <>
-              <Link
-                to="/vendedor/clientes"
+              <button
+                onClick={() => logout()}
                 className="flex items-center gap-x-6 py-2  cursor-pointer text-gray-300 font-medium px-12 text-lg hover:bg-light/20 hover:text-gray-100 transition-all"
               >
                 <RiLogoutCircleRLine className="text-2xl text-secondary" />{" "}
-                Volver
-              </Link>
+                Cerrar sesión
+              </button>
             </>
           )}
         </div>

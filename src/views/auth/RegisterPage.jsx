@@ -1,8 +1,10 @@
 import React from "react";
 import { RiArrowLeftLine, RiMailLine, RiLock2Line } from "react-icons/ri";
 import { Link } from "react-router-dom";
+import { useAuth0 } from "@auth0/auth0-react";
 
 const RegisterPage = () => {
+  const { loginWithRedirect } = useAuth0();
   return (
     <section className="flex flex-col items-start justify-center min-h-screen px-8 lg:px-20 gap-y-4">
       <div className="block lg:hidden absolute top-4 left-4">
@@ -51,19 +53,25 @@ const RegisterPage = () => {
           </Link>
         </div>
         <Link
-          to="/vendedor_cliente"
+          to="/vendedor"
           className="text-center bg-gradient-to-r from-primary to-secondary py-2 px-4 rounded-md font-bold text-lg hover:scale-[1.02] transition-all"
         >
           Registrate
         </Link>
       </form>
+      <p>O</p>
       <section className="flex gap-x-2 items-center justify-center w-full bg-white py-2 hover:scale-[1.03] transition-all cursor-pointer rounded-md">
         <img
           src="https://img.freepik.com/iconos-gratis/buscar_318-265146.jpg"
           alt="logo google"
-          className="w-8 h-8"
+          className="w-8 h-8 mr-4"
         />
-        <p className="text-base font-medium ">Regisrarse con Google</p>
+        <button className="text-base font-medium " onClick={()=>loginWithRedirect({ screen_hint: "signup" })}>Inicia sesión con Google o Microsoft</button>
+        <img
+          src="https://cdn-icons-png.flaticon.com/512/732/732221.png?w=740&t=st=1680637866~exp=1680638466~hmac=6099a6118528d9a0e0b89bc5f7d0c78b31b9f71b84a7c81bc034269616924215"
+          alt="logo microsoft"
+          className="w-8 h-8 ml-4"
+        />
       </section>
     </section>
   );

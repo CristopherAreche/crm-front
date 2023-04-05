@@ -7,7 +7,7 @@ const VendedorCliente = () => {
   return (
     <>
       <Header />
-      <FilterTop />
+       <FilterTop />
       <ClientList />
       <FilterBottom />
     </>

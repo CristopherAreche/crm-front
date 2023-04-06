@@ -20,7 +20,10 @@ const VendedorDetallesCliente = () => {
             <RiBarChart2Line className="text-4xl" />
             Actividades
           </h4>
-          <DateFilter />
+          <div className="flex gap-x-8">
+            <DateFilter />
+            <ActivitiesFilter />
+          </div>
 
           <RegisterActivityTable />
         </section>

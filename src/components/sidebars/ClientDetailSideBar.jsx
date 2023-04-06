@@ -4,10 +4,10 @@ import { BiTask } from "react-icons/bi";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-import { getClient } from "../services/clientsServices";
-import { cleanDetail } from "../app/features/clientSlice";
+import { getClient } from "../../services/clientsServices";
+import { cleanDetail } from "../../app/features/clientSlice";
 
-const ClientSideBarDetail = () => {
+const ClientDetailSideBar = () => {
   const dispatch = useDispatch();
   const { clientDetail } = useSelector((state) => state.clients);
   const { id } = useParams();
@@ -66,4 +66,4 @@ const ClientSideBarDetail = () => {
   );
 };
 
-export default ClientSideBarDetail;
+export default ClientDetailSideBar;

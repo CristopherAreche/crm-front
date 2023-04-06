@@ -39,7 +39,7 @@ const ClientList = () => {
     );
   } else if (clientsStatus === "succeeded") {
     return (
-      <section className="w-[22rem] mx-auto overflow-x-auto lg:min-w-full pt-14 pb-4 lg:py-6 lg:px-4   lg:mb-0 ">
+      <section className="w-[20rem] mx-auto overflow-x-auto lg:min-w-full pt-14 pb-4 lg:py-6 lg:px-4   lg:mb-0 ">
         <header className="flex justify-between w-screen lg:w-full px-8 py-4   bg-base-light/30 rounded-tr-md rounded-tl-md  ">
           <h3 className=" text-xl font-medium text-light flex items-center gap-x-2">
             <RiFilter3Line className="text-2xl" />
@@ -83,7 +83,7 @@ const ClientList = () => {
                     />
                   </td>
                   <td className="whitespace-nowrap  px-6 py-4  font-medium text-secondary hover:text-secondary/80 hover:underline transition-all">
-                    <Link to={`/cliente/${item.id}`}>{item.name}</Link>
+                    <Link to={`/dashboard/client/${item.id}`}>{item.name}</Link>
                   </td>
                   <td className="whitespace-nowrap  px-6 py-4">
                     ${item.totalPurchased}

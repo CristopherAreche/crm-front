@@ -1,14 +1,13 @@
 import React from "react";
-import RegisterActivityTable from "../components/RegisterActivityTable";
-import TaskList from "../components/TaskList";
-import DateFilter from "../components/DateFilter";
-import ActivitiesFilter from "../components/ActivitiesFilter";
-import SideBar from "../components/SideBar";
-import spotlight1 from "../assets/svg/Spotlight1.svg";
-import spotlight2 from "../assets/svg/Spotlight2.svg";
+import RegisterActivityTable from "../../components/RegisterActivityTable";
+import TaskList from "../../components/TaskList";
+import DateFilter from "../../components/DateFilter";
+import SideBar from "../../components/sidebars/SideBar";
+import spotlight1 from "../../assets/svg/Spotlight1.svg";
+import spotlight2 from "../../assets/svg/Spotlight2.svg";
 import { RiBarChart2Line } from "react-icons/ri";
 
-const VendedorDetallesCliente = () => {
+const ClientDetail = () => {
   return (
     <main className="bg-base h-screen grid grid-cols-8 ">
       <SideBar typeSidebar="client-detail" />
@@ -39,4 +38,4 @@ const VendedorDetallesCliente = () => {
   );
 };
 
-export default VendedorDetallesCliente;
+export default ClientDetail;

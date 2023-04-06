@@ -2,7 +2,7 @@ import React from "react";
 import { RiArrowLeftLine, RiMailLine, RiLock2Line } from "react-icons/ri";
 import { Link } from "react-router-dom";
 
-const RegisterPage = () => {
+const Register = () => {
   return (
     <section className="flex flex-col items-start justify-center min-h-screen px-8 lg:px-20 gap-y-4">
       <div className="block lg:hidden absolute top-4 left-4">
@@ -17,9 +17,7 @@ const RegisterPage = () => {
       <h2 className="text-xl text-white font-bold tracking-widest hover:text-light transition-colors cursor-pointer z-10">
         LOGO
       </h2>
-      <p className="text-gray-400 ">
-        No olvide sus datos ingresados
-      </p>
+      <p className="text-gray-400 ">No olvide sus datos ingresados</p>
       <form className="flex flex-col w-full gap-y-4 mb-4">
         <div className="relative flex flex-col gap-y-1 mb-2">
           <label className="font-medium text-gray-300">Email</label>
@@ -38,7 +36,9 @@ const RegisterPage = () => {
           <RiLock2Line className="absolute top-1/2 translate-y-1 left-2 text-2xl text-secondary " />
         </div>
         <div className="relative flex flex-col gap-y-1">
-          <label className="font-medium text-gray-300">Repita su Contraseña</label>
+          <label className="font-medium text-gray-300">
+            Repita su Contraseña
+          </label>
           <input
             type="password"
             className="bg-base-light/60 py-2 pl-10 pr-4  w-full rounded-md outline-none shadow-md"
@@ -46,12 +46,15 @@ const RegisterPage = () => {
           <RiLock2Line className="absolute top-1/2 translate-y-1 left-2 text-2xl text-secondary " />
         </div>
         <div className="text-end">
-          <Link to='/auth' className="bg-gradient-to-r from-primary  to-secondary text-transparent bg-clip-text hover:underline hover:text-light transition-all cursor-pointer">
+          <Link
+            to="/authentication"
+            className="bg-gradient-to-r from-primary  to-secondary text-transparent bg-clip-text hover:underline hover:text-light transition-all cursor-pointer"
+          >
             Ya tienes una cuenta? Ingresa
           </Link>
         </div>
         <Link
-          to="/vendedor_cliente"
+          to="#"
           className="text-center bg-gradient-to-r from-primary to-secondary py-2 px-4 rounded-md font-bold text-lg hover:scale-[1.02] transition-all"
         >
           Registrate
@@ -69,4 +72,4 @@ const RegisterPage = () => {
   );
 };
 
-export default RegisterPage;
+export default Register;

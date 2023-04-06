@@ -3,7 +3,7 @@ import imgLanding from "../assets/imgLanding.png";
 import spotlight1 from "../assets/svg/Spotlight1.svg";
 import spotlight2 from "../assets/svg/Spotlight2.svg";
 import LandingHeader from "../components/LandingHeader";
-const LandingPage = () => {
+const Home = () => {
   return (
     <main className="bg-base h-screen overflow-hidden px-10 lg:px-20 ">
       {/* TODO : Componetizar Landing */}
@@ -29,7 +29,7 @@ const LandingPage = () => {
           {/* Botones */}
           <div className="flex gap-x-4 z-[2]">
             <Link
-              to="/auth/register"
+              to="/authentication/register"
               className="bg-gradient-to-r from-primary to-secondary px-4 py-2 rounded-xl text-white font-medium text-lg lg:text-2xl hover:scale-[1.03] transition-all flex gap-x-1 items-center"
             >
               Empezar Ahora
@@ -61,4 +61,4 @@ const LandingPage = () => {
   );
 };
 
-export default LandingPage;
+export default Home;

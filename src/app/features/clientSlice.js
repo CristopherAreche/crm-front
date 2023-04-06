@@ -10,6 +10,7 @@ import {
 } from "../../services/clientsServices";
 
 const initialState = {
+  clientRole: "admin",
   clients: [],
   copyClients: [],
   clientDetail: [],

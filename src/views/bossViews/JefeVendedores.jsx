@@ -10,7 +10,7 @@ function JefeVendedores() {
   const sellers = useSelector((state) => state.sellers.sellers);
 
   return (
-    <>
+    <section className="py-6 px-12 z-[2] ">
       <Header
         mainText={"VENDEDORES"}
         data={sellers}
@@ -19,7 +19,7 @@ function JefeVendedores() {
       />
       <BossFilterTop />
       <SellerList />
-    </>
+    </section>
   );
 }
 

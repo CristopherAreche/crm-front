@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 const BossSideBar = () => {
   return (
     <>
-      <section className="flex flex-col gap-y-2 items-center mb-6">
+      <section className="flex flex-col gap-y-2 items-center mb-4">
         <img
           src="https://via.placeholder.com/150"
           alt="placeholder"

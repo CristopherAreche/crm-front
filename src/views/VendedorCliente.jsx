@@ -11,7 +11,7 @@ const VendedorCliente = () => {
   const clients = useSelector((state) => state.clients.clients);
 
   return (
-    <>
+    <section className="py-6 px-12 z-[2] ">
       <Header
         mainText={"CLIENTES"}
         data={clients}
@@ -21,7 +21,7 @@ const VendedorCliente = () => {
       <FilterTop />
       <ClientList />
       <FilterBottom />
-    </>
+    </section>
   );
 };
 

@@ -47,7 +47,7 @@ const itemsResume = [
 const VendedorResumen = () => {
   const {user} = useAuth0();
   return (
-    <section className="py-6 lg:pr-4 ">
+    <section className="py-6 px-12 z-[2]">
         {/* Seccion Top */}
         <section className=" flex flex-col gap-y-4  lg:items-start mb-12">
              <div className='flex flex-col lg:flex-row lg:justify-between items-center w-full gap-y-4'>

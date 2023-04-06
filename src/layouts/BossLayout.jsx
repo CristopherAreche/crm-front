@@ -5,11 +5,11 @@ import SideBar from "../components/SideBar";
 
 const BossLayout = () => {
   return (
-    <main className="bg-base h-screen text-white grid grid-cols-8">
+    <main className="bg-base h-screen text-white ">
       <SideBar typeSidebar="boss" />
 
       {/* View Clients */}
-      <main className="col-span-6 h-[100vh] overflow-y-auto z-40 flex flex-col   w-[100vw] lg:w-auto">
+      <main className="lg:pl-72 h-[100vh] overflow-y-auto z-40 flex flex-col   w-[100vw] lg:w-auto">
         <Outlet />
       </main>
       {/* Luces */}

@@ -1,4 +1,5 @@
 import { RiBarChart2Line, RiTeamLine } from "react-icons/ri";
+import { MdOutlineInventory2, MdSell } from "react-icons/md";
 import { Link } from "react-router-dom";
 
 const BossSideBar = () => {
@@ -27,17 +28,16 @@ const BossSideBar = () => {
         </Link>
 
         <Link
-          to="/vendedor/clientes"
+          to="#"
           className="flex px-12 py-2 gap-x-6 items-center text-lg text-gray-300 font-medium   cursor-pointer  hover:bg-light/20  hover:text-gray-100 transition-all"
         >
-          <RiTeamLine className="text-3xl text-secondary" /> Vendedores
+          <MdSell className="text-3xl text-secondary" /> Vendedores
         </Link>
-
         <Link
-          to="/vendedor/clientes"
+          to="#"
           className="flex px-12 py-2 gap-x-6 items-center text-lg text-gray-300 font-medium   cursor-pointer  hover:bg-light/20  hover:text-gray-100 transition-all"
         >
-          <RiTeamLine className="text-3xl text-secondary" /> Inventario
+          <MdOutlineInventory2 className="text-3xl text-secondary" /> Inventario
         </Link>
       </section>
     </>

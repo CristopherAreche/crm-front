@@ -53,7 +53,9 @@ function CreateClient({ isVisible, onClose }) {
     } else if (clientId) {
       swal({
         title: "Estas seguro que deseas modificar los datos del cliente?",
-        text: `${clientData}`,
+        text: `Nombre: ${clientData.name}
+         Teléfono: ${clientData.phone}
+         Correo: ${clientData.email}`,
         icon: "warning",
         buttons: true,
         dangerMode: true,
@@ -72,15 +74,35 @@ function CreateClient({ isVisible, onClose }) {
         }
       });
     } else {
-      dispatch(postClient(clientData));
-      setClientData({
-        name: "",
-        email: "",
-        phone: "",
-        enable: true,
-        salesmanId,
+      swal({
+        title: "Estas seguro que deseas agregar el cliente?",
+        text: `Nombre: ${clientData.name}
+        Teléfono: ${clientData.phone}
+        Correo: ${clientData.email}`,
+        icon: "warning",
+        buttons: true,
+        dangerMode: true,
+      }).then((edit) => {
+        if (edit) {
+          swal(
+            "El cliente fue agregado",
+            dispatch(postClient(clientData)),
+            setClientData({
+              name: "",
+              email: "",
+              phone: "",
+              enable: true,
+              salesmanId,
+            }),
+            onClose(),
+            {
+              icon: "success",
+            }
+          );
+        } else {
+          swal("El cliente no ha sido agregado");
+        }
       });
-      onClose();
     }
   };
 

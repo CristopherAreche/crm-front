@@ -1,7 +1,7 @@
 import spotlight1 from "../assets/svg/Spotlight1.svg";
 import spotlight2 from "../assets/svg/Spotlight2.svg";
 import { Outlet } from "react-router-dom";
-import SideBar from "../components/sideBar";
+import SideBar from "../components/SideBar";
 
 const SellerLayout = () => {
   return (

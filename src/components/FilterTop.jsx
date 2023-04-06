@@ -67,14 +67,9 @@ const FilterTop = () => {
   };
 
   return (
-    <section className="text-white text-bold flex justify-evenly w-full  lg:items-center py-2 border-b-2 border-light/10  flex-row flex-wrap lg:flex-nowrap lg:pt-6 ">
+    <section className="text-white text-bold flex justify-evenly w-full  items-center py-2 border-b-2 border-light/10 gap-4 flex-row flex-wrap lg:flex-nowrap  ">
       <div className="flex gap-x-2 items-center">
-        <button
-          className="bg-slate-700 rounded-lg mr-12 px-4"
-          onClick={handleClearFilters}
-        >
-          Limpiar Filtros
-        </button>
+    
         <p className="text-gray-300 text-sm font-medium">Alfabéticamente:</p>
         <select
           name=""
@@ -109,8 +104,8 @@ const FilterTop = () => {
           onChange={handleEnableOrderChange}
         >
           <option value="todos">Todos</option>
-          <option value="desc">Deshabilitado</option>
-          <option value="asc">Habilitado</option>
+          <option value="desc">Habilitados</option>
+          <option value="asc">Deshabilitados</option>
         </select>
       </div>
       <div className="flex gap-x-2 items-center">

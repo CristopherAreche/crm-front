@@ -1,10 +1,10 @@
 import SearchBar from "./SearchBar";
 const Header = ({ imageSrc, mainText }) => {
   return (
-    <div className="text-white w-full py-4 lg:pt-12 lg:px-4 flex flex-col lg:flex-row items-center  lg:justify-between gap-y-2">
+    <header className="text-white w-full flex flex-col lg:flex-row items-center  lg:justify-between gap-y-2 mb-6">
       <h2 className=" text-3xl  text-light font-bold">CLIENTES</h2>
       <SearchBar />
-    </div>
+    </header>
   );
 };
 

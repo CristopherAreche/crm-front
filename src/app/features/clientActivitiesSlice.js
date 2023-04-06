@@ -1,11 +1,13 @@
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { stateDateFilter, stateActivitiesFilter } from "../../handlers/handlerActivitiesClient";
 import axios from "axios";
-import { createSlice } from "@reduxjs/toolkit";
-import { createAsyncThunk } from "@reduxjs/toolkit";
+
+const API_URL_ACTIVITY = 'https://crm.up.railway.app/api/activity'
 
 export const obtainActivities = createAsyncThunk(
   "activities/getClientActivity",
   async (id) => {
-    const response = await axios.get("https://crm.up.railway.app/api/activity");
+    const response = await axios.get(API_URL_ACTIVITY);
     return response.data.filter((res) => res.clientId === id);
   }
 );
@@ -19,36 +21,11 @@ const activitySlice = createSlice({
   },
   reducers: {
     dateFilter: (state, action) => {
-      if (action.payload.startDate != null) {
-        const start = Number(action.payload.startDate.split("-").join(""));
-
-        const end = Number(action.payload.endDate.split("-").join(""));
-
-        const activitiesFilter = state.activities.filter((activities) => {
-          const dateActivity = Number(
-            activities.createdAt.split("T")[0].split("-").join("")
-          );
-
-          if (dateActivity >= start && dateActivity <= end) {
-            return activities;
-          }
-        });
-        state.activitiesFilter = activitiesFilter;
-      } else {
-        state.activitiesFilter = state.activities;
-      }
+      stateDateFilter(state, action)
     },
 
     activitiesFilter : (state, action) => {
-      const value = action.payload
-      const allActivities = [...state.activities]
-      let activitiesToFilter = value === 'todos' && allActivities
-      const handleFilter = (query, toFilter) => state.activities.filter(a => a[query] === toFilter)
-      if (value === 'correos') activitiesToFilter = handleFilter('method', 'Correo-E')
-      if (value === 'llamadas') activitiesToFilter = handleFilter('method', 'Llamada')
-      if (value === 'concretados') activitiesToFilter = handleFilter('state', 'Concretado')
-      if (value === 'pendientes') activitiesToFilter = handleFilter('state', 'Pendiente')
-      state.activitiesFilter = activitiesToFilter
+      stateActivitiesFilter(state, action)
     }
   },
   extraReducers: (builder) => {

@@ -1,8 +1,11 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { stateDateFilter, stateActivitiesFilter } from "../../handlers/handlerActivitiesClient";
+import {
+  stateDateFilter,
+  stateActivitiesFilter,
+} from "../../handlers/handlerActivitiesClient";
 import axios from "axios";
 
-const API_URL_ACTIVITY = 'https://crm.up.railway.app/api/activity'
+const API_URL_ACTIVITY = "https://crm.up.railway.app/api/activity";
 
 export const obtainActivities = createAsyncThunk(
   "activities/getClientActivity",
@@ -21,12 +24,12 @@ const activitySlice = createSlice({
   },
   reducers: {
     dateFilter: (state, action) => {
-      stateDateFilter(state, action)
+      stateDateFilter(state, action);
     },
 
-    activitiesFilter : (state, action) => {
-      stateActivitiesFilter(state, action)
-    }
+    activitiesFilter: (state, action) => {
+      stateActivitiesFilter(state, action);
+    },
   },
   extraReducers: (builder) => {
     builder

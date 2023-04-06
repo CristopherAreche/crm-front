@@ -15,20 +15,20 @@ const BossSideBar = () => {
       </section>
       <section className="flex flex-col gap-y-4 ">
         <Link
-          to="/vendedor"
+          to="/jefe"
           className="flex px-12 py-2 gap-x-6 items-center text-lg text-gray-300 font-medium   cursor-pointer  hover:bg-light/20 hover:text-gray-100 transition-all"
         >
           <RiBarChart2Line className="text-3xl text-secondary" /> Resumen
         </Link>
         <Link
-          to="/vendedor/clientes"
+          to="/jefe/clientes"
           className="flex px-12 py-2 gap-x-6 items-center text-lg text-gray-300 font-medium   cursor-pointer  hover:bg-light/20  hover:text-gray-100 transition-all"
         >
           <RiTeamLine className="text-3xl text-secondary" /> Clientes
         </Link>
 
         <Link
-          to="#"
+          to="/jefe/vendedores"
           className="flex px-12 py-2 gap-x-6 items-center text-lg text-gray-300 font-medium   cursor-pointer  hover:bg-light/20  hover:text-gray-100 transition-all"
         >
           <MdSell className="text-3xl text-secondary" /> Vendedores

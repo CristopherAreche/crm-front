@@ -10,7 +10,7 @@ import { useState } from "react";
 import ClientSideBarDetail from "./ClientSideBarDetail";
 import { useAuth0 } from "@auth0/auth0-react";
 import SellerSideBar from "./SellerSideBar";
-import BossSideBar from "./BossSideBar";
+import BossSideBar from "./bossComponents/BossSideBar";
 
 function SideBar({ typeSidebar }) {
   const [isOpen, setIsOpen] = useState(false);
@@ -20,7 +20,7 @@ function SideBar({ typeSidebar }) {
       <section
         className={`${
           isOpen ? "left-0" : "-left-full"
-        } col-span-2 bg-base-light/80 lg:bg-base-light/40 w-72 lg:w-72  flex flex-col gap-y-8 justify-between py-4 fixed   h-full z-50 transition-all duration-200 lg:left-0 overflow-y-auto`}
+        }  bg-base-light/80 lg:bg-base-light/40 w-72 lg:w-72  flex flex-col gap-y-8 justify-between py-4 fixed   h-full z-50 transition-all duration-200 lg:left-0 overflow-y-auto`}
       >
         <section className="flex flex-col gap-y-4 ">
           <h1 className="text-3xl flex items-center  gap-x-2 px-12 font-bold tracking-widest border-b border-light/40 pb-4 pt-2">

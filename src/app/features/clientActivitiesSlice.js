@@ -19,7 +19,6 @@ const activitySlice = createSlice({
   },
   reducers: {
     dateFilter: (state, action) => {
-      console.log(action.payload);
       if (action.payload.startDate != null) {
         const start = Number(action.payload.startDate.split("-").join(""));
 
@@ -39,6 +38,18 @@ const activitySlice = createSlice({
         state.activitiesFilter = state.activities;
       }
     },
+
+    activitiesFilter : (state, action) => {
+      const value = action.payload
+      const allActivities = [...state.activities]
+      let activitiesToFilter = value === 'todos' && allActivities
+      const handleFilter = (query, toFilter) => state.activities.filter(a => a[query] === toFilter)
+      if (value === 'correos') activitiesToFilter = handleFilter('method', 'Correo-E')
+      if (value === 'llamadas') activitiesToFilter = handleFilter('method', 'Llamada')
+      if (value === 'concretados') activitiesToFilter = handleFilter('state', 'Concretado')
+      if (value === 'pendientes') activitiesToFilter = handleFilter('state', 'Pendiente')
+      state.activitiesFilter = activitiesToFilter
+    }
   },
   extraReducers: (builder) => {
     builder
@@ -57,5 +68,5 @@ const activitySlice = createSlice({
   },
 });
 
-export const { dateFilter } = activitySlice.actions;
+export const { dateFilter, activitiesFilter } = activitySlice.actions;
 export default activitySlice.reducer;

@@ -8,17 +8,19 @@ import {
   putDisableClient,
   putEnableClient,
 } from "../../services/clientsServices";
-import { 
+import {
   stateOrderByPurchases,
   stateFilterByEnabled,
   stateFilterByVips,
-  stateGetClients, 
-  statePostClient, 
-  statePutClients, 
-  stateSortedByAlph, 
-  stateToggleStatusClient } from "../../handlers/handlerClients";
+  stateGetClients,
+  statePostClient,
+  statePutClients,
+  stateSortedByAlph,
+  stateToggleStatusClient,
+} from "../../handlers/handlerClients";
 
 const initialState = {
+  clientRole: "admin",
   clients: [],
   copyClients: [],
   clientDetail: [],
@@ -46,16 +48,16 @@ export const clientSlice = createSlice({
       state.clientDetail = [];
     },
     sortClients: (state, action) => {
-      stateSortedByAlph(state, action)
+      stateSortedByAlph(state, action);
     },
     sortVipClients: (state, action) => {
-      stateFilterByVips(state, action)
+      stateFilterByVips(state, action);
     },
     sortEnabledClients: (state, action) => {
-      stateFilterByEnabled(state, action)
+      stateFilterByEnabled(state, action);
     },
     sortPurchases: (state, action) => {
-      stateOrderByPurchases(state, action)
+      stateOrderByPurchases(state, action);
     },
     resetClients: (state, action) => {
       state.clients = state.copyClients;
@@ -63,22 +65,40 @@ export const clientSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-      .addCase(postClient.fulfilled,(state, action) => { statePostClient(state, action) })
+      .addCase(postClient.fulfilled, (state, action) => {
+        statePostClient(state, action);
+      })
 
-      .addCase(postClient.rejected, (state, action) => {state.message = action.payload})
+      .addCase(postClient.rejected, (state, action) => {
+        state.message = action.payload;
+      })
 
-      .addCase(getClients.pending, (state) => {state.status = "loading"} )
+      .addCase(getClients.pending, (state) => {
+        state.status = "loading";
+      })
 
-      .addCase(getClients.fulfilled, (state, action) => { stateGetClients(state, action) })
+      .addCase(getClients.fulfilled, (state, action) => {
+        stateGetClients(state, action);
+      })
 
-      .addCase(getClient.fulfilled, (state, action) => {state.clientDetail = action.payload})
+      .addCase(getClient.fulfilled, (state, action) => {
+        state.clientDetail = action.payload;
+      })
 
-      .addCase(getClientName.fulfilled, (state, action) => {state.clients = action.payload})
+      .addCase(getClientName.fulfilled, (state, action) => {
+        state.clients = action.payload;
+      })
 
-      .addCase(putClient.fulfilled, (state, action) => { statePutClients(state, action) })
-      
-      .addCase(putDisableClient.fulfilled, (state, action) => { stateToggleStatusClient(state, action, false) })
-      .addCase(putEnableClient.fulfilled, (state, action) => { stateToggleStatusClient(state, action, true) });
+      .addCase(putClient.fulfilled, (state, action) => {
+        statePutClients(state, action);
+      })
+
+      .addCase(putDisableClient.fulfilled, (state, action) => {
+        stateToggleStatusClient(state, action, false);
+      })
+      .addCase(putEnableClient.fulfilled, (state, action) => {
+        stateToggleStatusClient(state, action, true);
+      });
   },
 });
 export const {

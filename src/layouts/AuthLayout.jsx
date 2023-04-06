@@ -3,8 +3,7 @@ import { RiArrowLeftLine } from "react-icons/ri";
 import spotlight1 from "../assets/svg/Spotlight1.svg";
 
 const AuthLayout = () => {
-
-  const { pathname } = useLocation()
+  const { pathname } = useLocation();
 
   return (
     <main className="min-h-screen bg-base text-white flex ">
@@ -22,18 +21,17 @@ const AuthLayout = () => {
           <div className="bg-base/40 rounded-md px-8 py-4 2xl:px-12 2xl:py-8">
             <h1 className="text-5xl 2xl:text-6xl font-bold mb-4 ">
               {pathname.includes("register")
-              ? 'Registrate y gestiona con nuestra'
-              : 'Descubre como nuestra'}{" "}
+                ? "Registrate y gestiona con nuestra"
+                : "Descubre como nuestra"}{" "}
               <span className="bg-gradient-to-r from-primary  to-secondary text-transparent bg-clip-text">
                 CRM
               </span>{" "}
-              {pathname.includes("register")
-              ? ''
-              : 'puede ayudar a tu negocio'}
+              {pathname.includes("register") ? "" : "puede ayudar a tu negocio"}
             </h1>
             <p className="font-medium text-lg text-white/90">
-              {pathname.includes("register") ? 'Controla tu empresa desde cualquier lugar con nuestra plataforma de CRM'
-              : 'La productividad de tu equipo es importante para nosotros'}
+              {pathname.includes("register")
+                ? "Controla tu empresa desde cualquier lugar con nuestra plataforma de CRM"
+                : "La productividad de tu equipo es importante para nosotros"}
             </p>
           </div>
         </article>

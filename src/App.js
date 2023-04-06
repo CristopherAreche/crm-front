@@ -1,30 +1,33 @@
 import { Route, Routes } from "react-router-dom";
-import LandingPage from "./views/LandingPage";
-import VendedorDetallesCliente from "./views/VendedorDetallesCliente";
 import AuthLayout from "./layouts/AuthLayout";
-import LoginPage from "./views/auth/LoginPage";
-import RegisterPage from "./views/auth/RegisterPage";
-import SellerLayout from "./layouts/SellerLayout";
-import VendedorResumen from "./views/VendedorResumen";
-import VendedorCliente from "./views/VendedorCliente.jsx";
-import BossLayout from "./layouts/BossLayout";
-import JefeVendedores from "./views/bossViews/JefeVendedores";
+import Login from "./views/auth/Login";
+import Register from "./views/auth/Register";
+import ClientDetail from "./views/dashboard/ClientDetails";
+import Clients from "./views/dashboard/Clients";
+import Summary from "./views/dashboard/Summary";
+import Sellers from "./views/dashboard/Sellers";
+import AllClients from "./views/dashboard/AllClients";
+import Home from "./views/Home";
+import Inventory from "./views/dashboard/Inventory";
 
 function App() {
   return (
     <Routes>
-      <Route exact path="/" element={<LandingPage />} />
-      <Route exact path="/cliente/:id" element={<VendedorDetallesCliente />} />
-      <Route exact path="/vendedor" element={<SellerLayout />}>
-        <Route index element={<VendedorResumen />} />
-        <Route path="clientes" element={<VendedorCliente />} />
+      <Route exact path="/" element={<Home />} />
+      <Route path="/dashboard" element={<Summary />} />
+      <Route exact path="/dashboard/client/:id" element={<ClientDetail />} />
+      <Route path="/dashboard/inventory" element={<Inventory />} />
+
+      <Route exact path="/dashboard/sellers" element={<Sellers />}>
+        <Route path="/dashboard/sellers/clients" element={<Clients />} />
       </Route>
-      <Route exact path="/auth" element={<AuthLayout />}>
-        <Route index element={<LoginPage />} />
-        <Route path="register" element={<RegisterPage />} />
-      </Route>
-      <Route exacth path="/jefe" element={<BossLayout />}>
-        <Route path="vendedores" element={<JefeVendedores />} />
+
+      <Route path="/dashboard/all_clients" element={<AllClients />} />
+
+      {/* Rutas de Registracion y Login */}
+      <Route exact path="/authentication" element={<AuthLayout />}>
+        <Route index element={<Login />} />
+        <Route path="/authentication/register" element={<Register />} />
       </Route>
     </Routes>
   );

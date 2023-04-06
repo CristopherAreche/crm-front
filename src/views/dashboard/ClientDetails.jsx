@@ -1,12 +1,11 @@
 import React from "react";
-import TaskList from "../components/TaskList";
+import TaskList from "../../components/TaskList";
+import SideBar from "../../components/sidebars/SideBar";
+import spotlight1 from "../../assets/svg/Spotlight1.svg";
+import spotlight2 from "../../assets/svg/Spotlight2.svg";
+import ActivitiesList from "../../components/ActivitiesList";
 
-import SideBar from "../components/SideBar";
-import spotlight1 from "../assets/svg/Spotlight1.svg";
-import spotlight2 from "../assets/svg/Spotlight2.svg";
-import ActivitiesList from "../components/ActivitiesList";
-
-const VendedorDetallesCliente = () => {
+const ClientDetail = () => {
   return (
     <section className="bg-base h-screen ">
       <SideBar typeSidebar="client-detail" />
@@ -33,4 +32,4 @@ const VendedorDetallesCliente = () => {
   );
 };
 
-export default VendedorDetallesCliente;
+export default ClientDetail;

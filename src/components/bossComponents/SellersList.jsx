@@ -2,54 +2,51 @@ import { RiFilter3Line, RiLoader4Fill } from "react-icons/ri";
 import { Link } from "react-router-dom";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getClients } from "../services/clientsServices";
-import { selectedClientCheckbox } from "../app/features/clientSlice";
-import {useAuth0} from "@auth0/auth0-react";
+import { getSellers } from "../../services/sellersServices";
+import { selectedSellerCheckbox } from "../../app/features/sellerSlice";
 
-const ClientList = () => {
+const SellerList = () => {
   const dispatch = useDispatch();
-  const clients = useSelector((state) => state.clients.clients);
-  const clientsStatus = useSelector((state) => state.clients.status);
-  const clientsError = useSelector((state) => state.clients.error);
-  const [clientSelected, setClientSelected] = useState("");
+  const sellers = useSelector((state) => state.sellers.sellers);
+  const sellersStatus = useSelector((state) => state.sellers.status);
+  const sellersError = useSelector((state) => state.sellers.error);
+  const [sellerSelected, setSellerSelected] = useState("");
   const [isSelected, setIsSelected] = useState(false);
 
-
   useEffect(() => {
-    if (clientsStatus === "idle") {
-      if (!clients.length) {
-        dispatch(getClients());
+    if (sellersStatus === "idle") {
+      if (!sellers.length) {
+        dispatch(getSellers());
       }
     }
-  }, [clientsStatus, dispatch, clients]);
+  }, [sellersStatus, dispatch, sellers]);
 
-
-  const handleCheckboxChange = (client) => {
-    setClientSelected(client.id);
-    dispatch(selectedClientCheckbox(client.id));
+  const handleCheckboxChange = (seller) => {
+    setSellerSelected(seller.id);
+    dispatch(selectedSellerCheckbox(seller.id));
   };
-  const toggleCheckBox = (clientId) => {
-    if (clientId === clientSelected) {
+  const toggleCheckBox = (sellerId) => {
+    if (sellerId === sellerSelected) {
       setIsSelected(!isSelected);
     }
   };
 
-  if (clientsStatus === "loading") {
+  if (sellersStatus === "loading") {
     return (
       <div className="flex justify-center w-full">
         <RiLoader4Fill className="animate-spin text-4xl text-secondary mt-8" />
       </div>
     );
-  } else if (clientsStatus === "succeeded") {
+  } else if (sellersStatus === "succeeded") {
     return (
-      <section className="w-[20rem] mx-auto overflow-x-auto lg:min-w-full pt-14 pb-4 lg:py-6 lg:px-4   lg:mb-0 ">
+      <section className="w-[22rem] mx-auto overflow-x-auto lg:min-w-full pt-14 pb-4 lg:py-6 lg:px-4   lg:mb-0 ">
         <header className="flex justify-between w-screen lg:w-full px-8 py-4   bg-base-light/30 rounded-tr-md rounded-tl-md  ">
           <h3 className=" text-xl font-medium text-light flex items-center gap-x-2">
             <RiFilter3Line className="text-2xl" />
-            Tus clientes
+            Tus vendedores
           </h3>
         </header>
-        <table className="min-w-full  text-center text-sm font-regular shadow-md rounded-sm">
+        <table className="min-w-full text-center text-sm font-regular shadow-md rounded-sm">
           <thead className=" font-medium text-light/75  dark:bg-base-light/30 rounded-md">
             <tr>
               <th scope="col" className=" px-6 py-4">
@@ -59,37 +56,37 @@ const ClientList = () => {
                 Nombre
               </th>
               <th scope="col" className=" px-6 py-4">
-                Total Comprado
+                Total vendido último mes
               </th>
               <th scope="col" className=" px-6 py-4">
                 Estado
               </th>
               <th scope="col" className=" px-6 py-4">
-                VIP
+                Puntuación
               </th>
             </tr>
           </thead>
           <tbody className=" dark:border-light dark:bg-base-light/60">
-            {Array.isArray(clients) &&
-              clients?.map((item) => (
+            {Array.isArray(sellers) &&
+              sellers?.map((item) => (
                 <tr key={item.id} className="border-b dark:border-base/30">
                   <td className="whitespace-nowrap  px-6 py-4 font-medium">
                     <input
                       id={`checkbox-${item.id}`}
                       type="checkbox"
                       className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
-                      checked={item.id === clientSelected && isSelected}
+                      checked={item.id === sellerSelected && isSelected}
                       onChange={() => {
                         handleCheckboxChange(item);
-                        toggleCheckBox(clientSelected);
+                        toggleCheckBox(sellerSelected);
                       }}
                     />
                   </td>
                   <td className="whitespace-nowrap  px-6 py-4  font-medium text-secondary hover:text-secondary/80 hover:underline transition-all">
-                    <Link to={`/dashboard/client/${item.id}`}>{item.name}</Link>
+                    <Link to={`/vendedor/${item.id}`}>{item.name}</Link>
                   </td>
                   <td className="whitespace-nowrap  px-6 py-4">
-                    ${item.totalPurchased}
+                    {/* ${item.totalPurchased} */} $900
                   </td>
                   <td
                     className={`whitespace-nowrap  px-6 py-4 ${
@@ -101,11 +98,10 @@ const ClientList = () => {
                   </td>
                   <td
                     className={`whitespace-nowrap  px-6 py-4 ${
-                      item.vip ? "text-orange-200" : "text-white"
+                      item.performance ? "text-orange-200" : "text-white"
                     }`}
                   >
-                    {" "}
-                    {item.vip ? "Si" : "No"}
+                    5
                   </td>
                 </tr>
               ))}
@@ -113,8 +109,8 @@ const ClientList = () => {
         </table>
       </section>
     );
-  } else if (clientsError === "failed") {
-    return <div>{clientsError}</div>;
+  } else if (sellersError === "failed") {
+    return <div>{sellersError}</div>;
   }
 };
-export default ClientList;
+export default SellerList;

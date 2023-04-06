@@ -51,7 +51,7 @@ const VendedorResumen = () => {
         {/* Seccion Top */}
         <section className=" flex flex-col gap-y-4  lg:items-start mb-12">
              <div className='flex flex-col lg:flex-row lg:justify-between items-center w-full gap-y-4'>
-              <h2 className="text-4xl font-bold tracking-wider text-light/90 text-center lg:text-start">Buenos dias, <span className='bg-gradient-to-r from-primary  to-secondary text-transparent bg-clip-text'>{user?.name} </span>
+              <h2 className="text-4xl font-bold tracking-wider text-light/90 text-center lg:text-start">Buenos dias, <span className='bg-gradient-to-r from-primary  to-secondary text-transparent bg-clip-text'>{user?.name || 'Jeremis'} </span>
               </h2>
               <div className='flex gap-x-4'>
                 {

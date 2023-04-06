@@ -7,8 +7,8 @@ const SellerSideBar = () => {
   return (
     <>
         <section className='flex flex-col gap-y-2 items-center mb-6'>
-            <img src="" alt="imagen" className="w-28 h-28 rounded-full "/>
-            <h3 className='text-light font-medium text-lg'>{user?.name}</h3>
+            <img src="https://cdn4.iconfinder.com/data/icons/small-n-flat/24/user-512.png" alt="imagen" className="w-28 h-28 rounded-full "/>
+            <h3 className='text-light font-medium text-lg'>{user?.name || 'Jeremis Lorel'}</h3>
         </section>
         <section className='flex flex-col gap-y-4 '>
             <Link

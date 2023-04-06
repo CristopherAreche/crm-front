@@ -2,8 +2,10 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 import swal from "sweetalert";
 
+const API_URL_CLIENT = 'https://crm.up.railway.app/api/client'
+
 export const getClients = createAsyncThunk("clients/getClients", async () => {
-  const response = await axios.get("https://crm.up.railway.app/api/client");
+  const response = await axios.get(API_URL_CLIENT);
   return response.data;
 });
 
@@ -11,9 +13,8 @@ export const postClient = createAsyncThunk(
   `clients/postClient`,
   async (payload) => {
     try {
-      console.log(payload);
       const { data } = await axios.post(
-        "https://crm.up.railway.app/api/client",
+        API_URL_CLIENT,
         payload
       );
       console.log(data);
@@ -37,7 +38,7 @@ export const putClient = createAsyncThunk(
   async (payload) => {
     try {
       const { data } = await axios.put(
-        "https://crm.up.railway.app/api/client",
+        API_URL_CLIENT,
         payload
       );
 
@@ -61,7 +62,7 @@ export const putDisableClient = createAsyncThunk(
   async (id) => {
     try {
       const { data } = await axios.put(
-        `https://crm.up.railway.app/api/client`,
+        API_URL_CLIENT,
         { enable: false, id }
       );
       return data;
@@ -76,7 +77,7 @@ export const putEnableClient = createAsyncThunk(
   async (id) => {
     try {
       const { data } = await axios.put(
-        `https://crm.up.railway.app/api/client`,
+        API_URL_CLIENT,
         { enable: true, id }
       );
       return data;
@@ -88,7 +89,7 @@ export const putEnableClient = createAsyncThunk(
 
 export const getClient = createAsyncThunk("clients/getClient", async (id) => {
   try {
-    const res = await axios(`https://crm.up.railway.app/api/client?id=${id}`);
+    const res = await axios(`${API_URL_CLIENT}?id=${id}`);
     const data = res.data;
     return data;
   } catch (error) {
@@ -101,7 +102,7 @@ export const getClientName = createAsyncThunk(
   "clients/getClientName",
   async (name) => {
     const res = await axios(
-      "https://crm.up.railway.app/api/client?name=" + name
+      `${API_URL_CLIENT}?name=${name}` 
     );
     const data = res.data;
     return data;

@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getClients } from "../services/clientsServices";
 import { selectedClientCheckbox } from "../app/features/clientSlice";
+import {useAuth0} from "@auth0/auth0-react";
 
 const ClientList = () => {
   const dispatch = useDispatch();
@@ -13,6 +14,7 @@ const ClientList = () => {
   const [clientSelected, setClientSelected] = useState("");
   const [isSelected, setIsSelected] = useState(false);
 
+
   useEffect(() => {
     if (clientsStatus === "idle") {
       if (!clients.length) {
@@ -20,6 +22,7 @@ const ClientList = () => {
       }
     }
   }, [clientsStatus, dispatch, clients]);
+
 
   const handleCheckboxChange = (client) => {
     setClientSelected(client.id);

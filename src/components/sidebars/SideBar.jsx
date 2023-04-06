@@ -8,7 +8,7 @@ import {
 } from "react-icons/ri";
 import { useState } from "react";
 import ClientDetailSideBar from "./ClientDetailSideBar";
-import { RiBarChart2Line, RiTeamLine } from "react-icons/ri";
+import { RiTeamLine } from "react-icons/ri";
 import {
   MdOutlineInventory2,
   MdSell,
@@ -33,6 +33,14 @@ function SideBar({ typeSidebar, summary, inventory, clients, sellers }) {
               CRM
             </p>
           </div>
+          <section className="flex flex-col gap-y-1 items-center">
+            <img
+              src="https://via.placeholder.com/150"
+              alt="placeholder"
+              className="w-28 h-28 rounded-full "
+            />
+          </section>
+
           <h3 className="text-light font-medium text-lg text-center lg:mt-4 mt-1">
             {role === "admin" ? "Nombre del Jefe" : "Nombre del Vendedor"}
           </h3>

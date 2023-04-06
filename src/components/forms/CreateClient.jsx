@@ -3,10 +3,13 @@ import validation from "../../utils/validation";
 import { useDispatch, useSelector } from "react-redux";
 import { postClient, putClient } from "../../services/clientsServices";
 import { RiUserLine, RiPhoneLine, RiMailLine } from "react-icons/ri";
+import swal from "sweetalert";
+
 function CreateClient({ isVisible, onClose }) {
   const dispatch = useDispatch();
   const clientId = useSelector((state) => state.clients.clientSelected);
   const salesmanId = "00b971ac-b220-4457-bada-89476cb64f0e";
+
   const clients = useSelector((state) => state.clients.clients);
   const handleClose = (e) => {
     if (e.target.id === "wrapper") onClose();
@@ -46,20 +49,60 @@ function CreateClient({ isVisible, onClose }) {
   const handleSubmit = (event) => {
     event.preventDefault();
     if (errors.name || errors.email || errors.phone) {
-      alert("Por favor revise los datos introducidos. ");
+      swal("Error", "Por favor revise los datos introducidos. ", "error");
     } else if (clientId) {
-      dispatch(putClient(clientData));
-      onClose();
-    } else {
-      dispatch(postClient(clientData));
-      setClientData({
-        name: "",
-        email: "",
-        phone: "",
-        enable: true,
-        salesmanId,
+      swal({
+        title: "Estas seguro que deseas modificar los datos del cliente?",
+        text: `Nombre: ${clientData.name}
+         Teléfono: ${clientData.phone}
+         Correo: ${clientData.email}`,
+        icon: "warning",
+        buttons: true,
+        dangerMode: true,
+      }).then((edit) => {
+        if (edit) {
+          swal(
+            "El cliente fue modificado",
+            dispatch(putClient(clientData)),
+            onClose(),
+            {
+              icon: "success",
+            }
+          );
+        } else {
+          swal("El cliente no se ha modificado");
+        }
       });
-      onClose();
+    } else {
+      swal({
+        title: "Estas seguro que deseas agregar el cliente?",
+        text: `Nombre: ${clientData.name}
+        Teléfono: ${clientData.phone}
+        Correo: ${clientData.email}`,
+        icon: "warning",
+        buttons: true,
+        dangerMode: true,
+      }).then((edit) => {
+        if (edit) {
+          swal(
+            "El cliente fue agregado",
+            dispatch(postClient(clientData)),
+            setClientData({
+              name: "",
+              email: "",
+              phone: "",
+              enable: true,
+              salesmanId,
+            }),
+            onClose(),
+            {
+              icon: "success",
+            }
+          );
+        } else {
+          swal("El cliente no ha sido agregado");
+        }
+      });
     }
   };
 

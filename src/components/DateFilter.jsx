@@ -1,10 +1,7 @@
 import { useState } from "react";
 import Datepicker from "react-tailwindcss-datepicker";
 import { useDispatch } from "react-redux";
-import {
-  dateFilter,
-  obtainActivities,
-} from "../app/features/clientActivitiesSlice";
+import { dateFilter } from "../app/features/clientActivitiesSlice";
 
 function DateFilter() {
   const dispatch = useDispatch();

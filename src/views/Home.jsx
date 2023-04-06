@@ -2,13 +2,13 @@ import { Link } from "react-router-dom";
 import imgLanding from "../assets/imgLanding.png";
 import spotlight1 from "../assets/svg/Spotlight1.svg";
 import spotlight2 from "../assets/svg/Spotlight2.svg";
-import LandingHeader from "../components/LandingHeader";
+import HomeHeader from "../components/HomeHeader";
 const Home = () => {
   return (
     <main className="bg-base h-screen overflow-hidden px-10 lg:px-20 ">
       {/* TODO : Componetizar Landing */}
       {/* Seccion Header */}
-      <LandingHeader />
+      <HomeHeader />
       {/* Seccion Hero */}
       <section className="flex flex-col lg:flex-row items-start lg:items-center justify-center h-screen pt-12  lg:pt-0">
         {/* Hero Info */}

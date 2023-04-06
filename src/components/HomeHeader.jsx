@@ -3,7 +3,7 @@ import { RiAlignRight, RiUserLine } from "react-icons/ri";
 import { Link } from "react-router-dom";
 import NavModal from "./NavModal";
 
-const Header = () => {
+const HomeHeader = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
@@ -51,4 +51,4 @@ const Header = () => {
   );
 };
 
-export default Header;
+export default HomeHeader;

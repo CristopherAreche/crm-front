@@ -10,7 +10,7 @@ import { useState } from "react";
 import ClientSideBarDetail from "./ClientSideBarDetail";
 import { useAuth0 } from "@auth0/auth0-react";
 import SellerSideBar from "./SellerSideBar";
-import BossSideBar from "./BossSideBar";
+import BossSideBar from "../components/bossComponents/BossSideBar";
 
 function SideBar({ typeSidebar }) {
   const [isOpen, setIsOpen] = useState(false);

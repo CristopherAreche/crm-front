@@ -39,17 +39,22 @@ const activitySlice = createSlice({
       }
     },
 
-    activitiesFilter : (state, action) => {
-      const value = action.payload
-      const allActivities = [...state.activities]
-      let activitiesToFilter = value === 'todos' && allActivities
-      const handleFilter = (query, toFilter) => state.activities.filter(a => a[query] === toFilter)
-      if (value === 'correos') activitiesToFilter = handleFilter('method', 'Correo-E')
-      if (value === 'llamadas') activitiesToFilter = handleFilter('method', 'Llamada')
-      if (value === 'concretados') activitiesToFilter = handleFilter('state', 'Concretado')
-      if (value === 'pendientes') activitiesToFilter = handleFilter('state', 'Pendiente')
-      state.activitiesFilter = activitiesToFilter
-    }
+    activitiesFilter: (state, action) => {
+      const value = action.payload;
+      const allActivities = [...state.activities];
+      let activitiesToFilter = value === "todos" && allActivities;
+      const handleFilter = (query, toFilter) =>
+        state.activities.filter((a) => a[query] === toFilter);
+      if (value === "correos")
+        activitiesToFilter = handleFilter("method", "Correo-E");
+      if (value === "llamadas")
+        activitiesToFilter = handleFilter("method", "Llamada");
+      if (value === "concretados")
+        activitiesToFilter = handleFilter("state", "Concretado");
+      if (value === "pendientes")
+        activitiesToFilter = handleFilter("state", "Pendiente");
+      state.activitiesFilter = activitiesToFilter;
+    },
   },
   extraReducers: (builder) => {
     builder

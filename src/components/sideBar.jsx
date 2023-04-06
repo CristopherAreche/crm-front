@@ -35,22 +35,36 @@ function SideBar({ typeSidebar }) {
           {typeSidebar === "boss" && <BossSideBar />}
         </section>
         <div>
-          {typeSidebar === "seller-clients"
-             && (
-              <>
-                <Link className="flex items-center gap-x-6 py-2  cursor-pointer text-gray-300 font-medium px-12 text-lg hover:bg-light/20 hover:text-gray-100 transition-all mb-4">
-                  <RiUserSettingsLine className="text-2xl text-secondary" />
-                  Configuración
-                </Link>
-                <button
-                  onClick={() => logout()}
-                  className="flex items-center gap-x-6 py-2  cursor-pointer text-gray-300 font-medium px-12 text-lg hover:bg-light/20 hover:text-gray-100 transition-all"
-                >
-                  <RiLogoutCircleRLine className="text-2xl text-secondary" />{" "}
-                  Cerrar Sesión
-                </button>
-              </>
-            )}
+          {typeSidebar === "seller-clients" && (
+            <>
+              <Link className="flex items-center gap-x-6 py-2  cursor-pointer text-gray-300 font-medium px-12 text-lg hover:bg-light/20 hover:text-gray-100 transition-all mb-4">
+                <RiUserSettingsLine className="text-2xl text-secondary" />
+                Configuración
+              </Link>
+              <button
+                onClick={() => logout()}
+                className="flex items-center gap-x-6 py-2  cursor-pointer text-gray-300 font-medium px-12 text-lg hover:bg-light/20 hover:text-gray-100 transition-all"
+              >
+                <RiLogoutCircleRLine className="text-2xl text-secondary" />{" "}
+                Cerrar Sesión
+              </button>
+            </>
+          )}
+          {typeSidebar === "boss" && (
+            <>
+              <Link className="flex items-center gap-x-6 py-2  cursor-pointer text-gray-300 font-medium px-12 text-lg hover:bg-light/20 hover:text-gray-100 transition-all mb-4">
+                <RiUserSettingsLine className="text-2xl text-secondary" />
+                Configuración
+              </Link>
+              <button
+                onClick={() => logout()}
+                className="flex items-center gap-x-6 py-2  cursor-pointer text-gray-300 font-medium px-12 text-lg hover:bg-light/20 hover:text-gray-100 transition-all"
+              >
+                <RiLogoutCircleRLine className="text-2xl text-secondary" />{" "}
+                Cerrar Sesión
+              </button>
+            </>
+          )}
           {typeSidebar === "client-detail" && (
             <>
               <Link

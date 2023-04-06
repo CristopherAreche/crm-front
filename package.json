@@ -12,6 +12,7 @@
     "chart.js": "^4.2.1",
     "dayjs": "^1.11.7",
     "react": "^18.2.0",
+    "react-chartjs-2": "^5.2.0",
     "react-dom": "^18.2.0",
     "react-icons": "^4.8.0",
     "react-loading-icons": "^1.1.0",
@@ -19,6 +20,7 @@
     "react-router-dom": "^6.9.0",
     "react-scripts": "5.0.1",
     "react-tailwindcss-datepicker": "^1.5.1",
+    "tailwind-scrollbar-hide": "^1.1.7",
     "sweetalert": "^2.1.2",
     "web-vitals": "^2.1.4"
   },

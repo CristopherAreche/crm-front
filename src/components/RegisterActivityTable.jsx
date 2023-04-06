@@ -13,7 +13,7 @@ const RegisterActivityTable = () => {
 
   useEffect(() => {
     dispatch(obtainActivities(id));
-  }, [dispatch]);
+  }, [dispatch, id]);
 
   if (activitiesStatus === "loading") {
     return (
@@ -23,9 +23,11 @@ const RegisterActivityTable = () => {
     );
   }
 
+
   if (activitiesStatus === "failed") {
     return <div>Error: {activitiesError}</div>;
   }
+
 
   return (
     <section className="w-auto overflow-x-auto lg:min-w-full   overflow-hidden mb-4 text-white">

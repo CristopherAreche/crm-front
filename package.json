@@ -1,7 +1,6 @@
 {
   "name": "crm-front",
   "version": "0.1.0",
-  "homepage": "http://CristopherAreche.github.io/crm-front",
   "private": true,
   "dependencies": {
     "@auth0/auth0-react": "^2.0.1",
@@ -20,15 +19,16 @@
     "react-redux": "^8.0.5",
     "react-router-dom": "^6.9.0",
     "react-scripts": "5.0.1",
+    "react-scroll": "^1.8.9",
     "react-tailwindcss-datepicker": "^1.5.1",
     "sweetalert": "^2.1.2",
     "tailwind-scrollbar-hide": "^1.1.7",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "react-scripts start",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
+    "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"

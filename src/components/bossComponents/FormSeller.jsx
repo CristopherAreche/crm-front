@@ -14,7 +14,7 @@ function FormSeller({ isVisible, onClose }) {
   const dispatch = useDispatch();
   const sellerId = useSelector((state) => state.sellers.sellerSelected);
 
-  const bossId = "ca9420d1-272e-42be-b886-4cfbcfe1c8bb";
+  const bossId = "e2240175-ccee-4539-9a41-0e9b8d75303f";
 
   const sellers = useSelector((state) => state.sellers.sellers);
   const handleClose = (e) => {
@@ -119,7 +119,7 @@ function FormSeller({ isVisible, onClose }) {
   useEffect(() => {
     if (sellerId) {
       const obj = sellers.find((seller) => seller.id === sellerId);
-      setSellerData({ ...obj, bossId });
+      setSellerData({ ...obj, bossId, Id: sellerId });
     } else
       setSellerData({
         name: "",

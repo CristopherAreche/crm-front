@@ -5,8 +5,8 @@ import {
   postClient,
   putClient,
   getClientName,
-  putDisableClient,
-  putEnableClient,
+  toggleStatusClient,
+  toggleVipClient,
 } from "../../services/clientsServices";
 import {
   stateOrderByPurchases,
@@ -17,10 +17,11 @@ import {
   statePutClients,
   stateSortedByAlph,
   stateToggleStatusClient,
+  stateToggleVipClient,
 } from "../../handlers/handlerClients";
 
 const initialState = {
-  clientRole: "admi",
+  clientRole: "admin",
   clients: [],
   copyClients: [],
   clientDetail: [],
@@ -93,12 +94,15 @@ export const clientSlice = createSlice({
         statePutClients(state, action);
       })
 
-      .addCase(putDisableClient.fulfilled, (state, action) => {
-        stateToggleStatusClient(state, action, false);
+      .addCase(toggleStatusClient.fulfilled, (state, action) => {
+        const status = action.payload
+        stateToggleStatusClient(state, action, status);
       })
-      .addCase(putEnableClient.fulfilled, (state, action) => {
-        stateToggleStatusClient(state, action, true);
-      });
+      .addCase(toggleVipClient.fulfilled, (state, action) => {
+        const status = action.payload
+        stateToggleVipClient(state, action, status);
+      })
+
   },
 });
 export const {

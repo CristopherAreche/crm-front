@@ -58,6 +58,14 @@ const ClientsItems = ({item}) => {
            {item.totalPurchased}
         </td>
         <td
+          className={`whitespace-nowrap  px-6 py-4 ${
+            item.enable ? "text-emerald-200" : "text-red-200"
+            }`}
+            >
+            {" "}
+            {item.enable ? "Habilitado" : "Desabilitado"}
+        </td>
+        <td
             className={`whitespace-nowrap  px-6 py-4 ${
                 item.vip ? "text-orange-200" : "text-white"}`} >
                 {" "}

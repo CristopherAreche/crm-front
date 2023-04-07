@@ -24,6 +24,8 @@ function App() {
 
       <Route path="/dashboard/all_clients" element={<AllClients />} />
 
+  
+
       {/* Rutas de Registracion y Login */}
       <Route exact path="/authentication" element={<AuthLayout />}>
         <Route index element={<Login />} />

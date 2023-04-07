@@ -12,6 +12,11 @@ export const getSellers = createAsyncThunk(
   }
 );
 
+export const getSeller = async (id) => {
+  const res = await axios.get(`${API_URL_SELLER}?id=${id}`)
+  return res.data
+}
+
 export const postSeller = createAsyncThunk(
   `sellers/postSeller`,
   async (payload) => {

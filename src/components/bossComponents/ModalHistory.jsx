@@ -15,7 +15,7 @@ const ModalHistory = ({onClose}) => {
   return (
     <div className="fixed inset-0  bg-black bg-opacity-25 backdrop-blur-sm flex justify-center items-center"
     >
-        <section className='w-[90vw] lg:min-w-auto bg-base-light/60 py-6 px-4 rounded-md flex flex-col items-start gap-y-4 h-96 overflow-y-auto'>
+        <section className='w-[90vw] lg:w-[40vw] bg-base-light/60 py-6 px-4 rounded-md flex flex-col items-start gap-y-4 h-96 overflow-y-auto'>
             <h4 className='font-medium  text-light/90'>Historial de <span className='text-secondary'>{activities[0]?.from}</span></h4>
             {
                 activities?.map(activitie => (

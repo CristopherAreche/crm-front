@@ -6,6 +6,10 @@ import StockChart from "../../components/charts/StockChart";
 import SalesChart from "../../components/charts/SalesChart";
 import PromoProductTable from "../../components/PromoProductTable";
 import { useSelector } from "react-redux";
+import TotalSalesChart from "../../components/charts/TotalSalesChart";
+import InventoryChart from "../../components/charts/InventoryChart";
+import MonthlyCompareChart from "../../components/charts/MonthlyCompareChart";
+import BestSeller from "../../components/bossComponents/BestSeller";
 
 const Summary = () => {
   const role = useSelector((state) => state.clients.clientRole);
@@ -27,18 +31,24 @@ const Summary = () => {
         </>
       ) : (
         <>
+<<<<<<< HEAD
           <section className="lg:pl-72 h-[100vh] overflow-y-auto flex flex-col z-[2] w-[100vw] lg:w-auto">
             <div className=" h-[20em] w-[30em] bg-green-200 flex justify-center items-center text-black">
               Grafico de Ventas totales
+=======
+          <section className="py-[3em] lg:col-start-3 col-end-10 h-[100vh] overflow-y-auto z-40 flex flex-wrap   w-[100vw] lg:w-auto justify-evenly">
+            <div className=" h-[20em] w-[30em] flex justify-center items-center text-black">
+              <TotalSalesChart />
+>>>>>>> main
             </div>
-            <div className="h-[20em] w-[30em] bg-green-200 flex justify-center items-center text-black">
-              Grafico de inventario actual -- 10 productos con menos stock
+            <div className="h-[20em] w-[30em] flex justify-center items-center text-black">
+              <InventoryChart />
             </div>
-            <div className=" h-[20em] w-[30em] bg-green-200 flex justify-center items-center text-black">
-              Grafico comparativo del mes anterio con el actual
+            <div className=" h-[20em] w-[30em] flex justify-center items-center text-black">
+              <MonthlyCompareChart />
             </div>
-            <div className="bg-green-200 flex justify-center items-center h-[20em] w-[30em] rounded text-black">
-              Mejor vendedor por monto generado
+            <div className=" flex justify-center items-center h-[20em] w-[30em] rounded text-black">
+              <BestSeller />
             </div>
           </section>
         </>

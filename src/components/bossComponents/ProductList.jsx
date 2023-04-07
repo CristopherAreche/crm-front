@@ -40,14 +40,15 @@ const ProductList = () => {
     );
   } else if (productStatus === "succeeded") {
     return (
-      <section className="overflow-x-auto lg:min-w-full mt-4 h-96 overflow-y-auto">
-        <header className="overflow-x-auto lg:min-w-full  overflow-y-auto">
-          <h3 className="flex justify-between w-screen lg:w-full px-8 py-4   bg-base-light/30 rounded-tr-md rounded-tl-md  ">
-            <RiShoppingBag3Fill className="text-2xl" />
-            Tus productos
-          </h3>
-        </header>
-
+      
+      //   <header className="overflow-x-auto lg:min-w-full mt-4 h-96 overflow-y-auto">
+      //     <h3 className="flex justify-between w-screen lg:w-full px-8 py-4   bg-base-light/30 rounded-tr-md rounded-tl-md  ">
+      //       <RiShoppingBag3Fill className="text-2xl" />
+      //       Tus productos
+      //     </h3>
+      //   </header>
+        <div className="flex-col flex h-full w-full">
+        <div className="overflow-x-auto ">
         <table className="table-auto w-full text-center text-sm font-regular shadow-md rounded-sm">
           <thead className=" font-medium text-light/75  dark:bg-base-light/30 rounded-md">
             <tr>
@@ -124,7 +125,9 @@ const ProductList = () => {
               ))}
           </tbody>
         </table>
-      </section>
+        </div>
+        </div>
+      // </section>
     );
   } else if (productError === "failed") {
     return <div>{productError}</div>;

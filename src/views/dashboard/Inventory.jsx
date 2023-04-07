@@ -26,7 +26,6 @@ const Inventory = () => {
           <div className=" h-[5em] w-full  flex justify-center items-center text-black">
             Agregar | Editar | Deshabilitar | Eliminar
           </div>
-  
         </main>
       )}
     </main>

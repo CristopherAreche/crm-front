@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
 import swal from "sweetalert";
 
-const LoginPage = () => {
+const Login = () => {
   const [passWord, setPassWord] = useState("");
   const [userName, setUserName] = useState("");
   const [errorUser, SetErrorUser] = useState(true);
@@ -133,7 +133,7 @@ const LoginPage = () => {
         </div>
         <Link
           onClick={login}
-          to={access ? "/vendedor" : null}
+          to={access ? "/dashboard" : null}
           className="text-center bg-gradient-to-r from-primary to-secondary py-2 px-4 rounded-md font-bold text-lg hover:scale-[1.02] transition-all"
         >
           Iniciar Sesión
@@ -155,4 +155,4 @@ const LoginPage = () => {
   );
 };
 
-export default LoginPage;
+export default Login;

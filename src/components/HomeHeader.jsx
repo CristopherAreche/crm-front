@@ -3,7 +3,7 @@ import { RiAlignRight, RiUserLine } from "react-icons/ri";
 import { Link } from "react-router-dom";
 import NavModal from "./NavModal";
 
-const Header = () => {
+const HomeHeader = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
@@ -33,13 +33,13 @@ const Header = () => {
           </li>
         </ul>
         <section className="hidden lg:flex gap-x-8 items-center z-[3]">
-          <Link to="/auth/register">
+          <Link to="/authentication/register">
             <button className="bg-gradient-to-r from-primary to-secondary px-2 py-1 rounded-md text-white font-medium text-lg hover:scale-[1.03] transition-all">
               Empezar Ahora
             </button>
           </Link>
           <Link
-            to="/auth"
+            to="/authentication"
             className=" flex gap-x-1 items-center text-white font-medium hover:text-light transition-colors b"
           >
             <RiUserLine className="text-2xl" /> Iniciar Sesión
@@ -51,4 +51,4 @@ const Header = () => {
   );
 };
 
-export default Header;
+export default HomeHeader;

@@ -1,18 +1,30 @@
-import { Outlet } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import Header from "../../components/Header";
+import BottomsActions from "../../components/bossComponents/BottomsActions";
+import ClientList from "../../components/bossComponents/ClientsList";
+import { resetClients, searchClients } from "../../app/features/clientSlice";
+import FilterTop from "../../components/FilterTop";
 
 const Clients = () => {
+
+  const clients = useSelector((state) => state.clients.clients);
+  const dispatch = useDispatch()
+
   return (
-    <main className=" px-6 w-full py-[1em] col-start-3 col-end-11 h-[100vh] overflow-y-auto z-[2] flex flex-col gap-2 lg:w-auto justify-center items-center">
-      <Outlet />
-      <div className=" h-[5em] w-[50%] bg-green-200 flex justify-center items-center text-black">
-        Vip% Descuento
-      </div>
-      <div className="h-[50em] w-full bg-green-300 flex justify-center items-center text-black">
-        Lista de Clientes
-      </div>
-      <div className=" h-[5em] w-full bg-green-400 flex justify-center items-center text-black">
-        Deshabilitar | Historial | Promover VIP
-      </div>
+    <main className="lg:pl-72 h-[100vh] overflow-y-auto flex flex-col z-[2] w-[100vw] lg:w-auto">
+      <section className="py-6 px-12 z-[2]">
+      <Header
+          mainText={"CLIENTES"}
+          data={clients}
+          onSearch={(filteredClients) =>
+          dispatch(searchClients(filteredClients))
+        }
+          onReset={() => dispatch(resetClients())}
+          />
+        <FilterTop />  
+        <ClientList/>
+        <BottomsActions/>
+      </section>
     </main>
   );
 };

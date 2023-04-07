@@ -17,11 +17,12 @@ function App() {
       <Route path="/dashboard" element={<Summary />} />
       <Route exact path="/dashboard/client/:id" element={<ClientDetail />} />
       <Route path="/dashboard/inventory" element={<Inventory />} />
-
       <Route exact path="/dashboard/sellers" element={<Sellers />}>
         <Route path="/dashboard/sellers/clients" element={<Clients />} />
       </Route>
 
+
+      {/* Vista desde el cliente */}
       <Route path="/dashboard/all_clients" element={<AllClients />} />
 
   

@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import BossFilterTop from "../../components/bossComponents/BossFilterTop";
 import Header from "../../components/Header";
 import SellerList from "../../components/bossComponents/SellersList";
+import BossFilterBottom from "../../components/bossComponents/BossFilterBottom";
 
 function JefeVendedores() {
   const dispatch = useDispatch();
@@ -19,6 +20,7 @@ function JefeVendedores() {
       />
       <BossFilterTop />
       <SellerList />
+      <BossFilterBottom />
     </section>
   );
 }

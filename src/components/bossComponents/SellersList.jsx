@@ -78,6 +78,7 @@ const SellerList = () => {
                       checked={item.id === sellerSelected && isSelected}
                       onChange={() => {
                         handleCheckboxChange(item);
+
                         toggleCheckBox(sellerSelected);
                       }}
                     />

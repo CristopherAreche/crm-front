@@ -1,38 +1,35 @@
-import React from "react";
 import SideBar from "../../components/sidebars/SideBar";
-import Header from "../../components/Header";
-import FilterTop from "../../components/FilterTop";
-import ClientList from "../../components/ClientList";
-import FilterBottom from "../../components/FilterBottom";
+import spotlight1 from "../../assets/svg/Spotlight1.svg";
+import spotlight2 from "../../assets/svg/Spotlight2.svg";
 import Clients from "./Clients";
-import { useDispatch, useSelector } from "react-redux";
-import { resetClients, searchClients } from "../../app/features/clientSlice";
+import { useSelector } from "react-redux";
+import MainSellerClients from "../../components/MainSellerClients";
 
 const AllClients = () => {
   const role = useSelector((state) => state.clients.clientRole);
-  const dispatch = useDispatch();
-  const clients = useSelector((state) => state.clients.clients);
+
 
   return (
-    <main className="bg-base h-screen text-white grid grid-cols-10">
+    <main className="bg-base h-screen text-white ">
       <SideBar />
       {role === "admin" ? (
         <Clients />
       ) : (
-        <div className=" flex flex-col  h-screen w-full col-start-3 col-end-11">
-          <Header
-            mainText={"CLIENTES"}
-            data={clients}
-            onSearch={(filteredClients) =>
-              dispatch(searchClients(filteredClients))
-            }
-            onReset={() => dispatch(resetClients())}
-          />
-          <FilterTop />
-          <ClientList />
-          <FilterBottom />
-        </div>
+        <section className=" lg:pl-72 h-[100vh] overflow-y-auto flex flex-col z-[2] w-[100vw] lg:w-auto">
+          <MainSellerClients />
+        </section>
       )}
+              {/* Luces */}
+              <img
+            src={spotlight1}
+            className="absolute top-0 left-0 opacity-80 z-[1]"
+            alt="light glow"
+          />
+          <img
+            src={spotlight2}
+            className="absolute bottom-0 right-0 opacity-80 z-[1]"
+            alt="light glow"
+          />
     </main>
   );
 };

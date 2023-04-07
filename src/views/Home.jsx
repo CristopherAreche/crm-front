@@ -5,12 +5,12 @@ import spotlight2 from "../assets/svg/Spotlight2.svg";
 import HomeHeader from "../components/HomeHeader";
 const Home = () => {
   return (
-    <main className="bg-base h-screen overflow-hidden px-10 lg:px-20 ">
-      {/* TODO : Componetizar Landing */}
-      {/* Seccion Header */}
+    <main className="bg-base overflow-hidden px-10 lg:px-20">
       <HomeHeader />
-      {/* Seccion Hero */}
-      <section className="flex flex-col lg:flex-row items-start lg:items-center justify-center h-screen pt-12  lg:pt-0">
+      <section
+        name="inicio"
+        className=" mt-[6em] flex flex-col lg:flex-row items-start lg:items-center justify-center h-[100vh] pt-12  lg:pt-0"
+      >
         {/* Hero Info */}
         <section className="text-white flex flex-col gap-y-8 items-start  lg:w-[36rem] lg:h-[30rem] ">
           {/* Info Principal */}
@@ -46,7 +46,42 @@ const Home = () => {
           alt="3D icon of computer"
         />
       </section>
-      {/* Luces */}
+
+      <section
+        name="detalles"
+        className="h-[100vh] bg-red-500 justify-center items-center flex"
+      >
+        Detalles
+      </section>
+
+      <section
+        name="precios"
+        className="h-[100vh] bg-blue-500  justify-center items-center flex"
+      >
+        Precios
+      </section>
+
+      <section
+        name="soporte"
+        className="h-[100vh] bg-green-500  justify-center items-center flex"
+      >
+        Central de ayuda
+      </section>
+
+      <section
+        name="sobre nosotros"
+        className="h-[100vh] bg-yellow-500  justify-center items-center flex"
+      >
+        Sobre nosotros
+      </section>
+
+      <section
+        name="integrantes"
+        className="h-[100vh] bg-purple-500  justify-center items-center flex"
+      >
+        Integrantes
+      </section>
+
       <img
         src={spotlight1}
         alt="lights glows"

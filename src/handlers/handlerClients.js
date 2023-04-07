@@ -28,6 +28,13 @@ export const stateToggleStatusClient = (state, action, status) => {
   if (clientFounded) clientFounded.enable = status;
 };
 
+export const stateToggleVipClient = (state, action, status) => {
+  const clientFounded = state.clients.find(
+    (client) => client.id === state.clientSelected
+  );
+  if (clientFounded) clientFounded.vip = status;
+}
+
 // *************** Reducers *****************
 
 export const stateSortedByAlph = (state, action) => {

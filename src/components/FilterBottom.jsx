@@ -7,7 +7,7 @@ import {
 import CreateClient from "./forms/CreateClient";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { putDisableClient, putEnableClient } from "../services/clientsServices";
+import { toggleStatusClient } from "../services/clientsServices";
 import { cleanClientSelect } from "../app/features/clientSlice";
 
 const FilterBottom = () => {
@@ -15,8 +15,8 @@ const FilterBottom = () => {
 
   const dispatch = useDispatch();
   const { clientSelected } = useSelector((state) => state.clients);
-  const onDisabled = () => dispatch(putDisableClient(clientSelected));
-  const onEnabled = () => dispatch(putEnableClient(clientSelected));
+  const onDisabled = () => dispatch(toggleStatusClient({clientSelected, enable : false}))
+  const onEnabled = () => dispatch(toggleStatusClient({clientSelected, enable : true}));
   const onCreateClient = () => {
     dispatch(cleanClientSelect());
     setShowModal(true);

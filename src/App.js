@@ -12,25 +12,26 @@ import Inventory from "./views/dashboard/Inventory";
 
 function App() {
   return (
-    <Routes>
-      <Route exact path="/" element={<Home />} />
-      <Route path="/dashboard" element={<Summary />} />
-      <Route exact path="/dashboard/client/:id" element={<ClientDetail />} />
-      <Route path="/dashboard/inventory" element={<Inventory />} />
+    <div className="page-container">
+      <Routes>
+        <Route exact path="/" element={<Home />} />
+        <Route exact path="/dashboard" element={<Summary />} />
+        <Route path="/dashboard/client/:id" element={<ClientDetail />} />
+        <Route path="/dashboard/inventory" element={<Inventory />} />
 
-      <Route exact path="/dashboard/sellers" element={<Sellers />}>
-        <Route path="/dashboard/sellers/clients" element={<Clients />} />
-      </Route>
+        <Route path="/dashboard/sellers" element={<Sellers />}>
+          <Route path="dashboard/sellers/clients" element={<Clients />} />
+        </Route>
 
-      <Route path="/dashboard/all_clients" element={<AllClients />} />
+        <Route path="/dashboard/all_clients" element={<AllClients />} />
 
-      {/* Rutas de Registracion y Login */}
-      <Route exact path="/authentication" element={<AuthLayout />}>
-        <Route index element={<Login />} />
-        <Route path="/authentication/register" element={<Register />} />
-      </Route>
-    </Routes>
+        {/* Rutas de Registracion y Login */}
+        <Route exact path="/authentication" element={<AuthLayout />}>
+          <Route index element={<Login />} />
+          <Route path="/authentication/register" element={<Register />} />
+        </Route>
+      </Routes>
+    </div>
   );
 }
-
 export default App;

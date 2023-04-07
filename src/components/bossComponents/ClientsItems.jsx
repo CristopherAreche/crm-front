@@ -1,8 +1,10 @@
-import React, { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
-import { Link } from "react-router-dom";
-import { selectedClientCheckbox } from "../../app/features/clientSlice";
-import { getSeller } from "../../services/sellersServices";
+import React, { useEffect, useState } from 'react'
+import { useDispatch } from 'react-redux';
+import { Link } from 'react-router-dom';
+import { selectedClientCheckbox } from '../../app/features/clientSlice';
+import { getSeller } from '../../services/sellersServices';
+
+
 const ClientsItems = ({ item }) => {
   const [clientSelected, setClientSelected] = useState("");
   const [sellerName, setSellerName] = useState("");
@@ -22,13 +24,13 @@ const ClientsItems = ({ item }) => {
   };
 
   useEffect(() => {
-    if (item.salesmanId) {
-      getSeller(item.salesmanId).then((res) => {
-        const name = res.name;
-        setSellerName(name);
-      });
-    }
-  }, []);
+   if(item.salesmanId) {
+    getSeller(item.salesmanId).then(res => {
+        const name = res.name
+        setSellerName(name)
+    })
+   }
+  }, [])
 
   return (
     <tr key={item.id} className="border-b dark:border-base/30">

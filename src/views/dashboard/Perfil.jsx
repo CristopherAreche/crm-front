@@ -11,12 +11,11 @@ const Perfil = () => {
       <SideBar />
       {role !== "admin" ? (
         <section className=" lg:pl-72 h-[100vh] overflow-y-auto flex flex-col z-[2] w-[100vw] lg:w-auto">
-            <h2>Perfil Vendedor</h2>
+          <h2>Perfil Vendedor</h2>
         </section>
-  
       ) : (
         <section className="lg:pl-72 h-[100vh] overflow-y-auto flex flex-col z-[2] w-[100vw] lg:w-auto">
-            Perfil Cliente
+          Perfil Cliente
         </section>
       )}
       {/* Luces */}

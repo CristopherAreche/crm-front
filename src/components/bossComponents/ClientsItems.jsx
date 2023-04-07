@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { selectedClientCheckbox } from '../../app/features/clientSlice';
 import { getSellers } from '../../services/sellersServices';
 
+
 const ClientsItems = ({ item }) => {
   const [clientSelected, setClientSelected] = useState("");
   const [sellerName, setSellerName] = useState("");
@@ -30,8 +31,6 @@ const ClientsItems = ({ item }) => {
     })
    }
   }, [])
-
-
 
   return (
     <tr key={item.id} className="border-b dark:border-base/30">

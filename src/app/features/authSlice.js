@@ -20,7 +20,7 @@ const userInfoSlice = createSlice({
       })
       .addCase(postUserInfo.fulfilled, (state, action) => {
         state.isLoading = false;
-        state.data = action.payload;
+        state.userInfo = action.payload;
       })
       .addCase(postUserInfo.rejected, (state, action) => {
         state.isLoading = false;

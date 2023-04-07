@@ -21,7 +21,7 @@ import {
 } from "../../handlers/handlerClients";
 
 const initialState = {
-  clientRole: "admin",
+  clientRole: "adm",
   clients: [],
   copyClients: [],
   clientDetail: [],
@@ -95,14 +95,13 @@ export const clientSlice = createSlice({
       })
 
       .addCase(toggleStatusClient.fulfilled, (state, action) => {
-        const status = action.payload
+        const status = action.payload;
         stateToggleStatusClient(state, action, status);
       })
       .addCase(toggleVipClient.fulfilled, (state, action) => {
-        const status = action.payload
+        const status = action.payload;
         stateToggleVipClient(state, action, status);
-      })
-
+      });
   },
 });
 export const {

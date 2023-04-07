@@ -13,14 +13,15 @@ export const getSellers = createAsyncThunk(
 );
 
 export const getSeller = async (id) => {
-  const res = await axios.get(`${API_URL_SELLER}?id=${id}`)
-  return res.data
-}
+  const res = await axios.get(`${API_URL_SELLER}?id=${id}`);
+  return res.data;
+};
 
 export const postSeller = createAsyncThunk(
   `sellers/postSeller`,
   async (payload) => {
     try {
+      console.log(payload);
       const { data } = await axios.post(API_URL_SELLER, payload);
       console.log(data);
       swal(
@@ -42,9 +43,10 @@ export const putSeller = createAsyncThunk(
   `sellers/putSeller`,
   async (payload) => {
     try {
+      console.log(payload);
       const { data } = await axios.put(API_URL_SELLER, payload);
 
-      console.log(data);
+      console.log();
       swal(
         "Modificación",
         `El vendedor ${data.name} fua actualizado correctamente`,

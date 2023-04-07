@@ -87,7 +87,8 @@ function FormSeller({ isVisible, onClose }) {
         title: "Estas seguro que deseas agregar el vendedor?",
         text: `Nombre: ${sellerData.name}
         Teléfono: ${sellerData.phone}
-        Correo: ${sellerData.email}`,
+        Correo: ${sellerData.email}
+        Dirección: ${sellerData.address}`,
         icon: "warning",
         buttons: true,
         dangerMode: true,
@@ -119,7 +120,7 @@ function FormSeller({ isVisible, onClose }) {
   useEffect(() => {
     if (sellerId) {
       const obj = sellers.find((seller) => seller.id === sellerId);
-      setSellerData({ ...obj, bossId, Id: sellerId });
+      setSellerData({ ...obj, id: sellerId });
     } else
       setSellerData({
         name: "",
@@ -216,7 +217,7 @@ function FormSeller({ isVisible, onClose }) {
             <RiHome2Line className="absolute top-1/2 -translate-y-1/2 left-2 text-xl text-secondary " />
           </div>
           {errors.address && (
-            <span style={{ color: "red" }}> {errors.email}</span>
+            <span style={{ color: "red" }}> {errors.address}</span>
           )}
         </section>
 

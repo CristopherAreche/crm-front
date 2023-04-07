@@ -13,23 +13,33 @@ import Inventory from "./views/dashboard/Inventory";
 function App() {
   return (
     <Routes>
-      <Route exact path="/" element={<Home />} />
-      <Route path="/dashboard" element={<Summary />} />
-      <Route exact path="/dashboard/client/:id" element={<ClientDetail />} />
-      <Route path="/dashboard/inventory" element={<Inventory />} />
+      <Route exact path="crm-front/" element={<Home />} />
+      <Route path="crm-front/dashboard" element={<Summary />} />
+      <Route
+        exact
+        path="crm-front/dashboard/client/:id"
+        element={<ClientDetail />}
+      />
+      <Route path="crm-front/dashboard/inventory" element={<Inventory />} />
 
-      <Route exact path="/dashboard/sellers" element={<Sellers />}>
-        <Route path="/dashboard/sellers/clients" element={<Clients />} />
+      <Route exact path="crm-front/dashboard/sellers" element={<Sellers />}>
+        <Route
+          path="crm-front/dashboard/sellers/clients"
+          element={<Clients />}
+        />
       </Route>
 
-      <Route path="/dashboard/all_clients" element={<AllClients />} />
+      <Route path="crm-front/dashboard/all_clients" element={<AllClients />} />
 
   
 
       {/* Rutas de Registracion y Login */}
-      <Route exact path="/authentication" element={<AuthLayout />}>
+      <Route exact path="crm-front/authentication" element={<AuthLayout />}>
         <Route index element={<Login />} />
-        <Route path="/authentication/register" element={<Register />} />
+        <Route
+          path="crm-front/authentication/register"
+          element={<Register />}
+        />
       </Route>
     </Routes>
   );

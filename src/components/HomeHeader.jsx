@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { RiAlignRight, RiUserLine } from "react-icons/ri";
 import { Link } from "react-scroll";
+import { Link as LinkRouter } from "react-router-dom";
 import NavModal from "./NavModal";
 
 const HomeHeader = () => {
@@ -8,7 +9,7 @@ const HomeHeader = () => {
 
   return (
     <>
-      <header className="flex py-4 lg:py-6 items-center justify-evenly fixed bg-base/5 z-50 right-0 left-0">
+      <header className="flex py-4 lg:py-6 items-center justify-evenly fixed bg-base/5 z-[2]  right-0 left-0">
         <Link to="inicio" smooth={true} duration={500}>
           <h2 className="text-xl text-white  font-bold tracking-widest hover:text-light transition-colors cursor-pointer z-10">
             LOGO
@@ -20,7 +21,7 @@ const HomeHeader = () => {
         >
           <RiAlignRight className="text-4xl text-white hover:text-white/60 transition-colors cursor-pointer" />
         </button>
-        <ul className="hidden lg:flex gap-x-6 z-10 ">
+        <ul className="hidden lg:flex gap-x-6  ">
           <Link to="detalles" smooth={true} duration={500}>
             <li className="font-medium text-light/80 hover:text-white transition-colors cursor-pointer">
               Detalles
@@ -47,18 +48,16 @@ const HomeHeader = () => {
             </li>
           </Link>
         </ul>
-        <section className="hidden lg:flex gap-x-8 items-center z-[3]">
-          <Link to="/authentication/register">
-            <button className="bg-gradient-to-r from-primary to-secondary px-2 py-1 rounded-md text-white font-medium text-lg hover:scale-[1.03] transition-all">
-              Empezar Ahora
-            </button>
-          </Link>
-          <Link
+        <section className="hidden lg:flex gap-x-8 items-center">
+          <LinkRouter to="/authentication/register" className="bg-gradient-to-r from-primary to-secondary px-2 py-1 rounded-md text-white font-medium text-lg hover:scale-[1.03] transition-all">
+            Empezar Ahora
+          </LinkRouter>
+          <LinkRouter
             to="/authentication"
-            className=" flex gap-x-1 items-center text-white font-medium hover:text-light transition-colors b"
+            className=" flex gap-x-1 items-center text-white font-medium hover:text-light transition-colors "
           >
             <RiUserLine className="text-2xl" /> Iniciar Sesión
-          </Link>
+          </LinkRouter>
         </section>
       </header>
       <NavModal isOpen={isOpen} onOpen={setIsOpen} />

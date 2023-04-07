@@ -27,7 +27,7 @@ const BossFilterBottom = () => {
   };
 
   return (
-    <section className=" text-white text-bold flex justify-evenly w-full  items-center rounded-md flex-wrap gap-4 pt-8">
+    <section className=" text-white text-bold flex justify-evenly w-full  items-center rounded-md flex-wrap gap-4 ">
       <button
         className=" rounded-xl py-2 px-3 shadow-emerald-400/20 hover:scale-[1.03] hover:bg-emerald-400/80 transition-all shadow-md bg-emerald-400 "
         onClick={onCreate}

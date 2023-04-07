@@ -41,12 +41,12 @@ function SideBar({ typeSidebar, summary, inventory, clients, sellers }) {
                 className="w-28 h-28 rounded-full "
               />
               <p className="bg-green-400 text-black absolute rounded-full px-2 bottom-0 right-0">
-                {role === 'admin' ? 'admin' : 'seller'}
+                {role === "admin" ? "admin" : "seller"}
               </p>
             </div>
             <h3 className="text-light font-medium text-lg text-center ">
-            {role === "admin" ? "Nombre del Jefe" : "Nombre del Vendedor"}
-          </h3>
+              {role === "admin" ? "Nombre del Jefe" : "Nombre del Vendedor"}
+            </h3>
           </section>
           {typeSidebar === "client-detail" && <ClientDetailSideBar />}
         </section>
@@ -84,13 +84,12 @@ function SideBar({ typeSidebar, summary, inventory, clients, sellers }) {
             >
               <MdSell className="text-3xl text-secondary" /> Clientes
             </Link>
-          
           </div>
           <div>
             <Link className="flex px-12 py-2  active:scale-95 active:bg-light/20 gap-x-6 items-center text-lg text-gray-300 font-medium   cursor-pointer  hover:text-gray-100 transition-all">
-                <RiUserSettingsLine className="text-2xl text-secondary" />
-                Configuración
-              </Link>
+              <RiUserSettingsLine className="text-2xl text-secondary" />
+              Configuración
+            </Link>
             <Link
               to="/"
               className="flex px-12 py-2  active:scale-95 active:bg-light/20 gap-x-6 items-center text-lg text-gray-300 font-medium   cursor-pointer  hover:text-gray-100 transition-all"

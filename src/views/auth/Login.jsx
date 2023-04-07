@@ -140,16 +140,22 @@ const Login = () => {
         </Link>
       </form>
       <section className="flex gap-x-2 items-center justify-center w-full bg-white py-2 hover:scale-[1.03] transition-all cursor-pointer rounded-md">
-      <img
+        <img
           src="https://img.freepik.com/iconos-gratis/buscar_318-265146.jpg"
           alt="logo google"
           className="w-8 h-8 mr-4"
         />
-        <button className="text-base font-medium " onClick={()=>loginWithRedirect({ screen_hint: "signup" })}>Ingresa con Google o Microsoft</button>
+        <button
+          className="text-base font-medium "
+          onClick={() => loginWithRedirect({ screen_hint: "signup" })}
+        >
+          Ingresa con Google o Microsoft
+        </button>
         <img
           src="https://cdn-icons-png.flaticon.com/512/732/732221.png?w=740&t=st=1680637866~exp=1680638466~hmac=6099a6118528d9a0e0b89bc5f7d0c78b31b9f71b84a7c81bc034269616924215"
           alt="logo microsoft"
-          className="w-8 h-8 ml-4"/>
+          className="w-8 h-8 ml-4"
+        />
       </section>
     </section>
   );

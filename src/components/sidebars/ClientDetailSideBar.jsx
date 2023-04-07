@@ -68,7 +68,7 @@ const ClientDetailSideBar = () => {
       </div>
       {role !== "admin" ? (
         <Link
-          to="/dashboard/all_clients"
+          to="crm-front/dashboard/all_clients"
           className="flex px-12 py-2  active:scale-95 active:bg-light/20 gap-x-6 items-center text-lg text-gray-300 font-medium   cursor-pointer  hover:text-gray-100 transition-all"
         >
           <RiLogoutCircleRLine className="text-2xl text-secondary" />

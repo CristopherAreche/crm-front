@@ -10,7 +10,7 @@ const AuthLayout = () => {
       <section className="hidden lg:block bg-gradient-to-r from-primary to-secondary flex-1 rounded-tr-md rounded-br-md">
         <div className="absolute top-4 left-4">
           <Link
-            to="/"
+            to="crm-front/"
             className="flex gap-x-1 items-center font-medium group hover:text-white/90 transition-colors"
           >
             <RiArrowLeftLine className="text-2xl group-hover:-translate-x-1 transition-transform" />

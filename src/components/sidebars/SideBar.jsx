@@ -58,7 +58,7 @@ function SideBar({ typeSidebar, summary, inventory, clients, sellers }) {
         <div className=" h-[100%] flex justify-between flex-col">
           <div className="flex flex-col lg:gap-y-6 gap-y-3">
             <Link
-              to="/dashboard"
+              to="crm-front/dashboard"
               className="flex px-12 py-2  active:scale-95 active:bg-light/20 gap-x-6 items-center text-lg text-gray-300 font-medium   cursor-pointer  hover:text-gray-100 transition-all"
             >
               <MdOutlineSpaceDashboard className="text-3xl text-secondary" />{" "}
@@ -67,14 +67,14 @@ function SideBar({ typeSidebar, summary, inventory, clients, sellers }) {
             {role === "admin" && (
               <>
                 <Link
-                  to="/dashboard/inventory"
+                  to="crm-front/dashboard/inventory"
                   className={`  flex px-12 py-2  active:scale-95 active:bg-light/20 gap-x-6 items-center text-lg text-gray-300 font-medium   cursor-pointer  hover:text-gray-100 transition-all`}
                 >
                   <MdOutlineInventory2 className="text-3xl text-secondary" />
                   Inventario
                 </Link>
                 <Link
-                  to="/dashboard/sellers"
+                  to="crm-front/dashboard/sellers"
                   className="flex px-12 py-2  active:scale-95 active:bg-light/20 gap-x-6 items-center text-lg text-gray-300 font-medium   cursor-pointer  hover:text-gray-100 transition-all"
                 >
                   <RiTeamLine className="text-3xl text-secondary" /> Vendedores
@@ -82,7 +82,7 @@ function SideBar({ typeSidebar, summary, inventory, clients, sellers }) {
               </>
             )}
             <Link
-              to="/dashboard/all_clients"
+              to="crm-front/dashboard/all_clients"
               className={`${
                 clients && "bg-[purple]"
               } flex px-12 py-2  active:scale-95 active:bg-light/20 gap-x-6 items-center text-lg text-gray-300 font-medium   cursor-pointer  hover:text-gray-100 transition-all`}
@@ -95,7 +95,7 @@ function SideBar({ typeSidebar, summary, inventory, clients, sellers }) {
             </Link>
           </div>
           <Link
-            to="/"
+            to="crm-front/"
             className="flex px-12 py-2  active:scale-95 active:bg-light/20 gap-x-6 items-center text-lg text-gray-300 font-medium   cursor-pointer  hover:text-gray-100 transition-all"
           >
             <RiLogoutCircleRLine className="text-2xl text-secondary" /> Cerrar
@@ -104,7 +104,7 @@ function SideBar({ typeSidebar, summary, inventory, clients, sellers }) {
           {typeSidebar === "client-detail" && (
             <>
               <Link
-                to="/dashboard"
+                to="crm-front/dashboard"
                 className="flex px-12 py-2  active:scale-95 active:bg-light/20 gap-x-6 items-center text-lg text-gray-300 font-medium   cursor-pointer  hover:text-gray-100 transition-all"
               >
                 <RiLogoutCircleRLine className="text-2xl text-secondary" />

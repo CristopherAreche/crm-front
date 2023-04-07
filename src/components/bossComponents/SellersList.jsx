@@ -83,7 +83,9 @@ const SellerList = () => {
                     />
                   </td>
                   <td className="whitespace-nowrap  px-6 py-4  font-medium text-secondary hover:text-secondary/80 hover:underline transition-all">
-                    <Link to={`/vendedor/${item.id}`}>{item.name}</Link>
+                    <Link to={`crm-front/vendedor/${item.id}`}>
+                      {item.name}
+                    </Link>
                   </td>
                   <td className="whitespace-nowrap  px-6 py-4">
                     {/* ${item.totalPurchased} */} $900

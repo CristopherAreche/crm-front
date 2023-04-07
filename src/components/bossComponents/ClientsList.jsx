@@ -50,15 +50,18 @@ const ClientList = () => {
                 Total Comprado
               </th>
               <th scope="col" className=" px-6 py-4">
+                Estado
+              </th>
+              <th scope="col" className=" px-6 py-4">
                 VIP
               </th>
             </tr>
           </thead>
           <tbody className=" dark:border-light dark:bg-base-light/60">
             {Array.isArray(clients) &&
-              clients?.map((item) => (
-                <ClientsItems item={item} key={item.id}/>
-              ))}
+                clients?.map((item) => (
+                    <ClientsItems item={item} key={item.id}/>
+        ))}
           </tbody>
         </table>
       </section>

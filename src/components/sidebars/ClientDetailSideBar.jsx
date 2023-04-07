@@ -1,16 +1,18 @@
-import React from "react";
-import { AiOutlineMail, AiOutlinePhone } from "react-icons/ai";
-import { BiTask } from "react-icons/bi";
+import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { getClient } from "../../services/clientsServices";
 import { cleanDetail } from "../../app/features/clientSlice";
+import { Link } from "react-router-dom";
+import { RiCloseFill, RiLogoutCircleRLine, RiMenu3Fill } from "react-icons/ri";
+import ContentDetailSidebar from "../ContentDetailSidebar";
 
 const ClientDetailSideBar = () => {
   const dispatch = useDispatch();
-  const { clientDetail } = useSelector((state) => state.clients);
   const { id } = useParams();
+  const role = useSelector((state) => state.clients.clientRole);
+  const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
     dispatch(getClient(id));
@@ -19,50 +21,38 @@ const ClientDetailSideBar = () => {
   }, [dispatch, id]);
 
   return (
-    <section className="flex items-center flex-col gap-y-3 px-8 w-full">
-      <div className="relative">
-        <img
-          src="https://via.placeholder.com/150"
-          alt="placeholder"
-          className="w-28 h-28 rounded-full "
-        />
-        <div
-          className={`${
-            clientDetail.enable
-              ? "bg-green-400 shadow-green-400/10"
-              : "bg-gray-400 shadow-gray-400/10"
-          } text-xs text-center rounded-full py-1 px-2 font-bold text-white shadow-md absolute bottom-0 right-0`}
-        >
-          {clientDetail.enable ? "Habilitado" : "Deshabilitado"}
-        </div>
-      </div>
-      <h4 className="text-light text-2xl  text-center font-medium">
-        {clientDetail.name}
-      </h4>
-      <p className="text-light  text-sm font-medium ">
-        <span className="text-gray-300">Email:</span> {clientDetail.email}
-      </p>
-      <p className="text-light text-sm font-medium ">
-        <span className="text-gray-300">Teléfono:</span> {clientDetail.phone}
-      </p>
-      <div className="flex gap-x-4">
-        <BiTask className="bg-light p-3 box-content text-xl rounded-full " />
-        <AiOutlineMail className="bg-light text-xl rounded-full p-3 box-content " />
-        <AiOutlinePhone className="bg-light shadow-md text-xl rounded-full p-3 box-content" />
-      </div>
-      <div className=" flex flex-col justify-center items-center">
-        <p className="text-2xl text-light font-medium">
-          $ {clientDetail.totalPurchased}
-        </p>
-        <p className="text-light/80 font-medium ">Total pagado</p>
-      </div>
-
-      {clientDetail.vip === true ? (
-        <div className="bg-yellow-400 py-2 px-4  rounded-lg font-medium text-base-light shadow-md shadow-yellow-400/10">
-          VIP
-        </div>
-      ) : null}
-    </section>
+    <>
+      <section
+        className={`${
+          isOpen ? "left-0" : "-left-full"
+        }  bg-base-light/80 lg:bg-base-light/40 w-72 lg:w-72  flex flex-col  justify-between py-4 fixed   h-full z-50 transition-all duration-200 lg:left-0 overflow-y-auto`}
+      >
+        <ContentDetailSidebar />
+        {role !== "admin" ? (
+          <Link
+            to="/dashboard/all_clients"
+            className="flex px-12 py-2  active:scale-95 active:bg-light/20 gap-x-6 items-center text-lg text-gray-300 font-medium   cursor-pointer  hover:text-gray-100 transition-all"
+          >
+            <RiLogoutCircleRLine className="text-2xl text-secondary" />
+            Volver
+          </Link>
+        ) : (
+          <Link
+            to="/dashboard/all_clients"
+            className="flex px-12 py-2  active:scale-95 active:bg-light/20 gap-x-6 items-center text-lg text-gray-300 font-medium   cursor-pointer  hover:text-gray-100 transition-all"
+          >
+            <RiLogoutCircleRLine className="text-2xl text-secondary" />
+            Volver
+          </Link>
+        )}
+      </section>
+      <button
+        className="absolute bottom-6 right-8 text-4xl lg:hidden bg-base-light/60 rounded-full py-1 px-2 box-content z-50 text-light"
+        onClick={() => setIsOpen(!isOpen)}
+      >
+        {isOpen ? <RiCloseFill /> : <RiMenu3Fill />}
+      </button>
+    </>
   );
 };
 

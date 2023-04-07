@@ -57,35 +57,38 @@ export const putClient = createAsyncThunk(
   }
 );
 
-export const putDisableClient = createAsyncThunk(
-  "clients/putDisableClient",
-  async (id) => {
+export const toggleStatusClient = createAsyncThunk(
+  "clients/toggleStatusClient",
+  async ({clientSelected, enable}) => {
     try {
-      const { data } = await axios.put(
+       await axios.put(
         API_URL_CLIENT,
-        { enable: false, id }
+        { enable , id:clientSelected }
       );
-      return data;
+      return enable;
     } catch (error) {
       return error.response.data.error;
     }
   }
 );
 
-export const putEnableClient = createAsyncThunk(
-  "clients/putEnableClient",
-  async (id) => {
+export const toggleVipClient = createAsyncThunk(
+  "clients/toggleVipClient",
+  async ({clientSelected, vip}) => {
     try {
-      const { data } = await axios.put(
+       await axios.put(
         API_URL_CLIENT,
-        { enable: true, id }
+        { vip , id:clientSelected }
       );
-      return data;
+      return vip;
     } catch (error) {
       return error.response.data.error;
     }
   }
 );
+
+
+
 
 export const getClient = createAsyncThunk("clients/getClient", async (id) => {
   try {

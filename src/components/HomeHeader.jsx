@@ -48,15 +48,13 @@ const HomeHeader = () => {
             </li>
           </LinkRoll>
         </ul>
-        <section className="hidden lg:flex gap-x-8 items-center z-[3]">
-          <Link to="/authentication/register">
-            <button className="bg-gradient-to-r from-primary to-secondary px-2 py-1 rounded-md text-white font-medium text-lg hover:scale-[1.03] transition-all">
-              Empezar Ahora
-            </button>
+        <section className="hidden lg:flex gap-x-8 items-center">
+          <Link to="/authentication/register" className="bg-gradient-to-r from-primary to-secondary px-2 py-1 rounded-md text-white font-medium text-lg hover:scale-[1.03] transition-all">
+            Empezar Ahora
           </Link>
           <Link
             to="/authentication"
-            className=" flex gap-x-1 items-center text-white font-medium hover:text-light transition-colors b"
+            className=" flex gap-x-1 items-center text-white font-medium hover:text-light transition-colors "
           >
             <RiUserLine className="text-2xl" /> Iniciar Sesión
           </Link>

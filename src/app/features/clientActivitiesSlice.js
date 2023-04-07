@@ -8,10 +8,10 @@ import axios from "axios";
 const API_URL_ACTIVITY = "https://crm.up.railway.app/api/activity";
 
 export const obtainActivities = createAsyncThunk(
-  "activities/getClientActivity",
-  async (id) => {
-    const response = await axios.get(API_URL_ACTIVITY);
-    return response.data.filter((res) => res.clientId === id);
+  "activities/obtainActivities",
+  async (clientId) => {
+    const response = await axios.get(`${API_URL_ACTIVITY}?clientId=${clientId}`);
+    return response.data
   }
 );
 const activitySlice = createSlice({

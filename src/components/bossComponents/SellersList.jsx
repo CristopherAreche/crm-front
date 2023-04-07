@@ -87,7 +87,7 @@ const SellerList = () => {
                     <Link to={`/vendedor/${item.id}`}>{item.name}</Link>
                   </td>
                   <td className="whitespace-nowrap  px-6 py-4">
-                    {/* ${item.totalPurchased} */} $900
+                    ${item.total_monthly_sales}
                   </td>
                   <td
                     className={`whitespace-nowrap  px-6 py-4 ${
@@ -99,10 +99,10 @@ const SellerList = () => {
                   </td>
                   <td
                     className={`whitespace-nowrap  px-6 py-4 ${
-                      item.performance ? "text-orange-200" : "text-white"
+                      item.avgFeedback >= 3 ? "text-white" : "text-orange-200"
                     }`}
                   >
-                    5
+                    {item.avgFeedback.toFixed(1)}
                   </td>
                 </tr>
               ))}

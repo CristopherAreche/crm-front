@@ -42,7 +42,7 @@ const Home = () => {
         </section>
         <img
           src={imgLanding}
-          className="animate-pulse w-96 lg:w-[30rem] 2xl:w-[40rem]"
+          className=" w-96 lg:w-[30rem] 2xl:w-[40rem]"
           alt="3D icon of computer"
         />
       </section>
@@ -185,7 +185,7 @@ const Home = () => {
       <img
         src={spotlight1}
         alt="lights glows"
-        className="absolute top-0 left-0 opacity-80 z-[1]"
+        className="absolute top-0 left-0 opacity-80 z-[1] animate-pulse"
       />
     </main>
   );

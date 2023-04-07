@@ -3,12 +3,12 @@ import AuthLayout from "./layouts/AuthLayout";
 import Login from "./views/auth/Login";
 import Register from "./views/auth/Register";
 import ClientDetail from "./views/dashboard/ClientDetails";
-import Clients from "./views/dashboard/Clients";
 import Summary from "./views/dashboard/Summary";
 import Sellers from "./views/dashboard/Sellers";
 import AllClients from "./views/dashboard/AllClients";
 import Home from "./views/Home";
 import Inventory from "./views/dashboard/Inventory";
+import Perfil from "./views/dashboard/Perfil";
 
 function App() {
   return (
@@ -18,12 +18,9 @@ function App() {
         <Route exact path="/dashboard" element={<Summary />} />
         <Route path="/dashboard/client/:id" element={<ClientDetail />} />
         <Route path="/dashboard/inventory" element={<Inventory />} />
-
-        <Route path="/dashboard/sellers" element={<Sellers />}>
-          <Route path="dashboard/sellers/clients" element={<Clients />} />
-        </Route>
-
+        <Route path="/dashboard/sellers" element={<Sellers />}/>
         <Route path="/dashboard/all_clients" element={<AllClients />} />
+        <Route path="/dashboard/perfil" element={<Perfil />} />
 
         {/* Rutas de Registracion y Login */}
         <Route exact path="/authentication" element={<AuthLayout />}>

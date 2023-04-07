@@ -39,7 +39,7 @@ const SellerList = () => {
     );
   } else if (sellersStatus === "succeeded") {
     return (
-      <section className="w-[22rem] mx-auto overflow-x-auto lg:min-w-full pt-14 pb-4 lg:py-6 lg:px-4   lg:mb-0 ">
+      <section className="overflow-x-auto lg:min-w-full my-4 h-96 overflow-y-auto">
         <header className="flex justify-between w-screen lg:w-full px-8 py-4   bg-base-light/30 rounded-tr-md rounded-tl-md  ">
           <h3 className=" text-xl font-medium text-light flex items-center gap-x-2">
             <RiFilter3Line className="text-2xl" />

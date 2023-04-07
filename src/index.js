@@ -12,7 +12,7 @@ root.render(
   <Auth0Provider
     domain="dev-tthzw3uiioypptkj.us.auth0.com"
     clientId="flqFB9wWez8Ld0z3i40ZYJhmO9LRvEHU"
-    redirectUri={`${window.location.origin}/vendedor`}
+    redirectUri={`${window.location.origin}/dashboard`}
   >
     <Provider store={store}>
       <BrowserRouter>

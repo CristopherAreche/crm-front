@@ -30,7 +30,7 @@ const RegisterActivityTable = () => {
 
 
   return (
-    <section className="w-auto overflow-x-auto lg:min-w-full   overflow-hidden mb-4 text-white">
+    <section className="w-auto overflow-x-auto lg:min-w-full  h-96 overflow-y-auto  overflow-hidden mb-4 text-white">
       <table className="min-w-full text-center text-sm font-regular shadow-md rounded-sm">
         <thead className=" font-medium text-white  dark:bg-base-light/30 rounded-md">
           <tr>

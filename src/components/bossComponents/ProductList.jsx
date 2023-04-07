@@ -1,52 +1,55 @@
-import { RiFilter3Line, RiLoader4Fill } from "react-icons/ri";
+import { RiShoppingBag3Fill, RiLoader4Fill } from "react-icons/ri";
 import { Link } from "react-router-dom";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getSellers } from "../../services/sellersServices";
 import { selectedSellerCheckbox } from "../../app/features/sellerSlice";
+import { getAllProducts } from "../../services/productsServices";
 
-const SellerList = () => {
+const ProductList = () => {
   const dispatch = useDispatch();
-  const sellers = useSelector((state) => state.sellers.sellers);
-  const sellersStatus = useSelector((state) => state.sellers.status);
-  const sellersError = useSelector((state) => state.sellers.error);
-  const [sellerSelected, setSellerSelected] = useState("");
+  const products = useSelector((state) => state.products.products);
+  const productStatus = useSelector((state) => state.products.status );
+  const productError = useSelector((state) => state.products.error);
+  const [productSelected, setProductSelected] = useState("");
   const [isSelected, setIsSelected] = useState(false);
 
   useEffect(() => {
-    if (sellersStatus === "idle") {
-      if (!sellers.length) {
-        dispatch(getSellers());
+    if (productStatus === "idle") {
+      if (!products.length) {
+        dispatch(getAllProducts());
       }
     }
-  }, [sellersStatus, dispatch, sellers]);
+  }, [productStatus, dispatch, products]);
 
-  const handleCheckboxChange = (seller) => {
-    setSellerSelected(seller.id);
-    dispatch(selectedSellerCheckbox(seller.id));
+  const handleCheckboxChange = (products) => {
+    setProductSelected(products.id);
+    dispatch(selectedSellerCheckbox(products.id));
   };
   const toggleCheckBox = (sellerId) => {
-    if (sellerId === sellerSelected) {
+    if (sellerId === productSelected) {
       setIsSelected(!isSelected);
     }
   };
 
-  if (sellersStatus === "loading") {
+
+  if (productStatus === "loading") {
     return (
       <div className="flex justify-center w-full">
         <RiLoader4Fill className="animate-spin text-4xl text-secondary mt-8" />
       </div>
     );
-  } else if (sellersStatus === "succeeded") {
+  } else if (productStatus === "succeeded") {
     return (
-      <section className="overflow-x-auto lg:min-w-full my-4 h-96 overflow-y-auto">
-        <header className="flex justify-between w-screen lg:w-full px-8 py-4   bg-base-light/30 rounded-tr-md rounded-tl-md  ">
-          <h3 className=" text-xl font-medium text-light flex items-center gap-x-2">
-            <RiFilter3Line className="text-2xl" />
-            Tus vendedores
-          </h3>
-        </header>
-        <table className="min-w-full text-center text-sm font-regular shadow-md rounded-sm">
+      
+      //   <header className="overflow-x-auto lg:min-w-full mt-4 h-96 overflow-y-auto">
+      //     <h3 className="flex justify-between w-screen lg:w-full px-8 py-4   bg-base-light/30 rounded-tr-md rounded-tl-md  ">
+      //       <RiShoppingBag3Fill className="text-2xl" />
+      //       Tus productos
+      //     </h3>
+      //   </header>
+        <div className="flex-col flex h-full w-full">
+        <div className="overflow-x-auto ">
+        <table className="table-auto w-full text-center text-sm font-regular shadow-md rounded-sm">
           <thead className=" font-medium text-light/75  dark:bg-base-light/30 rounded-md">
             <tr>
               <th scope="col" className=" px-6 py-4">
@@ -56,38 +59,47 @@ const SellerList = () => {
                 Nombre
               </th>
               <th scope="col" className=" px-6 py-4">
-                Total vendido último mes
+                Cantidad
               </th>
               <th scope="col" className=" px-6 py-4">
                 Estado
               </th>
               <th scope="col" className=" px-6 py-4">
-                Puntuación
+                Precio costo
+              </th>
+              <th scope="col" className=" px-6 py-4">
+                Precio venta
+              </th>
+              <th scope="col" className=" px-6 py-4">
+                Descuento
+              </th>
+              <th scope="col" className=" px-6 py-4">
+                Categoria
               </th>
             </tr>
           </thead>
           <tbody className=" dark:border-light dark:bg-base-light/60">
-            {Array.isArray(sellers) &&
-              sellers?.map((item) => (
+            {Array.isArray(products) &&
+              products?.map((item) => (
                 <tr key={item.id} className="border-b dark:border-base/30">
                   <td className="whitespace-nowrap  px-6 py-4 font-medium">
                     <input
                       id={`checkbox-${item.id}`}
                       type="checkbox"
                       className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
-                      checked={item.id === sellerSelected && isSelected}
+                      checked={item.id === productSelected && isSelected}
                       onChange={() => {
                         handleCheckboxChange(item);
 
-                        toggleCheckBox(sellerSelected);
+                        toggleCheckBox(productSelected);
                       }}
                     />
                   </td>
                   <td className="whitespace-nowrap  px-6 py-4  font-medium text-secondary hover:text-secondary/80 hover:underline transition-all">
-                    <Link to={`/vendedor/${item.id}`}>{item.name}</Link>
+                    {item.name}
                   </td>
                   <td className="whitespace-nowrap  px-6 py-4">
-                    ${item.total_monthly_sales}
+                    {item.quantity}
                   </td>
                   <td
                     className={`whitespace-nowrap  px-6 py-4 ${
@@ -97,21 +109,28 @@ const SellerList = () => {
                     {" "}
                     {item.enable ? "Habilitado" : "Desabilitado"}
                   </td>
-                  <td
-                    className={`whitespace-nowrap  px-6 py-4 ${
-                      item.avgFeedback >= 3 ? "text-white" : "text-orange-200"
-                    }`}
-                  >
-                    {item.avgFeedback.toFixed(1)}
+                  <td>
+                  ${item.cost_price}
+                  </td>
+                  <td>
+                  ${item.sale_price}
+                  </td>
+                  <td>
+                  %{item.discount}
+                  </td>
+                  <td>
+                  {item.category}
                   </td>
                 </tr>
               ))}
           </tbody>
         </table>
-      </section>
+        </div>
+        </div>
+      // </section>
     );
-  } else if (sellersError === "failed") {
-    return <div>{sellersError}</div>;
+  } else if (productError === "failed") {
+    return <div>{productError}</div>;
   }
 };
-export default SellerList;
+export default ProductList;

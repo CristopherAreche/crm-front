@@ -16,15 +16,18 @@ function SideBar({ typeSidebar, summary, inventory, clients, sellers }) {
   const dispatch = useDispatch();
   const { isAuthenticated, user } = useAuth0();
 
-  // useEffect(() => {
-  //   if (isAuthenticated && user) {
-  //     const userInfo = {
-  //       user:user
-  //     };
-  //     dispatch(postUserInfo(userInfo));
-  //     console.log(userInfo);
-  //   }
-  // },[dispatch, isAuthenticated, user]);
+  useEffect(() => {
+    if (isAuthenticated && user) {
+      const userInfo = {
+        email:user.email,
+        name:user.name,
+        logo:user.picture,
+        username:user.nickname,
+      };
+      dispatch(postUserInfo(userInfo));
+      console.log(userInfo);
+    }
+  },[dispatch, isAuthenticated, user]);
 
   return (
     <>

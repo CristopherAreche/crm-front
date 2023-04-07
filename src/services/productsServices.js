@@ -11,3 +11,36 @@ export const getAllProducts = createAsyncThunk(
         return response.data;
     }
 );
+
+export const getProductById = createAsyncThunk(
+    "products/getProductById",
+    async (id) => {
+        const response = await axios.get(`${API_URL_PRODUCTS}/${id}`);
+        return response.data;
+    }
+);
+
+export const createProduct = createAsyncThunk(
+    "products/createProduct",
+    async (product) => {
+        const response = await axios.post(`${API_URL_PRODUCTS}`, product);
+        return response.data;
+    }
+);
+
+export const updateProduct = createAsyncThunk(
+    "products/updateProduct",
+    async (product) => {
+        const response = await axios.put(`${API_URL_PRODUCTS}/${product.id}`, product);
+        return response.data;
+    }
+);
+
+export const deleteProduct = createAsyncThunk(
+    "products/deleteProduct",
+    async (id) => {
+        const response = await axios.delete(`${API_URL_PRODUCTS}/${id}`);
+        return response.data;
+    }
+);
+

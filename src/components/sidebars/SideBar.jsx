@@ -86,7 +86,7 @@ function SideBar({ typeSidebar, summary, inventory, clients, sellers }) {
             </Link>
           </div>
           <div>
-            <Link className="flex px-12 py-2  active:scale-95 active:bg-light/20 gap-x-6 items-center text-lg text-gray-300 font-medium   cursor-pointer  hover:text-gray-100 transition-all">
+            <Link to='/dashboard/perfil' className="flex px-12 py-2  active:scale-95 active:bg-light/20 gap-x-6 items-center text-lg text-gray-300 font-medium   cursor-pointer  hover:text-gray-100 transition-all">
               <RiUserSettingsLine className="text-2xl text-secondary" />
               Configuración
             </Link>

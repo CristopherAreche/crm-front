@@ -1,6 +1,6 @@
 import { RiCopyrightLine, RiGlobalLine, RiHonourLine, RiMailLine, RiPhoneLine, RiStarSmileLine } from "react-icons/ri"
 
-const CompanyInformationView = ({bossPerfil}) => {
+const CompanyInformationView = ({data}) => {
     return (
       <section className='col-span-4 flex flex-col gap-y-6'>
       <header className='flex flex-col gap-y-4'>
@@ -13,42 +13,42 @@ const CompanyInformationView = ({bossPerfil}) => {
             <p className='text-light text-lg font-medium'>Nombre</p>
             <RiGlobalLine className='text-secondary text-xl border-2 border-secondary p-1 box-content rounded-full'/>
           </header>
-          <p className='text-light/80 '>{bossPerfil.company}</p>
+          <p className='text-light/80 '>{data.company}</p>
         </article>
         <article className='bg-base-light/30 py-4 px-4 shadow-md rounded-md'>
           <header className='flex items-center justify-between mb-2'>
             <p className='text-light text-lg font-medium'>Descripcion</p>
             <RiHonourLine className='text-secondary text-xl border-2 border-secondary p-1 box-content rounded-full'/>
           </header>
-          <p className='text-light/80 '>{bossPerfil.company_description}</p>
+          <p className='text-light/80 '>{data.company_description}</p>
         </article>
         <article className='bg-base-light/30 py-4 px-4 shadow-md rounded-md'>
           <header className='flex items-center justify-between mb-2'>
             <p className='text-light text-lg font-medium'>Regristro Comercial</p>
             <RiCopyrightLine className='text-secondary text-xl border-2 border-secondary p-1 box-content rounded-full'/>
           </header>
-          <p className='text-light/80 '>{bossPerfil.commercial_register}</p>
+          <p className='text-light/80 '>{data.commercial_register}</p>
         </article>
         <article className='bg-base-light/30 py-4 px-4 shadow-md rounded-md'>
           <header className='flex items-center justify-between mb-2'>
             <p className='text-light text-lg font-medium'>Logo</p>
             <RiStarSmileLine className='text-secondary text-xl border-2 border-secondary p-1 box-content rounded-full'/>
           </header>
-          <p className='text-light/80 '>{bossPerfil.logo}</p>
+          <p className='text-light/80 '>{data.logo}</p>
         </article> 
         <article className='bg-base-light/30 py-4 px-4 shadow-md rounded-md'>
           <header className='flex items-center justify-between mb-2'>
             <p className='text-light text-lg font-medium'>Telefono</p>
             <RiPhoneLine className='text-secondary text-xl border-2 border-secondary p-1 box-content rounded-full'/>
           </header>
-          <p className='text-light/80 '>{bossPerfil.phone}</p>
+          <p className='text-light/80 '>{data.phone}</p>
         </article> 
         <article className='bg-base-light/30 py-4 px-4 shadow-md rounded-md'>
           <header className='flex items-center justify-between mb-2'>
             <p className='text-light text-lg font-medium'>Correo electronico</p>
             <RiMailLine className='text-secondary text-xl border-2 border-secondary p-1 box-content rounded-full'/>
           </header>
-          <p className='text-light/80 '>{bossPerfil.email}</p>
+          <p className='text-light/80 '>{data.email}</p>
         </article> 
       </main>
     </section>

@@ -1,6 +1,17 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-import { getSellers } from "../../services/sellersServices";
+import {
+  getSellers,
+  postSeller,
+  putSeller,
+  putDisableSeller,
+  putEnableSeller,
+} from "../../services/sellersServices";
+import {
+  statePostSeller,
+  statePutSeller,
+  stateToggleStatusSeller,
+} from "../../handlers/handlerSellers";
 
 const initialState = {
   sellers: [],
@@ -17,6 +28,9 @@ export const sellerSlice = createSlice({
   reducers: {
     selectedSellerCheckbox: (state, action) => {
       state.sellerSelected = action.payload;
+    },
+    cleanSellertSelect: (state, action) => {
+      state.sellerSelected = "";
     },
     searchSellers: (state, action) => {
       state.sellers = action.payload;
@@ -89,6 +103,18 @@ export const sellerSlice = createSlice({
       .addCase(getSellers.rejected, (state, action) => {
         state.status = "failed";
         state.error = action.error.message;
+      })
+      .addCase(postSeller.fulfilled, (state, action) => {
+        statePostSeller(state, action);
+      })
+      .addCase(putSeller.fulfilled, (state, action) => {
+        statePutSeller(state, action);
+      })
+      .addCase(putDisableSeller.fulfilled, (state, action) => {
+        stateToggleStatusSeller(state, action, false);
+      })
+      .addCase(putEnableSeller.fulfilled, (state, action) => {
+        stateToggleStatusSeller(state, action, true);
       });
   },
 });
@@ -101,5 +127,7 @@ export const {
   sortEnabledSellers,
   resetSellers,
   searchSellers,
+
+  cleanSellertSelect,
 } = sellerSlice.actions;
 export default sellerSlice.reducer;

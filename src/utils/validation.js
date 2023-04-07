@@ -1,7 +1,13 @@
-const validation = (infoClient) => {
+const validation = (info) => {
   let errors = {};
-  if (!infoClient.name) {
-    errors.name = "No puede estar vacio";
+  if (!info.name) {
+    errors.name = "No puede estar vacío";
+  }
+  if (!info.email) {
+    errors.email = "No puede estar vacío";
+  }
+  if (!info.phone) {
+    errors.phone = "No puede estar vacío";
   }
 
   return errors;

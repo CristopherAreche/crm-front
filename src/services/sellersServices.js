@@ -2,8 +2,76 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 import swal from "sweetalert";
 
+const API_URL_SELLER = `https://crm.up.railway.app/api/salesman`;
 
 export const getSellers = createAsyncThunk("sellers/getSellers", async () => {
-    const res = await axios.get("https://crm.up.railway.app/api/salesman");
-    return res.data;
-  });
+  const res = await axios.get(API_URL_SELLER);
+  return res.data;
+});
+
+export const postSeller = createAsyncThunk(
+  `sellers/postSeller`,
+  async (payload) => {
+    try {
+      const { data } = await axios.post(API_URL_SELLER, payload);
+      console.log(data);
+      swal(
+        "Agregar",
+        `El vendedor ${data.name} fue creado correctamente`,
+        "succes"
+      );
+
+      return data;
+    } catch (error) {
+      console.log(error);
+      swal("Error", `${error.response.data.error}`, "error");
+      return error.response.data.error;
+    }
+  }
+);
+
+export const putSeller = createAsyncThunk(
+  `sellers/putSeller`,
+  async (payload) => {
+    try {
+      const { data } = await axios.put(API_URL_SELLER, payload);
+
+      console.log("data" + data);
+      swal(
+        "Modificación",
+        `El vendedor ${data.name} fua actualizado correctamente`,
+        "success"
+      );
+
+      return data;
+    } catch (error) {
+      swal("Error", `${error.response.data.error}`, "error");
+      console.log(error.response);
+      return error.response.data.error;
+    }
+  }
+);
+
+export const putDisableSeller = createAsyncThunk(
+  "sellers/putDisableSeller",
+  async (id) => {
+    try {
+      const { data } = await axios.put(API_URL_SELLER, { enable: false, id });
+      return data;
+    } catch (error) {
+      return error.response.data.error;
+    }
+  }
+);
+
+export const putEnableSeller = createAsyncThunk(
+  "sellers/putEnableSeller",
+  async (id) => {
+    try {
+      const { data } = await axios.put(API_URL_SELLER, { enable: true, id });
+      return data;
+    } catch (error) {
+      return error.response.data.error;
+    }
+  }
+);

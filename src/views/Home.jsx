@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import imgLanding from "../assets/imgLanding.png";
+import imgDetail from "../assets/Detail.png";
 import spotlight1 from "../assets/svg/Spotlight1.svg";
 import spotlight2 from "../assets/svg/Spotlight2.svg";
 import HomeHeader from "../components/HomeHeader";
@@ -16,9 +17,9 @@ const Home = () => {
           {/* Info Principal */}
           <div>
             <h1 className="text-light  text-4xl lg:text-5xl 2xl:text-6xl font-extrabold uppercase  lg:w-[32rem] mb-3">
-              Optimiza tu empresa con{" "}
+              Optimiza tu empresa
               <span className="bg-gradient-to-r from-primary  to-secondary text-transparent bg-clip-text">
-                nuestra CRM
+                CON NUESTRA CRM
               </span>
             </h1>
             <p className="text-light opacity-95 text-lg font-medium w-72  lg:w-96 2xl:text-xl">
@@ -45,39 +46,140 @@ const Home = () => {
           alt="3D icon of computer"
         />
       </section>
+
       <section
         name="detalles"
-        className="h-[100vh] bg-red-500 justify-center items-center flex"
+        className="h-[100vh] justify-center items-center flex"
       >
-        Detalles
+        <div className="w-[90%] h-[60%] flex">
+          <div className=" w-[50%] flex items-center">
+            <img
+              src={imgDetail}
+              className="animate-pulse w-full"
+              alt="3D icon of computer"
+            />
+          </div>
+          <div className=" text-white w-[50%] flex flex-col justify-center items-center">
+            <h1 className="text-light text-center text-4xl lg:text-5xl 2xl:text-6xl font-extrabold uppercase  lg:w-[32rem] mb-8">
+              Detalles
+              <span className="bg-gradient-to-r from-primary  to-secondary text-transparent bg-clip-text">
+                de nuestra CRM
+              </span>
+            </h1>
+            <p className="text-light opacity-95 text-lg font-medium lg:w-96 2xl:text-xl">
+              Nuestro CRM es un programa que ayuda a las empresas a gestionar
+              mejor las relaciones con sus clientes. Al utilizarlo, las empresas
+              pueden proporcionar un servicio más personalizado y eficiente, lo
+              que puede aumentar la satisfacción y retención del cliente.
+              Además, ayuda a las empresas a tomar decisiones más informadas
+              sobre cómo mejorar sus productos y servicios.
+            </p>
+          </div>
+        </div>
       </section>
 
       <section
         name="precios"
-        className="h-[100vh] bg-blue-500  justify-center items-center flex"
+        className="h-[100vh] justify-center items-center flex"
       >
-        Precios
+        <div className="w-[90%] h-[60%] flex">
+          <div className=" text-white w-[50%] flex flex-col justify-center items-center">
+            <h1 className="text-[2em] font-bold">Precios</h1>
+            <p className="px-8">
+              Nuestro CRM es un programa que ayuda a las empresas a gestionar
+              mejor las relaciones con sus clientes. Al utilizarlo, las empresas
+              pueden proporcionar un servicio más personalizado y eficiente, lo
+              que puede aumentar la satisfacción y retención del cliente.
+              Además, ayuda a las empresas a tomar decisiones más informadas
+              sobre cómo mejorar sus productos y servicios.
+            </p>
+          </div>
+          <div className=" w-[50%] flex items-center">
+            <img
+              src={imgDetail}
+              className="animate-pulse w-full"
+              alt="3D icon of computer"
+            />
+          </div>
+        </div>
       </section>
 
       <section
         name="soporte"
-        className="h-[100vh] bg-green-500  justify-center items-center flex"
+        className="h-[100vh] justify-center items-center flex"
       >
-        Central de ayuda
+        <div className="w-[90%] h-[60%] flex">
+          <div className=" text-white w-[50%] flex flex-col justify-center items-center">
+            <h1 className="text-[2em] font-bold">Central de ayuda</h1>
+            <p className="px-8">
+              Nuestro CRM es un programa que ayuda a las empresas a gestionar
+              mejor las relaciones con sus clientes. Al utilizarlo, las empresas
+              pueden proporcionar un servicio más personalizado y eficiente, lo
+              que puede aumentar la satisfacción y retención del cliente.
+              Además, ayuda a las empresas a tomar decisiones más informadas
+              sobre cómo mejorar sus productos y servicios.
+            </p>
+          </div>
+          <div className=" w-[50%] flex items-center">
+            <img
+              src={imgDetail}
+              className="animate-pulse w-full"
+              alt="3D icon of computer"
+            />
+          </div>
+        </div>
       </section>
 
       <section
         name="sobre nosotros"
-        className="h-[100vh] bg-yellow-500  justify-center items-center flex"
+        className="h-[100vh] justify-center items-center flex"
       >
-        Sobre nosotros
+        <div className="w-[90%] h-[60%] flex">
+          <div className=" text-white w-[50%] flex flex-col justify-center items-center">
+            <h1 className="text-[2em] font-bold">Sobre nosotros</h1>
+            <p className="px-8">
+              Nuestro CRM es un programa que ayuda a las empresas a gestionar
+              mejor las relaciones con sus clientes. Al utilizarlo, las empresas
+              pueden proporcionar un servicio más personalizado y eficiente, lo
+              que puede aumentar la satisfacción y retención del cliente.
+              Además, ayuda a las empresas a tomar decisiones más informadas
+              sobre cómo mejorar sus productos y servicios.
+            </p>
+          </div>
+          <div className=" w-[50%] flex items-center">
+            <img
+              src={imgDetail}
+              className="animate-pulse w-full"
+              alt="3D icon of computer"
+            />
+          </div>
+        </div>
       </section>
 
       <section
         name="integrantes"
-        className="h-[100vh] bg-purple-500  justify-center items-center flex"
+        className="h-[100vh] justify-center items-center flex"
       >
-        Integrantes
+        <div className="w-[90%] h-[60%] flex">
+          <div className=" text-white w-[50%] flex flex-col justify-center items-center">
+            <h1 className="text-[2em] font-bold">Integrantes</h1>
+            <p className="px-8">
+              Nuestro CRM es un programa que ayuda a las empresas a gestionar
+              mejor las relaciones con sus clientes. Al utilizarlo, las empresas
+              pueden proporcionar un servicio más personalizado y eficiente, lo
+              que puede aumentar la satisfacción y retención del cliente.
+              Además, ayuda a las empresas a tomar decisiones más informadas
+              sobre cómo mejorar sus productos y servicios.
+            </p>
+          </div>
+          <div className=" w-[50%] flex items-center">
+            <img
+              src={imgDetail}
+              className="animate-pulse w-full"
+              alt="3D icon of computer"
+            />
+          </div>
+        </div>
       </section>
 
       <img

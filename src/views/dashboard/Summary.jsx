@@ -15,23 +15,21 @@ const Summary = () => {
   const role = useSelector((state) => state.clients.clientRole);
 
   return (
-    <main className="bg-base h-screen text-white grid grid-cols-10">
+    <main className="bg-base h-screen text-white">
       <SideBar />
       {role !== "admin" ? (
-        <>
-          {" "}
-          <section className=" lg:pl-72 h-[100vh] overflow-y-auto flex flex-col z-[2] w-[100vw] lg:w-auto">
+        <section className=" lg:pl-72 h-[100vh] overflow-y-auto flex flex-col z-[2] w-[100vw] lg:w-auto">
             {/* Voy a reintegrar todas las estadisticas pronto!! */}
             {/* <StockChart />
-              <SalesChart />
-              <PromoProductTable />
-              Calendario */}
-            <MainSeller />
-          </section>
-        </>
+             <SalesChart />
+            <PromoProductTable />
+            Calendario */}
+          <MainSeller />
+        </section>
+
       ) : (
         <>
-          <section className="py-[3em] lg:col-start-3 col-end-10 h-[100vh] overflow-y-auto z-40 flex flex-wrap   w-[100vw] lg:w-auto justify-evenly">
+          <section className="lg:pl-72 h-[100vh] overflow-y-auto flex flex-col z-[2] w-[100vw] lg:w-auto">
             <div className=" h-[20em] w-[30em] flex justify-center items-center text-black">
               <TotalSalesChart />
             </div>

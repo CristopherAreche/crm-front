@@ -1,5 +1,6 @@
 import spotlight1 from "../../assets/svg/Spotlight1.svg";
 import spotlight2 from "../../assets/svg/Spotlight2.svg";
+import MainPerfilSeller from "../../components/MainPerfilSeller";
 import MainPerfilBoss from "../../components/bossComponents/MainPerfilBoss";
 import SideBar from "../../components/sidebars/SideBar";
 import { useSelector } from "react-redux";
@@ -12,7 +13,7 @@ const Perfil = () => {
       <SideBar />
       {role !== "admin" ? (
         <section className=" lg:pl-72 h-[100vh] overflow-y-auto flex flex-col z-[2] w-[100vw] lg:w-auto">
-          <h2>Perfil Vendedor</h2>
+          <MainPerfilSeller />
         </section>
       ) : (
         <section className="lg:pl-72 h-[100vh] overflow-y-auto flex flex-col z-[2] w-[100vw] lg:w-auto">

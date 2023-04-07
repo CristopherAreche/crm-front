@@ -15,7 +15,7 @@ const Summary = () => {
   const role = useSelector((state) => state.clients.clientRole);
 
   return (
-    <main className="bg-base h-screen text-white">
+    <main className="bg-base h-screen text-white grid grid-cols-10">
       <SideBar />
       {role !== "admin" ? (
         <>

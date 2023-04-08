@@ -104,7 +104,7 @@ const SellerList = () => {
                   >
                     {item.avgFeedback === null
                       ? 0
-                      : item.avgFeedback.toFixed(1)}
+                      : item.avgFeedback?.toFixed(1)}
                   </td>
                 </tr>
               ))}

@@ -37,7 +37,7 @@ const Inventory = () => {
             />
           </div>
 
-          <div className=" h-[20em] w-full bg-green-200/25 flex justify-center items-center text-black">
+          <div className=" h-[20em] w-full flex justify-center items-center text-black">
             <MayorStockChart />
           </div>
           <div className="h-[20em] w-full  flex justify-center items-center text-white font-normal">

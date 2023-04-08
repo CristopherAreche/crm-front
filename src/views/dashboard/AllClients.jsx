@@ -8,7 +8,6 @@ import MainSellerClients from "../../components/MainSellerClients";
 const AllClients = () => {
   const role = useSelector((state) => state.clients.clientRole);
 
-
   return (
     <main className="bg-base h-screen text-white ">
       <SideBar />
@@ -19,17 +18,17 @@ const AllClients = () => {
           <MainSellerClients />
         </section>
       )}
-              {/* Luces */}
-              <img
-            src={spotlight1}
-            className="absolute top-0 left-0 opacity-80 z-[1]"
-            alt="light glow"
-          />
-          <img
-            src={spotlight2}
-            className="absolute bottom-0 right-0 opacity-80 z-[1]"
-            alt="light glow"
-          />
+      {/* Luces */}
+      <img
+        src={spotlight1}
+        className="absolute top-0 left-0 opacity-80 z-[1]"
+        alt="light glow"
+      />
+      <img
+        src={spotlight2}
+        className="absolute bottom-0 right-0 opacity-80 z-[1]"
+        alt="light glow"
+      />
     </main>
   );
 };

@@ -21,10 +21,7 @@ const Login = () => {
   const { loginWithRedirect } = useAuth0();
 
   const login = () => {
-    if (
-      passWord === "password" &&
-      userName === "cristopherareche764@gmail.com"
-    ) {
+    if (passWord === "user" && userName === "user") {
       setAccess(true);
       navigate("/vendedor");
     } else {

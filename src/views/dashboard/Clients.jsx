@@ -21,8 +21,7 @@ const Clients = () => {
           onReset={() => dispatch(resetClients())}
         />
         <FilterTop />
-        {/* Client list no esta funcionando correctamente, por favor no descomenten el componente si no lo van a reparar. att: Cristopher Areche */}
-        {/* <ClientList /> */}
+        <ClientList />
         <BottomsActions />
       </section>
     </main>

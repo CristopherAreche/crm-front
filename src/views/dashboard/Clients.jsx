@@ -6,24 +6,24 @@ import { resetClients, searchClients } from "../../app/features/clientSlice";
 import FilterTop from "../../components/FilterTop";
 
 const Clients = () => {
-
   const clients = useSelector((state) => state.clients.clients);
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   return (
     <main className="lg:pl-72 h-[100vh] overflow-y-auto flex flex-col z-[2] w-[100vw] lg:w-auto">
       <section className="py-6 px-12 z-[2]">
-      <Header
+        <Header
           mainText={"CLIENTES"}
           data={clients}
           onSearch={(filteredClients) =>
-          dispatch(searchClients(filteredClients))
-        }
+            dispatch(searchClients(filteredClients))
+          }
           onReset={() => dispatch(resetClients())}
-          />
-        <FilterTop />  
-        <ClientList/>
-        <BottomsActions/>
+        />
+        <FilterTop />
+        {/* Client list no esta funcionando correctamente, por favor no descomenten el componente si no lo van a reparar. att: Cristopher Areche */}
+        {/* <ClientList /> */}
+        <BottomsActions />
       </section>
     </main>
   );

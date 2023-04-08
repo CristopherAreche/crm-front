@@ -102,7 +102,7 @@ const SellerList = () => {
                       item.avgFeedback >= 3 ? "text-white" : "text-orange-200"
                     }`}
                   >
-                    {item.avgFeedback.toFixed(1)}
+                    {item?.avgFeedback?.toFixed(1)}
                   </td>
                 </tr>
               ))}

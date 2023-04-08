@@ -11,6 +11,7 @@ import {
   Title,
   Tooltip,
   Legend,
+  Colors,
 } from "chart.js";
 import { Line } from "react-chartjs-2";
 ChartJS.register(
@@ -20,7 +21,8 @@ ChartJS.register(
   LineElement,
   Title,
   Tooltip,
-  Legend
+  Legend,
+  Colors
 );
 
 const TotalSalesChart = () => {
@@ -31,6 +33,10 @@ const TotalSalesChart = () => {
   useState(() => {
     dispatch(getBoss());
   }, []);
+
+  ChartJS.defaults.font.size = 20;
+  ChartJS.defaults.color = "white";
+  ChartJS.defaults.backgroundColor = "blue";
 
   const salesData = [100, 50, 250, 350, 70, 160, 400, 600, 500, 300, 470, 700];
   const chartData = {

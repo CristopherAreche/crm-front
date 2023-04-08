@@ -1,7 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 const API_URL_PRODUCTS = "https://crm.up.railway.app/api/product";
-const bossId = "d4581b16-93f0-472a-b5c1-22ac5705ee7c";
+const bossId = "00d4cf20-b761-40cc-baf2-7c40aa53caf9";
 
 
 export const getAllProducts = createAsyncThunk(

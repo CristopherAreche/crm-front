@@ -31,7 +31,7 @@ const ProductList = () => {
     }
   };
 
-
+  console.log(products);
   if (productStatus === "loading") {
     return (
       <div className="flex justify-center w-full">

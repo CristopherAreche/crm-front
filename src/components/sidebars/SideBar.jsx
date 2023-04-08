@@ -14,9 +14,10 @@ function SideBar({ typeSidebar, summary, inventory, clients, sellers }) {
   const [isOpen, setIsOpen] = useState(false);
   const role = useSelector((state) => state.clients.clientRole);
   const dispatch = useDispatch();
-  const { isAuthenticated, user } = useAuth0();
+  const { isAuthenticated, user, logout } = useAuth0();
 
-  useEffect(() => {
+
+  const handleBossRegister = () => {
     if (isAuthenticated && user) {
       const userInfo = {
         email:user.email,
@@ -24,11 +25,12 @@ function SideBar({ typeSidebar, summary, inventory, clients, sellers }) {
         logo:user.picture,
         username:user.nickname,
       };
-      dispatch(postUserInfo(userInfo));
       console.log(userInfo);
+      dispatch(postUserInfo(userInfo));
     }
-  },[dispatch, isAuthenticated, user]);
+  };
 
+  
   return (
     <>
       <section
@@ -96,17 +98,19 @@ function SideBar({ typeSidebar, summary, inventory, clients, sellers }) {
             </Link>
           </div>
           <div>
+          <button className="flex px-12 py-2  active:scale-95 active:bg-light/20 gap-x-6 items-center text-lg text-gray-300 font-medium   cursor-pointer  hover:text-gray-100 transition-all" onClick={()=>handleBossRegister()}  >Enviar info</button>
             <Link className="flex px-12 py-2  active:scale-95 active:bg-light/20 gap-x-6 items-center text-lg text-gray-300 font-medium   cursor-pointer  hover:text-gray-100 transition-all">
               <RiUserSettingsLine className="text-2xl text-secondary" />
               Configuración
             </Link>
-            <Link
-              to="/"
+            
+            <button
+              onClick={() => logout()}
               className="flex px-12 py-2  active:scale-95 active:bg-light/20 gap-x-6 items-center text-lg text-gray-300 font-medium   cursor-pointer  hover:text-gray-100 transition-all"
             >
               <RiLogoutCircleRLine className="text-2xl text-secondary" /> Cerrar
               Sesión
-            </Link>
+            </button>
           </div>
           {typeSidebar === "client-detail" && (
             <>

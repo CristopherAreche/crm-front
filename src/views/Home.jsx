@@ -42,7 +42,7 @@ const Home = () => {
         </section>
         <img
           src={imgLanding}
-          className=" w-96 lg:w-[30rem] 2xl:w-[40rem]"
+          className=" animate-pulse  w-96 lg:w-[30rem] 2xl:w-[40rem]"
           alt="3D icon of computer"
         />
       </section>
@@ -55,7 +55,7 @@ const Home = () => {
           <div className=" w-[50%] flex items-center">
             <img
               src={imgDetail}
-              className="animate-pulse w-full"
+              className=" animate-bounce w-full"
               alt="3D icon of computer"
             />
           </div>

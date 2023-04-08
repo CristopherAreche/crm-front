@@ -2,7 +2,7 @@ import { RiShoppingBag3Fill, RiLoader4Fill } from "react-icons/ri";
 import { Link } from "react-router-dom";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { selectedSellerCheckbox } from "../../app/features/sellerSlice";
+import { selectedProductCheckbox } from "../../app/features/productsSlice";
 import { getAllProducts } from "../../services/productsServices";
 
 const ProductList = () => {
@@ -23,10 +23,10 @@ const ProductList = () => {
 
   const handleCheckboxChange = (products) => {
     setProductSelected(products.id);
-    dispatch(selectedSellerCheckbox(products.id));
+    dispatch(selectedProductCheckbox(products.id));
   };
-  const toggleCheckBox = (sellerId) => {
-    if (sellerId === productSelected) {
+  const toggleCheckBox = (productId) => {
+    if (productId === productSelected) {
       setIsSelected(!isSelected);
     }
   };

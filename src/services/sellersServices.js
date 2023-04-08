@@ -12,18 +12,19 @@ export const getSellers = createAsyncThunk(
   }
 );
 
-export const getSeller = async (id) => {
-  const res = await axios.get(`${API_URL_SELLER}?id=${id}`)
-  return res.data
-}
+export const getSeller = createAsyncThunk("sellers/getSeller", async (id) => {
+  const res = await axios.get(`${API_URL_SELLER}?id=${id}`);
+  return res.data;
+});
 
 export const postSeller = createAsyncThunk(
   `sellers/postSeller`,
   async (payload) => {
     try {
+      console.log(payload);
       const { data } = await axios.post(API_URL_SELLER, payload);
       console.log(data);
-      swal(
+      await swal(
         "Agregar",
         `El vendedor ${data.name} fue creado correctamente`,
         "succes"
@@ -32,7 +33,7 @@ export const postSeller = createAsyncThunk(
       return data;
     } catch (error) {
       console.log(error);
-      swal("Error", `${error.response.data.error}`, "error");
+      await swal("Error", `${error.response.data.error}`, "error");
       return error.response.data.error;
     }
   }
@@ -42,10 +43,11 @@ export const putSeller = createAsyncThunk(
   `sellers/putSeller`,
   async (payload) => {
     try {
+      console.log(payload);
       const { data } = await axios.put(API_URL_SELLER, payload);
 
-      console.log(data);
-      swal(
+      console.log();
+      await swal(
         "Modificación",
         `El vendedor ${data.name} fua actualizado correctamente`,
         "success"
@@ -54,7 +56,7 @@ export const putSeller = createAsyncThunk(
       return data;
     } catch (error) {
       console.log(error);
-      swal("Error", `${error.response.data.error}`, "error");
+      await swal("Error", `${error.response.data.error}`, "error");
       console.log(error.response);
       return error.response.data.error;
     }

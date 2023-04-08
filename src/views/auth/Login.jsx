@@ -122,7 +122,7 @@ const Login = () => {
         </div>
         <div className="flex justify-between">
           <Link
-            to="/auth/register"
+            to="/authentication/register"
             className="bg-gradient-to-r text-light  hover:underline hover:text-white transition-all cursor-pointer"
           >
             No tienes cuenta? Registrate

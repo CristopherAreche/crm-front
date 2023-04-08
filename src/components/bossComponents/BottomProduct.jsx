@@ -5,7 +5,7 @@ import {
   RiCheckboxCircleLine,
   RiDeleteBin5Line,
 } from "react-icons/ri";
-import FormSeller from "../forms/FormSeller";
+import FormProduct from "../forms/FormProduct";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -63,7 +63,7 @@ const BottomProduct = () => {
       >
         <RiDeleteBin5Line className="text-2xl" />
       </button>
-      <FormSeller isVisible={showModal} onClose={() => setShowModal(false)} />
+      <FormProduct isVisible={showModal} onClose={() => setShowModal(false)} />
     </section>
   );
 };

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import validation from "../../utils/validation";
 import { useDispatch, useSelector } from "react-redux";
-import { putSeller, postSeller } from "../../services/sellersServices";
+
 import {
   RiUserLine,
   RiPhoneLine,
@@ -9,101 +9,124 @@ import {
   RiHome2Line,
 } from "react-icons/ri";
 import swal from "sweetalert";
+import { createProduct, updateProduct } from "../../services/productsServices";
 
-function FormSeller({ isVisible, onClose }) {
+function Formproduct({ isVisible, onClose }) {
   const dispatch = useDispatch();
-  const sellerId = useSelector((state) => state.sellers.sellerSelected);
+  const productId = useSelector((state) => state.products.productSelected);
 
-  const bossId = "e2240175-ccee-4539-9a41-0e9b8d75303f";
+  const bossId = "00d4cf20-b761-40cc-baf2-7c40aa53caf9";
 
-  const sellers = useSelector((state) => state.sellers.sellers);
+  const products = useSelector((state) => state.products.products);
   const handleClose = (e) => {
     if (e.target.id === "wrapper") onClose();
   };
 
-  const [sellerData, setSellerData] = useState({
+  const [file, setFile] = useState(null);
+
+  const [productData, setProductData] = useState({
     name: "",
-    email: "",
-    phone: "",
-    address: "",
+
+    quantity: "",
     enable: true,
-    password: "12345",
+    cost_price: "",
+    sale_price: "",
+    discount: "",
+    category: "",
     bossId,
   });
 
   const [errors, setErrors] = useState({
     name: "",
-    email: "",
-    phone: "",
-    address: "",
+    image: "",
+    quantity: "",
+
+    cost_price: "",
+    sale_price: "",
+    discount: "",
+    category: "",
   });
 
   const handleInputChange = (event) => {
-    const property = event.target.name;
-    const value = event.target.value;
+    const { name, value, files } = event.target;
 
-    setSellerData({
-      ...sellerData,
-      [property]: value,
-    });
-
+    if (name === "image") {
+      setFile(files[0]);
+    } else {
+      setProductData({
+        ...productData,
+        [name]: value,
+      });
+    }
     setErrors(
       validation({
-        ...sellerData,
-        [property]: value,
+        ...productData,
+        [name]: value,
       })
     );
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    if (errors.name || errors.email || errors.phone || errors.address) {
+    const formData = new FormData();
+    formData.append("image", file);
+    formData.append("productData", JSON.stringify(productData));
+    console.log(formData);
+    if (errors.name) {
       swal("Error", "Por favor revise los datos introducidos. ", "error");
-    } else if (sellerId) {
+    } else if (productId) {
       swal({
-        title: "Estas seguro que deseas modificar los datos del vendedor?",
-        text: `Nombre: ${sellerData.name}
-         Teléfono: ${sellerData.phone}
-         Correo: ${sellerData.email}
-         Dirección:${sellerData.address}`,
+        title: "Estas seguro que deseas modificar el producto?",
+        text: `Nombre: ${productData.name}
+         Cantidad: ${productData.quantity}
+         Precio de costo: ${productData.cost_price}
+         Precio de venta:${productData.sale_price}
+         Descuento:${productData.discount}
+         Categoría:${productData.category}`,
         icon: "warning",
         buttons: true,
         dangerMode: true,
       }).then((edit) => {
         if (edit) {
           swal(
-            "El vendedor fue modificado",
-            dispatch(putSeller(sellerData)),
+            "El producto fue modificado",
+
+            dispatch(updateProduct(productData)),
             onClose(),
             {
               icon: "success",
             }
           );
         } else {
-          swal("El vendedor no se ha modificado");
+          swal("El producto no se ha modificado");
         }
       });
     } else {
       swal({
-        title: "Estas seguro que deseas agregar el vendedor?",
-        text: `Nombre: ${sellerData.name}
-        Teléfono: ${sellerData.phone}
-        Correo: ${sellerData.email}
-        Dirección: ${sellerData.address}`,
+        title: "Estas seguro que deseas agregar el producto?",
+        text: `Nombre: ${productData.name}
+        Cantidad: ${productData.quantity}
+        Precio de costo: ${productData.cost_price}
+        Precio de venta:${productData.sale_price}
+        Descuento:${productData.discount}
+        Categoría:${productData.category}`,
         icon: "warning",
         buttons: true,
         dangerMode: true,
       }).then((edit) => {
         if (edit) {
           swal(
-            "El vendedor fue agregado",
-            dispatch(postSeller(sellerData)),
-            setSellerData({
+            "El producto fue agregado",
+            dispatch(createProduct(formData)),
+            setProductData({
               name: "",
-              email: "",
-              phone: "",
-              address: "",
+
+              quantity: "",
               enable: true,
+              cost_price: "",
+              sale_price: "",
+              discount: "",
+              category: "",
               bossId,
             }),
             onClose(),
@@ -112,29 +135,31 @@ function FormSeller({ isVisible, onClose }) {
             }
           );
         } else {
-          swal("El vendedor no ha sido agregado");
+          swal("El producto no ha sido agregado");
         }
       });
     }
   };
 
   useEffect(() => {
-    if (sellerId) {
-      const obj = sellers.find((seller) => seller.id === sellerId);
-      setSellerData({ ...obj, id: sellerId });
+    if (productId) {
+      const obj = products.find((product) => product.id === productId);
+      setProductData({ ...obj, id: productId });
     } else
-      setSellerData({
+      setProductData({
         name: "",
-        email: "",
-        phone: "",
-        address: "",
+
+        quantity: "",
         enable: true,
-        password: "12345",
+        cost_price: "",
+        sale_price: "",
+        discount: "",
+        category: "",
         bossId,
       });
-  }, [sellerId, sellers, dispatch]);
+  }, [productId, products, dispatch]);
 
-  if (!isVisible) return null;
+  if (!isVisible) return undefined;
   return (
     <div
       className="fixed inset-0  bg-black bg-opacity-25 backdrop-blur-sm flex justify-center items-center"
@@ -147,17 +172,17 @@ function FormSeller({ isVisible, onClose }) {
         onSubmit={handleSubmit}
       >
         <h4 className="text-xl font-medium text-light">
-          {sellerId ? "Actualizar vendedor" : "Guardar un vendedor"}
+          {productId ? "Actualizar producto" : "Guardar un producto"}
         </h4>
         <section className="flex flex-col gap-y-2">
           <label className="text-sm font-medium text-light" htmlFor="name">
-            Nombre completo:
+            Nombre:
           </label>
           <div className="relative">
             <input
               className="bg-base-light/70 py-1 rounded-md outline-none pl-8 pr-4 w-full"
               type="text"
-              value={sellerData.name}
+              value={productData.name}
               name="name"
               onChange={handleInputChange}
             />
@@ -167,59 +192,122 @@ function FormSeller({ isVisible, onClose }) {
         </section>
 
         <section className="flex flex-col gap-y-2">
-          <label className="text-sm font-medium text-light" htmlFor="phone">
-            Teléfono:{" "}
+          <label className="text-sm font-medium text-light" htmlFor="image">
+            Imagen:{" "}
           </label>
           <div className="relative">
             <input
               className="bg-base-light/70 py-1 rounded-md outline-none pl-8 pr-4 w-full"
-              type="text"
-              value={sellerData.phone}
-              name="phone"
+              type="file"
+              FileList={file}
+              name="image"
               onChange={handleInputChange}
             />
             <RiPhoneLine className="absolute top-1/2 -translate-y-1/2 left-2 text-xl text-secondary " />
           </div>
-          {errors.phone && (
-            <span style={{ color: "red" }}> {errors.phone}</span>
+          {errors.image && (
+            <span style={{ color: "red" }}> {errors.image}</span>
           )}
         </section>
 
         <section className="flex flex-col gap-y-2">
-          <label className="text-sm font-medium text-light" htmlFor="email">
-            Correo:{" "}
+          <label className="text-sm font-medium text-light" htmlFor="quantity">
+            Cantidad:{" "}
           </label>
           <div className="relative">
             <input
               className="bg-base-light/70 py-1 rounded-md outline-none pl-8 pr-4 w-full"
               type="text"
-              value={sellerData.email}
-              name="email"
+              value={productData.quantity}
+              name="quantity"
               onChange={handleInputChange}
             />
             <RiMailLine className="absolute top-1/2 -translate-y-1/2 left-2 text-xl text-secondary " />
           </div>
-          {errors.email && (
-            <span style={{ color: "red" }}> {errors.email}</span>
+          {errors.quantity && (
+            <span style={{ color: "red" }}> {errors.quantity}</span>
           )}
         </section>
 
         <section className="flex flex-col gap-y-2">
-          <label className="text-sm font-medium text-light" htmlFor="address">
-            Dirección:{" "}
+          <label
+            className="text-sm font-medium text-light"
+            htmlFor="cost_price"
+          >
+            Precio de costo:{" "}
           </label>
           <div className="relative">
             <input
               className="bg-base-light/70 py-1 rounded-md outline-none pl-8 pr-4 w-full"
               type="text"
-              value={sellerData.address}
-              name="address"
+              value={productData.cost_price}
+              name="cost_price"
               onChange={handleInputChange}
             />
             <RiHome2Line className="absolute top-1/2 -translate-y-1/2 left-2 text-xl text-secondary " />
           </div>
-          {errors.address && (
-            <span style={{ color: "red" }}> {errors.address}</span>
+          {errors.cost_price && (
+            <span style={{ color: "red" }}> {errors.cost_price}</span>
+          )}
+        </section>
+
+        <section className="flex flex-col gap-y-2">
+          <label
+            className="text-sm font-medium text-light"
+            htmlFor="sale_price"
+          >
+            Precio de venta:{" "}
+          </label>
+          <div className="relative">
+            <input
+              className="bg-base-light/70 py-1 rounded-md outline-none pl-8 pr-4 w-full"
+              type="text"
+              value={productData.sale_price}
+              name="sale_price"
+              onChange={handleInputChange}
+            />
+            <RiHome2Line className="absolute top-1/2 -translate-y-1/2 left-2 text-xl text-secondary " />
+          </div>
+          {errors.sale_price && (
+            <span style={{ color: "red" }}> {errors.sale_price}</span>
+          )}
+        </section>
+
+        <section className="flex flex-col gap-y-2">
+          <label className="text-sm font-medium text-light" htmlFor="discount">
+            Descuento:{" "}
+          </label>
+          <div className="relative">
+            <input
+              className="bg-base-light/70 py-1 rounded-md outline-none pl-8 pr-4 w-full"
+              type="text"
+              value={productData.discount}
+              name="discount"
+              onChange={handleInputChange}
+            />
+            <RiHome2Line className="absolute top-1/2 -translate-y-1/2 left-2 text-xl text-secondary " />
+          </div>
+          {errors.discount && (
+            <span style={{ color: "red" }}> {errors.discount}</span>
+          )}
+        </section>
+
+        <section className="flex flex-col gap-y-2">
+          <label className="text-sm font-medium text-light" htmlFor="category">
+            Categoría:{" "}
+          </label>
+          <div className="relative">
+            <input
+              className="bg-base-light/70 py-1 rounded-md outline-none pl-8 pr-4 w-full"
+              type="text"
+              value={productData.category}
+              name="category"
+              onChange={handleInputChange}
+            />
+            <RiHome2Line className="absolute top-1/2 -translate-y-1/2 left-2 text-xl text-secondary " />
+          </div>
+          {errors.category && (
+            <span style={{ color: "red" }}> {errors.category}</span>
           )}
         </section>
 
@@ -237,7 +325,7 @@ function FormSeller({ isVisible, onClose }) {
             className="p-2 bg-emerald-400 shadow-md shadow-emerald-400/20 rounded-md hover:bg-emerald-400/80 transition-all"
             type="submit"
           >
-            {sellerId ? "Actualizar" : "Guardar"}
+            {productId ? "Actualizar" : "Guardar"}
           </button>
         </footer>
       </form>
@@ -245,4 +333,4 @@ function FormSeller({ isVisible, onClose }) {
   );
 }
 
-export default FormSeller;
+export default Formproduct;

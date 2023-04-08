@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { selectedClientCheckbox } from '../../app/features/clientSlice';
-import { getSellers } from '../../services/sellersServices';
+import { getSeller } from '../../services/sellersServices';
 
 
 const ClientsItems = ({ item }) => {
@@ -25,7 +25,7 @@ const ClientsItems = ({ item }) => {
 
   useEffect(() => {
    if(item.salesmanId) {
-    getSellers(item.salesmanId).then(res => {
+    getSeller(item.salesmanId).then(res => {
         const name = res.name
         setSellerName(name)
     })

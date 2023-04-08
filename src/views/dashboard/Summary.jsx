@@ -19,28 +19,32 @@ const Summary = () => {
       <SideBar />
       {role !== "admin" ? (
         <section className=" lg:pl-72 h-[100vh] overflow-y-auto flex flex-col z-[2] w-[100vw] lg:w-auto">
-            {/* Voy a reintegrar todas las estadisticas pronto!! */}
-            {/* <StockChart />
-             <SalesChart />
-            <PromoProductTable />
-            Calendario */}
-          <MainSeller />
+          {/* Voy a reintegrar todas las estadisticas pronto!! */}
+          {/* Ire trabajando con la logica de los Graficos y necesito mostrarlos para comprobar que esten funcionando. Att: Cristopher */}
+          <div className=" h-full flex flex-col justify-center items-center ">
+            <StockChart />
+            <SalesChart />
+          </div>
+          {/* <PromoProductTable />
+          Calendario
+          <MainSeller /> */}
         </section>
-
       ) : (
         <>
-          <section className="lg:pl-72 h-[100vh] overflow-y-auto flex flex-col z-[2] w-[100vw] lg:w-auto">
-            <div className=" h-[20em] w-[30em] flex justify-center items-center text-black">
-              <TotalSalesChart />
-            </div>
-            <div className="h-[20em] w-[30em] flex justify-center items-center text-black">
-              <InventoryChart />
-            </div>
-            <div className=" h-[20em] w-[30em] flex justify-center items-center text-black">
-              <MonthlyCompareChart />
-            </div>
-            <div className=" flex justify-center items-center h-[20em] w-[30em] rounded text-black">
-              <BestSeller />
+          <section className=" lg:pl-72 h-[100vh] overflow-y-auto flex lg:w-auto">
+            <div className="flex-wrap flex justify-center items-center gap-4">
+              <div className=" h-[20em] w-[30em] flex justify-center items-center text-black">
+                <TotalSalesChart />
+              </div>
+              <div className="h-[20em] w-[30em] flex justify-center items-center text-black">
+                <InventoryChart />
+              </div>
+              <div className=" h-[20em] w-[30em] flex justify-center items-center text-black">
+                <MonthlyCompareChart />
+              </div>
+              <div className=" flex justify-center items-center h-[20em] w-[30em] rounded text-black">
+                <BestSeller />
+              </div>
             </div>
           </section>
         </>

@@ -10,7 +10,6 @@ import {
 } from "chart.js";
 
 Chart.register(CategoryScale, LinearScale, Tooltip, Legend, BarElement);
-
 const StockChart = () => {
   const data = {
     labels: [
@@ -38,18 +37,18 @@ const StockChart = () => {
 
   const options = {
     scales: {
-      yAxes: [
-        {
-          ticks: {
-            beginAtZero: true,
-          },
-        },
-      ],
+      // yAxes: [
+      //   {
+      //     ticks: {
+      //       beginAtZero: true,
+      //     },
+      //   },
+      // ],
     },
   };
 
   return (
-    <div className="w-[100%] text-white">
+    <div className="w-[50%] text-white">
       <Bar data={data} />
     </div>
   );

@@ -128,7 +128,6 @@ export const {
   sortEnabledSellers,
   resetSellers,
   searchSellers,
-
   cleanSellertSelect,
 } = sellerSlice.actions;
 export default sellerSlice.reducer;

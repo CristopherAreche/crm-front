@@ -1,7 +1,43 @@
-import React from "react";
+import React, { useState } from "react";
+import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { getBoss } from "../../app/features/bossSlice";
+import {
+  Chart as ChartJS,
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  Title,
+  Tooltip,
+  Legend,
+  Colors,
+} from "chart.js";
 import { Line } from "react-chartjs-2";
+ChartJS.register(
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  Title,
+  Tooltip,
+  Legend,
+  Colors
+);
 
 const TotalSalesChart = () => {
+  const dispatch = useDispatch();
+  const boss = useSelector((state) => state.boss?.boss);
+  console.log("-->", boss);
+
+  useState(() => {
+    dispatch(getBoss());
+  }, []);
+
+  ChartJS.defaults.font.size = 20;
+  ChartJS.defaults.color = "white";
+  ChartJS.defaults.backgroundColor = "blue";
+
   const salesData = [100, 50, 250, 350, 70, 160, 400, 600, 500, 300, 470, 700];
   const chartData = {
     labels: [
@@ -32,13 +68,13 @@ const TotalSalesChart = () => {
     responsive: true,
     maintainAspectRatio: false,
     scales: {
-      yAxes: [
-        {
-          ticks: {
-            beginAtZero: true,
-          },
-        },
-      ],
+      // yAxes: [
+      //   {
+      //     ticks: {
+      //       beginAtZero: true,
+      //     },
+      //   },
+      // ],
     },
   };
 

@@ -8,7 +8,7 @@ import swal from "sweetalert";
 function CreateClient({ isVisible, onClose }) {
   const dispatch = useDispatch();
   const clientId = useSelector((state) => state.clients.clientSelected);
-  const salesmanId = "00b971ac-b220-4457-bada-89476cb64f0e";
+  const salesmanId = "ae8b659a-1158-411e-a16c-06ca9c0accc5";
 
   const clients = useSelector((state) => state.clients.clients);
   const handleClose = (e) => {
@@ -109,7 +109,14 @@ function CreateClient({ isVisible, onClose }) {
   useEffect(() => {
     if (clientId) {
       const obj = clients.find((client) => client.id === clientId);
-      setClientData({ ...obj, salesmanId });
+
+      setClientData({
+        name: obj.name,
+        email: obj.email,
+        phone: obj.phone,
+        enable: obj.enable,
+        id: obj.id,
+      });
     } else
       setClientData({
         name: "",

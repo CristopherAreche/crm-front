@@ -4,7 +4,6 @@ import { postUserLogin } from '../../services/authServices';
 
 const initialState = {
     userInfo: [],
-    userLogin: [],
     message: "",
     status: "idle",
     error: null,
@@ -29,21 +28,7 @@ const userInfoSlice = createSlice({
         state.error = action.payload;
       })
   },
-  LoginReducers: (builder) => {
-    builder
-      .addCase(postUserLogin.pending, (state) => {
-        state.isLoading = true;
-        state.error = null;
-      })
-      .addCase(postUserLogin.fulfilled, (state, action) => {
-        state.isLoading = false;
-        state.userLogin = action.payload;
-      })
-      .addCase(postUserLogin.rejected, (state, action) => {
-        state.isLoading = false;
-        state.error = action.payload;
-      })
-  },
+
 });
 
 export default userInfoSlice.reducer;

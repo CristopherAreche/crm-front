@@ -5,6 +5,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 import { useDispatch } from "react-redux";
 import { postUserLogin } from "../../services/authServices";
 import {useState } from "react";
+import swal from "sweetalert";
 
 const Register = () => {
   const [password, setPassWord] = useState("");
@@ -24,6 +25,7 @@ const Register = () => {
       password:password,
     };
     dispatch(postUserLogin(userLogin));
+    swal( "Usuario registrado","Tu usuario se ha registrado con exito, ve al panel de inicio de sesión","success" );
   }
 
   const valUser = (value) => {

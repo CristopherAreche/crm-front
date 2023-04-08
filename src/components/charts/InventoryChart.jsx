@@ -1,5 +1,23 @@
 import React from "react";
 import { Bar } from "react-chartjs-2";
+import {
+  Chart as ChartJS,
+  LineController,
+  LineElement,
+  PointElement,
+  LinearScale,
+  Title,
+  Tooltip,
+} from "chart.js";
+
+ChartJS.register(
+  LineController,
+  LineElement,
+  PointElement,
+  LinearScale,
+  Title,
+  Tooltip
+);
 
 const InventoryChart = () => {
   const products = [
@@ -37,13 +55,13 @@ const InventoryChart = () => {
   // Configuración de opciones para el gráfico de barras
   const options = {
     scales: {
-      yAxes: [
-        {
-          ticks: {
-            beginAtZero: true,
-          },
-        },
-      ],
+      // yAxes: [
+      //   {
+      //     ticks: {
+      //       beginAtZero: true,
+      //     },
+      //   },
+      // ],
     },
   };
 

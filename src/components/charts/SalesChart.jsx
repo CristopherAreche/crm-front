@@ -36,19 +36,19 @@ const SalesChart = () => {
 
   const options = {
     scales: {
-      yAxes: [
-        {
-          id: "y",
-          ticks: {
-            beginAtZero: true,
-          },
-        },
-      ],
+      // yAxes: [
+      //   {
+      //     id: "y",
+      //     ticks: {
+      //       beginAtZero: true,
+      //     },
+      //   },
+      // ],
     },
   };
 
   return (
-    <div>
+    <div className="w-[50%] text-white">
       <Line data={data} options={options} />
     </div>
   );

@@ -109,8 +109,8 @@ const BossFilterTop = () => {
           onChange={handleEnableOrderChange}
         >
           <option value="todos">Todos</option>
-          <option value="desc">Deshabilitado</option>
-          <option value="asc">Habilitado</option>
+          <option value="desc">Habilitado</option>
+          <option value="asc">Deshabilitado</option>
         </select>
       </div>
       <div className="flex gap-x-2 items-center">

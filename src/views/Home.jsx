@@ -55,7 +55,7 @@ const Home = () => {
           <div className=" w-[50%] flex items-center">
             <img
               src={imgDetail}
-              className=" animate-bounce w-full"
+              className=" animate-pulse w-full"
               alt="3D icon of computer"
             />
           </div>

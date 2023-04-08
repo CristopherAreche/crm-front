@@ -55,7 +55,9 @@ export const sellerSlice = createSlice({
         order === "todos"
           ? allSellers
           : state.sellers.sort((a, b) =>
-              order === "asc" ? a.vip - b.vip : b.vip - a.vip
+              order === "asc"
+                ? a.avgFeedback - b.avgFeedback
+                : b.avgFeedback - a.avgFeedback
             );
       state.sellers = sellersSorted;
     },
@@ -66,9 +68,7 @@ export const sellerSlice = createSlice({
         orderEn === "todos"
           ? allSellers
           : state.sellers.sort((a, b) =>
-              orderEn === "asc"
-                ? a.performance - b.performance
-                : b.performance - a.performance
+              orderEn === "asc" ? a.enable - b.enable : b.enable - a.enable
             );
       state.sellers = sellersSorted;
     },
@@ -80,8 +80,8 @@ export const sellerSlice = createSlice({
           ? allSellers
           : state.sellers.sort((a, b) =>
               orderP === "asc"
-                ? a.totalsales - b.totalsales
-                : b.totalsales - a.totalsales
+                ? a.total_monthly_sales - b.total_monthly_sales
+                : b.total_monthly_sales - a.total_monthly_sales
             );
       state.sellers = sellersSorted;
     },
@@ -107,6 +107,7 @@ export const sellerSlice = createSlice({
       .addCase(postSeller.fulfilled, (state, action) => {
         statePostSeller(state, action);
       })
+
       .addCase(putSeller.fulfilled, (state, action) => {
         statePutSeller(state, action);
       })
@@ -127,7 +128,6 @@ export const {
   sortEnabledSellers,
   resetSellers,
   searchSellers,
-
   cleanSellertSelect,
 } = sellerSlice.actions;
 export default sellerSlice.reducer;

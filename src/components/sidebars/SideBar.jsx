@@ -30,7 +30,6 @@ function SideBar({ typeSidebar, summary, inventory, clients, sellers }) {
     }
   };
 
-  
   return (
     <>
       <section

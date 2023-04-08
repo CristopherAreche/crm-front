@@ -27,6 +27,7 @@ function FormSeller({ isVisible, onClose }) {
     phone: "",
     address: "",
     enable: true,
+    password: "12345",
     bossId,
   });
 
@@ -128,6 +129,7 @@ function FormSeller({ isVisible, onClose }) {
         phone: "",
         address: "",
         enable: true,
+        password: "12345",
         bossId,
       });
   }, [sellerId, sellers, dispatch]);

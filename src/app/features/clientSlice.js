@@ -21,7 +21,7 @@ import {
 } from "../../handlers/handlerClients";
 
 const initialState = {
-  clientRole: "adm",
+  clientRole: "admin",
   clients: [],
   copyClients: [],
   clientDetail: [],

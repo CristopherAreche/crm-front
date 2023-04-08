@@ -3,7 +3,7 @@ import axios from "axios";
 import swal from "sweetalert";
 
 const API_URL_CLIENT = "https://crm.up.railway.app/api/client";
-const salesmanId = "cbc832f3-6bf7-4e1c-8006-41080b312382";
+const salesmanId = "ae8b659a-1158-411e-a16c-06ca9c0accc5";
 
 export const getClients = createAsyncThunk("clients/getClients", async () => {
   const response = await axios.get(
@@ -18,7 +18,7 @@ export const postClient = createAsyncThunk(
     try {
       const { data } = await axios.post(API_URL_CLIENT, payload);
       console.log(data);
-      swal(
+      await swal(
         "Agregar",
         `El cliente ${data.name} fue creado correctamente`,
         "succes"
@@ -27,7 +27,7 @@ export const postClient = createAsyncThunk(
       return data;
     } catch (error) {
       console.log(error);
-      swal("Error", `${error.response.data.error}`, "error");
+      await swal("Error", `${error.response.data.error}`, "error");
       return error.response.data.error;
     }
   }
@@ -36,11 +36,12 @@ export const postClient = createAsyncThunk(
 export const putClient = createAsyncThunk(
   `clients/putClient`,
   async (payload) => {
+    console.log(payload);
     try {
       const { data } = await axios.put(API_URL_CLIENT, payload);
 
       console.log(data);
-      swal(
+      await swal(
         "Modificación",
         `El cliente ${data.name} fua actualizado correctamente`,
         "success"
@@ -48,7 +49,7 @@ export const putClient = createAsyncThunk(
 
       return data;
     } catch (error) {
-      swal("Error", `${error.response.data.error}`, "error");
+      await swal("Error", `${error.response.data.error}`, "error");
       return error.response.data.error;
     }
   }

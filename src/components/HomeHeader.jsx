@@ -9,7 +9,7 @@ const HomeHeader = () => {
 
   return (
     <>
-      <header className="flex py-4 lg:py-6 items-center justify-evenly fixed bg-base z-50 right-0 left-0">
+      <header className="flex py-4 lg:py-6 items-center justify-evenly fixed bg-base/10 z-50 right-0 left-0">
         <LinkRoll to="inicio" smooth={true} duration={500}>
           <h2 className="text-xl text-white  font-bold tracking-widest hover:text-light transition-colors cursor-pointer z-10">
             LOGO

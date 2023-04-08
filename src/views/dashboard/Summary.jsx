@@ -19,15 +19,7 @@ const Summary = () => {
       <SideBar />
       {role !== "admin" ? (
         <section className=" lg:pl-72 h-[100vh] overflow-y-auto flex flex-col z-[2] w-[100vw] lg:w-auto">
-          {/* Voy a reintegrar todas las estadisticas pronto!! */}
-          {/* Ire trabajando con la logica de los Graficos y necesito mostrarlos para comprobar que esten funcionando. Att: Cristopher */}
-          <div className=" h-full flex flex-col justify-center items-center ">
-            <StockChart />
-            <SalesChart />
-          </div>
-          {/* <PromoProductTable />
-          Calendario
-          <MainSeller /> */}
+          <MainSeller />
         </section>
       ) : (
         <>

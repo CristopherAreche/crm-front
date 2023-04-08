@@ -28,7 +28,7 @@ const MainPerfilBoss = () => {
       <HeaderPerfil data={bossPerfil} />
       <section className="grid grid-cols-1 lg:grid-cols-6 ">
         {/* Section Principal Information */}
-        <section className=" col-span-2 flex flex-col gap-y-6 items-start mb-6 lg:mb-0">
+        <section className=" col-span-2 flex flex-col gap-y-6 items-center lg:items-start mb-6 lg:mb-0">
           <PrincipalInformation data={bossPerfil} />
           <div className="flex lg:flex-col justify-between w-full lg:gap-y-2 items-start">
             <button
@@ -52,7 +52,7 @@ const MainPerfilBoss = () => {
               Informacion de Empresa
             </button>
           </div>
-          <button className="bg-secondary p-3 shadow-secondary/25 hover:bg-secondary/70 transition-all rounded-full box-content shadow-md">
+          <button className="bg-secondary p-3 shadow-secondary/25 hover:bg-secondary/70 transition-all rounded-full box-content shadow-md ">
             <RiEdit2Line className="text-xl text-base-light" />
           </button>
         </section>

@@ -1,15 +1,13 @@
-import React from "react";
-import { Bar } from "react-chartjs-2";
 import {
   Chart,
-  CategoryScale,
-  LinearScale,
+  ArcElement,
   Tooltip,
-  Legend,
-  BarElement,
+  Legend
 } from "chart.js";
+import { Doughnut } from "react-chartjs-2";
 
-Chart.register(CategoryScale, LinearScale, Tooltip, Legend, BarElement);
+Chart.register(Tooltip, Legend, ArcElement);
+
 const StockChart = () => {
   const data = {
     labels: [
@@ -18,39 +16,38 @@ const StockChart = () => {
       "Producto 3",
       "Producto 4",
       "Producto 5",
-      "Producto 6",
-      "Producto 7",
-      "Producto 8",
-      "Producto 9",
-      "Producto 10",
+
     ],
-    datasets: [
-      {
-        label: "Top 10 Productos en Stock",
-        data: [20, 35, 15, 50, 45, 30, 25, 60, 10, 70],
-        backgroundColor: "rgba(54, 162, 235, 0.5)",
-        borderColor: "rgba(54, 162, 235, 1)",
-        borderWidth: 1,
-      },
-    ],
+    datasets: [{
+      label: 'Productos con mas Stock',
+      data: [300, 200, 100, 150, 250],
+      backgroundColor: [
+        'rgb(255, 99, 132)',
+        'rgb(54, 162, 235)',
+        'rgb(255, 205, 86)',
+        'rgb(75, 192, 192)',
+        'rgb(153, 102, 255)'
+      ],
+      hoverOffset: 4
+    }]
   };
 
   const options = {
-    scales: {
-      // yAxes: [
-      //   {
-      //     ticks: {
-      //       beginAtZero: true,
-      //     },
-      //   },
-      // ],
-    },
+    maintainAspectRatio: false,
+    width: 100,
+    height: 100,
+    align: 'start',
+    plugins: {
+      legend: {
+        display: false
+      }
+    }
   };
-
   return (
-    <div className="w-[50%] text-white">
-      <Bar data={data} />
+    <div className="">
+          <Doughnut data={data} options={options} />
     </div>
+
   );
 };
 export default StockChart;

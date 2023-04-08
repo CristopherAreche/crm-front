@@ -1,9 +1,9 @@
 import { Link } from "react-router-dom";
-import {RiLogoutCircleRLine,RiCloseFill,RiMenu3Fill,RiUserSettingsLine,RiTyphoonFill } from "react-icons/ri";
+import {RiLogoutCircleRLine,RiCloseFill,RiMenu3Fill,RiUserSettingsLine,RiTyphoonFill, RiHandCoinLine } from "react-icons/ri";
 import { useState } from "react";
 import ClientDetailSideBar from "./ClientDetailSideBar";
 import { RiTeamLine } from "react-icons/ri";
-import {MdOutlineInventory2, MdSell, MdOutlineSpaceDashboard} from "react-icons/md";
+import {MdOutlineInventory2, MdOutlineSpaceDashboard} from "react-icons/md";
 import { useSelector } from "react-redux";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
@@ -94,7 +94,7 @@ function SideBar({ typeSidebar, summary, inventory, clients, sellers }) {
                 clients && "bg-[purple]"
               } flex px-12 py-2  active:scale-95 active:bg-light/20 gap-x-6 items-center text-lg text-gray-300 font-medium   cursor-pointer  hover:text-gray-100 transition-all`}
             >
-              <MdSell className="text-3xl text-secondary" /> Clientes
+              <RiHandCoinLine className="text-3xl text-secondary" /> Clientes
             </Link>
           </div>
           <div>

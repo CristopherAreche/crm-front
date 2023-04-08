@@ -41,7 +41,7 @@ const PersonalInformationView = ({data}) => {
             <p className='text-light text-lg font-medium'>Correo electronico</p>
             <RiMailLine className='text-secondary text-xl border-2 border-secondary p-1 box-content rounded-full'/>
           </header>
-          <p className='text-light/80 '>{data.email}</p>
+          <p className='text-light/80 w-22 lg:w-full truncate'>{data.email}</p>
         </article> 
       </main>
     </section>

@@ -14,7 +14,7 @@ const Login = () => {
   const [errorUser, SetErrorUser] = useState(true);
   const [errorPassword, setErrorPassword] = useState(true);
   const [access, setAccess] = useState(false);
-  const regularPassword = /^(?=.\d)(?=.[a-z])(?=.*[A-Z])\w{8,}$/; //al menos una letra, al menos un numero, al menos una letra mayúscula, al menos 8 caracteres, no permite espacios.
+  const regularPassword = /^(?=.\d)(?=.[a-z])(?=.*[A-Z])\w{8,}$/;//al menos una letra, al menos un numero, al menos una letra mayúscula, al menos 8 caracteres, no permite espacios.
   const regularUser = /\S+@\S+\.\S+/; //un correo electronico
 
   const { loginWithRedirect } = useAuth0();

@@ -19,12 +19,18 @@ const Register = () => {
   const dispatch = useDispatch();
 
   const register = () => {
-    const userLogin = {
-      status: "register",
-      email:email,
-      password:password,
-    };
-    dispatch(postUserLogin(userLogin));
+   const formData=new FormData();
+   const formLogin = { 
+        name:email,
+        username:email,
+        email:email,
+        password:password, 
+      };
+    formData.append("formLogin",JSON.stringify(formLogin));
+    for (let entry of formData.entries()) {
+      console.log(entry[0] + ": " + entry[1]);
+    }
+    dispatch(postUserLogin(formData));
     swal( "Usuario registrado","Tu usuario se ha registrado con exito, ve al panel de inicio de sesión","success" );
   }
 
@@ -100,7 +106,7 @@ const Register = () => {
           </Link>
         </div>
         <Link
-          onClick={register}
+          onClick={()=>register()}
           to="#"
           className="text-center bg-gradient-to-r from-primary to-secondary py-2 px-4 rounded-md font-bold text-lg hover:scale-[1.02] transition-all"
         >

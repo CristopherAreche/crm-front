@@ -1,5 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
+import swal from "sweetalert";
+
 const API_URL_PRODUCTS = "https://crm.up.railway.app/api/product";
 const bossId = "00d4cf20-b761-40cc-baf2-7c40aa53caf9";
 
@@ -22,19 +24,43 @@ export const getProductById = createAsyncThunk(
 export const createProduct = createAsyncThunk(
   "products/createProduct",
   async (product) => {
-    const response = await axios.post(`${API_URL_PRODUCTS}`, product);
-    return response.data;
+    console.log(product);
+    try {
+      const { data } = await axios.post(`${API_URL_PRODUCTS}`, product);
+      await swal(
+        "Agregar",
+        `El producto ${data.name} fue creado correctamente`,
+        "succes"
+      );
+      console.log(`data ${data}`);
+      return data;
+    } catch (error) {
+      console.log(error);
+      await swal("Error", `${error.response.data.error}`, "error");
+      return error.response.data.error;
+    }
   }
 );
 
 export const updateProduct = createAsyncThunk(
   "products/updateProduct",
   async (product) => {
-    const response = await axios.put(
-      `${API_URL_PRODUCTS}/${product.id}`,
-      product
-    );
-    return response.data;
+    console.log(product);
+    try {
+      const { data } = await axios.put(API_URL_PRODUCTS, product);
+
+      await swal(
+        "Modificación",
+        `El producto ${data.name} fua actualizado correctamente`,
+        "success"
+      );
+
+      return data;
+    } catch (error) {
+      await swal("Error", `${error.response.data.error}`, "error");
+      console.log(error.response);
+      return error.response.data.error;
+    }
   }
 );
 

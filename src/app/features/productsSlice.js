@@ -5,9 +5,12 @@ import {
   updateProduct,
   deleteProduct,
   toggleStatusProduct,
+  createProduct,
 } from "../../services/productsServices";
 import {
   stateDeleteProduct,
+  statePostProduct,
+  statePutProduct,
   stateToggleStatusProduct,
 } from "../../handlers/handlerProducts";
 const initialState = {
@@ -63,13 +66,25 @@ const productsSlice = createSlice({
         state.isLoading = false;
         state.error = action.payload;
       })
+      .addCase(createProduct.pending, (state) => {
+        state.isLoading = true;
+        state.error = null;
+      })
+      .addCase(createProduct.fulfilled, (state, action) => {
+        state.isLoading = false;
+        statePostProduct(state, action);
+      })
+      .addCase(createProduct.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.payload;
+      })
       .addCase(updateProduct.pending, (state) => {
         state.isLoading = true;
         state.error = null;
       })
       .addCase(updateProduct.fulfilled, (state, action) => {
         state.isLoading = false;
-        state.products = action.payload;
+        statePutProduct(state, action);
       })
       .addCase(updateProduct.rejected, (state, action) => {
         state.isLoading = false;

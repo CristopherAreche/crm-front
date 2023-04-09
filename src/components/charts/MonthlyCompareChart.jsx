@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import { Chart } from "chart.js";
+import { Chart } from "chart.js/auto";
 
 const MonthlyCompareChart = () => {
   const chartRef = useRef(null);
@@ -12,6 +12,7 @@ const MonthlyCompareChart = () => {
     const ctx = chartRef.current.getContext("2d");
     const newChart = new Chart(ctx, {
       type: "bar",
+      id: 1,
       data: {
         labels: ["Mes anterior", "Mes actual"],
         datasets: [

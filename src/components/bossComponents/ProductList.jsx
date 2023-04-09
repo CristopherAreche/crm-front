@@ -74,6 +74,9 @@ const ProductList = () => {
                 <th scope="col" className=" px-6 py-4">
                   Categoria
                 </th>
+                <th scope="col" className=" px-6 py-4">
+                  Imagen
+                </th>
               </tr>
             </thead>
             <tbody className=" dark:border-light dark:bg-base-light/60">
@@ -111,6 +114,13 @@ const ProductList = () => {
                     <td>${item.sale_price}</td>
                     <td>%{item.discount}</td>
                     <td>{item.category}</td>
+                    <td className="px-6 py-4 flex justify-center">
+                      <img
+                        className="h-24 px-2 py-2 "
+                        src={item?.image}
+                        alt=""
+                      />
+                    </td>
                   </tr>
                 ))}
             </tbody>

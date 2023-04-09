@@ -9,7 +9,7 @@ const HomeHeader = () => {
 
   return (
     <>
-      <header className="flex py-4 lg:py-6 items-center justify-evenly fixed bg-base/10 z-50 right-0 left-0">
+      <header className="flex py-4 lg:py-6 items-center justify-evenly fixed bg-base z-50 right-0 left-0">
         <LinkRoll to="inicio" smooth={true} duration={500}>
           <h2 className="text-xl text-white  font-bold tracking-widest hover:text-light transition-colors cursor-pointer z-10">
             LOGO
@@ -49,7 +49,10 @@ const HomeHeader = () => {
           </LinkRoll>
         </ul>
         <section className="hidden lg:flex gap-x-8 items-center">
-          <Link to="/authentication/register" className="bg-gradient-to-r from-primary to-secondary px-2 py-1 rounded-md text-white font-medium text-lg hover:scale-[1.03] transition-all">
+          <Link
+            to="/authentication/register"
+            className="bg-gradient-to-r from-primary to-secondary px-2 py-1 rounded-md text-white font-medium text-lg hover:scale-[1.03] transition-all"
+          >
             Empezar Ahora
           </Link>
           <Link

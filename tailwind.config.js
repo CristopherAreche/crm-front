@@ -5,6 +5,14 @@ module.exports = {
     "./node_modules/react-tailwindcss-datepicker/dist/index.esm.js",
   ],
   theme: {
+    screens: {
+      iphone12: "390px",
+      sm: "640px",
+      md: "768px",
+      lg: "1024px",
+      xl: "1280px",
+      xxl: "1536px",
+    },
     extend: {
       display: ["group-focus"],
       colors: {

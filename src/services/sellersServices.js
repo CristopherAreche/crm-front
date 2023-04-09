@@ -3,20 +3,17 @@ import axios from "axios";
 import swal from "sweetalert";
 
 const API_URL_SELLER = `https://crm.up.railway.app/api/salesman`;
-const bossId = "00d4cf20-b761-40cc-baf2-7c40aa53caf9"
+const bossId = "00d4cf20-b761-40cc-baf2-7c40aa53caf9";
 
-export const getSellers = createAsyncThunk(
-  "sellers/getSellers",
-  async () => {
-    const res = await axios.get(`${API_URL_SELLER}?bossId=${bossId}`);
-    return res.data;
-  }
-);
+export const getSellers = createAsyncThunk("sellers/getSellers", async () => {
+  const res = await axios.get(`${API_URL_SELLER}?bossId=${bossId}`);
+  return res.data;
+});
 
 export const getSeller = async (id) => {
   const res = await axios.get(`${API_URL_SELLER}?bossId=${bossId}&id=${id}`);
   return res.data;
-}
+};
 
 export const postSeller = createAsyncThunk(
   `sellers/postSeller`,

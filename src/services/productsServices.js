@@ -32,7 +32,7 @@ export const createProduct = createAsyncThunk(
         `El producto ${data.name} fue creado correctamente`,
         "succes"
       );
-      console.log(`data ${data}`);
+      console.log(`data ${data.image}`);
       return data;
     } catch (error) {
       console.log(error);

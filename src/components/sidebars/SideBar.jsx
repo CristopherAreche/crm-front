@@ -5,7 +5,6 @@ import ClientDetailSideBar from "./ClientDetailSideBar";
 import { RiTeamLine } from "react-icons/ri";
 import {MdOutlineInventory2, MdOutlineSpaceDashboard} from "react-icons/md";
 import { useSelector } from "react-redux";
-import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { postUserInfo } from "../../services/authServices";
 import { useAuth0 } from "@auth0/auth0-react";

@@ -6,6 +6,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 import { postUserLogin } from "../../services/authServices";
 import { useDispatch } from "react-redux";
 import swal from "sweetalert";
+import { useSelector } from "react-redux";
 
 const Login = () => {
   const [password, setPassWord] = useState("");
@@ -16,18 +17,25 @@ const Login = () => {
   const regularPassword = /^(?=.\d)(?=.[a-z])(?=.*[A-Z])\w{8,}$/; //al menos una letra, al menos un numero, al menos una letra mayúscula, al menos 8 caracteres, no permite espacios.
   const regularUser = /\S+@\S+\.\S+/; //un correo electronico
 
-  const navigate = useNavigate();
   const { loginWithRedirect } = useAuth0();
   const dispatch = useDispatch();
+  const status = useSelector((state) => state.auth.status);
 
-  const login = () => {
-      const userLogin = {
-        status: "login",
-        email:email,
-        password:password,
-      };
-      dispatch(postUserLogin(userLogin));
+  const login = async() => {
+    const userLogin = {
+      status: "login",
+      email:email,
+      password:password,
+    };
+    dispatch(postUserLogin(userLogin));
+    console.log(status);
+    if(status==="failed"){
+      swal("Error", "Usuario o contraseña incorrectos", "error");
     }
+    if(status==="succeeded"){
+      setAccess(true);
+    }
+  };
 
   const valUser = (value) => {
     if (regularUser.test(value)) {

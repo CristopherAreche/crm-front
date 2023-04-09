@@ -1,9 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { postUserInfo } from '../../services/authServices';
-import { postUserLogin } from '../../services/authServices';
-
 const initialState = {
     userInfo: [],
+    userLogin:[],
     message: "",
     status: "idle",
     error: null,
@@ -16,19 +15,17 @@ const userInfoSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(postUserInfo.pending, (state) => {
-        state.isLoading = true;
-        state.error = null;
+        state.status = "loading";
       })
       .addCase(postUserInfo.fulfilled, (state, action) => {
-        state.isLoading = false;
+        state.status = "succeeded";
         state.userInfo = action.payload;
       })
       .addCase(postUserInfo.rejected, (state, action) => {
-        state.isLoading = false;
+        state.status = "failed";
         state.error = action.payload;
       })
   },
-
 });
 
 export default userInfoSlice.reducer;

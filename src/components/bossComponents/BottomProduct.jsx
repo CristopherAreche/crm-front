@@ -5,7 +5,7 @@ import {
   RiCheckboxCircleLine,
   RiDeleteBin5Line,
 } from "react-icons/ri";
-import FormSeller from "../forms/FormSeller";
+import FormProduct from "../forms/FormProduct";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -57,13 +57,13 @@ const BottomProduct = () => {
         <RiCheckboxCircleLine className="text-2xl" />
       </button>
 
-      <button
+      {/* <button
         className="rounded-xl py-2 px-3 shadow-gray-500/20 hover:scale-[1.03] hover:bg-gray-500/60 transition-all shadow-md bg-gray-500 "
         onClick={onDelete}
       >
         <RiDeleteBin5Line className="text-2xl" />
-      </button>
-      <FormSeller isVisible={showModal} onClose={() => setShowModal(false)} />
+      </button> */}
+      <FormProduct isVisible={showModal} onClose={() => setShowModal(false)} />
     </section>
   );
 };

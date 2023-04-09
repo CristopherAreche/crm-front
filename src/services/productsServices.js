@@ -45,11 +45,9 @@ export const createProduct = createAsyncThunk(
 export const updateProduct = createAsyncThunk(
   "products/updateProduct",
   async (product) => {
+    console.log(product);
     try {
-      const { data } = await axios.put(
-        `${API_URL_PRODUCTS}/${product.id}`,
-        product
-      );
+      const { data } = await axios.put(API_URL_PRODUCTS, product);
 
       await swal(
         "Modificación",

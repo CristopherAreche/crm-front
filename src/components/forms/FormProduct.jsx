@@ -4,9 +4,9 @@ import { useDispatch, useSelector } from "react-redux";
 
 import {
   RiUserLine,
-  RiPhoneLine,
   RiMailLine,
   RiHome2Line,
+  RiImageAddFill,
 } from "react-icons/ri";
 import swal from "sweetalert";
 import { createProduct, updateProduct } from "../../services/productsServices";
@@ -72,6 +72,12 @@ function Formproduct({ isVisible, onClose }) {
     formData.append("image", file);
     formData.append("productData", JSON.stringify(productData));
     console.log(formData);
+    // const formDataObj = { ...productData, formData };
+    // console.log(formDataObj);
+    for (let entry of formData.entries()) {
+      console.log(entry[0] + ": " + entry[1]);
+    }
+
     if (errors.name) {
       swal("Error", "Por favor revise los datos introducidos. ", "error");
     } else if (productId) {
@@ -203,7 +209,7 @@ function Formproduct({ isVisible, onClose }) {
               name="image"
               onChange={handleInputChange}
             />
-            <RiPhoneLine className="absolute top-1/2 -translate-y-1/2 left-2 text-xl text-secondary " />
+            <RiImageAddFill className="absolute top-1/2 -translate-y-1/2 left-2 text-xl text-secondary " />
           </div>
           {errors.image && (
             <span style={{ color: "red" }}> {errors.image}</span>

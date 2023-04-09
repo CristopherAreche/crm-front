@@ -22,7 +22,7 @@ const itemsLastesProducst = [
   },
   {
     source : 'https://img.freepik.com/foto-gratis/cuchara-juguete-ninos-cubo-sobre-hierba_127675-2898.jpg?w=740&t=st=1680985860~exp=1680986460~hmac=14ecffa79b4cf1c4a9d4be3c72f605b901dbf146029eefe43e3900e8ac0dd969',
-    product : 'Arenero',
+    name : 'Arenero',
     sale_price: 200,
     category : 'Utensillo',
     lastest : '6'
@@ -158,7 +158,7 @@ const MainSeller = () => {
                         <img src={item.source} className='w-14 h-14 object-cover rounded-tl-md rounded-bl-md' alt='product'/>
                         <div>
                           <p className='text-sm font-medium text-light/90'>{item.name}</p>
-                          <p className='text-xs text-light/80'>{item.category} - {item.sale_price}</p>
+                          <p className='text-xs text-light/80'>{item.category} - ${item.sale_price}</p>
                         </div>
 
                       </div>

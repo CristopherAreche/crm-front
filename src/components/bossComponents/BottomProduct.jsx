@@ -57,12 +57,12 @@ const BottomProduct = () => {
         <RiCheckboxCircleLine className="text-2xl" />
       </button>
 
-      <button
+      {/* <button
         className="rounded-xl py-2 px-3 shadow-gray-500/20 hover:scale-[1.03] hover:bg-gray-500/60 transition-all shadow-md bg-gray-500 "
         onClick={onDelete}
       >
         <RiDeleteBin5Line className="text-2xl" />
-      </button>
+      </button> */}
       <FormProduct isVisible={showModal} onClose={() => setShowModal(false)} />
     </section>
   );

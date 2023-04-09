@@ -1,7 +1,13 @@
 import { RiCloseLine, RiUserLine } from "react-icons/ri";
 import { Link } from "react-router-dom";
+import {Link as LinkRoll} from 'react-scroll'
 
 const NavModal = ({ isOpen, onOpen }) => {
+
+  const closeModal = () => {
+    onOpen(false)
+  }
+
   return (
     <section
       className={`${
@@ -9,7 +15,7 @@ const NavModal = ({ isOpen, onOpen }) => {
       } bg-base-light/90 fixed h-screen w-full top-0 text-center pt-20 z-10 transition-all duration-200`}
     >
       <button
-        onClick={() => onOpen(false)}
+        onClick={closeModal}
         className="absolute top-4 right-4  text-4xl lg:hidden hover:bg-base/40 rounded-full py-1 px-2 box-content z-50 transition-all"
       >
         <RiCloseLine className="text-4xl text-light " />
@@ -22,25 +28,33 @@ const NavModal = ({ isOpen, onOpen }) => {
           className="font-medium text-xl
             py-4 hover:bg-base/40 text-gray-300 hover:text-white transition-all cursor-pointer"
         >
-          Precios
+         <LinkRoll  to="precios" smooth={true}  duration={500} spy={true} onClick={closeModal}>
+            Precios
+         </LinkRoll>         
         </li>
         <li
           className="font-medium text-xl
             py-4 hover:bg-base/40 text-gray-300 hover:text-white transition-all cursor-pointer"
         >
-          Soporte
+           <LinkRoll  to="funcionalidades" smooth={true}  duration={500} spy={true} onClick={closeModal}>
+           Funcionalidades
+         </LinkRoll> 
         </li>
         <li
           className="font-medium text-xl
             py-4 hover:bg-base/40 text-gray-300 hover:text-white transition-all cursor-pointer"
         >
-          Central de ayuda
+           <LinkRoll  to="sobre nosotros" smooth={true}  duration={500} spy={true} onClick={closeModal}>
+           Sobre nosotros
+         </LinkRoll> 
         </li>
         <li
           className="font-medium text-xl
             py-4 hover:bg-base/40 text-gray-300 hover:text-white transition-all cursor-pointer"
         >
-          Sobre nosotros
+           <LinkRoll  to="faq" smooth={true}  duration={500} spy={true} onClick={closeModal}>
+           FAQ
+         </LinkRoll> 
         </li>
       </ul>
       <div className="flex gap-x-8 w-full justify-center items-center">

@@ -53,6 +53,9 @@ const SellerList = () => {
                 CB
               </th>
               <th scope="col" className=" px-6 py-4">
+                Foto
+              </th>
+              <th scope="col" className=" px-6 py-4">
                 Nombre
               </th>
               <th scope="col" className=" px-6 py-4">
@@ -82,6 +85,9 @@ const SellerList = () => {
                         toggleCheckBox(sellerSelected);
                       }}
                     />
+                  </td>
+                  <td className="px-6 py-4 flex justify-center">
+                    <img className="h-24 px-2 py-2 " src={item?.image} alt="" />
                   </td>
                   <td className="whitespace-nowrap  px-6 py-4  font-medium text-secondary hover:text-secondary/80 hover:underline transition-all">
                     <Link to={`/vendedor/${item.id}`}>{item.name}</Link>

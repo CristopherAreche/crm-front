@@ -18,7 +18,6 @@ const ClientList = () => {
     }
   }, [clientsStatus, dispatch, clients]);
 
-
   if (clientsStatus === "loading") {
     return (
       <div className="flex justify-center w-full">
@@ -59,9 +58,9 @@ const ClientList = () => {
           </thead>
           <tbody className=" dark:border-light dark:bg-base-light/60">
             {Array.isArray(clients) &&
-                clients?.map((item) => (
-                    <ClientsItems item={item} key={item.id}/>
-        ))}
+              clients?.map((item) => (
+                <ClientsItems item={item} key={item.id} />
+              ))}
           </tbody>
         </table>
       </section>

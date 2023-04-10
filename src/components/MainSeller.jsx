@@ -1,10 +1,10 @@
-import tasksImage from '../assets/tasksImage.png'
-import productImage from '../assets/productImage.png'
-import {RiTimeLine, RiArrowDropRightLine, RiArrowDropLeftLine, RiSecurePaymentLine, RiGroupLine, RiShoppingBagLine} from 'react-icons/ri'
+
+import {RiTimeLine, RiSecurePaymentLine, RiGroupLine, RiShoppingBagLine, RiCheckboxCircleLine} from 'react-icons/ri'
 import { useAuth0 } from "@auth0/auth0-react";
 import SalesChart from './charts/SalesChart';
 import StockChart from './charts/StockChart';
-
+import  TasksList from './TasksList'
+import productImage from '../assets/productImage.png'
 const itemsLastesProducst = [
   {
     source : 'https://img.freepik.com/fotos-premium/cinturon-seguridad-construccion-cadena-ganchos-mosqueton-metal-tablero-madera_275559-16027.jpg?w=740',
@@ -28,29 +28,6 @@ const itemsLastesProducst = [
     lastest : '6'
   },
 
-]
-
-const itemsResume = [
-  {
-    title : 'Clientes' ,
-    quanqity : 26,
-  },
-  {
-    title : 'Productos' ,
-    quanqity : 37,
-  },
-  {
-    title : 'Vips' ,
-    quanqity : 9
-  },
-  {
-    title : 'Habi' ,
-    quanqity : 23,
-  },
-  {
-    title : 'Desha' ,
-    quanqity : 3,
-  }
 ]
 
 const seller = {
@@ -126,7 +103,7 @@ const MainSeller = () => {
             </article>
           </section>
           {/* Section Estadistics Sales */}
-          <section className='flex flex-col items-start gap-y-2 pr-0 lg:pr-12 w-full pt-0 lg:pt-16 '>
+          <section className='flex flex-col items-start gap-y-2 pr-0 lg:pr-12 w-full pt-0  '>
           <div className='flex items-center justify-between w-full'>
             <h5 className='text-light font-medium'>Ganancias</h5> 
             <p className='text-xs font-medium text-light/70 hover:underline hover:text-light/90 transition-all cursor-pointer'>Comparar</p>
@@ -135,11 +112,7 @@ const MainSeller = () => {
 
           </section>
           {/* Tasks Section */}
-          <section>
-            <p className='text-xl font-bold text-light bg-base-light/30 shadow-md rounded-md py-2 px-3 flex flex-col items-start gap-y-2'>
-            *Tabla / Crud de Tareas*
-            </p>
-          </section>
+          <TasksList />
       </section>
       {/* Right Section */}
       <section className='col-span-2 flex flex-col gap-y-12'>
@@ -172,7 +145,23 @@ const MainSeller = () => {
           <section className='flex flex-col items-center gap-y-4 bg-base-light/30 py-4 rounded-md shadow-md'> 
               <h5 className='text-light font-medium'>5 Productos con mas Stock</h5>  
               <StockChart />
-          </section>  
+          </section> 
+      {/* Section Upgrade Plan */}
+        <section className='flex flex-col items-center gap-y-4 bg-gradient-to-r from-primary to-secondary py-4 rounded-md shadow-md cursor-pointer relative group'> 
+            <div className='absolute bg-black/30 w-full h-full top-0 left-0 flex flex-col justify-center items-start gap-x-2 opacity-0 translate-y-1  group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-200 ease-in-out'>
+              <div className='flex  items-center w-full justify-between px-4'>
+                <h5 className='font-medium text-xl uppercase w-56 text-start'>Elije el <span className='text-orange-400'>plan</span> Professional!</h5>
+                  <p>aprovecha hasta <span className='font-bold bg-orange-400 px-1 rounded-md'>40%</span> descuento</p>
+              </div>
+              <div className='px-4 font-bold text-sm text-gray-200 mt-4'>
+                <p className='flex gap-x-2 items-center'><RiCheckboxCircleLine className='text-orange-400 text-lg'/> CRM x5</p>
+                <p className='flex gap-x-2 items-center'><RiCheckboxCircleLine className='text-orange-400 text-lg'/> Automatizacion x5</p>
+                <p className='flex gap-x-2 items-center'><RiCheckboxCircleLine className='text-orange-400 text-lg'/> Stock x5</p>
+              </div>
+
+            </div>    
+            <img src={productImage} className='w-auto h-40' alt='3d render bolsa'/>
+        </section> 
       </section>
     </section>
   );

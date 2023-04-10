@@ -21,9 +21,8 @@ const Login = () => {
   const dispatch = useDispatch();
   const login = async () => {
     const loginUser = {
-      status: "login",
-      email: email,
-      password: password,
+      email:email,
+      password:password,
     };
     dispatch(postLogin(loginUser));
   };

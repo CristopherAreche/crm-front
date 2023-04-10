@@ -36,6 +36,8 @@ function SideBar({ typeSidebar, summary, inventory, clients, sellers }) {
     }
   };
 
+  const name = user.name;
+
   return (
     <>
       <section
@@ -62,7 +64,7 @@ function SideBar({ typeSidebar, summary, inventory, clients, sellers }) {
               </p>
             </div>
             <h3 className="text-light font-medium text-lg text-center ">
-              {role === "admin" ? "Nombre del Jefe" : "Barbara Clement"}
+              {role === "admin" ? { name } : { name }}
             </h3>
           </section>
           {typeSidebar === "client-detail" && <ClientDetailSideBar />}

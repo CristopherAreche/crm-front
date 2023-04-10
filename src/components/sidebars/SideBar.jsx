@@ -62,7 +62,7 @@ function SideBar({ typeSidebar, summary, inventory, clients, sellers }) {
               </p>
             </div>
             <h3 className="text-light font-medium text-lg text-center ">
-              {role === "admin" ? "Nombre del Jefe" : "Nombre del Vendedor"}
+              {role === "admin" ? "Nombre del Jefe" : "Barbara Clement"}
             </h3>
           </section>
           {typeSidebar === "client-detail" && <ClientDetailSideBar />}
@@ -103,13 +103,16 @@ function SideBar({ typeSidebar, summary, inventory, clients, sellers }) {
             </Link>
           </div>
           <div>
-            <button
+            {/* <button
               className="flex px-12 py-2  active:scale-95 active:bg-light/20 gap-x-6 items-center text-lg text-gray-300 font-medium   cursor-pointer  hover:text-gray-100 transition-all"
               onClick={() => handleBossRegister()}
             >
               Enviar info
-            </button>
-            <Link className="flex px-12 py-2  active:scale-95 active:bg-light/20 gap-x-6 items-center text-lg text-gray-300 font-medium   cursor-pointer  hover:text-gray-100 transition-all">
+            </button> */}
+            <Link
+              to="/dashboard/perfil"
+              className="flex px-12 py-2  active:scale-95 active:bg-light/20 gap-x-6 items-center text-lg text-gray-300 font-medium   cursor-pointer  hover:text-gray-100 transition-all"
+            >
               <RiUserSettingsLine className="text-2xl text-secondary" />
               Configuración
             </Link>

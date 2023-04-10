@@ -19,10 +19,23 @@ export const postUserLogin = createAsyncThunk(
     try {
       const response = await axios.post('https://crm.up.railway.app/api/boss', formData);
       return response.data;
-
     } catch (error) {
       console.log(error);
       return thunkAPI.rejectWithValue(error.response.data);
     }
   }
 );
+
+export const postLogin = createAsyncThunk(
+  'loginUser/postLogin',
+  async (loginUser, thunkAPI) => {
+    try {
+      const response = await axios.post('https://crm.up.railway.app/api/login', loginUser);
+      return response.data;
+    } catch (error) {
+      console.log(error);
+      return thunkAPI.rejectWithValue(error.response.data);
+    }
+  }
+);
+

@@ -3,7 +3,7 @@ import { RiArrowLeftLine, RiMailLine, RiLock2Line } from "react-icons/ri";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
-import { postUserLogin } from "../../services/authServices";
+import { postLogin, } from "../../services/authServices";
 import { useDispatch } from "react-redux";
 import swal from "sweetalert";
 import { useSelector } from "react-redux";
@@ -19,22 +19,14 @@ const Login = () => {
 
   const { loginWithRedirect } = useAuth0();
   const dispatch = useDispatch();
-  const status = useSelector((state) => state.auth.status);
 
   const login = async() => {
-    const userLogin = {
+    const loginUser = {
       status: "login",
       email:email,
       password:password,
     };
-    dispatch(postUserLogin(userLogin));
-    console.log(status);
-    if(status==="failed"){
-      swal("Error", "Usuario o contraseña incorrectos", "error");
-    }
-    if(status==="succeeded"){
-      setAccess(true);
-    }
+    dispatch(postLogin(loginUser));
   };
 
   const valUser = (value) => {

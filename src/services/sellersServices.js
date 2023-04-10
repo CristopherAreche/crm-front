@@ -19,9 +19,7 @@ export const postSeller = createAsyncThunk(
   `sellers/postSeller`,
   async (payload) => {
     try {
-      console.log(payload);
       const { data } = await axios.post(API_URL_SELLER, payload);
-      console.log(data);
       await swal(
         "Agregar",
         `El vendedor ${data.name} fue creado correctamente`,
@@ -30,7 +28,6 @@ export const postSeller = createAsyncThunk(
 
       return data;
     } catch (error) {
-      console.log(error);
       await swal("Error", `${error.response.data.error}`, "error");
       return error.response.data.error;
     }
@@ -41,10 +38,8 @@ export const putSeller = createAsyncThunk(
   `sellers/putSeller`,
   async (payload) => {
     try {
-      console.log(payload);
       const { data } = await axios.put(API_URL_SELLER, payload);
 
-      console.log();
       await swal(
         "Modificación",
         `El vendedor ${data.name} fua actualizado correctamente`,
@@ -53,9 +48,7 @@ export const putSeller = createAsyncThunk(
 
       return data;
     } catch (error) {
-      console.log(error);
       await swal("Error", `${error.response.data.error}`, "error");
-      console.log(error.response);
       return error.response.data.error;
     }
   }

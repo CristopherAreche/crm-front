@@ -3,7 +3,7 @@ import { RiArrowLeftLine, RiMailLine, RiLock2Line } from "react-icons/ri";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
-import { postLogin, } from "../../services/authServices";
+import { postLogin } from "../../services/authServices";
 import { useDispatch } from "react-redux";
 import swal from "sweetalert";
 import { useSelector } from "react-redux";
@@ -14,12 +14,12 @@ const Login = () => {
   const [errorUser, SetErrorUser] = useState(true);
   const [errorPassword, setErrorPassword] = useState(true);
   const [access, setAccess] = useState(false);
-  const regularPassword = /^(?=.\d)(?=.[a-z])(?=.*[A-Z])\w{8,}$/;//al menos una letra, al menos un numero, al menos una letra mayúscula, al menos 8 caracteres, no permite espacios.
+  const regularPassword = /^(?=.\d)(?=.[a-z])(?=.*[A-Z])\w{8,}$/; //al menos una letra, al menos un numero, al menos una letra mayúscula, al menos 8 caracteres, no permite espacios.
   const regularUser = /\S+@\S+\.\S+/; //un correo electronico
 
   const { loginWithRedirect } = useAuth0();
   const dispatch = useDispatch();
-  const login = async() => {
+  const login = async () => {
     const loginUser = {
       email:email,
       password:password,

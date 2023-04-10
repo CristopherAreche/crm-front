@@ -17,7 +17,6 @@ export const postClient = createAsyncThunk(
   async (payload) => {
     try {
       const { data } = await axios.post(API_URL_CLIENT, payload);
-      console.log(data);
       await swal(
         "Agregar",
         `El cliente ${data.name} fue creado correctamente`,
@@ -26,7 +25,6 @@ export const postClient = createAsyncThunk(
 
       return data;
     } catch (error) {
-      console.log(error);
       await swal("Error", `${error.response.data.error}`, "error");
       return error.response.data.error;
     }
@@ -36,11 +34,8 @@ export const postClient = createAsyncThunk(
 export const putClient = createAsyncThunk(
   `clients/putClient`,
   async (payload) => {
-    console.log(payload);
     try {
       const { data } = await axios.put(API_URL_CLIENT, payload);
-
-      console.log(data);
       await swal(
         "Modificación",
         `El cliente ${data.name} fua actualizado correctamente`,

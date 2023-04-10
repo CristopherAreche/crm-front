@@ -1,9 +1,16 @@
 import { Link } from "react-router-dom";
-import {RiLogoutCircleRLine,RiCloseFill,RiMenu3Fill,RiUserSettingsLine,RiTyphoonFill, RiHandCoinLine } from "react-icons/ri";
+import {
+  RiLogoutCircleRLine,
+  RiCloseFill,
+  RiMenu3Fill,
+  RiUserSettingsLine,
+  RiTyphoonFill,
+  RiHandCoinLine,
+} from "react-icons/ri";
 import { useState } from "react";
 import ClientDetailSideBar from "./ClientDetailSideBar";
 import { RiTeamLine } from "react-icons/ri";
-import {MdOutlineInventory2, MdOutlineSpaceDashboard} from "react-icons/md";
+import { MdOutlineInventory2, MdOutlineSpaceDashboard } from "react-icons/md";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { postUserInfo } from "../../services/authServices";
@@ -15,15 +22,14 @@ function SideBar({ typeSidebar, summary, inventory, clients, sellers }) {
   const dispatch = useDispatch();
   const { isAuthenticated, user, logout } = useAuth0();
 
-
   const handleBossRegister = () => {
     if (isAuthenticated && user) {
       const userInfo = {
-        email:user.email,
-        name:user.name,
-        logo:user.picture,
-        username:user.nickname,
-        password:"12345"
+        email: user.email,
+        name: user.name,
+        logo: user.picture,
+        username: user.nickname,
+        password: "12345",
       };
       console.log(userInfo);
       dispatch(postUserInfo(userInfo));
@@ -97,12 +103,17 @@ function SideBar({ typeSidebar, summary, inventory, clients, sellers }) {
             </Link>
           </div>
           <div>
-          <button className="flex px-12 py-2  active:scale-95 active:bg-light/20 gap-x-6 items-center text-lg text-gray-300 font-medium   cursor-pointer  hover:text-gray-100 transition-all" onClick={()=>handleBossRegister()}  >Enviar info</button>
+            <button
+              className="flex px-12 py-2  active:scale-95 active:bg-light/20 gap-x-6 items-center text-lg text-gray-300 font-medium   cursor-pointer  hover:text-gray-100 transition-all"
+              onClick={() => handleBossRegister()}
+            >
+              Enviar info
+            </button>
             <Link className="flex px-12 py-2  active:scale-95 active:bg-light/20 gap-x-6 items-center text-lg text-gray-300 font-medium   cursor-pointer  hover:text-gray-100 transition-all">
               <RiUserSettingsLine className="text-2xl text-secondary" />
               Configuración
             </Link>
-            
+
             <button
               onClick={() => logout()}
               className="flex px-12 py-2  active:scale-95 active:bg-light/20 gap-x-6 items-center text-lg text-gray-300 font-medium   cursor-pointer  hover:text-gray-100 transition-all"

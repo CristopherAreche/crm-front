@@ -72,11 +72,7 @@ function Formproduct({ isVisible, onClose }) {
     const formData = new FormData();
     formData.append("image", file);
     formData.append("productData", JSON.stringify(productData));
-    console.log(formData);
-    // const formDataObj = { ...productData, formData };
-    // console.log(formDataObj);
     for (let entry of formData.entries()) {
-      console.log(entry[0] + ": " + entry[1]);
     }
 
     if (errors.name) {

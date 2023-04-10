@@ -6,32 +6,37 @@ import NavModal from "./NavModal";
 
 const HomeHeader = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [navbar, setNavbar] = useState(false)
-  const [activeSection, setActiveSection] = useState('')
+  const [navbar, setNavbar] = useState(false);
+  const [activeSection, setActiveSection] = useState("");
 
   const changeBackground = () => {
     if (window.scrollY >= 100) {
-      setNavbar(true)
+      setNavbar(true);
     } else {
-      setNavbar(false)
+      setNavbar(false);
     }
-  }
+  };
 
   const handleSetActive = (section) => {
     setActiveSection(section);
-  }
+  };
 
-  window.addEventListener('scroll', changeBackground)
+  window.addEventListener("scroll", changeBackground);
 
   return (
     <>
-<<<<<<< HEAD
-      <header className="flex py-4 lg:py-6 items-center justify-evenly fixed bg-base z-50 right-0 left-0">
-        <LinkRoll to="inicio" smooth={true} duration={500}>
-=======
-      <header className={`${navbar ? 'bg-base' : 'bg-transparent'} flex py-4 lg:py-6 items-center lg:justify-evenly justify-between px-10 lg:px-0 fixed  z-50 right-0 left-0 transition-all`}>
-        <LinkRoll to="inicio" smooth={true} duration={500} spy={true} onSetActive={handleSetActive}>
->>>>>>> main
+      <header
+        className={`${
+          navbar ? "bg-base" : "bg-transparent"
+        } flex py-4 lg:py-6 items-center lg:justify-evenly justify-between px-10 lg:px-0 fixed  z-50 right-0 left-0 transition-all`}
+      >
+        <LinkRoll
+          to="inicio"
+          smooth={true}
+          duration={500}
+          spy={true}
+          onSetActive={handleSetActive}
+        >
           <h2 className="text-xl text-white  font-bold tracking-widest hover:text-light transition-colors cursor-pointer z-10">
             LOGO
           </h2>
@@ -43,29 +48,70 @@ const HomeHeader = () => {
           <RiAlignRight className="text-4xl text-white hover:text-white/60 transition-colors cursor-pointer" />
         </button>
         <ul className="hidden lg:flex gap-x-6 z-10 ">
-       
-            <li className={`${activeSection === 'precios' && 'text-white border-b border-white'} font-medium text-light/80 hover:text-white transition-colors cursor-pointer`}>
-              <LinkRoll to="precios" smooth={true}  duration={500} spy={true} onSetActive={handleSetActive}>
-                Precios
-              </LinkRoll>
-            </li>
-           
-            <li className={`${activeSection === 'funcionalidades' && 'text-white border-b border-white'} font-medium text-light/80 hover:text-white transition-colors cursor-pointer`}>
-              <LinkRoll to="funcionalidades" smooth={true} duration={500} spy={true} onSetActive={handleSetActive}>
-                Funcionalidades
-              </LinkRoll>
-            </li>
-        
-            <li className={`${activeSection === 'sobre nosotros' && 'text-white border-b border-white'} font-medium text-light/80 hover:text-white transition-colors cursor-pointer`}>
-              <LinkRoll to="sobre nosotros" smooth={true} duration={500} spy={true} onSetActive={handleSetActive}>
-                Sobre nosotros
-              </LinkRoll>
-            </li>
-            <li className={`${activeSection === 'faq' && 'text-white border-b border-white'} font-medium text-light/80 hover:text-white transition-colors cursor-pointer`}>
-              <LinkRoll to="faq" smooth={true} duration={500} spy={true} onSetActive={handleSetActive}>
-                FAQ
-              </LinkRoll>
-            </li>
+          <li
+            className={`${
+              activeSection === "precios" && "text-white border-b border-white"
+            } font-medium text-light/80 hover:text-white transition-colors cursor-pointer`}
+          >
+            <LinkRoll
+              to="precios"
+              smooth={true}
+              duration={500}
+              spy={true}
+              onSetActive={handleSetActive}
+            >
+              Precios
+            </LinkRoll>
+          </li>
+
+          <li
+            className={`${
+              activeSection === "funcionalidades" &&
+              "text-white border-b border-white"
+            } font-medium text-light/80 hover:text-white transition-colors cursor-pointer`}
+          >
+            <LinkRoll
+              to="funcionalidades"
+              smooth={true}
+              duration={500}
+              spy={true}
+              onSetActive={handleSetActive}
+            >
+              Funcionalidades
+            </LinkRoll>
+          </li>
+
+          <li
+            className={`${
+              activeSection === "sobre nosotros" &&
+              "text-white border-b border-white"
+            } font-medium text-light/80 hover:text-white transition-colors cursor-pointer`}
+          >
+            <LinkRoll
+              to="sobre nosotros"
+              smooth={true}
+              duration={500}
+              spy={true}
+              onSetActive={handleSetActive}
+            >
+              Sobre nosotros
+            </LinkRoll>
+          </li>
+          <li
+            className={`${
+              activeSection === "faq" && "text-white border-b border-white"
+            } font-medium text-light/80 hover:text-white transition-colors cursor-pointer`}
+          >
+            <LinkRoll
+              to="faq"
+              smooth={true}
+              duration={500}
+              spy={true}
+              onSetActive={handleSetActive}
+            >
+              FAQ
+            </LinkRoll>
+          </li>
         </ul>
         <section className="hidden lg:flex gap-x-8 items-center">
           <Link

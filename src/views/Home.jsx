@@ -4,6 +4,7 @@ import spotlight1 from "../assets/svg/Spotlight1.svg";
 import spotlight2 from "../assets/svg/Spotlight2.svg";
 import { Link as LinkRoll } from "react-scroll";
 import { RiArrowDropLeftLine, RiArrowDropRightLine } from "react-icons/ri";
+import team from "../assets/png images/team.svg";
 
 import diff1 from "../assets/differential1.png";
 import diff2 from "../assets/differential2.png";
@@ -143,11 +144,11 @@ const Home = () => {
 
       <section
         name="sobre nosotros"
-        className="h-[100vh]  flex-col lg:flex-row justify-center items-center flex"
+        className=" h-[100vh]  flex-col lg:flex-row justify-center items-center flex"
       >
-        <div className=" text-white w-full lg:w-[50%] flex flex-col justify-center items-start lg:items-center">
+        <div className=" text-white w-full lg:w-[50%] flex flex-col justify-center ml-[15em] lg:items-center">
           <h1 className="text-[2em] font-bold">Sobre nosotros</h1>
-          <p className=" px-0 lg:px-8">
+          <p className=" px-0 lg:px-14">
             Nuestro CRM es un programa que ayuda a las empresas a gestionar
             mejor las relaciones con sus clientes. Al utilizarlo, las empresas
             pueden proporcionar un servicio más personalizado y eficiente, lo
@@ -158,8 +159,8 @@ const Home = () => {
         </div>
         <div className=" w-[50%] flex items-center">
           <img
-            // src={imgDetail}
-            className="animate-pulse w-full"
+            src={team}
+            className="animate-pulse w-[60%]"
             alt="3D icon of computer"
           />
         </div>
@@ -183,9 +184,7 @@ const Home = () => {
               className="w-28 h-28 lg:w-32 lg:h-32 object-cover rounded-full shadow-md absolute -top-12"
             />
             <p className=" pt-16 pb-2 lg:pb-0 lg:pt-24 w-48 trauncate lg:w-[32rem] text-center text-xl font-bold text-base-light">
-              “Lorem ipsum dolor sit amet consectetur adipiscing elit Ut et
-              massa mi. Aliquam in hendrerit urna. Pellentesque sit amet
-              sapien.”
+              "Este es la mejor CRM del mundo”
             </p>
           </article>
           <RiArrowDropRightLine className="text-4xl text-light bg-base-light/20 p-2 box-content rounded-full cursor-pointer hover:translate-x-2 transition-transform " />

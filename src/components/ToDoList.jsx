@@ -45,7 +45,6 @@ export default function ToDoList() {
         await swal("Borrado!", data.message, "success");
       }
     } catch (error) {
-      console.log(error);
       await swal("Error", `${error.response.data.error}`, "error");
     }
   };

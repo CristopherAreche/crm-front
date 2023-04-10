@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import axios from "axios";
 import { RiArrowLeftLine, RiMailLine, RiLock2Line } from "react-icons/ri";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
@@ -20,11 +21,15 @@ const Login = () => {
   const { loginWithRedirect } = useAuth0();
   const dispatch = useDispatch();
   const login = async () => {
-    const loginUser = {
-      email:email,
-      password:password,
-    };
-    dispatch(postLogin(loginUser));
+    await axios.post('https://crm2.up.railway.app/api/login', {email, password}, {
+      withCredentials: true
+    }).then(response => console.log(response)).catch(error => console.log(error))
+
+    // const loginUser = {
+    //   email:email,
+    //   password:password,
+    // };
+    // dispatch(postLogin(loginUser));
   };
 
   const valUser = (value) => {

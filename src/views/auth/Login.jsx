@@ -1,13 +1,14 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { RiArrowLeftLine, RiMailLine, RiLock2Line } from "react-icons/ri";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
 import { postLogin } from "../../services/authServices";
 import { useDispatch } from "react-redux";
 import swal from "sweetalert";
 import { useSelector } from "react-redux";
+import { setClient } from "../../app/features/clientSlice";
 
 const Login = () => {
   const [password, setPassWord] = useState("");
@@ -18,12 +19,24 @@ const Login = () => {
   const regularPassword = /^(?=.\d)(?=.[a-z])(?=.*[A-Z])\w{8,}$/; //al menos una letra, al menos un numero, al menos una letra mayúscula, al menos 8 caracteres, no permite espacios.
   const regularUser = /\S+@\S+\.\S+/; //un correo electronico
 
-  const { loginWithRedirect } = useAuth0();
+  //const { loginWithRedirect } = useAuth0();
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   const login = async () => {
-    await axios.post('https://crm2.up.railway.app/api/login', {email, password}, {
-      withCredentials: true
-    }).then(response => console.log(response)).catch(error => console.log(error))
+    if (email === "boss@crm.com" && password === "patito") {
+      setAccess(true);
+      dispatch(setClient("admin"));
+      navigate("/dashboard");
+    } else if (email === "salesman@crm.com" && password === "patito") {
+      setAccess(true);
+      dispatch(setClient("seller"));
+      navigate("/dashboard");
+    }
+
+    // await axios.post('https://crm2.up.railway.app/api/login', {email, password}, {
+    //   withCredentials: true
+    // }).then(response => console.log(response)).catch(error => console.log(error))
 
     // const loginUser = {
     //   email:email,
@@ -130,7 +143,8 @@ const Login = () => {
         />
         <button
           className="text-base font-medium "
-          onClick={() => loginWithRedirect({ screen_hint: "signup" })}
+          // onClick={() => loginWithRedirect({ screen_hint: "signup" })}
+          onClick={login}
         >
           Ingresa con Google o Microsoft
         </button>

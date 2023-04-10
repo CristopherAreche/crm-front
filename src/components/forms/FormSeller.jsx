@@ -7,6 +7,7 @@ import {
   RiPhoneLine,
   RiMailLine,
   RiHome2Line,
+  RiImageAddFill,
 } from "react-icons/ri";
 import swal from "sweetalert";
 
@@ -14,12 +15,14 @@ function FormSeller({ isVisible, onClose }) {
   const dispatch = useDispatch();
   const sellerId = useSelector((state) => state.sellers.sellerSelected);
 
-  const bossId = "e2240175-ccee-4539-9a41-0e9b8d75303f";
+  const bossId = "00d4cf20-b761-40cc-baf2-7c40aa53caf9";
 
   const sellers = useSelector((state) => state.sellers.sellers);
   const handleClose = (e) => {
     if (e.target.id === "wrapper") onClose();
   };
+
+  const [file, setFile] = useState(null);
 
   const [sellerData, setSellerData] = useState({
     name: "",
@@ -39,24 +42,37 @@ function FormSeller({ isVisible, onClose }) {
   });
 
   const handleInputChange = (event) => {
-    const property = event.target.name;
-    const value = event.target.value;
+    const { name, value, files } = event.target;
 
-    setSellerData({
-      ...sellerData,
-      [property]: value,
-    });
+    if (name === "image") {
+      setFile(files[0]);
+    } else {
+      setSellerData({
+        ...sellerData,
+        [name]: value,
+      });
+    }
 
     setErrors(
       validation({
         ...sellerData,
-        [property]: value,
+        [name]: value,
       })
     );
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
+
+    const formData = new FormData();
+    formData.append("image", file);
+    formData.append("sellerData", JSON.stringify(sellerData));
+    console.log(formData);
+
+    for (let entry of formData.entries()) {
+      console.log(entry[0] + ": " + entry[1]);
+    }
+
     if (errors.name || errors.email || errors.phone || errors.address) {
       swal("Error", "Por favor revise los datos introducidos. ", "error");
     } else if (sellerId) {
@@ -73,7 +89,7 @@ function FormSeller({ isVisible, onClose }) {
         if (edit) {
           swal(
             "El vendedor fue modificado",
-            dispatch(putSeller(sellerData)),
+            dispatch(putSeller(formData)),
             onClose(),
             {
               icon: "success",
@@ -97,7 +113,7 @@ function FormSeller({ isVisible, onClose }) {
         if (edit) {
           swal(
             "El vendedor fue agregado",
-            dispatch(postSeller(sellerData)),
+            dispatch(postSeller(formData)),
             setSellerData({
               name: "",
               email: "",
@@ -164,6 +180,25 @@ function FormSeller({ isVisible, onClose }) {
             <RiUserLine className="absolute top-1/2 -translate-y-1/2 left-2 text-xl text-secondary " />
           </div>
           {errors.name && <span style={{ color: "red" }}> {errors.name}</span>}
+        </section>
+
+        <section className="flex flex-col gap-y-2">
+          <label className="text-sm font-medium text-light" htmlFor="image">
+            Imagen:{" "}
+          </label>
+          <div className="relative">
+            <input
+              className="bg-base-light/70 py-1 rounded-md outline-none pl-8 pr-4 w-full"
+              type="file"
+              FileList={file}
+              name="image"
+              onChange={handleInputChange}
+            />
+            <RiImageAddFill className="absolute top-1/2 -translate-y-1/2 left-2 text-xl text-secondary " />
+          </div>
+          {errors.image && (
+            <span style={{ color: "red" }}> {errors.image}</span>
+          )}
         </section>
 
         <section className="flex flex-col gap-y-2">

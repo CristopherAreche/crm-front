@@ -3,10 +3,12 @@ import validation from "../../utils/validation";
 import { useDispatch, useSelector } from "react-redux";
 
 import {
-  RiUserLine,
-  RiMailLine,
-  RiHome2Line,
+  RiProductHuntLine,
   RiImageAddFill,
+  RiMoneyDollarBoxLine,
+  RiPercentLine,
+  RiStore3Fill,
+  RiBubbleChartLine,
 } from "react-icons/ri";
 import swal from "sweetalert";
 import { createProduct, updateProduct } from "../../services/productsServices";
@@ -26,7 +28,6 @@ function Formproduct({ isVisible, onClose }) {
 
   const [productData, setProductData] = useState({
     name: "",
-
     quantity: "",
     enable: true,
     cost_price: "",
@@ -97,7 +98,7 @@ function Formproduct({ isVisible, onClose }) {
           swal(
             "El producto fue modificado",
 
-            dispatch(updateProduct(productData)),
+            dispatch(updateProduct(formData)),
             onClose(),
             {
               icon: "success",
@@ -150,6 +151,7 @@ function Formproduct({ isVisible, onClose }) {
   useEffect(() => {
     if (productId) {
       const obj = products.find((product) => product.id === productId);
+
       setProductData({ ...obj, id: productId });
     } else
       setProductData({
@@ -192,7 +194,7 @@ function Formproduct({ isVisible, onClose }) {
               name="name"
               onChange={handleInputChange}
             />
-            <RiUserLine className="absolute top-1/2 -translate-y-1/2 left-2 text-xl text-secondary " />
+            <RiProductHuntLine className="absolute top-1/2 -translate-y-1/2 left-2 text-xl text-secondary " />
           </div>
           {errors.name && <span style={{ color: "red" }}> {errors.name}</span>}
         </section>
@@ -228,7 +230,7 @@ function Formproduct({ isVisible, onClose }) {
               name="quantity"
               onChange={handleInputChange}
             />
-            <RiMailLine className="absolute top-1/2 -translate-y-1/2 left-2 text-xl text-secondary " />
+            <RiBubbleChartLine className="absolute top-1/2 -translate-y-1/2 left-2 text-xl text-secondary " />
           </div>
           {errors.quantity && (
             <span style={{ color: "red" }}> {errors.quantity}</span>
@@ -250,7 +252,7 @@ function Formproduct({ isVisible, onClose }) {
               name="cost_price"
               onChange={handleInputChange}
             />
-            <RiHome2Line className="absolute top-1/2 -translate-y-1/2 left-2 text-xl text-secondary " />
+            <RiMoneyDollarBoxLine className="absolute top-1/2 -translate-y-1/2 left-2 text-xl text-secondary " />
           </div>
           {errors.cost_price && (
             <span style={{ color: "red" }}> {errors.cost_price}</span>
@@ -272,7 +274,7 @@ function Formproduct({ isVisible, onClose }) {
               name="sale_price"
               onChange={handleInputChange}
             />
-            <RiHome2Line className="absolute top-1/2 -translate-y-1/2 left-2 text-xl text-secondary " />
+            <RiMoneyDollarBoxLine className="absolute top-1/2 -translate-y-1/2 left-2 text-xl text-secondary " />
           </div>
           {errors.sale_price && (
             <span style={{ color: "red" }}> {errors.sale_price}</span>
@@ -291,7 +293,7 @@ function Formproduct({ isVisible, onClose }) {
               name="discount"
               onChange={handleInputChange}
             />
-            <RiHome2Line className="absolute top-1/2 -translate-y-1/2 left-2 text-xl text-secondary " />
+            <RiPercentLine className="absolute top-1/2 -translate-y-1/2 left-2 text-xl text-secondary " />
           </div>
           {errors.discount && (
             <span style={{ color: "red" }}> {errors.discount}</span>
@@ -310,7 +312,7 @@ function Formproduct({ isVisible, onClose }) {
               name="category"
               onChange={handleInputChange}
             />
-            <RiHome2Line className="absolute top-1/2 -translate-y-1/2 left-2 text-xl text-secondary " />
+            <RiStore3Fill className="absolute top-1/2 -translate-y-1/2 left-2 text-xl text-secondary " />
           </div>
           {errors.category && (
             <span style={{ color: "red" }}> {errors.category}</span>

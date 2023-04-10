@@ -5,13 +5,14 @@ export const statePostSeller = (state, action) => {
 };
 
 export const statePutSeller = (state, action) => {
-  const { id, name, email, phone } = action.payload;
+  const { id, name, email, phone, image } = action.payload;
   const indexSeller = state.sellers.findIndex((seller) => seller.id === id);
 
   if (indexSeller !== -1) {
     state.sellers[indexSeller].name = name;
     state.sellers[indexSeller].email = email;
     state.sellers[indexSeller].phone = phone;
+    state.sellers[indexSeller].image = image;
   }
 };
 

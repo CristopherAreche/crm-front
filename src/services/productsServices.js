@@ -32,10 +32,9 @@ export const createProduct = createAsyncThunk(
         `El producto ${data.name} fue creado correctamente`,
         "succes"
       );
-      console.log(`data ${data}`);
+
       return data;
     } catch (error) {
-      console.log(error);
       await swal("Error", `${error.response.data.error}`, "error");
       return error.response.data.error;
     }
@@ -45,7 +44,6 @@ export const createProduct = createAsyncThunk(
 export const updateProduct = createAsyncThunk(
   "products/updateProduct",
   async (product) => {
-    console.log(product);
     try {
       const { data } = await axios.put(API_URL_PRODUCTS, product);
 
@@ -68,7 +66,12 @@ export const toggleStatusProduct = createAsyncThunk(
   "products/toggleStatusProduct",
   async ({ productSelected, enable }) => {
     try {
-      await axios.put(API_URL_PRODUCTS, { enable, id: productSelected });
+      const productData = new FormData();
+      productData.append(
+        "productData",
+        JSON.stringify({ enable, id: productSelected })
+      );
+      await axios.put(API_URL_PRODUCTS, productData);
       return enable;
     } catch (error) {
       return error.response.data.error;

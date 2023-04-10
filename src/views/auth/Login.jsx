@@ -3,30 +3,29 @@ import { RiArrowLeftLine, RiMailLine, RiLock2Line } from "react-icons/ri";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
+import { postLogin } from "../../services/authServices";
+import { useDispatch } from "react-redux";
 import swal from "sweetalert";
+import { useSelector } from "react-redux";
 
 const Login = () => {
-  const [passWord, setPassWord] = useState("");
-  const [userName, setUserName] = useState("");
+  const [password, setPassWord] = useState("");
+  const [email, setEmail] = useState("");
   const [errorUser, SetErrorUser] = useState(true);
   const [errorPassword, setErrorPassword] = useState(true);
   const [access, setAccess] = useState(false);
   const regularPassword = /^(?=.\d)(?=.[a-z])(?=.*[A-Z])\w{8,}$/; //al menos una letra, al menos un numero, al menos una letra mayúscula, al menos 8 caracteres, no permite espacios.
   const regularUser = /\S+@\S+\.\S+/; //un correo electronico
-  const textErrorUser = "El Nombre de Usuario debe ser un Correo";
-  const textErrorPassword =
-    "La Contraseña debe ser de 8 Caracteres o mas y debe de contener Mayusculas, Minusculas, Numeros, sin espacios ni caracteres especiales";
-  const textErrorGeneral = "Nombre de Usuario y/o Contraseña no Validos";
-  const navigate = useNavigate();
-  const { loginWithRedirect } = useAuth0();
 
-  const login = () => {
-    if (passWord === "user" && userName === "user") {
-      setAccess(true);
-      navigate("/vendedor");
-    } else {
-      swal("Error", "Nombre de usuario o contraseña incorrectos", "error");
-    }
+  const { loginWithRedirect } = useAuth0();
+  const dispatch = useDispatch();
+  const login = async () => {
+    const loginUser = {
+      status: "login",
+      email: email,
+      password: password,
+    };
+    dispatch(postLogin(loginUser));
   };
 
   const valUser = (value) => {
@@ -35,7 +34,7 @@ const Login = () => {
     } else {
       SetErrorUser(true);
     }
-    setUserName(value);
+    setEmail(value);
   };
 
   const valPassword = (value) => {
@@ -50,23 +49,6 @@ const Login = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     login();
-  };
-
-  const errorMessage = () => {
-    if (errorUser && errorPassword) {
-      return <span className="spanError">{textErrorGeneral}</span>;
-    }
-    if (errorUser) {
-      return <span className="spanError">{textErrorUser}</span>;
-    }
-    if (errorPassword) {
-      return <span className="spanError">{textErrorPassword}</span>;
-    }
-    return (
-      <button className="buttonLogin" type="submit">
-        Acceder
-      </button>
-    );
   };
 
   return (
@@ -96,8 +78,8 @@ const Login = () => {
         <div className="relative flex flex-col gap-y-1 mb-2">
           <label className="font-medium text-gray-200">Email</label>
           <input
-            name="userName"
-            value={userName}
+            name="email"
+            value={email}
             placeholder="correo@dominio.com"
             type="text"
             onChange={(e) => valUser(e.target.value)}
@@ -109,7 +91,7 @@ const Login = () => {
           <label className="font-medium text-gray-200">Contraseña</label>
           <input
             name="password"
-            value={passWord}
+            value={password}
             placeholder="Contraseña"
             type="password"
             onChange={(e) => valPassword(e.target.value)}
@@ -119,7 +101,7 @@ const Login = () => {
         </div>
         <div className="flex justify-between">
           <Link
-            to="/auth/register"
+            to="/authentication/register"
             className="bg-gradient-to-r text-light  hover:underline hover:text-white transition-all cursor-pointer"
           >
             No tienes cuenta? Registrate

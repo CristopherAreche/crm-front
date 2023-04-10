@@ -77,7 +77,7 @@ const Home = () => {
         </section>
         <img
           src={imgLanding}
-          className=" w-96 lg:w-[27em] xxl:w-[40rem]"
+          className=" animate-pulse  w-96 lg:w-[30rem] 2xl:w-[40rem]"
           alt="3D icon of computer"
         />
       </section>

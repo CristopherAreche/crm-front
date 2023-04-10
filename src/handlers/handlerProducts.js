@@ -26,6 +26,7 @@ export const statePutProduct = (state, action) => {
     sale_price,
     discount,
     category,
+    image,
   } = action.payload;
   const indexProduct = state.products.findIndex((product) => product.id === id);
 
@@ -37,5 +38,6 @@ export const statePutProduct = (state, action) => {
     state.products[indexProduct].sale_price = sale_price;
     state.products[indexProduct].discount = discount;
     state.products[indexProduct].category = category;
+    state.products[indexProduct].image = image;
   }
 };

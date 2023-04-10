@@ -12,3 +12,30 @@ export const postUserInfo = createAsyncThunk(
     }
   }
 );
+
+export const postUserLogin = createAsyncThunk(
+  'userLogin/postUserLogin',
+  async (formData, thunkAPI) => {
+    try {
+      const response = await axios.post('https://crm2.up.railway.app/api/boss', formData);
+      return response.data;
+    } catch (error) {
+      console.log(error);
+      return thunkAPI.rejectWithValue(error.response.data);
+    }
+  }
+);
+
+export const postLogin = createAsyncThunk(
+  'loginUser/postLogin',
+  async (loginUser, thunkAPI) => {
+    try {
+      const response = await axios.post('https://crm2.up.railway.app/api/login', loginUser);
+      console.log(response);
+    } catch (error) {
+      console.log(error);
+      return thunkAPI.rejectWithValue(error.response.data);
+    }
+  }
+);
+

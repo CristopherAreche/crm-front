@@ -63,7 +63,12 @@ export const toggleStatusProduct = createAsyncThunk(
   "products/toggleStatusProduct",
   async ({ productSelected, enable }) => {
     try {
-      await axios.put(API_URL_PRODUCTS, { enable, id: productSelected });
+      const productData = new FormData();
+      productData.append(
+        "productData",
+        JSON.stringify({ enable, id: productSelected })
+      );
+      await axios.put(API_URL_PRODUCTS, productData);
       return enable;
     } catch (error) {
       return error.response.data.error;

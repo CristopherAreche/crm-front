@@ -11,7 +11,6 @@ function DateFilter() {
   });
 
   const handleValueChange = (newValue) => {
-    console.log("newValue:", newValue);
     setValue(newValue);
 
     dispatch(dateFilter(newValue));

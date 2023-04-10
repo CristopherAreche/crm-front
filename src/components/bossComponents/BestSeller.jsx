@@ -1,40 +1,27 @@
 import React from "react";
 
-const data = [
-  { name: "Cliente 1", sales: 100 },
-  { name: "Cliente 2", sales: 200 },
-  { name: "Cliente 3", sales: 300 },
-  { name: "Cliente 4", sales: 400 },
-  { name: "Cliente 5", sales: 500 },
-  { name: "Cliente 6", sales: 600 },
-  { name: "Cliente 7", sales: 700 },
-  { name: "Cliente 8", sales: 800 },
-  { name: "Cliente 9", sales: 900 },
-  { name: "Cliente 10", sales: 1000 },
-];
-
-const sortedData = data.sort((a, b) => b.sales - a.sales);
-
-const BestSeller = () => {
+const BestSeller = ({ best_salesman }) => {
+  const bs = best_salesman?.image;
   return (
     <div className="flex flex-col h-full w-full">
-      <div className="overflow-x-auto">
-        <table className="table-auto w-full text-white">
-          <thead className="bg-base">
-            <tr>
-              <th className="px-4 py-2">Nombre</th>
-              <th className="px-4 py-2">Ventas</th>
-            </tr>
-          </thead>
-          <tbody className="bg-base/60">
-            {sortedData.map((item, index) => (
-              <tr key={index} className="border-b border-gray-200">
-                <td className="px-4 py-2 text-center">{item.name}</td>
-                <td className="px-4 py-2 text-center">{item.sales}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+      <h2 className="text-white font-bold text-[1.5em] justify-center flex">
+        MEJOR VENDEDOR DEL MES
+      </h2>
+
+      <div className="py-6 w-full text-white flex justify-center flex-col">
+        <div className="flex justify-center mb-3">
+          <img
+            src={bs === null ? `https://via.placeholder.com/150` : bs}
+            alt="placeholder"
+            className="w-28 h-28 rounded-full "
+          />
+        </div>
+        <div className="px-4 py-2 text-center text-[1.3em]">
+          Nombre: {best_salesman?.name}
+        </div>
+        <div className="px-4 py-2 text-center text-[1.3em]">
+          Total de Ventas: ${best_salesman?.total_monthly_sales}
+        </div>
       </div>
     </div>
   );

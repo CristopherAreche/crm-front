@@ -9,7 +9,6 @@ export const getBoss = createAsyncThunk("boss/getBoss", async () => {
   const response = await axios.get(
     `${API_URL_BOSS}?id=00d4cf20-b761-40cc-baf2-7c40aa53caf9`
   );
-  console.log(response);
   return response.data;
 });
 

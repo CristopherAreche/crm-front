@@ -90,7 +90,8 @@ const SellerList = () => {
                     <img className="h-24 px-2 py-2 " src={item?.image} alt="" />
                   </td>
                   <td className="whitespace-nowrap  px-6 py-4  font-medium text-secondary hover:text-secondary/80 hover:underline transition-all">
-                    <Link to={`/vendedor/${item.id}`}>{item.name}</Link>
+                    {/* <Link to={`/vendedor/${item.id}`}>{item.name}</Link> */}
+                    {item.name}
                   </td>
                   <td className="whitespace-nowrap  px-6 py-4">
                     ${item.total_monthly_sales}

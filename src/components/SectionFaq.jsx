@@ -5,13 +5,13 @@ const faqs = [
   {
     question: "¿Qué es el software de CRM?",
     answer:
-      "El CRM es un software de gestión de la relación con los clientes (o Customer Relationship Management). Es una poderosa herramienta que ayuda a las empresas a organizar y gestionar la relación con sus clientes desde una plataforma centralizada y fácil de usar. Al hacer seguimiento de leads y crear una base de datos completa con la actividad de sus clientes, las empresas pueden entender dónde se encuentran en el proceso de compra de cada cliente.",
+      "El CRM es un software de gestión de la relación con los clientes (o Customer Relationship Management). Es una poderosa herramienta que ayuda a las empresas a organizar y gestionar la relación con sus clientes desde una plataforma centralizada y fácil de usar. Al hacer seguimiento de vendedores y crear una base de datos completa con la actividad de sus clientes, las empresas pueden entender dónde se encuentran en el proceso de compra de cada cliente.",
     dropKey: "first_faq",
   },
   {
     question: "¿Cuánto cuesta el sistema CRM?",
     answer:
-      "Puedes usar el CRM por un modico precio. Incluye hasta un millón de contactos, sin límite de usuarios o de datos de clientes. Si buscas características de CRM más avanzadas, puedes encontrarlas en nuestros productos prémium de Sales Hub. Aprende más sobre las características y recibe más información sobre el precio de Sales Hub aquí.",
+      "Puedes usar el CRM por un modico precio. Incluye hasta un millón de contactos, sin límite de usuarios o de datos de clientes. Si buscas características de CRM más avanzadas, puedes encontrarlas en nuestros productos prémium.",
     dropKey: "second_faq",
   },
   {

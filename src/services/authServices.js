@@ -30,8 +30,7 @@ export const postLogin = createAsyncThunk(
   'loginUser/postLogin',
   async (loginUser, thunkAPI) => {
     try {
-      const response = await axios.post('https://crm2.up.railway.app/api/login', loginUser, {  withCredentials: true
-      });
+      const response = await axios.post('https://crm2.up.railway.app/api/login', loginUser, {  withCredentials: true});
       console.log(response.data);
     } catch (error) {
       console.log(error);

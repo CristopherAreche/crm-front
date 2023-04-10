@@ -19,7 +19,6 @@ const Login = () => {
 
   const { loginWithRedirect } = useAuth0();
   const dispatch = useDispatch();
-
   const login = async() => {
     const loginUser = {
       status: "login",

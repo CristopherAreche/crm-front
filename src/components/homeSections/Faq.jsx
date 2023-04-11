@@ -12,13 +12,13 @@ const faqs = [
   {
     question: "¿Cuánto cuesta el sistema CRM?",
     answer:
-      "Puedes usar el CRM por un modico precio. Incluye hasta un millón de contactos, sin límite de usuarios o de datos de clientes. Si buscas características de CRM más avanzadas, puedes encontrarlas en nuestros productos prémium.",
+      "Puedes usar el CRM sin costo. Incluye hasta un millón de contactos, sin límite de usuarios o de datos de clientes. Si buscas características de CRM más avanzadas, puedes encontrarlas en nuestros productos prémium. Aprende más sobre las características y recibe más información sobre el precio aquí.",
     dropKey: "second_faq",
   },
   {
     question: "¿El sistema CRM es adecuado para mi empresa?",
     answer:
-      "Ya sea que tengas una PYME o una gran empresa, la plataforma responde a tus necesidades. Puedes utilizar el software gratis o solicitar una demostración aprender más sobre las características prémium para grandes empresas como flujos de trabajo (workflows) o funcionalidades para automatización de marketing.",
+      "Ya sea que tengas una pyme o una gran empresa, la plataforma CRM responde a tus necesidades. Puedes utilizar el software gratis o solicitar una demostración aprender más sobre las características prémium para grandes empresas como flujos de trabajo (workflows) o funcionalidades para automatización de marketing.",
     dropKey: "third_faq",
   },
   {

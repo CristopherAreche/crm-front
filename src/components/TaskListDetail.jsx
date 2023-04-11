@@ -1,7 +1,7 @@
 import React from "react";
 import { RiBookReadLine } from "react-icons/ri";
 
-const TaskList = () => {
+const TaskListDetail = () => {
   return (
     <section className=" text-white mb-6">
       <h4 className="text-2xl text-light font-medium flex gap-x-4 items-center mb-6">
@@ -67,4 +67,4 @@ const TaskList = () => {
   );
 };
 
-export default TaskList;
+export default TaskListDetail;

@@ -1,5 +1,5 @@
 import React from "react";
-import TaskList from "../../components/TaskList";
+import TaskListDetail from "../../components/TaskListDetail";
 import spotlight1 from "../../assets/svg/Spotlight1.svg";
 import spotlight2 from "../../assets/svg/Spotlight2.svg";
 import ActivitiesList from "../../components/ActivitiesList";
@@ -11,7 +11,7 @@ const ClientDetail = () => {
       <ClientDetailSideBar />
       <main className="lg:pl-72 h-[100vh] overflow-y-auto flex flex-col z-[2] w-[100vw] lg:w-auto">
         <section className="py-6 px-12 z-[2]">
-          <TaskList />
+          <TaskListDetail />
           <ActivitiesList />
         </section>
       </main>

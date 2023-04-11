@@ -31,8 +31,8 @@ const Home = () => {
         {/* Hero Info */}
         <section
           className="
-          sm:justify-center sm:items-center
-         text-white flex flex-col gap-y-8 lg:w-[36rem] lg:h-[30rem] "
+          sm:justify-center sm:items-start
+         text-white flex flex-col gap-y-8 lg:w-[36rem]  "
         >
           {/* Info Principal */}
           <div>
@@ -158,7 +158,7 @@ const Home = () => {
        
       </section>
 
-      <section className="h-[100vh] justify-center items-center flex flex-col gap-y-16">
+      <section className="relative h-[100vh] justify-center items-center flex flex-col gap-y-16">
         <h3 className="text-4xl lg:text-6xl  text-center font-extrabold text-white">
           Descubre por qué mas de <span className="text-secondary">1.000</span>{" "}
           clientes elijen{" "}
@@ -181,6 +181,11 @@ const Home = () => {
           </article>
           <RiArrowDropRightLine className="text-4xl text-light bg-base-light/20 p-2 box-content rounded-full cursor-pointer hover:translate-x-2 transition-transform " />
         </section>
+        <img
+          src={spotlight2}
+          alt="lights glows"
+          className="absolute bottom-0 right-0 opacity-50 z-[-1] animate-pulse"
+        />
       </section>
 
       <section className=" justify-center items-center flex flex-col gap-y-6 lg:gap-y-10 pb-12">
@@ -204,7 +209,8 @@ const Home = () => {
       </section>
       <section className="flex flex-col gap-y-12">
         <SectionFaq />
-        <footer className="bg-base-light/40 justify-center items-center flex flex-col gap-y-6 lg:gap-y-4 py-4">
+      <footer className="relative bg-base-light/40 justify-center items-center flex flex-col gap-y-6 lg:gap-y-4 py-4">
+
           <div className='flex gap-x-12 items-center'>
             <RiFacebookFill className="text-3xl text-light"/>
             <RiInstagramLine className="text-3xl text-light"/>
@@ -221,7 +227,12 @@ const Home = () => {
             <p>Seguridad</p>
           </div>
          </div>
-        </footer>
+         <img
+          src={spotlight1}
+          alt="lights glows"
+          className="absolute top-0 left-0 opacity-50 z-[-1] animate-pulse"
+        />
+      </footer>
 
       </section>
       <img

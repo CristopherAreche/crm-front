@@ -5,7 +5,6 @@ import sellerSlice from "../features/sellerSlice";
 import authSlice from "../features/authSlice";
 import productsSlice from "../features/productsSlice";
 import bossSlice from "../features/bossSlice";
-import tasksSlice from '../features/tasksSlice'
 
 export const store = configureStore({
   reducer: {
@@ -15,6 +14,5 @@ export const store = configureStore({
     auth: authSlice,
     products: productsSlice,
     boss: bossSlice,
-    tasks : tasksSlice
   },
 });

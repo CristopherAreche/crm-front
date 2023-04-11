@@ -8,7 +8,10 @@ import {useState } from "react";
 import swal from "sweetalert";
 
 const Register = () => {
-  const [password, setPassWord] = useState("");
+  const [password, setPassWord] = useState({
+    password: '',
+    password2: ''
+  });
   const [email, setEmail] = useState("");
   const [errorUser, SetErrorUser] = useState(true);
   const [errorPassword, setErrorPassword] = useState(true);
@@ -24,7 +27,7 @@ const Register = () => {
         name:email,
         username:email,
         email:email,
-        password:password, 
+        password:password.password2, 
       };
     formData.append("formLogin",JSON.stringify(formLogin));
     for (let entry of formData.entries()) {
@@ -35,31 +38,34 @@ const Register = () => {
   }
 
   const valUser = (value) => {
-    if (regularUser.test(value)) {
-      SetErrorUser(false);
-    } else {
-      SetErrorUser(true);
-    }
+    if (regularUser.test(value)) SetErrorUser(false);
+    else SetErrorUser(true)
+
     setEmail(value);
   };
 
-  const valPassword = (value) => {
-    if (regularPassword.test(value)) {
-      setErrorPassword(false);
-    } else {
-      setErrorPassword(false);
-    }
-    setPassWord(value);
+  const valPassword = (e) => {
+    if (regularPassword.test(e.target.value))  setErrorPassword(false);
+    else setErrorPassword(false);
+
+    setPassWord({...password, [e.target.name] : e.target.value})
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    register();
+    if(password.password.toString() !== password.password2.toString())  swal({
+      title: "Error",
+      text: "Las contraseñas no coinciden. Por favor, inténtelo de nuevo.",
+      icon: "error",
+      button: "Aceptar",
+    });
+    else register()
   };
+  
 
   return (
     <section className="flex flex-col items-start justify-center min-h-screen px-8 lg:px-20 gap-y-4">
-      <div className="block lg:hidden absolute top-4 left-4">
+      <header className="block lg:hidden absolute top-4 left-4">
         <Link
           to="/"
           className="flex gap-x-1 items-center font-medium group hover:text-white/90 transition-colors"
@@ -67,7 +73,7 @@ const Register = () => {
           <RiArrowLeftLine className="text-2xl group-hover:-translate-x-1 transition-transform" />
           Volver atras
         </Link>
-      </div>
+      </header>
       <h2 className="text-xl text-white font-bold tracking-widest hover:text-light transition-colors cursor-pointer z-10">
         LOGO
       </h2>
@@ -90,8 +96,20 @@ const Register = () => {
         <div className="relative flex flex-col gap-y-1">
           <label className="font-medium text-gray-300">Contraseña</label>
           <input
-          onChange={(e) => valPassword(e.target.value)}
-          value={password}
+          onChange={(e) => valPassword(e)}
+          name='password'
+          value={password.password}
+            type="password"
+            className="bg-base-light/60 py-2 pl-10 pr-4  w-full rounded-md outline-none shadow-md"
+          />
+          <RiLock2Line className="absolute top-1/2 translate-y-1 left-2 text-2xl text-secondary " />
+        </div>
+        <div className="relative flex flex-col gap-y-1">
+          <label className="font-medium text-gray-300">Repita su contraseña</label>
+          <input
+          onChange={(e) => valPassword(e)}
+          name='password2'
+          value={password.password2}
             type="password"
             className="bg-base-light/60 py-2 pl-10 pr-4  w-full rounded-md outline-none shadow-md"
           />
@@ -105,13 +123,13 @@ const Register = () => {
             Ya tienes una cuenta? Ingresa
           </Link>
         </div>
-        <Link
-          onClick={()=>register()}
+        <button
           to="#"
+          type="submit"
           className="text-center bg-gradient-to-r from-primary to-secondary py-2 px-4 rounded-md font-bold text-lg hover:scale-[1.02] transition-all"
         >
           Registrate
-        </Link>
+        </button>
       </form>
       <section className="flex gap-x-2 items-center justify-center w-full bg-white py-2 hover:scale-[1.03] transition-all cursor-pointer rounded-md">
         <img

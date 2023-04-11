@@ -12,7 +12,6 @@ import MonthlyCompareChart from "../../components/charts/MonthlyCompareChart";
 import BestSeller from "../../components/bossComponents/BestSeller";
 import { useEffect } from "react";
 import { getBoss } from "../../app/features/bossSlice";
-import axios from "axios";
 
 const Summary = () => {
   const dispatch = useDispatch();

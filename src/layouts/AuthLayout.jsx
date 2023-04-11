@@ -22,7 +22,7 @@ const AuthLayout = () => {
             <h1 className="text-5xl 2xl:text-6xl font-bold mb-4 ">
               {pathname.includes("register")
                 ? "Registrate y gestiona con nuestra"
-                : "Descubre como nuestra"}{" "}
+                : "Descubre comó nuestra"}{" "}
               <span className="bg-gradient-to-r from-primary  to-secondary text-transparent bg-clip-text">
                 CRM
               </span>{" "}

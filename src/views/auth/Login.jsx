@@ -25,11 +25,11 @@ const Login = () => {
   const navigate = useNavigate();
 
   const login = async () => {
-    if (email === "boss@crm.com" && password === "patito") {
+    if (email === "admin" && password === "admin") {
       setAccess(true);
       dispatch(setClient("admin"));
       navigate("/dashboard");
-    } else if (email === "salesman@crm.com" && password === "patito") {
+    } else if (email === "seller" && password === "seller") {
       setAccess(true);
       dispatch(setClient("seller"));
       navigate("/dashboard");

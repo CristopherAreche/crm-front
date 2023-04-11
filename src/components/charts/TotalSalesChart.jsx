@@ -1,7 +1,4 @@
-import React, { useState } from "react";
-import { useSelector } from "react-redux";
-import { useDispatch } from "react-redux";
-import { getBoss } from "../../app/features/bossSlice";
+import React from "react";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -25,44 +22,24 @@ ChartJS.register(
   Colors
 );
 
-const TotalSalesChart = () => {
-  const dispatch = useDispatch();
-  const boss = useSelector((state) => state.boss?.boss);
-  console.log("-->", boss);
-
-  useState(() => {
-    dispatch(getBoss());
-  }, []);
-
+const TotalSalesChart = ({ annual_sales }) => {
   ChartJS.defaults.font.size = 20;
   ChartJS.defaults.color = "white";
   ChartJS.defaults.backgroundColor = "blue";
 
-  const salesData = [100, 50, 250, 350, 70, 160, 400, 600, 500, 300, 470, 700];
+  const data = annual_sales;
   const chartData = {
-    labels: [
-      "Ene",
-      "Feb",
-      "Mar",
-      "Abr",
-      "May",
-      "Jun",
-      "Jul",
-      "Ago",
-      "Sep",
-      "Oct",
-      "Nov",
-      "Dic",
-    ],
-    datasets: [
-      {
-        label: "Ventas totales",
-        data: salesData,
-        fill: false,
-        borderColor: "rgba(75,192,192,1)",
-      },
-    ],
+    labels: data?.map((item) => item.month),
+    datasets: [],
   };
+  if (Array.isArray(data)) {
+    chartData.datasets.push({
+      label: "Ventas totales",
+      data: data.map((item) => item.value),
+      fill: false,
+      borderColor: "rgba(75,192,192,1)",
+    });
+  }
 
   const chartOptions = {
     responsive: true,

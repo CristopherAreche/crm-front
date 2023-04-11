@@ -6,27 +6,37 @@ import NavModal from "./NavModal";
 
 const HomeHeader = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [navbar, setNavbar] = useState(false)
-  const [activeSection, setActiveSection] = useState('')
+  const [navbar, setNavbar] = useState(false);
+  const [activeSection, setActiveSection] = useState("");
 
   const changeBackground = () => {
     if (window.scrollY >= 100) {
-      setNavbar(true)
+      setNavbar(true);
     } else {
-      setNavbar(false)
+      setNavbar(false);
     }
-  }
+  };
 
   const handleSetActive = (section) => {
     setActiveSection(section);
-  }
+  };
 
-  window.addEventListener('scroll', changeBackground)
+  window.addEventListener("scroll", changeBackground);
 
   return (
     <>
-      <header className={`${navbar ? 'bg-base' : 'bg-transparent'} flex py-4 lg:py-6 items-center lg:justify-evenly justify-between px-10 lg:px-0 fixed  z-50 right-0 left-0 transition-all`}>
-        <LinkRoll to="inicio" smooth={true} duration={500} spy={true} onSetActive={handleSetActive}>
+      <header
+        className={`${
+          navbar ? "bg-base" : "bg-transparent"
+        } flex py-4 lg:py-6 items-center lg:justify-evenly justify-between px-10 lg:px-0 fixed  z-50 right-0 left-0 transition-all`}
+      >
+        <LinkRoll
+          to="inicio"
+          smooth={true}
+          duration={500}
+          spy={true}
+          onSetActive={handleSetActive}
+        >
           <h2 className="text-xl text-white  font-bold tracking-widest hover:text-light transition-colors cursor-pointer z-10">
             LOGO
           </h2>
@@ -62,7 +72,10 @@ const HomeHeader = () => {
             </li>
         </ul>
         <section className="hidden lg:flex gap-x-8 items-center">
-          <Link to="/authentication/register" className="bg-gradient-to-r from-primary to-secondary px-2 py-1 rounded-md text-white font-medium text-lg hover:scale-[1.03] transition-all">
+          <Link
+            to="/authentication/register"
+            className="bg-gradient-to-r from-primary to-secondary px-2 py-1 rounded-md text-white font-medium text-lg hover:scale-[1.03] transition-all"
+          >
             Empezar Ahora
           </Link>
           <Link

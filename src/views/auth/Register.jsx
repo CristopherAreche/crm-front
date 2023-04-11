@@ -2,9 +2,61 @@ import React from "react";
 import { RiArrowLeftLine, RiMailLine, RiLock2Line } from "react-icons/ri";
 import { Link } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
+import { useDispatch } from "react-redux";
+import { postUserLogin } from "../../services/authServices";
+import {useState } from "react";
+import swal from "sweetalert";
 
 const Register = () => {
+  const [password, setPassWord] = useState("");
+  const [email, setEmail] = useState("");
+  const [errorUser, SetErrorUser] = useState(true);
+  const [errorPassword, setErrorPassword] = useState(true);
+  const [access, setAccess] = useState(false);
+  const regularPassword = /^(?=.\d)(?=.[a-z])(?=.*[A-Z])\w{8,}$/; //al menos una letra, al menos un numero, al menos una letra mayúscula, al menos 8 caracteres, no permite espacios.
+  const regularUser = /\S+@\S+\.\S+/; //un correo electronico
   const { loginWithRedirect } = useAuth0();
+  const dispatch = useDispatch();
+
+  const register = () => {
+   const formData=new FormData();
+   const formLogin = { 
+        name:email,
+        username:email,
+        email:email,
+        password:password, 
+      };
+    formData.append("formLogin",JSON.stringify(formLogin));
+    for (let entry of formData.entries()) {
+      console.log(entry[0] + ": " + entry[1]);
+    }
+    dispatch(postUserLogin(formData));
+    swal( "Usuario registrado","Tu usuario se ha registrado con exito, ve al panel de inicio de sesión","success" );
+  }
+
+  const valUser = (value) => {
+    if (regularUser.test(value)) {
+      SetErrorUser(false);
+    } else {
+      SetErrorUser(true);
+    }
+    setEmail(value);
+  };
+
+  const valPassword = (value) => {
+    if (regularPassword.test(value)) {
+      setErrorPassword(false);
+    } else {
+      setErrorPassword(false);
+    }
+    setPassWord(value);
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    register();
+  };
+
   return (
     <section className="flex flex-col items-start justify-center min-h-screen px-8 lg:px-20 gap-y-4">
       <div className="block lg:hidden absolute top-4 left-4">
@@ -20,10 +72,16 @@ const Register = () => {
         LOGO
       </h2>
       <p className="text-gray-400 ">No olvide sus datos ingresados</p>
-      <form className="flex flex-col w-full gap-y-4 mb-4">
+      <form
+      onSubmit={(e) => {
+        handleSubmit(e);
+      }}
+      className="flex flex-col w-full gap-y-4 mb-4">
         <div className="relative flex flex-col gap-y-1 mb-2">
           <label className="font-medium text-gray-300">Email</label>
           <input
+          value={email}
+          onChange={(e) => valUser(e.target.value)}
             type="text"
             className="bg-base-light/60 py-2 pl-10 pr-4 w-full rounded-md outline-none shadow-md"
           />
@@ -32,16 +90,8 @@ const Register = () => {
         <div className="relative flex flex-col gap-y-1">
           <label className="font-medium text-gray-300">Contraseña</label>
           <input
-            type="password"
-            className="bg-base-light/60 py-2 pl-10 pr-4  w-full rounded-md outline-none shadow-md"
-          />
-          <RiLock2Line className="absolute top-1/2 translate-y-1 left-2 text-2xl text-secondary " />
-        </div>
-        <div className="relative flex flex-col gap-y-1">
-          <label className="font-medium text-gray-300">
-            Repita su Contraseña
-          </label>
-          <input
+          onChange={(e) => valPassword(e.target.value)}
+          value={password}
             type="password"
             className="bg-base-light/60 py-2 pl-10 pr-4  w-full rounded-md outline-none shadow-md"
           />
@@ -56,6 +106,7 @@ const Register = () => {
           </Link>
         </div>
         <Link
+          onClick={()=>register()}
           to="#"
           className="text-center bg-gradient-to-r from-primary to-secondary py-2 px-4 rounded-md font-bold text-lg hover:scale-[1.02] transition-all"
         >

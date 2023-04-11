@@ -1,11 +1,12 @@
-import { useState } from 'react';
-import Faq from './shared/Faq'
+import { useState } from "react";
+import Faq from "./shared/Faq";
 
 const faqs = [
   {
-    question: '¿Qué es el software de CRM?',
-    answer: 'El CRM es un software de gestión de la relación con los clientes (o Customer Relationship Management). Es una poderosa herramienta que ayuda a las empresas a organizar y gestionar la relación con sus clientes desde una plataforma centralizada y fácil de usar. Al hacer seguimiento de leads y crear una base de datos completa con la actividad de sus clientes, las empresas pueden entender dónde se encuentran en el proceso de compra de cada cliente.',
-    dropKey : 'first_faq'
+    question: "¿Qué es el software de CRM?",
+    answer:
+      "El CRM es un software de gestión de la relación con los clientes (o Customer Relationship Management). Es una poderosa herramienta que ayuda a las empresas a organizar y gestionar la relación con sus clientes desde una plataforma centralizada y fácil de usar. Al hacer seguimiento de vendedores y crear una base de datos completa con la actividad de sus clientes, las empresas pueden entender dónde se encuentran en el proceso de compra de cada cliente.",
+    dropKey: "first_faq",
   },
   {
     question: '¿Cuánto cuesta el sistema CRM?',
@@ -18,29 +19,31 @@ const faqs = [
     dropKey : 'third_faq'
   },
   {
-    question: '¿El sistema CRM es accesible para todos los dispositivos?',
-    answer: '¡Sí! Nuestro sistema CRM está en todos los dispositivos web del mercado para que puedas aprovechar esta herramienta al máximo. Esta es una ventaja especial cuando se compara con otros ejemplos de software CRM.',
-    dropKey : 'four_faq'
-  }
+    question: "¿El sistema CRM es accesible para todos los dispositivos?",
+    answer:
+      "¡Sí! Nuestro sistema CRM está en todos los dispositivos web del mercado para que puedas aprovechar esta herramienta al máximo. Esta es una ventaja especial cuando se compara con otros ejemplos de software CRM.",
+    dropKey: "four_faq",
+  },
 ];
 
 const SectionFaq = () => {
-
   const [dropState, setDropState] = useState([
-    { id: 'first_faq', isOpen: false },
-    { id: 'second_faq', isOpen: false },
-    { id: 'third_faq', isOpen: false },
-    { id: 'four_faq', isOpen: false }
+    { id: "first_faq", isOpen: false },
+    { id: "second_faq", isOpen: false },
+    { id: "third_faq", isOpen: false },
+    { id: "four_faq", isOpen: false },
   ]);
 
   const handleToggleDrop = (id) => {
-    setDropState(dropState.map((faq) => {
-      if (faq.id === id) {
-        return { ...faq, isOpen: !faq.isOpen };
-      } else {
-        return faq;
-      }
-    }));
+    setDropState(
+      dropState.map((faq) => {
+        if (faq.id === id) {
+          return { ...faq, isOpen: !faq.isOpen };
+        } else {
+          return faq;
+        }
+      })
+    );
   };
 
   return (
@@ -59,11 +62,10 @@ const SectionFaq = () => {
             onDrop={() => handleToggleDrop(f.dropKey)}
             isDrop={dropState.find((faq) => faq.id === f.dropKey)}
           />
-        ))
-      }
-   </main>
-  </section>
-  )
-}
+        ))}
+      </main>
+    </section>
+  );
+};
 
-export default SectionFaq
+export default SectionFaq;

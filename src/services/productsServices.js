@@ -24,7 +24,6 @@ export const getProductById = createAsyncThunk(
 export const createProduct = createAsyncThunk(
   "products/createProduct",
   async (product) => {
-    console.log(product);
     try {
       const { data } = await axios.post(`${API_URL_PRODUCTS}`, product);
       await swal(
@@ -32,7 +31,6 @@ export const createProduct = createAsyncThunk(
         `El producto ${data.name} fue creado correctamente`,
         "succes"
       );
-
       return data;
     } catch (error) {
       await swal("Error", `${error.response.data.error}`, "error");
@@ -56,7 +54,6 @@ export const updateProduct = createAsyncThunk(
       return data;
     } catch (error) {
       await swal("Error", `${error.response.data.error}`, "error");
-      console.log(error.response);
       return error.response.data.error;
     }
   }

@@ -4,8 +4,7 @@ import axios from "axios";
 
 const API_URL_BOSS = "https://crm.up.railway.app/api/dashboard_boss";
 
-export const getBoss = createAsyncThunk("boss/getBoss", async () => {
-  // const response = await axios.get(`${API_URL_BOSS}?id=${bossId}`);
+export const getBoss = createAsyncThunk("boss/getBoss", async (id) => {
   const response = await axios.get(
     `${API_URL_BOSS}?id=00d4cf20-b761-40cc-baf2-7c40aa53caf9`
   );

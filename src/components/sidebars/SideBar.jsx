@@ -31,7 +31,6 @@ function SideBar({ typeSidebar, summary, inventory, clients, sellers }) {
         username: user.nickname,
         password: "12345",
       };
-      console.log(userInfo);
       dispatch(postUserInfo(userInfo));
     }
   };

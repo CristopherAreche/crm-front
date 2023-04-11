@@ -48,70 +48,28 @@ const HomeHeader = () => {
           <RiAlignRight className="text-4xl text-white hover:text-white/60 transition-colors cursor-pointer" />
         </button>
         <ul className="hidden lg:flex gap-x-6 z-10 ">
-          <li
-            className={`${
-              activeSection === "precios" && "text-white border-b border-white"
-            } font-medium text-light/80 hover:text-white transition-colors cursor-pointer`}
-          >
-            <LinkRoll
-              to="precios"
-              smooth={true}
-              duration={500}
-              spy={true}
-              onSetActive={handleSetActive}
-            >
-              Precios
-            </LinkRoll>
-          </li>
 
-          <li
-            className={`${
-              activeSection === "funcionalidades" &&
-              "text-white border-b border-white"
-            } font-medium text-light/80 hover:text-white transition-colors cursor-pointer`}
-          >
-            <LinkRoll
-              to="funcionalidades"
-              smooth={true}
-              duration={500}
-              spy={true}
-              onSetActive={handleSetActive}
-            >
-              Funcionalidades
-            </LinkRoll>
-          </li>
-
-          <li
-            className={`${
-              activeSection === "sobre nosotros" &&
-              "text-white border-b border-white"
-            } font-medium text-light/80 hover:text-white transition-colors cursor-pointer`}
-          >
-            <LinkRoll
-              to="sobre nosotros"
-              smooth={true}
-              duration={500}
-              spy={true}
-              onSetActive={handleSetActive}
-            >
-              Sobre nosotros
-            </LinkRoll>
-          </li>
-          <li
-            className={`${
-              activeSection === "faq" && "text-white border-b border-white"
-            } font-medium text-light/80 hover:text-white transition-colors cursor-pointer`}
-          >
-            <LinkRoll
-              to="faq"
-              smooth={true}
-              duration={500}
-              spy={true}
-              onSetActive={handleSetActive}
-            >
-              FAQ
-            </LinkRoll>
-          </li>
+           <li className={`${activeSection === 'funcionalidades' && 'text-white border-b border-white'} font-medium text-light/80 hover:text-white transition-colors cursor-pointer`}>
+              <LinkRoll to="funcionalidades" smooth={true} duration={500} spy={true} onSetActive={handleSetActive}>
+                Funcionalidades
+              </LinkRoll>
+            </li>
+       
+            <li className={`${activeSection === 'precios' && 'text-white border-b border-white'} font-medium text-light/80 hover:text-white transition-colors cursor-pointer`}>
+              <LinkRoll to="precios" smooth={true}  duration={500} spy={true} onSetActive={handleSetActive}>
+                Precios
+              </LinkRoll>
+            </li>        
+            <li className={`${activeSection === 'sobre nosotros' && 'text-white border-b border-white'} font-medium text-light/80 hover:text-white transition-colors cursor-pointer`}>
+              <LinkRoll to="sobre nosotros" smooth={true} duration={500} spy={true} onSetActive={handleSetActive}>
+                Sobre nosotros
+              </LinkRoll>
+            </li>
+            <li className={`${activeSection === 'faq' && 'text-white border-b border-white'} font-medium text-light/80 hover:text-white transition-colors cursor-pointer`}>
+              <LinkRoll to="faq" smooth={true} duration={500} spy={true} onSetActive={handleSetActive}>
+                FAQ
+              </LinkRoll>
+            </li>
         </ul>
         <section className="hidden lg:flex gap-x-8 items-center">
           <Link

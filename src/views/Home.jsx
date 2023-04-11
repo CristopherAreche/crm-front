@@ -3,8 +3,7 @@ import imgLanding from "../assets/png images/imgLanding.png";
 import spotlight1 from "../assets/svg/Spotlight1.svg";
 import spotlight2 from "../assets/svg/Spotlight2.svg";
 import { Link as LinkRoll } from "react-scroll";
-import { RiArrowDropLeftLine, RiArrowDropRightLine } from "react-icons/ri";
-import team from "../assets/png images/team.svg";
+import { RiArrowDropLeftLine, RiArrowDropRightLine, RiFacebookFill, RiInstagramLine, RiLinkedinFill, RiTwitterLine, RiYoutubeLine } from "react-icons/ri";
 
 import diff1 from "../assets/differential1.png";
 import diff2 from "../assets/differential2.png";
@@ -32,8 +31,8 @@ const Home = () => {
         {/* Hero Info */}
         <section
           className="
-          sm:justify-center sm:items-center
-         text-white flex flex-col gap-y-8 lg:w-[36rem] lg:h-[30rem] "
+          sm:justify-center sm:items-start
+         text-white flex flex-col gap-y-8 lg:w-[36rem]  "
         >
           {/* Info Principal */}
           <div>
@@ -147,29 +146,19 @@ const Home = () => {
 
       <section
         name="sobre nosotros"
-        className=" h-[100vh]  flex-col lg:flex-row justify-center items-center flex"
+        className="h-[100vh]  flex-col justify-start items-start pt-24 flex gap-y-12"
       >
-        <div className=" text-white w-full lg:w-[50%] flex flex-col justify-center ml-[15em] lg:items-center">
-          <h1 className="text-[2em] font-bold">Sobre nosotros</h1>
-          <p className=" px-0 lg:px-14">
-            Nuestro CRM es un programa que ayuda a las empresas a Gestiónar
-            mejor las relaciones con sus clientes. Al utilizarlo, las empresas
-            pueden proporcionar un servicio más personalizado y eficiente, lo
-            que puede aumentar la satisfacción y retención del cliente. Además,
-            ayuda a las empresas a tomar decisiones más informadas sobre cómo
-            mejorar sus productos y servicios.
-          </p>
-        </div>
-        <div className=" w-[50%] flex items-center">
-          <img
-            src={team}
-            className="animate-pulse w-[60%]"
-            alt="3D icon of computer"
-          />
-        </div>
+
+        <div className='flex justify-evenly w-full items-end px-12'>
+          <h3 className="text-2xl w-[34rem] text-start lg:text-5xl   font-extrabold text-white">Mejoramos la relación entre <span className="bg-gradient-to-r from-primary  to-secondary text-transparent bg-clip-text">empresas y clientes</span></h3>
+          <p className='text-gray-300  w-[32rem]'>Nuestro equipo está formado por programadores experimentados y apasionados, que trabajan en estrecha colaboración con nuestros clientes para garantizar que nuestras soluciones satisfagan sus necesidades y objetivos comerciales. </p>
+        
+        </div>      
+        <img src='https://img.freepik.com/foto-gratis/grupo-personas-trabajando-plan-negocios-oficina_1303-16071.jpg?w=740&t=st=1681152322~exp=1681152922~hmac=f3fc6d2b455f0e7ef49df9cebc1c95674bc8e63cb06f96b129c5cc4f54bbdb23' alt='personas viendo una computadora' className='w-full h-96 object-cover'/>
+       
       </section>
 
-      <section className="h-[100vh] justify-center items-center flex flex-col gap-y-16">
+      <section className="relative h-[100vh] justify-center items-center flex flex-col gap-y-16">
         <h3 className="text-4xl lg:text-6xl  text-center font-extrabold text-white">
           Descubre por qué mas de <span className="text-secondary">1.000</span>{" "}
           clientes elijen{" "}
@@ -192,6 +181,11 @@ const Home = () => {
           </article>
           <RiArrowDropRightLine className="text-4xl text-light bg-base-light/20 p-2 box-content rounded-full cursor-pointer hover:translate-x-2 transition-transform " />
         </section>
+        <img
+          src={spotlight2}
+          alt="lights glows"
+          className="absolute bottom-0 right-0 opacity-50 z-[-1] animate-pulse"
+        />
       </section>
 
       <section className=" justify-center items-center flex flex-col gap-y-6 lg:gap-y-10 pb-12">
@@ -213,8 +207,34 @@ const Home = () => {
           Empezar Ahora
         </Link>
       </section>
-      <SectionFaq />
+      <section className="flex flex-col gap-y-12">
+        <SectionFaq />
+      <footer className="relative bg-base-light/40 justify-center items-center flex flex-col gap-y-6 lg:gap-y-4 py-4">
 
+          <div className='flex gap-x-12 items-center'>
+            <RiFacebookFill className="text-3xl text-light"/>
+            <RiInstagramLine className="text-3xl text-light"/>
+            <RiYoutubeLine className="text-3xl text-light"/>
+            <RiTwitterLine className="text-3xl text-light"/>
+            <RiLinkedinFill className="text-3xl text-light"/>
+          </div>
+         <div className="flex flex-col items-center gap-y-2">
+          <h3 className="text-lg font-bold text-white tracking-wider">LOGO</h3>
+          <p className="text-light/80  text-sm font-medium">Copyright © 2023, Inc.</p>
+          <div className="flex items-center gap-x-12 text-light/90 underline font-medium pb-4 ">
+            <p>Aspecos legales</p>
+            <p>Politica de privacidad</p>
+            <p>Seguridad</p>
+          </div>
+         </div>
+         <img
+          src={spotlight1}
+          alt="lights glows"
+          className="absolute top-0 left-0 opacity-50 z-[-1] animate-pulse"
+        />
+      </footer>
+
+      </section>
       <img
         src={spotlight1}
         alt="lights glows"

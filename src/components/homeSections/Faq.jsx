@@ -1,5 +1,6 @@
 import { useState } from "react";
-import Faq from "./shared/Faq";
+import { Link } from "react-router-dom";
+import Faq from "../shared/Faq";
 
 const faqs = [
   {
@@ -28,7 +29,7 @@ const faqs = [
   },
 ];
 
-const SectionFaq = () => {
+const FAQ = () => {
   const [dropState, setDropState] = useState([
     { id: "first_faq", isOpen: false },
     { id: "second_faq", isOpen: false },
@@ -49,26 +50,48 @@ const SectionFaq = () => {
   };
 
   return (
-    <section
-      name="faq"
-      className="h-[100vh] flex-col gap-y-4  items-center flex "
-    >
-      <main className="pt-28 flex flex-col gap-y-6">
-        <h3 className="text-4xl  text-center font-extrabold text-white">
-          Preguntas frecuentes
+    <>
+      <section className=" justify-center items-center flex flex-col gap-y-6 lg:gap-y-10 pb-12">
+        <h3 className="w-full text-3xl lg:text-5xl lg:w-[40rem]  text-center font-extrabold text-white">
+          El mejor software de{" "}
+          <span className="bg-gradient-to-r from-primary  to-secondary text-transparent bg-clip-text">
+            CRM
+          </span>{" "}
+          para toda tu empresa
         </h3>
-        {faqs.map((f) => (
-          <Faq
-            key={f.dropKey}
-            question={f.question}
-            answer={f.answer}
-            onDrop={() => handleToggleDrop(f.dropKey)}
-            isDrop={dropState.find((faq) => faq.id === f.dropKey)}
-          />
-        ))}
-      </main>
-    </section>
+        <p className="text-lg text-gray-200/90 text-center lg:text-start">
+          ¿Qué estas esperando? usa este CRM, ideal para todos los equipos en tu
+          empresa.
+        </p>
+        <Link
+          to="/authentication/register"
+          className="bg-gradient-to-r from-primary to-secondary px-8 py-4 rounded-xl text-white font-medium text-lg lg:text-2xl hover:scale-[1.03] transition-all flex gap-x-1 items-center"
+        >
+          Empezar Ahora
+        </Link>
+      </section>
+
+      <section
+        name="faq"
+        className="h-[100vh] pt-16 flex-col gap-y-4  items-center flex "
+      >
+        <main className="pt-28 flex flex-col gap-y-6">
+          <h3 className="text-4xl  text-center font-extrabold text-white">
+            Preguntas frecuentes
+          </h3>
+          {faqs.map((f) => (
+            <Faq
+              key={f.dropKey}
+              question={f.question}
+              answer={f.answer}
+              onDrop={() => handleToggleDrop(f.dropKey)}
+              isDrop={dropState.find((faq) => faq.id === f.dropKey)}
+            />
+          ))}
+        </main>
+      </section>
+    </>
   );
 };
 
-export default SectionFaq;
+export default FAQ;

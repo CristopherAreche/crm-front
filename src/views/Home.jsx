@@ -47,7 +47,7 @@ const Home = () => {
               className="
             text-light opacity-95 text-lg font-medium w-72  lg:w-96 2xl:text-xl"
             >
-              Registrate y Gestiona tus clientes de manera más efectiva con
+              Registrate y Gestióna tus clientes de manera más efectiva con
               nuestras herramientas.
             </p>
           </div>
@@ -100,10 +100,11 @@ const Home = () => {
               className="lg:w-72 lg:h-72 w-20 h-20"
               alt="task 3d"
             />
-            <h3 className="text-xl font-medium text-light">Gestion Completa</h3>
+            <h3 className="text-xl font-medium text-light">
+              Gestión completa de vendedores
+            </h3>
             <p className="text-light/80 w-full lg:w-64">
-              Voluptate duis et laborum fugiat commodo dolor cupidatat duis anim
-              aute.
+              Registra vendedores y observa estadisticas mensuales sus ventas.
             </p>
           </article>
           <article>
@@ -112,10 +113,11 @@ const Home = () => {
               className="lg:w-72 lg:h-72 w-20 h-20"
               alt="task 3d"
             />
-            <h3 className="text-xl font-medium text-light">Gestion Completa</h3>
+            <h3 className="text-xl font-medium text-light">
+              Gestión sobre inventario
+            </h3>
             <p className="text-light/80 w-full lg:w-64">
-              Voluptate duis et laborum fugiat commodo dolor cupidatat duis anim
-              aute.
+              Agrega, edita y controla el stock de tu negocio.
             </p>
           </article>
           <article>
@@ -124,10 +126,11 @@ const Home = () => {
               className="lg:w-72 lg:h-72 w-20 h-20"
               alt="task 3d"
             />
-            <h3 className="text-xl font-medium text-light">Gestion Completa</h3>
+            <h3 className="text-xl font-medium text-light">
+              Gestión completa de clientes
+            </h3>
             <p className="text-light/80 w-full lg:w-64">
-              Voluptate duis et laborum fugiat commodo dolor cupidatat duis anim
-              aute.
+              Lleva un registro de clientes y sus compras.
             </p>
           </article>
         </section>
@@ -149,7 +152,7 @@ const Home = () => {
         <div className=" text-white w-full lg:w-[50%] flex flex-col justify-center ml-[15em] lg:items-center">
           <h1 className="text-[2em] font-bold">Sobre nosotros</h1>
           <p className=" px-0 lg:px-14">
-            Nuestro CRM es un programa que ayuda a las empresas a gestionar
+            Nuestro CRM es un programa que ayuda a las empresas a Gestiónar
             mejor las relaciones con sus clientes. Al utilizarlo, las empresas
             pueden proporcionar un servicio más personalizado y eficiente, lo
             que puede aumentar la satisfacción y retención del cliente. Además,
@@ -200,8 +203,8 @@ const Home = () => {
           para toda tu empresa
         </h3>
         <p className="text-lg text-gray-200/90 text-center lg:text-start">
-          ¿Qué estas esperando? usa este CRM gratuito, ideal para todos los
-          equipos en tu empresa.
+          ¿Qué estas esperando? usa este CRM, ideal para todos los equipos en tu
+          empresa.
         </p>
         <Link
           to="/authentication/register"

@@ -67,11 +67,6 @@ function FormSeller({ isVisible, onClose }) {
     const formData = new FormData();
     formData.append("image", file);
     formData.append("sellerData", JSON.stringify(sellerData));
-    console.log(formData);
-
-    for (let entry of formData.entries()) {
-      console.log(entry[0] + ": " + entry[1]);
-    }
 
     if (errors.name || errors.email || errors.phone || errors.address) {
       swal("Error", "Por favor revise los datos introducidos. ", "error");

@@ -1,33 +1,23 @@
-import React from "react";
+import { RiStarFill, RiStarLine, RiEdit2Line } from "react-icons/ri";
+import { useSelector } from 'react-redux'
 import HeaderPerfil from "./shared/HeaderPerfil";
 import PrincipalInformation from "./shared/PrincipalInformation";
-import { RiStarFill, RiStarLine, RiEdit2Line } from "react-icons/ri";
 import PersonalInformationView from "./shared/PersonalInformationView";
 
 const MainPerfilSeller = () => {
-  const salemanPerfil = {
-    id: "ae8b659a-1158-411e-a16c-06ca9c0accc5",
-    name: "Barbara Clement",
-    address: "Kulas Light Apt. 556, Gwenborough",
-    email: "Sincere@april.biz",
-    phone: "98265435787",
-    enable: true,
-    createdAt: "2023-04-07T09:05:53.674Z",
-    updatedAt: "2023-04-07T09:05:53.674Z",
-    bossId: "e2240175-ccee-4539-9a41-0e9b8d75303f",
-    avgFeedback: 2.5,
-    total_monthly_sales: 65390,
-  };
+
+
+  const {seller} = useSelector(state => state.sellers)
 
   return (
     <section className="py-6 px-12 z-[2] min-h-screen">
-      <HeaderPerfil data={salemanPerfil} />
-      <section className="grid grid-cols-1 lg:grid-cols-6 ">
+      <HeaderPerfil data={seller} />
+      <section className="grid grid-cols-1 lg:grid-cols-8 ">
         <section className=" col-span-2 flex flex-col gap-y-6 items-center lg:items-start mb-6 lg:mb-0">
-          <PrincipalInformation data={salemanPerfil} />
+          <PrincipalInformation data={seller} />
           <p className="flex gap-x-2 items-center text-yellow-400 mb-4">
             {[...new Array(5)].map((star, index) => {
-              return index < salemanPerfil.avgFeedback ? (
+              return index < seller.avgFeedback ? (
                 <RiStarFill key={index} />
               ) : (
                 <RiStarLine key={index} />
@@ -38,7 +28,7 @@ const MainPerfilSeller = () => {
             <RiEdit2Line className="text-xl text-base-light" />
           </button>
         </section>
-        <PersonalInformationView data={salemanPerfil} />
+        <PersonalInformationView data={seller} type='seller'/>
       </section>
     </section>
   );

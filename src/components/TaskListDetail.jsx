@@ -1,67 +1,59 @@
-import React from "react";
-import { RiBookReadLine } from "react-icons/ri";
+import React, { useEffect } from "react";
+import { RiBookReadLine, RiLoader4Fill } from "react-icons/ri";
+import { useDispatch, useSelector } from "react-redux";
+import { cleanTasks, obtainTask } from "../app/features/clientActivitiesSlice";
 
-const TaskListDetail = () => {
+const TaskListDetail = ({clientId}) => {
+
+
+  const {tasks, statusTask} = useSelector(state => state.activities)
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    if(statusTask === 'idle')  dispatch(obtainTask(clientId))
+    return () => dispatch(cleanTasks())
+  }, [])
+
+  if (statusTask === "loading") {
+    return (
+      <div className="flex justify-center w-full">
+        <RiLoader4Fill className="animate-spin text-4xl text-secondary mt-8" />
+      </div>
+    );
+  }
+
+  if (!tasks.length && statusTask !== "loading") {
+    return (
+      <section className="flex items-center w-full  gap-x-4 ">
+       <div>
+        <h3 className="text-xl text-light font-medium">No tiene ninguna tarea pendiente con este cliente</h3>
+        <p className="text-light/90">Agende una tarea con este cliente</p>
+       </div>
+       <img src='https://cdn-icons-png.flaticon.com/512/5058/5058432.png' alt="task not found" className="w-20 h-20"/>
+      </section>
+    );
+  }
+
   return (
     <section className=" text-white mb-6">
       <h4 className="text-2xl text-light font-medium flex gap-x-4 items-center mb-6">
         <RiBookReadLine className="text-4xl" /> Lista de Tareas
       </h4>
       <section className="grid grid-cols-2 lg:grid-cols-3 gap-4">
-        <article className="bg-base-light/40 px-4 py-3 rounded-md shadow-md flex flex-col gap-y-3 items-start">
-          <p className="text-ellipsis overflow-hidden  w-24 lg:w-auto lg:h-auto h-14 text-sm font-medium text-gray-300 ">
-            Actualizar la información de los productos que ofrece en la
-            aplicación CRM.
-          </p>
-          <label className="bg-red-400 text-sm font-medium text-gray-200 py-1 px-2 rounded-md shadow-md flex flex-col gap-y-3 items-start shadow-red-400/50">
-            Pendiente
-          </label>
-        </article>
-        <article className="bg-base-light/40 px-4 py-3 rounded-md shadow-md flex flex-col gap-y-3 items-start">
-          <p className="text-ellipsis overflow-hidden  w-24 lg:w-auto lg:h-auto h-14 text-sm font-medium text-gray-300">
-            Realizar seguimiento de los clientes potenciales que muestran
-            interés en sus productos.
-          </p>
-          <label className="bg-red-400 text-sm font-medium text-gray-200 py-1 px-2 rounded-md shadow-md flex flex-col gap-y-3 items-start shadow-red-400/50">
-            Pendiente
-          </label>
-        </article>
-        <article className="bg-base-light/40 px-4 py-3 rounded-md shadow-md flex flex-col gap-y-3 items-start">
-          <p className="text-ellipsis overflow-hidden  w-24 lg:w-auto lg:h-auto h-14 text-sm font-medium text-gray-300">
-            Hacer un seguimiento de las oportunidades de venta y mantener
-            actualizado el estado de cada una en la aplicación CRM.
-          </p>
-          <label className="bg-emerald-400 text-sm font-medium text-gray-200 py-1 px-2 rounded-md shadow-md flex flex-col gap-y-3 items-start shadow-emerald-400/50">
-            Completada
-          </label>
-        </article>
-        <article className="bg-base-light/40 px-4 py-3 rounded-md shadow-md flex flex-col gap-y-3 items-start">
-          <p className="text-ellipsis overflow-hidden  w-24 lg:w-auto lg:h-auto h-14 text-sm font-medium text-gray-300">
-            Gestionar el proceso de ventas desde la identificación de un cliente
-            potencial hasta la realización de la venta.
-          </p>
-          <label className="bg-emerald-400 text-sm font-medium text-gray-200 py-1 px-2 rounded-md shadow-md flex flex-col gap-y-3 items-start shadow-emerald-400/50">
-            Completada
-          </label>
-        </article>
-        <article className="bg-base-light/40 px-4 py-3 rounded-md shadow-md flex flex-col gap-y-3 items-start">
-          <p className="text-ellipsis overflow-hidden  w-24 lg:w-auto lg:h-auto h-14 text-sm font-medium text-gray-300">
-            Realizar el seguimiento postventa con los clientes para asegurarse
-            de su satisfacción con los productos adquiridos.
-          </p>
-          <label className="bg-red-400 text-sm font-medium text-gray-200 py-1 px-2 rounded-md shadow-md flex flex-col gap-y-3 items-start shadow-red-400/50">
-            Pendiente
-          </label>
-        </article>
-        <article className="bg-base-light/40 px-4 py-3 rounded-md shadow-md flex flex-col gap-y-3 items-start">
-          <p className="text-ellipsis overflow-hidden  w-24 lg:w-auto lg:h-auto h-14 text-sm font-medium text-gray-300">
-            Gestionar la facturación y pagos de los clientes a través de la
-            aplicación CRM.
-          </p>
-          <label className="bg-emerald-400 text-sm font-medium text-gray-200 py-1 px-2 rounded-md shadow-md flex flex-col gap-y-3 items-start shadow-emerald-400/50">
-            Completada
-          </label>
-        </article>
+
+        {
+          tasks.map(task => (
+            <article key={task.id} className="bg-base-light/40 px-4 py-3 rounded-md shadow-md flex flex-col gap-y-3 items-start">
+                <p className="text-ellipsis overflow-hidden  w-24 lg:w-auto lg:h-auto h-14 text-sm font-medium text-gray-300 ">
+                  {task.description}
+                </p>
+                <label className={`${task.state === 'Pediente' ? 'bg-red-400 shadow-red-400/50' : 'bg-emerald-400 shadow-emerald-400/50'}text-sm font-medium text-gray-200 py-1 px-2 rounded-md shadow-md flex flex-col gap-y-3 items-start `}>
+                  {task.state}
+                </label>
+            </article>
+          ))
+        }
+        
       </section>
     </section>
   );

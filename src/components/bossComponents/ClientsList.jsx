@@ -4,6 +4,9 @@ import { getClients } from "../../services/clientsServices";
 import { useEffect } from "react";
 import ClientsItems from "./ClientsItems";
 
+const sellerId = '7155a9d8-acff-4cf9-93fd-385830b9bcae'
+
+
 const ClientList = () => {
   const dispatch = useDispatch();
   const clients = useSelector((state) => state.clients.clients);
@@ -13,7 +16,7 @@ const ClientList = () => {
   useEffect(() => {
     if (clientsStatus === "idle") {
       if (!clients.length) {
-        dispatch(getClients());
+        dispatch(getClients(sellerId));
       }
     }
   }, [clientsStatus, dispatch, clients]);

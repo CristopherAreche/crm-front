@@ -6,6 +6,7 @@ import {
   putSeller,
   putDisableSeller,
   putEnableSeller,
+  getSeller
 } from "../../services/sellersServices";
 import {
   statePostSeller,
@@ -16,6 +17,7 @@ import {
 const initialState = {
   sellers: [],
   copySellers: [],
+  seller : {},
   message: "",
   status: "idle",
   error: null,
@@ -116,7 +118,10 @@ export const sellerSlice = createSlice({
       })
       .addCase(putEnableSeller.fulfilled, (state, action) => {
         stateToggleStatusSeller(state, action, true);
-      });
+      })
+      .addCase(getSeller.fulfilled, (state, action) => {
+        state.seller = action.payload
+      })
   },
 });
 

@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
 import { postLogin } from "../../services/authServices";
 import { useDispatch } from "react-redux";
+import Cookies from 'universal-cookie';
 import swal from "sweetalert";
 import { useSelector } from "react-redux";
 import { setClient } from "../../app/features/clientSlice";
@@ -25,19 +26,24 @@ const Login = () => {
   const navigate = useNavigate();
 
   const login = async () => {
-    if (email === "admin" && password === "admin") {
-      setAccess(true);
-      dispatch(setClient("admin"));
-      navigate("/dashboard");
-    } else if (email === "seller" && password === "seller") {
-      setAccess(true);
-      dispatch(setClient("seller"));
-      navigate("/dashboard");
-    }
+    // if (email === "admin" && password === "admin") {
+    //   setAccess(true);
+    //   dispatch(setClient("admin"));
+    //   navigate("/dashboard");
+    // } else if (email === "seller" && password === "seller") {
+    //   setAccess(true);
+    //   dispatch(setClient("seller"));
+    //   navigate("/dashboard");
+    // }
 
-    // await axios.post('https://crm2.up.railway.app/api/login', {email, password}, {
-    //   withCredentials: true
-    // }).then(response => console.log(response)).catch(error => console.log(error))
+    const response = await axios.post('https://crm2.up.railway.app/api/login', {email, password}, {
+      withCredentials: true
+    })
+
+    const cookies = new Cookies();
+    cookies.set('myToken', response.data.token, { path: '/' });
+
+    console.log('**RESPONSE*',response.data.token);
 
     // const loginUser = {
     //   email:email,

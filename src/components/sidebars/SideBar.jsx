@@ -37,7 +37,7 @@ function SideBar({ typeSidebar, summary, inventory, clients, sellers }) {
   };
 
   const name= user.name;
-
+  console.log(name);
   return (
     <>
       <section

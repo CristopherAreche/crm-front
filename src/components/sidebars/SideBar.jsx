@@ -45,7 +45,7 @@ function SideBar({ typeSidebar, summary, inventory, clients, sellers }) {
 
   useEffect(() => {
     if(!seller) dispatch(getSeller(sellerId))
-    if(!boss) dispatch(getBossById())
+    dispatch(getBossById())
   }, [])
 
   return (
@@ -64,11 +64,19 @@ function SideBar({ typeSidebar, summary, inventory, clients, sellers }) {
           </div>
           <section className="flex flex-col gap-y-1 items-center mb-4">
             <div className="relative">
-              <img
+              {
+                role === 'admin'
+                ? <img
+                src="https://cdn-icons-png.flaticon.com/512/219/219983.png"
+                alt="placeholder"
+                className="w-28 h-28 rounded-full "
+              />
+              : <img
                 src={seller.image ? seller.image : "https://cdn-icons-png.flaticon.com/512/219/219983.png"}
                 alt="placeholder"
                 className="w-28 h-28 rounded-full "
               />
+              }
               <p className="bg-green-400 text-black absolute rounded-full px-2 bottom-0 right-0">
                 {role === "admin" ? "admin" : "seller"}
               </p>

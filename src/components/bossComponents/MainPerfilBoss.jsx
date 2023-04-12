@@ -13,7 +13,7 @@ const MainPerfilBoss = () => {
   const { boss } = useSelector(state => state.boss)
   const dispatch = useDispatch()
   useEffect(() => {
-     dispatch(getBossById())
+     if(!boss) dispatch(getBossById())
   }, []);
 
   return (

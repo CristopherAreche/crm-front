@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { selectedClientCheckbox } from '../../app/features/clientSlice';
 import { getSeller } from '../../services/sellersServices';
@@ -7,11 +7,11 @@ import { getSeller } from '../../services/sellersServices';
 
 const ClientsItems = ({ item }) => {
   const [clientSelected, setClientSelected] = useState("");
-  const [sellerName, setSellerName] = useState("");
   const [isSelected, setIsSelected] = useState(false);
 
   const dispatch = useDispatch();
-
+  const {seller} = useSelector(state => state.sellers)
+  const sellerName = seller.name
   const handleCheckboxChange = (client) => {
     setClientSelected(client.id);
     dispatch(selectedClientCheckbox(client.id));
@@ -24,11 +24,8 @@ const ClientsItems = ({ item }) => {
   };
 
   useEffect(() => {
-   if(item.salesmanId) {
-    getSeller(item.salesmanId).then(res => {
-        const name = res.name
-        setSellerName(name)
-    })
+   if(item.salesmanId && seller) {
+      dispatch(getSeller(item.salesmanId))
    }
   }, [])
 

@@ -12,11 +12,16 @@ import {
   statePostProduct,
   statePutProduct,
   stateToggleStatusProduct,
+  stateFilterByEnabled,
+  stateSortedByAlph,
+  stateOrderByPrice,
+  stateCategory,
 } from "../../handlers/handlerProducts";
 const initialState = {
   error: null,
   products: [],
   copyProducts: [],
+  productsCategory: [],
   message: "",
   status: "idle",
   productSelected: "",
@@ -37,6 +42,18 @@ const productsSlice = createSlice({
     },
     resetProducts: (state, action) => {
       state.products = state.copyProducts;
+    },
+    sortProducts: (state, action) => {
+      stateSortedByAlph(state, action);
+    },
+    sortEnabledProducts: (state, action) => {
+      stateFilterByEnabled(state, action);
+    },
+    sortPrice: (state, action) => {
+      stateOrderByPrice(state, action);
+    },
+    filterByCategory: (state, action) => {
+      stateCategory(state, action);
     },
   },
   extraReducers: (builder) => {
@@ -114,6 +131,10 @@ export const {
   selectedProductCheckbox,
   cleanProductSelect,
   resetProducts,
+  sortEnabledProducts,
+  sortProducts,
+  sortPrice,
+  filterByCategory,
 } = productsSlice.actions;
 
 export default productsSlice.reducer;

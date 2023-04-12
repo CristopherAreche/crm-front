@@ -1,14 +1,26 @@
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {
-  sortClients,
-  sortVipClients,
-  sortEnabledClients,
-  sortPurchases,
-  resetClients,
-} from "../app/features/clientSlice";
+  sortProducts,
+  sortEnabledProducts,
+  sortPrice,
+  resetProducts,
+  filterByCategory,
+} from "../../app/features/productsSlice";
 
-const FilterTop = () => {
+const FilterTopProducts = ({ products }) => {
   const dispatch = useDispatch();
+
+  const filteredCategory = products.reduce((accumulator, product) => {
+    const category =
+      product.category.charAt(0).toUpperCase() +
+      product.category.slice(1).toLowerCase();
+    if (!accumulator.includes(category)) {
+      accumulator.push(category);
+    }
+    return accumulator;
+  }, []);
+
+  console.log(filteredCategory);
 
   const handleOrderChange = (e) => {
     const value = e.target.value;
@@ -17,20 +29,13 @@ const FilterTop = () => {
       order = "todos";
     } else if (value === "asc") order = "asc";
     else order = "desc";
-    dispatch(sortClients({ order }));
+    dispatch(sortProducts({ order }));
   };
 
-  const handleVipOrderChange = (e) => {
+  const handleCategoryFilterChange = (e) => {
     const value = e.target.value;
-    let order = "";
-    if (value === "todos") {
-      order = "todos";
-    } else if (value === "asc") {
-      order = "asc";
-    } else if (value === "desc") {
-      order = "desc";
-    }
-    dispatch(sortVipClients({ order }));
+
+    dispatch(filterByCategory(value));
   };
 
   const handleEnableOrderChange = (e) => {
@@ -43,10 +48,10 @@ const FilterTop = () => {
     } else if (value === "desc") {
       orderEn = "desc";
     }
-    dispatch(sortEnabledClients({ orderEn }));
+    dispatch(sortEnabledProducts({ orderEn }));
   };
 
-  const handlePurchasesOrderChange = (e) => {
+  const handlePriceOrderChange = (e) => {
     const value = e.target.value;
     let orderP = "";
     if (value === "todos") {
@@ -56,19 +61,25 @@ const FilterTop = () => {
     } else if (value === "desc") {
       orderP = "desc";
     }
-    dispatch(sortPurchases({ orderP }));
+    dispatch(sortPrice({ orderP }));
   };
 
-  // const handleClearFilters = () => {
-  //   dispatch(resetClients());
-  //   document
-  //     .querySelectorAll("select")
-  //     .forEach((select) => (select.value = "todos"));
-  // };
+  const handleClearFilters = () => {
+    dispatch(resetProducts());
+    document
+      .querySelectorAll("select")
+      .forEach((select) => (select.value = "todos"));
+  };
 
   return (
-    <section className="text-white text-bold flex justify-evenly w-full  items-center py-2 border-b-2 border-light/10 gap-4 flex-row flex-wrap lg:flex-nowrap  ">
+    <section className="text-white text-bold flex justify-evenly w-full  lg:items-center py-2 border-b-2 border-light/10  flex-row flex-wrap lg:flex-nowrap lg:pt-6 ">
       <div className="flex gap-x-2 items-center">
+        <button
+          className="bg-slate-700 rounded-lg mr-12 px-4"
+          onClick={handleClearFilters}
+        >
+          Limpiar Filtros
+        </button>
         <p className="text-gray-300 text-sm font-medium">Alfabéticamente:</p>
         <select
           name=""
@@ -87,7 +98,7 @@ const FilterTop = () => {
           name=""
           id=""
           className="bg-slate-700 rounded-lg "
-          onChange={handlePurchasesOrderChange}
+          onChange={handlePriceOrderChange}
         >
           <option value="todos">Todos</option>
           <option value="desc">Max</option>
@@ -103,25 +114,28 @@ const FilterTop = () => {
           onChange={handleEnableOrderChange}
         >
           <option value="todos">Todos</option>
-          <option value="desc">Habilitados</option>
-          <option value="asc">Deshabilitados</option>
+          <option value="desc">Habilitado</option>
+          <option value="asc">Deshabilitado</option>
         </select>
       </div>
       <div className="flex gap-x-2 items-center">
-        <p className="text-gray-300 text-sm font-medium">VIP:</p>
+        <p className="text-gray-300 text-sm font-medium">Categoría:</p>
         <select
           name=""
           id=""
           className="bg-slate-700 rounded-lg "
-          onChange={handleVipOrderChange}
+          onChange={handleCategoryFilterChange}
         >
           <option value="todos">Todos</option>
-          <option value="desc">Si</option>
-          <option value="asc">No</option>
+          {filteredCategory.map((category, index) => (
+            <option key={index} value={category}>
+              {category}
+            </option>
+          ))}
         </select>
       </div>
     </section>
   );
 };
 
-export default FilterTop;
+export default FilterTopProducts;

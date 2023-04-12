@@ -4,12 +4,23 @@ import swal from "sweetalert";
 
 const API_URL_CLIENT = "https://crm.up.railway.app/api/client";
 
-export const getClients = createAsyncThunk("clients/getClients", async (salesmanId) => {
-  const response = await axios.get(
-    `${API_URL_CLIENT}?salesmanId=${salesmanId}`
-  );
-  return response.data;
-});
+export const getClients = createAsyncThunk(
+  "clients/getClients",
+  async (salesmanId) => {
+    const response = await axios.get(
+      `${API_URL_CLIENT}?salesmanId=${salesmanId}`
+    );
+    return response.data;
+  }
+);
+
+export const getAllClients = createAsyncThunk(
+  "clients/getAllClients",
+  async (bossId) => {
+    const response = await axios.get(`${API_URL_CLIENT}?bossId=${bossId}`);
+    return response.data;
+  }
+);
 
 export const postClient = createAsyncThunk(
   `clients/postClient`,

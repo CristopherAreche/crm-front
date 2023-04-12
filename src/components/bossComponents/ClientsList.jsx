@@ -4,8 +4,8 @@ import { getClients } from "../../services/clientsServices";
 import { useEffect } from "react";
 import ClientsItems from "./ClientsItems";
 
-const sellerId = '7155a9d8-acff-4cf9-93fd-385830b9bcae'
-
+const sellerId = "7155a9d8-acff-4cf9-93fd-385830b9bcae";
+const bossId = "00d4cf20-b761-40cc-baf2-7c40aa53caf9";
 
 const ClientList = () => {
   const dispatch = useDispatch();
@@ -20,7 +20,6 @@ const ClientList = () => {
       }
     }
   }, [clientsStatus, dispatch, clients]);
-
   if (clientsStatus === "loading") {
     return (
       <div className="flex justify-center w-full">

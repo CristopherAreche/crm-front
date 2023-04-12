@@ -1,9 +1,9 @@
 import { RiFilter3Line, RiLoader4Fill } from "react-icons/ri";
-import { Link } from "react-router-dom";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getSellers } from "../../services/sellersServices";
 import { selectedSellerCheckbox } from "../../app/features/sellerSlice";
+import ModalHistory from "./ModalHistory";
 
 const SellerList = () => {
   const dispatch = useDispatch();
@@ -12,6 +12,7 @@ const SellerList = () => {
   const sellersError = useSelector((state) => state.sellers.error);
   const [sellerSelected, setSellerSelected] = useState("");
   const [isSelected, setIsSelected] = useState(false);
+  const [isShow, setIsShow] = useState(false);
 
   useEffect(() => {
     if (sellersStatus === "idle") {
@@ -50,10 +51,10 @@ const SellerList = () => {
           <thead className=" font-medium text-light/75  dark:bg-base-light/30 rounded-md">
             <tr>
               <th scope="col" className=" px-6 py-4">
-                CB
+                {/*  */}
               </th>
               <th scope="col" className=" px-6 py-4">
-                Foto
+                Foto de perfil
               </th>
               <th scope="col" className=" px-6 py-4">
                 Nombre
@@ -92,6 +93,9 @@ const SellerList = () => {
                   <td className="whitespace-nowrap  px-6 py-4  font-medium text-secondary hover:text-secondary/80 hover:underline transition-all">
                     {/* <Link to={`/vendedor/${item.id}`}>{item.name}</Link> */}
                     {item.name}
+                    {isShow && (
+                      <ModalHistory onClose={() => setIsShow(false)} />
+                    )}
                   </td>
                   <td className="whitespace-nowrap  px-6 py-4">
                     ${item.total_monthly_sales}

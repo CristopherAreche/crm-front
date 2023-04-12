@@ -8,45 +8,48 @@ import {
   RiTyphoonFill,
   RiHandCoinLine,
 } from "react-icons/ri";
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import ClientDetailSideBar from "./ClientDetailSideBar";
 import { RiTeamLine } from "react-icons/ri";
 import { MdOutlineInventory2, MdOutlineSpaceDashboard } from "react-icons/md";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
-import { postUserInfo } from "../../services/authServices";
+// import { postUserInfo } from "../../services/authServices";
 import { useAuth0 } from "@auth0/auth0-react";
 import { getSeller } from "../../services/sellersServices";
 import { getBossById } from "../../app/features/bossSlice";
 
-const sellerId = '7155a9d8-acff-4cf9-93fd-385830b9bcae'
-
+const sellerId = "7155a9d8-acff-4cf9-93fd-385830b9bcae";
 
 function SideBar({ typeSidebar, summary, inventory, clients, sellers }) {
   const [isOpen, setIsOpen] = useState(false);
+  const [selected, setSelected] = useState("");
   const role = useSelector((state) => state.clients.clientRole);
-  const {seller} = useSelector((state) => state.sellers)
-  const {boss} = useSelector((state) => state.boss)
+  const { seller } = useSelector((state) => state.sellers);
+  const { boss } = useSelector((state) => state.boss);
   const dispatch = useDispatch();
-  const { isAuthenticated, user, logout } = useAuth0();
+  const { logout } = useAuth0();
 
-  const handleBossRegister = () => {
-    if (isAuthenticated && user) {
-      const userInfo = {
-        email: user.email,
-        name: user.name,
-        logo: user.picture,
-        username: user.nickname,
-        password: "12345",
-      };
-      dispatch(postUserInfo(userInfo));
-    }
-  };
+  // const handleBossRegister = () => {
+  //   if (isAuthenticated && user) {
+  //     const userInfo = {
+  //       email: user.email,
+  //       name: user.name,
+  //       logo: user.picture,
+  //       username: user.nickname,
+  //       password: "12345",
+  //     };
+  //     dispatch(postUserInfo(userInfo));
+  //   }
+  // };
 
+  const handleLinkClick = (linkName) => setSelected(linkName);
+
+  // const name = user.name;
   useEffect(() => {
-    if(!seller) dispatch(getSeller(sellerId))
-    dispatch(getBossById())
-  }, [])
+    if (!seller) dispatch(getSeller(sellerId));
+    dispatch(getBossById());
+  }, []);
 
   return (
     <>
@@ -64,19 +67,23 @@ function SideBar({ typeSidebar, summary, inventory, clients, sellers }) {
           </div>
           <section className="flex flex-col gap-y-1 items-center mb-4">
             <div className="relative">
-              {
-                role === 'admin'
-                ? <img
-                src="https://cdn-icons-png.flaticon.com/512/219/219983.png"
-                alt="placeholder"
-                className="w-28 h-28 rounded-full "
-              />
-              : <img
-                src={seller.image ? seller.image : "https://cdn-icons-png.flaticon.com/512/219/219983.png"}
-                alt="placeholder"
-                className="w-28 h-28 rounded-full "
-              />
-              }
+              {role === "admin" ? (
+                <img
+                  src="https://cdn-icons-png.flaticon.com/512/219/219983.png"
+                  alt="placeholder"
+                  className="w-28 h-28 rounded-full "
+                />
+              ) : (
+                <img
+                  src={
+                    seller.image
+                      ? seller.image
+                      : "https://cdn-icons-png.flaticon.com/512/219/219983.png"
+                  }
+                  alt="placeholder"
+                  className="w-28 h-28 rounded-full "
+                />
+              )}
               <p className="bg-green-400 text-black absolute rounded-full px-2 bottom-0 right-0">
                 {role === "admin" ? "admin" : "seller"}
               </p>
@@ -91,7 +98,10 @@ function SideBar({ typeSidebar, summary, inventory, clients, sellers }) {
           <div className="flex flex-col gap-y-4">
             <Link
               to="/dashboard"
-              className="flex px-12 py-2  active:scale-95 active:bg-light/20 gap-x-6 items-center text-lg text-gray-300 font-medium   cursor-pointer  hover:text-gray-100 transition-all"
+              className={`flex px-12 py-2  active:scale-95 active:bg-light/20 gap-x-6 items-center text-lg text-gray-300 font-medium   cursor-pointer  hover:text-gray-100 transition-all ${
+                selected === "summary" && "bg-base"
+              }`}
+              onClick={() => handleLinkClick("summary")}
             >
               <MdOutlineSpaceDashboard className="text-3xl text-secondary" />{" "}
               Resumen
@@ -100,14 +110,19 @@ function SideBar({ typeSidebar, summary, inventory, clients, sellers }) {
               <>
                 <Link
                   to="/dashboard/inventory"
-                  className={`  flex px-12 py-2  active:scale-95 active:bg-light/20 gap-x-6 items-center text-lg text-gray-300 font-medium   cursor-pointer  hover:text-gray-100 transition-all`}
+                  className={`  flex px-12 py-2  active:scale-95 active:bg-light/20 gap-x-6 items-center text-lg text-gray-300 font-medium   cursor-pointer  hover:text-gray-100 transition-all
+                  ${selected === "inventory" && "bg-base"}`}
+                  onClick={() => handleLinkClick("inventory")}
                 >
                   <MdOutlineInventory2 className="text-3xl text-secondary" />
                   Inventario
                 </Link>
                 <Link
                   to="/dashboard/sellers"
-                  className="flex px-12 py-2  active:scale-95 active:bg-light/20 gap-x-6 items-center text-lg text-gray-300 font-medium   cursor-pointer  hover:text-gray-100 transition-all"
+                  className={`flex px-12 py-2  active:scale-95 active:bg-light/20 gap-x-6 items-center text-lg text-gray-300 font-medium   cursor-pointer  hover:text-gray-100 transition-all ${
+                    selected === "seller" && "bg-base"
+                  }`}
+                  onClick={() => handleLinkClick("seller")}
                 >
                   <RiTeamLine className="text-3xl text-secondary" /> Vendedores
                 </Link>
@@ -115,9 +130,9 @@ function SideBar({ typeSidebar, summary, inventory, clients, sellers }) {
             )}
             <Link
               to="/dashboard/all_clients"
-              className={`${
-                clients && "bg-[purple]"
-              } flex px-12 py-2  active:scale-95 active:bg-light/20 gap-x-6 items-center text-lg text-gray-300 font-medium   cursor-pointer  hover:text-gray-100 transition-all`}
+              className={` flex px-12 py-2  active:scale-95 active:bg-light/20 gap-x-6 items-center text-lg text-gray-300 font-medium   cursor-pointer  hover:text-gray-100 transition-all
+              ${selected === "clients" && "bg-base"}`}
+              onClick={() => handleLinkClick("clients")}
             >
               <RiHandCoinLine className="text-3xl text-secondary" /> Clientes
             </Link>
@@ -131,7 +146,9 @@ function SideBar({ typeSidebar, summary, inventory, clients, sellers }) {
             </button> */}
             <Link
               to="/dashboard/perfil"
-              className="flex px-12 py-2  active:scale-95 active:bg-light/20 gap-x-6 items-center text-lg text-gray-300 font-medium   cursor-pointer  hover:text-gray-100 transition-all"
+              className={`flex px-12 py-2  active:scale-95 active:bg-light/20 gap-x-6 items-center text-lg text-gray-300 font-medium   cursor-pointer  hover:text-gray-100 transition-all
+              ${selected === "settings" && "bg-base"}`}
+              onClick={() => handleLinkClick("settings")}
             >
               <RiUserSettingsLine className="text-2xl text-secondary" />
               Configuración

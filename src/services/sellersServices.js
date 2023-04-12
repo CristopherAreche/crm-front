@@ -59,30 +59,15 @@ export const putSeller = createAsyncThunk(
   }
 );
 
-export const putDisableSeller = createAsyncThunk(
-  "sellers/putDisableSeller",
-  async (id) => {
+export const toggleStatusSeller = createAsyncThunk(
+  "clients/toggleStatusSeller",
+  async ({ id, enable }) => {
     try {
-      const sellerData = new FormData();
-      sellerData.append("sellerData", JSON.stringify({ enable: false, id }));
-      const { data } = await axios.put(API_URL_SELLER, sellerData);
-      return data;
+      await axios.put(API_URL_SELLER, { enable, id });
+      return enable;
     } catch (error) {
       return error.response.data.error;
     }
   }
 );
 
-export const putEnableSeller = createAsyncThunk(
-  "sellers/putEnableSeller",
-  async (id) => {
-    try {
-      const sellerData = new FormData();
-      sellerData.append("sellerData", JSON.stringify({ enable: true, id }));
-      const { data } = await axios.put(API_URL_SELLER, sellerData);
-      return data;
-    } catch (error) {
-      return error.response.data.error;
-    }
-  }
-);

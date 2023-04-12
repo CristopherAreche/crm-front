@@ -44,7 +44,6 @@ const sellerId = '7155a9d8-acff-4cf9-93fd-385830b9bcae'
 
 const MainSeller = () => {
   const { user } = useAuth0();
-  console.log(user)
   const dispatch = useDispatch()
   const {seller} = useSelector(state => state.sellers)
 

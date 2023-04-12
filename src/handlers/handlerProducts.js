@@ -41,3 +41,56 @@ export const statePutProduct = (state, action) => {
     state.products[indexProduct].image = image;
   }
 };
+
+// *************** Reducers *****************
+export const stateSortedByAlph = (state, action) => {
+  const { order } = action.payload;
+  const allProducts = [...state.copyProducts];
+  const productsSorted =
+    order === "todos"
+      ? allProducts
+      : state.products.sort((a, b) =>
+          order === "asc"
+            ? a.name.localeCompare(b.name)
+            : b.name.localeCompare(a.name)
+        );
+  state.products = productsSorted;
+};
+
+export const stateFilterByEnabled = (state, action) => {
+  const { orderEn } = action.payload;
+  const allProducts = [...state.copyProducts];
+  const productsSorted =
+    orderEn === "todos"
+      ? allProducts
+      : state.products.sort((a, b) =>
+          orderEn === "asc" ? a.enable - b.enable : b.enable - a.enable
+        );
+  state.products = productsSorted;
+};
+
+export const stateOrderByPrice = (state, action) => {
+  const { orderP } = action.payload;
+  const allProducts = [...state.copyProducts];
+  const productsSorted =
+    orderP === "todos"
+      ? allProducts
+      : state.products.sort((a, b) =>
+          orderP === "asc"
+            ? a.sale_price - b.sale_price
+            : b.sale_price - a.sale_price
+        );
+  state.products = productsSorted;
+};
+
+export const stateCategory = (state, action) => {
+  const products = state.products;
+  const allProducts = [...state.copyProducts];
+
+  const filteredProducts =
+    action.payload === "todos"
+      ? allProducts
+      : allProducts.filter((p) => p.category.includes(action.payload));
+
+  state.products = filteredProducts;
+};

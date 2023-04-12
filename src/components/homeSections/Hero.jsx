@@ -15,7 +15,7 @@ const Hero = () => {
       {/* Hero Info */}
       <section
         className="
-        sm:justify-center sm:items-center
+        sm:justify-center sm:items-center lg:items-start 
        text-white flex flex-col gap-y-8 lg:w-[36rem] lg:h-[30rem] "
       >
         {/* Info Principal */}

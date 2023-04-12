@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { RiAlignRight, RiUserLine } from "react-icons/ri";
 import { Link as LinkRoll } from "react-scroll";
 import { Link } from "react-router-dom";
-import NavModal from "./NavModal";
+import NavModal from "../NavModal";
 
 const HomeHeader = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -50,20 +50,19 @@ const HomeHeader = () => {
         <ul className="hidden lg:flex gap-x-6 z-10 ">
           <li
             className={`${
-              activeSection === "precios" && "text-white border-b border-white"
+              activeSection === "detalles" && "text-white border-b border-white"
             } font-medium text-light/80 hover:text-white transition-colors cursor-pointer`}
           >
             <LinkRoll
-              to="precios"
+              to="detalles"
               smooth={true}
               duration={500}
               spy={true}
               onSetActive={handleSetActive}
             >
-              Precios
+              Detalles
             </LinkRoll>
           </li>
-
           <li
             className={`${
               activeSection === "funcionalidades" &&
@@ -80,21 +79,36 @@ const HomeHeader = () => {
               Funcionalidades
             </LinkRoll>
           </li>
-
           <li
             className={`${
-              activeSection === "sobre nosotros" &&
-              "text-white border-b border-white"
+              activeSection === "precios" && "text-white border-b border-white"
             } font-medium text-light/80 hover:text-white transition-colors cursor-pointer`}
           >
             <LinkRoll
-              to="sobre nosotros"
+              to="precios"
               smooth={true}
               duration={500}
               spy={true}
               onSetActive={handleSetActive}
             >
-              Sobre nosotros
+              Precios
+            </LinkRoll>
+          </li>
+
+          <li
+            className={`${
+              activeSection === "creadores" &&
+              "text-white border-b border-white"
+            } font-medium text-light/80 hover:text-white transition-colors cursor-pointer`}
+          >
+            <LinkRoll
+              to="creadores"
+              smooth={true}
+              duration={500}
+              spy={true}
+              onSetActive={handleSetActive}
+            >
+              Creadores
             </LinkRoll>
           </li>
           <li

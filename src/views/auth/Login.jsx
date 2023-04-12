@@ -1,29 +1,43 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { RiArrowLeftLine, RiMailLine, RiLock2Line } from "react-icons/ri";
-import { Link } from "react-router-dom";
+import { RiArrowLeftLine, RiMailLine, RiLock2Line, RiEyeOffLine, RiEyeLine } from "react-icons/ri";
+import { Link, Navigate } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
 import { postLogin } from "../../services/authServices";
 import { useDispatch } from "react-redux";
 import swal from "sweetalert";
 import { useSelector } from "react-redux";
+import { setClient } from "../../app/features/clientSlice";
 
 const Login = () => {
   const [password, setPassWord] = useState("");
   const [email, setEmail] = useState("");
+  const [showPassword, setShowPassword] = useState(false)
   const [errorUser, SetErrorUser] = useState(true);
   const [errorPassword, setErrorPassword] = useState(true);
   const [access, setAccess] = useState(false);
   const regularPassword = /^(?=.\d)(?=.[a-z])(?=.*[A-Z])\w{8,}$/; //al menos una letra, al menos un numero, al menos una letra mayúscula, al menos 8 caracteres, no permite espacios.
   const regularUser = /\S+@\S+\.\S+/; //un correo electronico
 
-  const { loginWithRedirect } = useAuth0();
+  //const { loginWithRedirect } = useAuth0();
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   const login = async () => {
-    await axios.post('https://crm2.up.railway.app/api/login', {email, password}, {
-      withCredentials: true
-    }).then(response => console.log(response)).catch(error => console.log(error))
+    if (email === "admin" && password === "admin") {
+      setAccess(true);
+      dispatch(setClient("admin"));
+      navigate("/dashboard");
+    } else if (email === "seller" && password === "seller") {
+      setAccess(true);
+      dispatch(setClient("seller"));
+      navigate("/dashboard");
+    }
+
+    // await axios.post('https://crm2.up.railway.app/api/login', {email, password}, {
+    //   withCredentials: true
+    // }).then(response => console.log(response)).catch(error => console.log(error))
 
     // const loginUser = {
     //   email:email,
@@ -97,11 +111,15 @@ const Login = () => {
             name="password"
             value={password}
             placeholder="Contraseña"
-            type="password"
+            type={showPassword ? 'text' : 'password'}
             onChange={(e) => valPassword(e.target.value)}
             className="bg-base-light/60 py-2 pl-10 pr-4  w-full rounded-md outline-none shadow-md"
           />
           <RiLock2Line className="absolute top-1/2 translate-y-1 left-2 text-2xl text-secondary " />
+          {showPassword  
+           ? <RiEyeLine  className="absolute top-1/2 translate-y-1 right-2 text-xl cursor-pointer text-secondary " onClick={() => setShowPassword(!showPassword)}/>
+           : <RiEyeOffLine className="absolute top-1/2 translate-y-1 right-2 text-xl cursor-pointer text-secondary " onClick={() => setShowPassword(!showPassword)}/>
+          }
         </div>
         <div className="flex justify-between">
           <Link
@@ -122,7 +140,7 @@ const Login = () => {
           Iniciar Sesión
         </Link>
       </form>
-      <section className="flex gap-x-2 items-center justify-center w-full bg-white py-2 hover:scale-[1.03] transition-all cursor-pointer rounded-md">
+      <section className="flex gap-x-2 items-center justify-center w-full bg-white py-2 hover:scale-[1.03] transition-all cursor-pointer rounded-md px-2 lg:px-0">
         <img
           src="https://img.freepik.com/iconos-gratis/buscar_318-265146.jpg"
           alt="logo google"
@@ -130,7 +148,8 @@ const Login = () => {
         />
         <button
           className="text-base font-medium "
-          onClick={() => loginWithRedirect({ screen_hint: "signup" })}
+          // onClick={() => loginWithRedirect({ screen_hint: "signup" })}
+          onClick={login}
         >
           Ingresa con Google o Microsoft
         </button>

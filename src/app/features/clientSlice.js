@@ -36,6 +36,10 @@ export const clientSlice = createSlice({
   name: "clients",
   initialState,
   reducers: {
+    setClient: (state, action) => {
+      state.clientRole = action.payload;
+    },
+
     selectedClientCheckbox: (state, action) => {
       state.clientSelected = action.payload;
     },
@@ -117,5 +121,6 @@ export const {
   selectedClientCheckbox,
   sortPurchases,
   resetClients,
+  setClient,
 } = clientSlice.actions;
 export default clientSlice.reducer;

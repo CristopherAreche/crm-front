@@ -13,10 +13,6 @@ const Funcionalities = () => {
           Funcionalidades para simplificar tu gestión en un solo lugar{" "}
         </h3>
         <p className="text-lg font-medium text-gray-200 flex items-center gap-x-4">
-          <RiCheckboxCircleFill className="text-secondary text-4xl" />{" "}
-          Facturacion electronica
-        </p>
-        <p className="text-lg font-medium text-gray-200 flex items-center gap-x-4">
           <RiCheckboxCircleFill className="text-secondary text-4xl" /> Agenda de
           proveedores/clientes
         </p>

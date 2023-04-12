@@ -1,14 +1,14 @@
-import React, { useEffect, useState } from 'react'
-import { useDispatch } from 'react-redux';
-import { Link } from 'react-router-dom';
-import { selectedClientCheckbox } from '../../app/features/clientSlice';
-import { getSeller } from '../../services/sellersServices';
-
+import React, { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+import { selectedClientCheckbox } from "../../app/features/clientSlice";
+import { getSeller } from "../../services/sellersServices";
+import ModalHistory from "./ModalHistory";
 
 const ClientsItems = ({ item }) => {
   const [clientSelected, setClientSelected] = useState("");
   const [sellerName, setSellerName] = useState("");
   const [isSelected, setIsSelected] = useState(false);
+  const [isShow, setIsShow] = useState(false);
 
   const dispatch = useDispatch();
 
@@ -24,13 +24,14 @@ const ClientsItems = ({ item }) => {
   };
 
   useEffect(() => {
-   if(item.salesmanId) {
-    getSeller(item.salesmanId).then(res => {
-        const name = res.name
-        setSellerName(name)
-    })
-   }
-  }, [])
+    if (item.salesmanId) {
+      getSeller(item.salesmanId).then((res) => {
+        const name = res.name;
+        setSellerName(name);
+      });
+    }
+  }, []);
+  console.log("-->", item);
 
   return (
     <tr key={item.id} className="border-b dark:border-base/30">
@@ -47,7 +48,12 @@ const ClientsItems = ({ item }) => {
         />
       </td>
       <td className="whitespace-nowrap  px-6 py-4  font-medium text-secondary hover:text-secondary/80 hover:underline transition-all">
-        <Link to={`/dashboard/client/${item.id}`}>{item.name}</Link>
+        {/* <Link to={`/dashboard/client/${item.id}`}> */}
+        <button onClick={() => setIsShow(true)}>{item.name}</button>
+        {isShow && (
+          <ModalHistory clientDetail={item} onClose={() => setIsShow(false)} />
+        )}
+        {/* </Link> */}
       </td>
       <td className="whitespace-nowrap  px-6 py-4  font-medium text-yellow-400 hover:text-yellow-400/80 hover:underline transition-all">
         {sellerName}

@@ -18,7 +18,7 @@ const Price = () => {
           <header className="bg-gray-300 py-4 flex flex-col items-center gap-y-2 w-full">
             <h5 className="text-base-light font-medium text-xl">Free</h5>
             <p className="text-base-light/70 font-medium text-sm w-40 text-center ">
-              Aun no esta disponible
+              Proximamente
             </p>
           </header>
           <main className="flex flex-col gap-y-2 items-center border-b-2 border-gray-400/20 pb-4">
@@ -106,7 +106,7 @@ const Price = () => {
               Proffesional
             </h5>
             <p className="text-gray-light/70 font-medium text-sm w-40 text-center ">
-              Aun no esta disponible
+              Proximamente
             </p>
           </header>
           <main className="flex flex-col gap-y-2 items-center border-b-2 border-gray-400/20 pb-4">

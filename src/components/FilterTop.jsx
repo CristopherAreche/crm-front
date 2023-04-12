@@ -59,17 +59,16 @@ const FilterTop = () => {
     dispatch(sortPurchases({ orderP }));
   };
 
-  const handleClearFilters = () => {
-    dispatch(resetClients());
-    document
-      .querySelectorAll("select")
-      .forEach((select) => (select.value = "todos"));
-  };
+  // const handleClearFilters = () => {
+  //   dispatch(resetClients());
+  //   document
+  //     .querySelectorAll("select")
+  //     .forEach((select) => (select.value = "todos"));
+  // };
 
   return (
     <section className="text-white text-bold flex justify-evenly w-full  items-center py-2 border-b-2 border-light/10 gap-4 flex-row flex-wrap lg:flex-nowrap  ">
       <div className="flex gap-x-2 items-center">
-    
         <p className="text-gray-300 text-sm font-medium">Alfabéticamente:</p>
         <select
           name=""

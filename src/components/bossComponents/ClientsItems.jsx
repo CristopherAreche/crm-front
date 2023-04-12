@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { selectedClientCheckbox } from "../../app/features/clientSlice";
 import { getSeller } from "../../services/sellersServices";
 import ModalHistory from "./ModalHistory";
@@ -9,7 +9,7 @@ const ClientsItems = ({ item }) => {
   const [sellerName, setSellerName] = useState("");
   const [isSelected, setIsSelected] = useState(false);
   const [isShow, setIsShow] = useState(false);
-
+  const seller = useSelector((state) => state.sellers.seller);
   const dispatch = useDispatch();
 
   const handleCheckboxChange = (client) => {
@@ -25,13 +25,10 @@ const ClientsItems = ({ item }) => {
 
   useEffect(() => {
     if (item.salesmanId) {
-      getSeller(item.salesmanId).then((res) => {
-        const name = res.name;
-        setSellerName(name);
-      });
+      dispatch(getSeller(item.salesmanId));
+      setSellerName(seller.name);
     }
   }, []);
-  console.log("-->", item);
 
   return (
     <tr key={item.id} className="border-b dark:border-base/30">

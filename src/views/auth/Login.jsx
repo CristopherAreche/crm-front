@@ -1,43 +1,50 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { RiArrowLeftLine, RiMailLine, RiLock2Line, RiEyeOffLine, RiEyeLine } from "react-icons/ri";
-import { Link, Navigate } from "react-router-dom";
+import {
+  RiArrowLeftLine,
+  RiMailLine,
+  RiLock2Line,
+  RiEyeOffLine,
+  RiEyeLine,
+} from "react-icons/ri";
+import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-import { useAuth0 } from "@auth0/auth0-react";
-import { postLogin } from "../../services/authServices";
 import { useDispatch } from "react-redux";
-import swal from "sweetalert";
-import { useSelector } from "react-redux";
-import { setClient } from "../../app/features/clientSlice";
+import Cookies from "universal-cookie";
 
 const Login = () => {
   const [password, setPassWord] = useState("");
   const [email, setEmail] = useState("");
-  const [showPassword, setShowPassword] = useState(false)
-  const [errorUser, SetErrorUser] = useState(true);
-  const [errorPassword, setErrorPassword] = useState(true);
+  const [showPassword, setShowPassword] = useState(false);
   const [access, setAccess] = useState(false);
-  const regularPassword = /^(?=.\d)(?=.[a-z])(?=.*[A-Z])\w{8,}$/; //al menos una letra, al menos un numero, al menos una letra mayúscula, al menos 8 caracteres, no permite espacios.
-  const regularUser = /\S+@\S+\.\S+/; //un correo electronico
 
   //const { loginWithRedirect } = useAuth0();
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const login = async () => {
-    if (email === "admin" && password === "admin") {
-      setAccess(true);
-      dispatch(setClient("admin"));
-      navigate("/dashboard");
-    } else if (email === "seller" && password === "seller") {
-      setAccess(true);
-      dispatch(setClient("seller"));
-      navigate("/dashboard");
-    }
+    // if (email === "admin" && password === "admin") {
+    //   setAccess(true);
+    //   dispatch(setClient("admin"));
+    //   navigate("/dashboard");
+    // } else if (email === "seller" && password === "seller") {
+    //   setAccess(true);
+    //   dispatch(setClient("seller"));
+    //   navigate("/dashboard");
+    // }
 
-    // await axios.post('https://crm2.up.railway.app/api/login', {email, password}, {
-    //   withCredentials: true
-    // }).then(response => console.log(response)).catch(error => console.log(error))
+    const response = await axios.post(
+      "https://crm2.up.railway.app/api/login",
+      { email, password },
+      {
+        withCredentials: true,
+      }
+    );
+
+    const cookies = new Cookies();
+    cookies.set("myToken", response.data.token, { path: "/" });
+
+    console.log("**RESPONSE*", response.data.token);
 
     // const loginUser = {
     //   email:email,
@@ -47,20 +54,10 @@ const Login = () => {
   };
 
   const valUser = (value) => {
-    if (regularUser.test(value)) {
-      SetErrorUser(false);
-    } else {
-      SetErrorUser(true);
-    }
     setEmail(value);
   };
 
   const valPassword = (value) => {
-    if (regularPassword.test(value)) {
-      setErrorPassword(false);
-    } else {
-      setErrorPassword(false);
-    }
     setPassWord(value);
   };
 
@@ -111,15 +108,22 @@ const Login = () => {
             name="password"
             value={password}
             placeholder="Contraseña"
-            type={showPassword ? 'text' : 'password'}
+            type={showPassword ? "text" : "password"}
             onChange={(e) => valPassword(e.target.value)}
             className="bg-base-light/60 py-2 pl-10 pr-4  w-full rounded-md outline-none shadow-md"
           />
           <RiLock2Line className="absolute top-1/2 translate-y-1 left-2 text-2xl text-secondary " />
-          {showPassword  
-           ? <RiEyeLine  className="absolute top-1/2 translate-y-1 right-2 text-xl cursor-pointer text-secondary " onClick={() => setShowPassword(!showPassword)}/>
-           : <RiEyeOffLine className="absolute top-1/2 translate-y-1 right-2 text-xl cursor-pointer text-secondary " onClick={() => setShowPassword(!showPassword)}/>
-          }
+          {showPassword ? (
+            <RiEyeLine
+              className="absolute top-1/2 translate-y-1 right-2 text-xl cursor-pointer text-secondary "
+              onClick={() => setShowPassword(!showPassword)}
+            />
+          ) : (
+            <RiEyeOffLine
+              className="absolute top-1/2 translate-y-1 right-2 text-xl cursor-pointer text-secondary "
+              onClick={() => setShowPassword(!showPassword)}
+            />
+          )}
         </div>
         <div className="flex justify-between">
           <Link

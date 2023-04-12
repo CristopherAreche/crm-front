@@ -10,10 +10,15 @@ export const getSellers = createAsyncThunk("sellers/getSellers", async () => {
   return res.data;
 });
 
-export const getSeller = async (id) => {
-  const res = await axios.get(`${API_URL_SELLER}?bossId=${bossId}&id=${id}`);
-  return res.data;
-};
+export const getSeller = createAsyncThunk('sellers/getSeller', async (id) => {
+  try {
+    const { data } = await axios.get(`${API_URL_SELLER}?bossId=${bossId}&id=${id}`)
+    return data
+  } catch (error) {
+    await swal("Error", `${error.response.data.error}`, "error");
+    return error.response.data.error;
+  }
+})
 
 export const postSeller = createAsyncThunk(
   `sellers/postSeller`,

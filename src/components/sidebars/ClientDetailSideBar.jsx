@@ -1,25 +1,12 @@
 import React, { useState } from "react";
-import { useParams } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
-import { getClient } from "../../services/clientsServices";
-import { cleanDetail } from "../../app/features/clientSlice";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { RiCloseFill, RiLogoutCircleRLine, RiMenu3Fill } from "react-icons/ri";
 import ContentDetailSidebar from "../ContentDetailSidebar";
 
 const ClientDetailSideBar = () => {
-  const dispatch = useDispatch();
-  const { id } = useParams();
   const role = useSelector((state) => state.clients.clientRole);
   const [isOpen, setIsOpen] = useState(false);
-
-  useEffect(() => {
-    dispatch(getClient(id));
-
-    return () => dispatch(cleanDetail());
-  }, [dispatch, id]);
-
   return (
     <>
       <section

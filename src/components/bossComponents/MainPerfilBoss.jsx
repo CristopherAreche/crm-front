@@ -4,32 +4,25 @@ import PersonalInformationView from "../shared/PersonalInformationView";
 import CompanyInformationView from "./CompanyInformationView";
 import HeaderPerfil from "../shared/HeaderPerfil";
 import PrincipalInformation from "../shared/PrincipalInformation";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { getBossById } from "../../app/features/bossSlice";
 
 const MainPerfilBoss = () => {
   const [view, setView] = useState("personal");
-
-  const bossPerfil = {
-    id: "00d4cf20-b761-40cc-baf2-7c40aa53caf9",
-    name: "Robert Pickman",
-    username: "Rob",
-    company: "Great Company City",
-    company_description: "The first company of the citynetwork",
-    commercial_register: "RobJobMarket",
-    address: "Av Manco Capac, Calle 13, Colombia",
-    email: "robpick@gmail.com",
-    password: "12345",
-    phone: "982654357",
-    logo: "GreatCity.org",
-    enable: true,
-  };
+  const { boss } = useSelector(state => state.boss)
+  const dispatch = useDispatch()
+  useEffect(() => {
+     if(!boss) dispatch(getBossById())
+  }, []);
 
   return (
     <section className="py-6 px-12 z-[2]">
-      <HeaderPerfil data={bossPerfil} />
+      <HeaderPerfil data={boss} />
       <section className="grid grid-cols-1 lg:grid-cols-6 ">
         {/* Section Principal Information */}
         <section className=" col-span-2 flex flex-col gap-y-6 items-center lg:items-start mb-6 lg:mb-0">
-          <PrincipalInformation data={bossPerfil} />
+          <PrincipalInformation data={boss} />
           <div className="flex lg:flex-col justify-between w-full lg:gap-y-2 items-start">
             <button
               className={`text-xl hover:text-secondary transition-colors  ${
@@ -58,9 +51,9 @@ const MainPerfilBoss = () => {
         </section>
         {/* Contenido Dinamico */}
         {view === "personal" ? (
-          <PersonalInformationView data={bossPerfil} />
+          <PersonalInformationView data={boss} type='boss' />
         ) : (
-          <CompanyInformationView data={bossPerfil} />
+          <CompanyInformationView data={boss} />
         )}
       </section>
     </section>

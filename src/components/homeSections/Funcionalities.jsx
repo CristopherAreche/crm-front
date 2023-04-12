@@ -6,7 +6,7 @@ const Funcionalities = () => {
   return (
     <section
       name="funcionalidades"
-      className=" h-[100vh] items-center flex-col lg:flex-row justify-between flex lg:pt-12 lg:px-[14em]"
+      className=" h-[100vh] items-center flex-col w-full lg:flex-row justify-between flex lg:pt-12 px-36"
     >
       <div className="flex flex-col gap-y-4 items-start">
         <h3 className="text-3xl lg:text-4xl w-full lg:w-[30rem]   font-extrabold text-white mb-4">
@@ -52,7 +52,7 @@ const Funcionalities = () => {
         <img
           src={character}
           alt="character"
-          className="absolute top-0 left-8 object-cover w-[24rem]"
+          className="absolute top-0 left-6 object-cover w-[26rem]"
         />
       </div>
     </section>

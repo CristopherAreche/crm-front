@@ -1,20 +1,22 @@
-import React, { useState } from "react";
 import { RiEdit2Line } from "react-icons/ri";
 import PersonalInformationView from "../shared/PersonalInformationView";
 import CompanyInformationView from "./CompanyInformationView";
 import HeaderPerfil from "../shared/HeaderPerfil";
 import PrincipalInformation from "../shared/PrincipalInformation";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getBossById } from "../../app/features/bossSlice";
+import FormEditPerfilBoss from "../forms/FormEditPerfilBoss";
 
 const MainPerfilBoss = () => {
   const [view, setView] = useState("personal");
   const { boss } = useSelector(state => state.boss)
   const dispatch = useDispatch()
+  const [isOpen, setIsOpen] = useState(false);
+
   useEffect(() => {
      if(!boss) dispatch(getBossById())
-  }, []);
+  }, [boss, dispatch]);
 
   return (
     <section className="py-6 px-12 z-[2]">
@@ -45,7 +47,9 @@ const MainPerfilBoss = () => {
               Informacion de Empresa
             </button>
           </div>
-          <button className="bg-secondary p-3 shadow-secondary/25 hover:bg-secondary/70 transition-all rounded-full box-content shadow-md ">
+          <button 
+            onClick={() => setIsOpen(!isOpen)}
+            className={`${view === 'personal' ? 'bg-secondary p-3 shadow-secondary/25 hover:bg-secondary/70' : 'bg-orange-400 p-3 shadow-orange-400/25 hover:bg-orange-400/70'} transition-all rounded-full box-content shadow-md`}>
             <RiEdit2Line className="text-xl text-base-light" />
           </button>
         </section>
@@ -56,6 +60,7 @@ const MainPerfilBoss = () => {
           <CompanyInformationView data={boss} />
         )}
       </section>
+      {isOpen && <FormEditPerfilBoss inView={view} onClose={() => setIsOpen(false)}/>}
     </section>
   );
 };

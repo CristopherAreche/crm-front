@@ -27,7 +27,7 @@ const Register = () => {
         name:email,
         username:email,
         email:email,
-        password:password.password2, 
+        password:password.password2,
       };
     formData.append("formLogin",JSON.stringify(formLogin));
     for (let entry of formData.entries()) {
@@ -36,7 +36,7 @@ const Register = () => {
     dispatch(postUserLogin(formData));
     swal( "Usuario registrado","Tu usuario se ha registrado con exito, ve al panel de inicio de sesión","success" );
   }
-
+  
   const valUser = (value) => {
     if (regularUser.test(value)) SetErrorUser(false);
     else SetErrorUser(true)

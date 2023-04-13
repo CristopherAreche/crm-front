@@ -6,7 +6,7 @@ import SideBar from "../../components/sidebars/SideBar";
 import { useSelector } from "react-redux";
 
 const Perfil = () => {
-  const role = useSelector((state) => state.clients.clientRole);
+  const role = useSelector((state) => state.auth.userRole);
 
   return (
     <main className="bg-base h-screen text-white">

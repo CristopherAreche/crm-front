@@ -16,7 +16,7 @@ import { getBoss } from "../../app/features/bossSlice";
 const Summary = () => {
   const dispatch = useDispatch();
   const boss = useSelector((state) => state.boss.boss);
-  const role = useSelector((state) => state.clients.clientRole);
+  const role = useSelector((state) => state.auth.userRole);
 
   useEffect(() => {
     dispatch(getBoss());

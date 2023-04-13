@@ -8,7 +8,7 @@ import { putBoss } from '../../app/features/bossSlice'
 const FormEditPerfilBoss = ({onClose, inView}) => {
   const { register, handleSubmit, formState: { errors },reset, } = useForm()
 
-  const { boss } = useSelector(state => state.boss)  
+  const { boss } = useSelector(state => state.boss)
   const dispatch = useDispatch()
   const onSubmit = handleSubmit((data) => {
         dispatch(putBoss(data))

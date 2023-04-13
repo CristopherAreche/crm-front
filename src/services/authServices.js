@@ -38,3 +38,15 @@ export const postLogin = createAsyncThunk(
     }
   }
 );
+
+export const setUser = createAsyncThunk(
+  'user/setUser',
+  async (user, thunkAPI) => {
+    try {
+      return user;
+    } catch (error) {
+      console.log(error);
+      return thunkAPI.rejectWithValue(error.response.data);
+    }
+  }
+)

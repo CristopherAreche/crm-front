@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { RiArrowLeftLine, RiMailLine, RiLock2Line, RiEyeOffLine, RiEyeLine } from "react-icons/ri";
-import { Link, Navigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
 import { postLogin } from "../../services/authServices";
@@ -26,15 +26,6 @@ const Login = () => {
   const navigate = useNavigate();
 
   const login = async () => {
-    // if (email === "admin" && password === "admin") {
-    //   setAccess(true);
-    //   dispatch(setClient("admin"));
-    //   navigate("/dashboard");
-    // } else if (email === "seller" && password === "seller") {
-    //   setAccess(true);
-    //   dispatch(setClient("seller"));
-    //   navigate("/dashboard");
-    // }
 
     const response = await axios.post('https://crm2.up.railway.app/api/login', {email, password}, {
       withCredentials: true
@@ -42,14 +33,6 @@ const Login = () => {
 
     const cookies = new Cookies();
     cookies.set('myToken', response.data.token, { path: '/' });
-
-    console.log('**RESPONSE*',response.data.token);
-
-    // const loginUser = {
-    //   email:email,
-    //   password:password,
-    // };
-    // dispatch(postLogin(loginUser));
   };
 
   const valUser = (value) => {

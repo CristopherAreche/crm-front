@@ -1,4 +1,3 @@
-import React from "react";
 import { Line } from "react-chartjs-2";
 import { datosVentas } from "../../utils/fake_api";
 import {
@@ -10,6 +9,10 @@ import {
   Title,
   Tooltip,
 } from "chart.js";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { getBoss } from "../../app/features/bossSlice";
+import { RiLoader4Fill } from "react-icons/ri";
 
 ChartJS.register(
   LineController,
@@ -21,18 +24,37 @@ ChartJS.register(
 );
 
 const SalesChart = () => {
-  const totalVentas = datosVentas.reduce((total, item) => total + item.ventas, 0);
+  const dispatch = useDispatch()
+  const {status, bossDashboard, loading} = useSelector(state => state.boss)
+  const annualSales = bossDashboard?.annual_sales
+  //const totalVentas = datosVentas.reduce((total, item) => total + item.ventas, 0)
+
+  useEffect(() => {
+    if(status === 'idle') dispatch(getBoss())
+  }, [dispatch, status])
+  
+  if (!!loading) {
+    return (
+      <div className="flex justify-center w-full">
+        <RiLoader4Fill className="animate-spin text-4xl text-secondary mt-8" />
+      </div>
+    )
+  }
+
+  const annualSalesData = (key) => annualSales?.map(sale => sale[key])
+
   const data = {
-    labels: datosVentas.map((item) => item.mes),
+    labels: annualSalesData('month'),
     datasets: [
       {
         label: "Ventas Mensuales",
-        data: datosVentas.map((item) => (item.ventas / totalVentas) * 100),
+        data: annualSalesData('value'),
         borderColor: "rgb(75, 192, 192)",
         tension: 0.1,
       },
     ],
   };
+
   const options = {
     maintainAspectRatio: false,
     width: 400,

@@ -4,9 +4,8 @@ import {
   getSellers,
   postSeller,
   putSeller,
-  putDisableSeller,
-  putEnableSeller,
-  getSeller
+  getSeller,
+  toggleStatusSeller
 } from "../../services/sellersServices";
 import {
   statePostSeller,
@@ -113,14 +112,12 @@ export const sellerSlice = createSlice({
       .addCase(putSeller.fulfilled, (state, action) => {
         statePutSeller(state, action);
       })
-      .addCase(putDisableSeller.fulfilled, (state, action) => {
-        stateToggleStatusSeller(state, action, false);
-      })
-      .addCase(putEnableSeller.fulfilled, (state, action) => {
-        stateToggleStatusSeller(state, action, true);
-      })
       .addCase(getSeller.fulfilled, (state, action) => {
         state.seller = action.payload
+      })
+      .addCase(toggleStatusSeller.fulfilled, (state, action) => {
+        const status = action.payload; 
+        stateToggleStatusSeller(state, action, status)
       })
   },
 });

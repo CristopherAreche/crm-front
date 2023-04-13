@@ -4,23 +4,40 @@ import {
   Tooltip,
   Legend
 } from "chart.js";
+import { useEffect } from "react";
 import { Doughnut } from "react-chartjs-2";
+import { getAllProducts } from "../../services/productsServices";
+import { useDispatch, useSelector } from "react-redux";
+import { RiLoader4Fill } from "react-icons/ri";
 
 Chart.register(Tooltip, Legend, ArcElement);
 
 const StockChart = () => {
-  const data = {
-    labels: [
-      "Producto 1",
-      "Producto 2",
-      "Producto 3",
-      "Producto 4",
-      "Producto 5",
 
-    ],
+
+  const dispatch = useDispatch()
+  const { status, products } = useSelector(state => state.products)
+  const fiveMostStock = [...products].sort((a, b) => b.quantity - a.quantity).slice(0, 5)
+
+  const fiveMostStockName = () => {
+    const namesProduct = fiveMostStock.map(product => product.name)
+    return namesProduct
+  }
+
+  const fiveMostStockQuantity = () => {
+    const quantityProduct = fiveMostStock.map(product => product.quantity)
+    return quantityProduct
+  }
+
+  useEffect(() => {
+   if(status === 'idle') dispatch(getAllProducts())
+  }, [dispatch, status])
+
+  const data = {
+    labels: fiveMostStockName(),
     datasets: [{
       label: 'Productos con mas Stock',
-      data: [300, 200, 100, 150, 250],
+      data: fiveMostStockQuantity(),
       backgroundColor: [
         'rgb(255, 99, 132)',
         'rgb(54, 162, 235)',
@@ -43,6 +60,15 @@ const StockChart = () => {
       }
     }
   };
+
+  if (status === "loading") {
+    return (
+      <div className="flex justify-center w-full">
+        <RiLoader4Fill className="animate-spin text-4xl text-secondary mt-8" />
+      </div>
+    )
+  }
+
   return (
     <div className="">
           <Doughnut data={data} options={options} />

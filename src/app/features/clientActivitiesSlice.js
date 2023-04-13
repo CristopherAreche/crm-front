@@ -11,8 +11,10 @@ const API_URL_TASK = "https://crm.up.railway.app/api/task";
 export const obtainActivities = createAsyncThunk(
   "activities/obtainActivities",
   async (clientId) => {
-    const response = await axios.get(`${API_URL_ACTIVITY}?clientId=${clientId}`);
-    return response.data
+    const response = await axios.get(
+      `${API_URL_ACTIVITY}?clientId=${clientId}`
+    );
+    return response.data;
   }
 );
 
@@ -20,7 +22,7 @@ export const obtainTask = createAsyncThunk(
   "activities/obtainTask",
   async (clientId) => {
     const response = await axios.get(`${API_URL_TASK}?clientId=${clientId}`);
-    return response.data
+    return response.data;
   }
 );
 
@@ -28,7 +30,7 @@ const activitySlice = createSlice({
   name: "activities",
   initialState: {
     activities: [],
-    tasks : [],
+    tasks: [],
     activitiesFilter: [],
     status: "idle",
     statusTask: "idle",
@@ -43,9 +45,9 @@ const activitySlice = createSlice({
       stateActivitiesFilter(state, action);
     },
     cleanTasks: (state, action) => {
-      state.tasks = []
-      state.statusTask = 'idle'
-    }
+      state.tasks = [];
+      state.statusTask = "idle";
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -67,9 +69,10 @@ const activitySlice = createSlice({
       .addCase(obtainTask.fulfilled, (state, action) => {
         state.statusTask = "succeeded";
         state.tasks = action.payload;
-      })
+      });
   },
 });
 
-export const { dateFilter, activitiesFilter, cleanTasks } = activitySlice.actions;
+export const { dateFilter, activitiesFilter, cleanTasks } =
+  activitySlice.actions;
 export default activitySlice.reducer;

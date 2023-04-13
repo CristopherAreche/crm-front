@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { AiOutlineMail, AiOutlinePhone } from "react-icons/ai";
 import { BiTask } from "react-icons/bi";
 import { useParams } from "react-router-dom";
@@ -6,9 +6,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { getClient } from "../services/clientsServices";
 import { cleanDetail } from "../app/features/clientSlice";
+import RegisterActivitiesModal from "./RegisterActivitiesModal";
 
 const ContentDetailSidebar = () => {
   const dispatch = useDispatch();
+  const [isShow, setIsShow] = useState(false);
   const { clientDetail } = useSelector((state) => state.clients);
   const { id } = useParams();
 
@@ -47,8 +49,15 @@ const ContentDetailSidebar = () => {
       </p>
       <div className="flex gap-x-4">
         <BiTask className="bg-light p-3 box-content text-xl rounded-full " />
-        <AiOutlineMail className="bg-light text-xl rounded-full p-3 box-content " />
-        <AiOutlinePhone className="bg-light shadow-md text-xl rounded-full p-3 box-content" />
+        <button
+          className="flex bg-light rounded-full"
+          onClick={() => setIsShow(true)}
+        >
+          <AiOutlineMail className="bg-light text-xl rounded-full p-3 box-content " />
+          <p className="self-center">|</p>
+          <AiOutlinePhone className="bg-light text-xl rounded-full p-3 box-content" />
+        </button>
+        {isShow && <RegisterActivitiesModal onClose={() => setIsShow(false)} />}
       </div>
       <div className=" flex flex-col justify-center items-center">
         <p className="text-2xl text-light font-medium">

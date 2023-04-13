@@ -2,9 +2,6 @@ import spotlight1 from "../../assets/svg/Spotlight1.svg";
 import spotlight2 from "../../assets/svg/Spotlight2.svg";
 import SideBar from "../../components/sidebars/SideBar";
 import MainSeller from "../../components/MainSeller";
-import StockChart from "../../components/charts/StockChart";
-import SalesChart from "../../components/charts/SalesChart";
-import PromoProductTable from "../../components/PromoProductTable";
 import { useDispatch, useSelector } from "react-redux";
 import TotalSalesChart from "../../components/charts/TotalSalesChart";
 import InventoryChart from "../../components/charts/InventoryChart";
@@ -15,7 +12,7 @@ import { getBoss } from "../../app/features/bossSlice";
 
 const Summary = () => {
   const dispatch = useDispatch();
-  const boss = useSelector((state) => state.boss.boss);
+  const dashboard = useSelector((state) => state.boss.bossDashboard);
   const role = useSelector((state) => state.clients.clientRole);
 
   useEffect(() => {
@@ -34,17 +31,17 @@ const Summary = () => {
           <section className="bg-base lg:pl-72 overflow-y-auto h-auto flex lg:w-auto py-[3em]">
             <div className=" w-full flex-col flex justify-center items-center gap-4">
               <div className=" h-[20em] w-full flex justify-center items-center text-black">
-                <TotalSalesChart annual_sales={boss?.annual_sales} />
+                <TotalSalesChart annual_sales={dashboard?.annual_sales} />
               </div>
               <div className="my-[3em] h-[20em] w-full flex justify-center items-center text-black">
-                <InventoryChart lowest_stock={boss?.lowest_stock} />
+                <InventoryChart lowest_stock={dashboard?.lowest_stock} />
               </div>
               <div className="flex">
                 <div className=" h-[20em] w-[30em] flex justify-center items-center text-black">
-                  <MonthlyCompareChart annual_sales={boss?.annual_sales} />
+                  <MonthlyCompareChart annual_sales={dashboard?.annual_sales} />
                 </div>
                 <div className=" flex justify-center items-center h-[20em] w-[30em] rounded text-black">
-                  <BestSeller best_salesman={boss?.best_salesman} />
+                  <BestSeller best_salesman={dashboard?.best_salesman} />
                 </div>
               </div>
             </div>

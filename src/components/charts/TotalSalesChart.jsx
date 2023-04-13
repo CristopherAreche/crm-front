@@ -22,16 +22,53 @@ ChartJS.register(
   Colors
 );
 
-const TotalSalesChart = ({ annual_sales }) => {
+const TotalSalesChart = ({ annual_sales = [] }) => {
   ChartJS.defaults.font.size = 20;
   ChartJS.defaults.color = "white";
   ChartJS.defaults.backgroundColor = "blue";
 
-  const data = annual_sales;
+  const data = [...annual_sales];
+
+  const months = [
+    "Enero",
+    "Febrero",
+    "Marzo",
+    "Abril",
+    "Mayo",
+    "Junio",
+    "Julio",
+    "Agosto",
+    "Septiembre",
+    "Octubre",
+    "Noviembre",
+    "Diciembre"
+  ];
+
+  if (data.length !== 0) {
+
+    for (let i = 0; i < data.length; i++) {
+      const element = { ...data[i] }
+      const [month, year] = element.month.split('/');
+      element['date'] = new Date(`${year}-${months.findIndex((m) => m === month) + 1}-01`);
+      console.log(element['date']);
+      data[i] = element
+    }
+
+    data.sort((a, b) => a.date - b.date);
+
+    data.forEach(item => {
+      const m = item.date.getMonth()
+      const year = item.date.getFullYear()
+      item.month = `${months[m]}/${year}`
+      delete item.date;
+    });
+  }
+
   const chartData = {
     labels: data?.map((item) => item.month),
     datasets: [],
   };
+
   if (Array.isArray(data)) {
     chartData.datasets.push({
       label: "Ventas totales",

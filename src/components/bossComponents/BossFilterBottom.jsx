@@ -9,8 +9,7 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import {
-  putDisableSeller,
-  putEnableSeller,
+  toggleStatusSeller
 } from "../../services/sellersServices";
 import { cleanSellertSelect } from "../../app/features/sellerSlice";
 
@@ -19,8 +18,10 @@ const BossFilterBottom = () => {
 
   const dispatch = useDispatch();
   const { sellerSelected } = useSelector((state) => state.sellers);
-  const onDisabled = () => dispatch(putDisableSeller(sellerSelected));
-  const onEnabled = () => dispatch(putEnableSeller(sellerSelected));
+
+  const onEnabled = () => dispatch(toggleStatusSeller({enable : true, id : sellerSelected}))
+  const onDisabled = () => dispatch(toggleStatusSeller({enable : false, id : sellerSelected}))
+
   const onCreate = () => {
     dispatch(cleanSellertSelect());
     setShowModal(true);

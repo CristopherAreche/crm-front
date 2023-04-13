@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { createAsyncThunk } from "@reduxjs/toolkit";
+import swal from "sweetalert";
 import axios from "axios";
 
 const API_URL_BOSS = "https://crm.up.railway.app/api/dashboard_boss";
@@ -23,11 +24,29 @@ export const getBossById = createAsyncThunk("boss/getBossById",
   }
 )
 
+export const putBoss = createAsyncThunk("boss/putBoss",
+  async (payload) => {
+    try {
+      await axios.put(API_URL_ALLS_BOSS, payload);
+      await swal(
+        "Modificación",
+        `Tus datos han sido actualizados correctamente`,
+        "success"
+      );
+
+      return payload;
+    } catch (error) {
+      await swal("Error", `${error.response.data.error}`, "error");
+      return error.response.data.error;
+    }
+  }
+)
 
 
 const initialState = {
-  bossDashboard: null,
+  bossDashboard: [],
   boss : {},
+  status : 'idle',
   loading: false,
   error: null,
 };
@@ -44,6 +63,7 @@ export const bossSlice = createSlice({
       })
       .addCase(getBoss.fulfilled, (state, action) => {
         state.loading = false;
+        state.status = 'success'
         state.bossDashboard = action.payload;
       })
       .addCase(getBoss.rejected, (state, action) => {
@@ -51,6 +71,9 @@ export const bossSlice = createSlice({
         state.error = action.error.message;
       })
       .addCase(getBossById.fulfilled, (state, action) => {
+        state.boss = action.payload
+      })
+      .addCase(putBoss.fulfilled, (state, action) => {
         state.boss = action.payload
       })
   },

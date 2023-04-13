@@ -1,7 +1,5 @@
 import axios from "axios";
-import React from "react";
-import { useEffect } from "react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { RiDeleteBin3Line } from "react-icons/ri";
 
 export default function ToDoCard({ item, delTask }) {
@@ -15,7 +13,7 @@ export default function ToDoCard({ item, delTask }) {
       setIsChecked(false);
     }
     setDue_date(new Date(item.due_date));
-  }, []);
+  }, [item.state, item.due_date]);
 
   const handleCheckboxChange = async (event) => {
     if (!event.target.checked && item.state === "Completado") {
@@ -25,7 +23,7 @@ export default function ToDoCard({ item, delTask }) {
       item.state = "Completado";
       setIsChecked(true);
     }
-    const { data } = await axios.put("https://crm.up.railway.app/api/task", {
+      await axios.put("https://crm.up.railway.app/api/task", {
       id: item.id,
       state: item.state,
     });
@@ -39,7 +37,7 @@ export default function ToDoCard({ item, delTask }) {
   return (
     <>
       <tr className="border-b dark:border-base/30">
-        <td className="whitespace-nowrap  px-6 py-4 font-medium">
+        <td className="  py-4 font-medium">
           <input
             id={`checkbox-${item.id}`}
             type="checkbox"
@@ -52,7 +50,7 @@ export default function ToDoCard({ item, delTask }) {
           />
         </td>
         <td
-          className={`whitespace-nowrap  px-6 py-4 ${
+          className={`  py-4 ${
             isChecked ? "text-emerald-200" : "text-red-200"
           }`}
         >
@@ -60,16 +58,16 @@ export default function ToDoCard({ item, delTask }) {
           {item.description}
         </td>
         <td
-          className={`whitespace-nowrap  px-6 py-4 ${
+          className={`  py-4 ${
             isExpired() ? "text-orange-200" : "text-white"
           }`}
         >
           {" "}
           {typeof due_date === "string" ? null : due_date.toLocaleDateString()}
         </td>
-        <td className="whitespace-nowrap  px-6 py-4 font-medium">
+        <td className="  py-4 font-medium">
           <RiDeleteBin3Line
-            className="text-2xl hover:text-red-700 active:text-red-800"
+            className="text-2xl text-red-400 hover:text-red-400/70 active:text-red-500 cursor-pointer"
             onClick={() => {
               delTask(item.id);
             }}

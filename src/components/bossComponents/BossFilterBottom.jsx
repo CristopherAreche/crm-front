@@ -9,8 +9,7 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import {
-  putDisableSeller,
-  putEnableSeller,
+  toggleStatusSeller
 } from "../../services/sellersServices";
 import { cleanSellertSelect } from "../../app/features/sellerSlice";
 
@@ -19,8 +18,10 @@ const BossFilterBottom = () => {
 
   const dispatch = useDispatch();
   const { sellerSelected } = useSelector((state) => state.sellers);
-  const onDisabled = () => dispatch(putDisableSeller(sellerSelected));
-  const onEnabled = () => dispatch(putEnableSeller(sellerSelected));
+
+  const onEnabled = () => dispatch(toggleStatusSeller({enable : true, id : sellerSelected}))
+  const onDisabled = () => dispatch(toggleStatusSeller({enable : false, id : sellerSelected}))
+
   const onCreate = () => {
     dispatch(cleanSellertSelect());
     setShowModal(true);
@@ -33,7 +34,7 @@ const BossFilterBottom = () => {
         onClick={onCreate}
       >
         <RiAddFill className="text-2xl" />
-        <span class="absolute hidden group-hover:flex -left-3 -top-2 -translate-y-full w-auto px-2 py-1 bg-gray-700 rounded-lg text-center text-white text-sm after:content-[''] after:absolute after:left-1/2 after:top-[100%] after:-translate-x-1/2 after:border-8 after:border-x-transparent after:border-b-transparent after:border-t-gray-700">
+        <span className="absolute hidden group-hover:flex -left-3 -top-2 -translate-y-full w-auto px-2 py-1 bg-gray-700 rounded-lg text-center text-white text-sm after:content-[''] after:absolute after:left-1/2 after:top-[100%] after:-translate-x-1/2 after:border-8 after:border-x-transparent after:border-b-transparent after:border-t-gray-700">
           Agregar
         </span>
       </button>
@@ -42,7 +43,7 @@ const BossFilterBottom = () => {
         onClick={() => setShowModal(true)}
       >
         <RiEdit2Line className="text-2xl" />
-        <span class="absolute hidden group-hover:flex -left-1 -top-2 -translate-y-full w-auto px-2 py-1 bg-gray-700 rounded-lg text-center text-white text-sm after:content-[''] after:absolute after:left-1/2 after:top-[100%] after:-translate-x-1/2 after:border-8 after:border-x-transparent after:border-b-transparent after:border-t-gray-700">
+        <span className="absolute hidden group-hover:flex -left-1 -top-2 -translate-y-full w-auto px-2 py-1 bg-gray-700 rounded-lg text-center text-white text-sm after:content-[''] after:absolute after:left-1/2 after:top-[100%] after:-translate-x-1/2 after:border-8 after:border-x-transparent after:border-b-transparent after:border-t-gray-700">
           Editar
         </span>
       </button>
@@ -51,7 +52,7 @@ const BossFilterBottom = () => {
         onClick={onDisabled}
       >
         <RiUserUnfollowLine className="text-2xl" />
-        <span class="absolute hidden group-hover:flex -left-6 -top-2 -translate-y-full w-auto px-2 py-1 bg-gray-700 rounded-lg text-center text-white text-sm after:content-[''] after:absolute after:left-1/2 after:top-[100%] after:-translate-x-1/2 after:border-8 after:border-x-transparent after:border-b-transparent after:border-t-gray-700">
+        <span className="absolute hidden group-hover:flex -left-6 -top-2 -translate-y-full w-auto px-2 py-1 bg-gray-700 rounded-lg text-center text-white text-sm after:content-[''] after:absolute after:left-1/2 after:top-[100%] after:-translate-x-1/2 after:border-8 after:border-x-transparent after:border-b-transparent after:border-t-gray-700">
           Deshabilitar
         </span>
       </button>
@@ -60,7 +61,7 @@ const BossFilterBottom = () => {
         onClick={onEnabled}
       >
         <RiUserFollowLine className="text-2xl" />
-        <span class="absolute hidden group-hover:flex -left-3 -top-2 -translate-y-full w-auto px-2 py-1 bg-gray-700 rounded-lg text-center text-white text-sm after:content-[''] after:absolute after:left-1/2 after:top-[100%] after:-translate-x-1/2 after:border-8 after:border-x-transparent after:border-b-transparent after:border-t-gray-700">
+        <span className="absolute hidden group-hover:flex -left-3 -top-2 -translate-y-full w-auto px-2 py-1 bg-gray-700 rounded-lg text-center text-white text-sm after:content-[''] after:absolute after:left-1/2 after:top-[100%] after:-translate-x-1/2 after:border-8 after:border-x-transparent after:border-b-transparent after:border-t-gray-700">
           Habilitar
         </span>
       </button>

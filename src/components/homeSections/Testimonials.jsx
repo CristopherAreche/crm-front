@@ -5,11 +5,8 @@ const Testimonials = () => {
   return (
     <section className=" h-[100vh] px-60 justify-center items-center flex flex-col gap-y-16">
       <h3 className="text-4xl mb-10 lg:text-6xl  text-center font-extrabold text-white">
-        Descubre por qué mas de <span className="text-secondary">1.000</span>{" "}
-        clientes elijen{" "}
-        <span className="bg-gradient-to-r from-primary  to-secondary text-transparent bg-clip-text">
-          nuestra CRM
-        </span>
+        Descubre por qué <span className="text-secondary">nuestra CRM</span>{" "}
+        puede ser tu mejor opcion{" "}
       </h3>
       <section className="flex items-center justify-center gap-x-4 lg:gap-x-12">
         <RiArrowDropLeftLine className="text-4xl text-light bg-base-light/20 p-2 box-content rounded-full cursor-pointer hover:-translate-x-2 transition-transform " />
@@ -21,7 +18,7 @@ const Testimonials = () => {
             className="w-28 h-28 lg:w-32 lg:h-32 object-cover rounded-full shadow-md absolute -top-12"
           />
           <p className=" pt-16 pb-2 lg:pb-0 lg:pt-24 w-48 trauncate lg:w-[32rem] text-center text-xl font-bold text-base-light">
-            "Este es la mejor CRM del mundo”
+            "El sistema es intuitivo y facil de manejar”
           </p>
         </article>
         <RiArrowDropRightLine className="text-4xl text-light bg-base-light/20 p-2 box-content rounded-full cursor-pointer hover:translate-x-2 transition-transform " />

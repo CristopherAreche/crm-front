@@ -63,6 +63,9 @@ export default function ToDoList() {
             <RiCalendarCheckFill className="text-2xl" />
             Tareas
           </h3>
+          <div>
+            
+          </div>
         </header>
         <table className="min-w-full  text-center text-sm font-regular shadow-md rounded-sm">
           <thead className=" font-medium text-light/75  dark:bg-base-light/30 rounded-md">

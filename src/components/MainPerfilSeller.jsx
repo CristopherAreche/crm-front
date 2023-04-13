@@ -3,11 +3,14 @@ import { useSelector } from 'react-redux'
 import HeaderPerfil from "./shared/HeaderPerfil";
 import PrincipalInformation from "./shared/PrincipalInformation";
 import PersonalInformationView from "./shared/PersonalInformationView";
+import FormEditPerfilSeller from './forms/FormEditPerfiSeller'
+import { useState } from "react";
 
 const MainPerfilSeller = () => {
 
 
   const {seller} = useSelector(state => state.sellers)
+  const [isOpen, setIsOpen] = useState(false);
 
   return (
     <section className="py-6 px-12 z-[2] min-h-screen">
@@ -24,12 +27,13 @@ const MainPerfilSeller = () => {
               );
             })}
           </p>
-          <button className="bg-secondary p-3 shadow-secondary/25 hover:bg-secondary/70 transition-all rounded-full box-content shadow-md">
+          <button className="bg-secondary p-3 shadow-secondary/25 hover:bg-secondary/70 transition-all rounded-full box-content shadow-md" onClick={() => setIsOpen(!isOpen)}>
             <RiEdit2Line className="text-xl text-base-light" />
           </button>
         </section>
         <PersonalInformationView data={seller} type='seller'/>
       </section>
+      {isOpen && <FormEditPerfilSeller onClose={() => setIsOpen(false)} />}
     </section>
   );
 };

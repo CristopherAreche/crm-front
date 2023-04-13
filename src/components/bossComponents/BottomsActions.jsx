@@ -1,11 +1,9 @@
-import React, { useState } from "react";
-import { RiVipCrown2Line, RiFileListLine } from "react-icons/ri";
-import ModalHistory from "./ModalHistory";
+import React from "react";
+import { RiVipCrown2Line } from "react-icons/ri";
 import { toggleVipClient } from "../../services/clientsServices";
 import { useDispatch, useSelector } from "react-redux";
 
 const BottomsActions = () => {
-  const [isShow, setIsShow] = useState(false);
   const clientSelected = useSelector((state) => state.clients.clientSelected);
   const dispatch = useDispatch();
   const onPromoteVip = () =>
@@ -20,7 +18,7 @@ const BottomsActions = () => {
         onClick={onPromoteVip}
       >
         <RiVipCrown2Line className="text-2xl" />
-        <span class="absolute hidden group-hover:flex -left-3 -top-2 -translate-y-full w-auto px-2 py-1 bg-gray-700 rounded-lg text-center text-white text-sm after:content-[''] after:absolute after:left-1/2 after:top-[100%] after:-translate-x-1/2 after:border-8 after:border-x-transparent after:border-b-transparent after:border-t-gray-700">
+        <span className="absolute hidden group-hover:flex -left-3 -top-2 -translate-y-full w-auto px-2 py-1 bg-gray-700 rounded-lg text-center text-white text-sm after:content-[''] after:absolute after:left-1/2 after:top-[100%] after:-translate-x-1/2 after:border-8 after:border-x-transparent after:border-b-transparent after:border-t-gray-700">
           Agregar VIP
         </span>
       </button>
@@ -29,20 +27,10 @@ const BottomsActions = () => {
         onClick={OnUnsubscribeVip}
       >
         <RiVipCrown2Line className="text-2xl" />
-        <span class="absolute hidden group-hover:flex -left-3 -top-2 -translate-y-full w-auto px-2 py-1 bg-gray-700 rounded-lg text-center text-white text-sm after:content-[''] after:absolute after:left-1/2 after:top-[100%] after:-translate-x-1/2 after:border-8 after:border-x-transparent after:border-b-transparent after:border-t-gray-700">
+        <span className="absolute hidden group-hover:flex -left-3 -top-2 -translate-y-full w-auto px-2 py-1 bg-gray-700 rounded-lg text-center text-white text-sm after:content-[''] after:absolute after:left-1/2 after:top-[100%] after:-translate-x-1/2 after:border-8 after:border-x-transparent after:border-b-transparent after:border-t-gray-700">
           Remover VIP
         </span>
       </button>
-      <button
-        className="group rounded-xl py-2 px-3 shadow-sky-400/20 hover:scale-[1.03] hover:bg-sky-400/60 transition-all shadow-md bg-sky-400"
-        onClick={() => setIsShow(true)}
-      >
-        <RiFileListLine className="text-2xl" />
-        <span class="absolute hidden group-hover:flex -left-2 -top-2 -translate-y-full w-auto px-2 py-1 bg-gray-700 rounded-lg text-center text-white text-sm after:content-[''] after:absolute after:left-1/2 after:top-[100%] after:-translate-x-1/2 after:border-8 after:border-x-transparent after:border-b-transparent after:border-t-gray-700">
-          Tareas
-        </span>
-      </button>
-      {isShow && <ModalHistory onClose={() => setIsShow(false)} />}
     </section>
   );
 };

@@ -11,9 +11,11 @@ import {
 } from "../../app/features/productsSlice";
 import BottomProduct from "../../components/bossComponents/BottomProduct";
 import { getAllProducts } from "../../services/productsServices";
+import FilterTopProducts from "../../components/bossComponents/FilterTopProducts";
 const Inventory = () => {
   const role = useSelector((state) => state.clients.clientRole);
   const products = useSelector((state) => state.products.products);
+  const copyProducts = useSelector((state) => state.products.copyProducts);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -43,6 +45,9 @@ const Inventory = () => {
 
           <div className=" h-[20em] w-full flex justify-center items-center text-black">
             <MayorStockChart products={products} />
+          </div>
+          <div className="h-[20em] w-full  flex justify-center items-center text-white font-normal">
+            <FilterTopProducts products={copyProducts} />
           </div>
           <div className="h-[20em] w-full  flex justify-center items-center text-white font-normal">
             <ProductList />

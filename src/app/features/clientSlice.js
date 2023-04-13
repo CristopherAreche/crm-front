@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import {
+  getAllClients,
   getClient,
   getClients,
   postClient,
@@ -21,7 +22,7 @@ import {
 } from "../../handlers/handlerClients";
 
 const initialState = {
-  clientRole: "admin",
+  clientRole: "seller",
   clients: [],
   copyClients: [],
   clientDetail: [],
@@ -83,6 +84,13 @@ export const clientSlice = createSlice({
       })
 
       .addCase(getClients.fulfilled, (state, action) => {
+        stateGetClients(state, action);
+      })
+      .addCase(getAllClients.pending, (state) => {
+        state.status = "loading";
+      })
+
+      .addCase(getAllClients.fulfilled, (state, action) => {
         stateGetClients(state, action);
       })
 

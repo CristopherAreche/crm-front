@@ -30,9 +30,9 @@ const FormEditPerfilSeller = ({onClose}) => {
     <div className='fixed inset-0  bg-black bg-opacity-25 backdrop-blur-sm flex justify-center items-center'>
         <form 
             onSubmit={onSubmit}
-             className='w-[90vw] lg:w-auto bg-base-light/60 py-6 px-8 rounded-md flex flex-col items-start gap-y-4 h-auto overflow-y-auto'>
+             className='w-[90vw] lg:w-96  bg-base-light/60 py-6 px-8 rounded-md flex flex-col items-start gap-y-4 h-auto overflow-y-auto'>
             <h2 className='text-xl font-bold text-light'>EDITAR PERFIL</h2>
-            <div className='flex flex-col gap-y-2'>
+            <div className='flex flex-col gap-y-2 w-full'>
                 <label className="text-sm font-medium text-light">Nombre completo</label>
                 <div className='relative'>
                     <input
@@ -44,7 +44,7 @@ const FormEditPerfilSeller = ({onClose}) => {
                     <span className='text-sm font-medium text-red-400'>Este campo es requerido!</span>
                 )}
             </div>
-            <div className='flex flex-col gap-y-2'>
+            <div className='flex flex-col gap-y-2 w-full'>
                 <label className="text-sm font-medium text-light">Telefono</label>
                 <div className='relative'>
                     <input
@@ -56,7 +56,7 @@ const FormEditPerfilSeller = ({onClose}) => {
                     <span className='text-sm font-medium text-red-400'>Este campo es requerido!</span>
                  )}
             </div>
-            <div className='flex flex-col gap-y-2'>
+            <div className='flex flex-col gap-y-2 w-full'>
                 <label className="text-sm font-medium text-light">Correo electronico</label>
                 <div className='relative'>
                     <input
@@ -68,7 +68,7 @@ const FormEditPerfilSeller = ({onClose}) => {
                     <span className='text-sm font-medium text-red-400'>Este campo es requerido!</span>
                 )}
             </div>
-            <div className='flex flex-col gap-y-2'>
+            <div className='flex flex-col gap-y-2 w-full'>
                 <label className="text-sm font-medium text-light">Direccion</label>
                 <div className='relative'>
                     <input

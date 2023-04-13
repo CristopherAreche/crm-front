@@ -43,10 +43,10 @@ export const putBoss = createAsyncThunk("boss/putBoss",
 )
 
 
-
 const initialState = {
-  bossDashboard: null,
+  bossDashboard: [],
   boss : {},
+  status : 'idle',
   loading: false,
   error: null,
 };
@@ -63,6 +63,7 @@ export const bossSlice = createSlice({
       })
       .addCase(getBoss.fulfilled, (state, action) => {
         state.loading = false;
+        state.status = 'success'
         state.bossDashboard = action.payload;
       })
       .addCase(getBoss.rejected, (state, action) => {

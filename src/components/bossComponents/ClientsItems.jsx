@@ -1,34 +1,17 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { selectedClientCheckbox } from "../../app/features/clientSlice";
 import { getSeller } from "../../services/sellersServices";
 import ModalHistory from "./ModalHistory";
+import { RiLoader4Fill } from "react-icons/ri";
 
-const ClientsItems = ({ item }) => {
-  const [clientSelected, setClientSelected] = useState("");
-  const [sellerName, setSellerName] = useState("");
-  const [isSelected, setIsSelected] = useState(false);
+const ClientsItems = ({ item, onCheckbox, onSelected }) => {
   const [isShow, setIsShow] = useState(false);
-  const seller = useSelector((state) => state.sellers.seller);
+  const {seller, statusSeller} = useSelector((state) => state.sellers);
   const dispatch = useDispatch();
 
-  const handleCheckboxChange = (client) => {
-    setClientSelected(client.id);
-    dispatch(selectedClientCheckbox(client.id));
-  };
-
-  const toggleCheckBox = (clientId) => {
-    if (clientId === clientSelected) {
-      setIsSelected(!isSelected);
-    }
-  };
-
   useEffect(() => {
-    if (item.salesmanId) {
-      dispatch(getSeller(item.salesmanId));
-      setSellerName(seller.name);
-    }
-  }, []);
+    if (item.salesmanId && statusSeller === 'idle') dispatch(getSeller(item.salesmanId));
+  }, [dispatch, item.salesmanId, statusSeller]);
 
   return (
     <tr key={item.id} className="border-b dark:border-base/30">
@@ -36,12 +19,10 @@ const ClientsItems = ({ item }) => {
         <input
           id={`checkbox-${item.id}`}
           type="checkbox"
+          checked={onSelected === `checkbox-${item.id}`}
+          onChange={(event) => onCheckbox(event, item)}
           className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
-          checked={item.id === clientSelected && isSelected}
-          onChange={() => {
-            handleCheckboxChange(item);
-            toggleCheckBox(clientSelected);
-          }}
+       
         />
       </td>
       <td className="whitespace-nowrap  px-6 py-4  font-medium text-secondary hover:text-secondary/80 hover:underline transition-all">
@@ -53,7 +34,11 @@ const ClientsItems = ({ item }) => {
         {/* </Link> */}
       </td>
       <td className="whitespace-nowrap  px-6 py-4  font-medium text-yellow-400 hover:text-yellow-400/80 hover:underline transition-all">
-        {sellerName}
+        {
+          statusSeller === 'loading'
+          ? <RiLoader4Fill className="animate-spin text-4xl text-secondary text-center" />
+          : <>{seller?.name}</>   
+        }
       </td>
       <td className="whitespace-nowrap  px-6 py-4 text-white">
         {item.totalPurchased}

@@ -2,14 +2,27 @@ import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { putBoss } from '../../app/features/bossSlice'
 import { toggleStatusSeller } from '../../services/sellersServices'
+import swal from 'sweetalert'
 
 const HeaderPerfil = ({data}) => {
 
   const { clientRole } = useSelector(state => state.clients)
   const dispatch = useDispatch()
+
   const onToggleEnable = () => {
-    if(clientRole !== 'admin') dispatch(toggleStatusSeller({enable : !data.enable, id: data.id}))
-    else dispatch(putBoss({enable : !data.enable, id: data.id}))
+    swal({
+      title: `${data.enable ? 'Estas seguro que quieres darte de baja?' : 'Estas seguro que quiere habilitar tu perfil?'}`,
+      icon: "warning",
+      buttons: true,
+      dangerMode: true,
+    }).then((accept) => {
+      if (accept) {
+        if(clientRole !== 'admin') dispatch(toggleStatusSeller({enable : !data.enable, id: data.id}))
+        else dispatch(putBoss({enable : !data.enable, id: data.id}))
+      }
+      else swal("La modificacion no se concreto");
+    })
+
   }
 
   return (

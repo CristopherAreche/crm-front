@@ -4,7 +4,6 @@ import {
   sortVipClients,
   sortEnabledClients,
   sortPurchases,
-  resetClients,
 } from "../app/features/clientSlice";
 
 const FilterTop = () => {

@@ -54,7 +54,7 @@ export default function TaskCard({ task, clientId }) {
         const today = new Date(Date.now());
         return today >= due_date;
     };
-
+ 
     return (
         <article key={item.id} className="justify-between bg-base-light/40 w-89 px-4 py-3 rounded-md shadow-md flex flex-col gap-y-3 items-start">
             <div className='flex flex-row justify-between w-full'>

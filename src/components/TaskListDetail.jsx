@@ -10,7 +10,7 @@ const TaskListDetail = ({ clientId }) => {
   useEffect(() => {
     if (statusTask === "idle") dispatch(obtainTask(clientId));
     return () => dispatch(cleanTasks());
-  }, []);
+  });
 
   if (statusTask === "loading") {
     return (

@@ -8,19 +8,15 @@ import {
   RiEyeLine,
 } from "react-icons/ri";
 import { Link } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
 import Cookies from "universal-cookie";
 
 const Login = () => {
   const [password, setPassWord] = useState("");
   const [email, setEmail] = useState("");
   const [showPassword, setShowPassword] = useState(false);
-  const [access, setAccess] = useState(false);
+  const [access] = useState(false);
 
   //const { loginWithRedirect } = useAuth0();
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
 
   const login = async () => {
     // if (email === "admin" && password === "admin") {

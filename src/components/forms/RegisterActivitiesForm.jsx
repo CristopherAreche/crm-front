@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { createActivity } from "../../app/features/postActivitySlice";
 import { useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
@@ -11,7 +11,6 @@ const RegisterActivitiesModal = ({ onClose }) => {
   const [to, setTo] = useState("");
   const [message, setMessage] = useState("");
   const dispatch = useDispatch();
-  const [reload, setReload] = useState(true);
 
   const salesmanId = "7155a9d8-acff-4cf9-93fd-385830b9bcae";
   const { id } = useParams();

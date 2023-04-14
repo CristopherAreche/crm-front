@@ -68,9 +68,6 @@ function FormSeller({ isVisible, onClose }) {
     formData.append("image", file);
     formData.append("sellerData", JSON.stringify(sellerData));
 
-    for (let entry of formData.entries()) {
-    }
-
     if (errors.name || errors.email || errors.phone || errors.address) {
       swal("Error", "Por favor revise los datos introducidos. ", "error");
     } else if (sellerId) {

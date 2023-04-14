@@ -4,9 +4,9 @@ import { BiTask } from "react-icons/bi";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-import { getClient } from "../services/clientsServices";
-import { cleanDetail } from "../app/features/clientSlice";
-import RegisterActivitiesModal from "./RegisterActivitiesModal";
+import { getClient } from "../../services/clientsServices";
+import { cleanDetail } from "../../app/features/clientSlice";
+import RegisterActivitiesModal from "../forms/RegisterActivitiesForm";
 
 const ContentDetailSidebar = () => {
   const dispatch = useDispatch();

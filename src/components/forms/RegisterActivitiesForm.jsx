@@ -1,56 +1,41 @@
-import React, { useState } from "react";
-import { createActivity } from "../app/features/postActivitySlice";
+import React, { useEffect, useState } from "react";
+import { createActivity } from "../../app/features/postActivitySlice";
 import { useDispatch } from "react-redux";
+import { useParams } from "react-router-dom";
 
 const RegisterActivitiesModal = ({ onClose }) => {
   const [method, setMethod] = useState("Llamada");
-  const [status, setStatus] = useState("Concretado");
+  const [state, setState] = useState("Concretado");
   const [subject, setSubject] = useState("");
   const [from, setFrom] = useState("");
   const [to, setTo] = useState("");
   const [message, setMessage] = useState("");
   const dispatch = useDispatch();
+  const [reload, setReload] = useState(true);
+
+  const salesmanId = "7155a9d8-acff-4cf9-93fd-385830b9bcae";
+  const { id } = useParams();
 
   const handleSubmit = (e) => {
     e.preventDefault();
     const obj = {
-      // salesmanId,
-      // clientId,
+      salesmanId,
+      clientId: id,
       method,
-      status,
+      state,
       subject,
       from,
       to,
       message,
     };
     dispatch(createActivity(obj));
-    console.log(obj);
     onClose();
   };
-
-  // const handleCreateActivity = async (salesmanId) => {
-  //   try {
-  //     dispatch(
-  //       createActivity({
-  //         salesmanId,
-  //         method,
-  //         status,
-  //         subject,
-  //         from,
-  //         to,
-  //         message,
-  //       })
-  //     );
-  //     onClose();
-  //   } catch (error) {
-  //     console.error(error);
-  //   }
-  // };
 
   return (
     <div className="fixed inset-0  bg-black  bg-opacity-25 backdrop-blur-sm flex justify-center items-center">
       <form
-        onSubmit={handleSubmit}
+        onSubmit={(e) => handleSubmit(e)}
         className=" w-[100vw] lg:w-[30vw] bg-base/60 rounded-md flex flex-col items-center justify-center h-[35em]"
       >
         <div className=" flex flex-col justify-center items-center w-[100%] h-[85%]">
@@ -72,11 +57,11 @@ const RegisterActivitiesModal = ({ onClose }) => {
               <span className="text-white">Estado</span>
               <select
                 className="form-select mt-1 block w-full"
-                value={status}
-                onChange={(e) => setStatus(e.target.value)}
+                value={state}
+                onChange={(e) => setState(e.target.value)}
               >
-                <option value="Llamada">Concretado</option>
-                <option value="Correo-E">Pendiente</option>
+                <option value="Concretado">Concretado</option>
+                <option value="Pendiente">Pendiente</option>
               </select>
             </label>
           </div>
@@ -128,7 +113,7 @@ const RegisterActivitiesModal = ({ onClose }) => {
         </div>
         <div className=" flex  w-[100%] h-[15%] justify-center items-center gap-x-20">
           <button
-            onClick={handleSubmit}
+            type="submit"
             className=" p-2 rounded-md font-medium text-base bg-green-300 shadow-md shadow-gray-300/20 hover:bg-gray-300/80 transition-all"
           >
             Crear

@@ -1,124 +1,99 @@
+import React from "react";
 import { useEffect, useState } from "react";
 import validation from "../../utils/validation";
 import { useDispatch, useSelector } from "react-redux";
-import { putSeller, postSeller } from "../../services/sellersServices";
-import {
-  RiUserLine,
-  RiPhoneLine,
-  RiMailLine,
-  RiHome2Line,
-  RiImageAddFill,
-} from "react-icons/ri";
+import { postClient, putClient } from "../../services/clientsServices";
+import { RiUserLine, RiPhoneLine, RiMailLine } from "react-icons/ri";
 import swal from "sweetalert";
 
-function FormSeller({ isVisible, onClose }) {
+function UpdateActivitiesModal({ isVisible, onClose }) {
   const dispatch = useDispatch();
-  const sellerId = useSelector((state) => state.sellers.sellerSelected);
+  const clientId = useSelector((state) => state.clients.clientSelected);
+  const salesmanId = "ae8b659a-1158-411e-a16c-06ca9c0accc5";
 
-  const bossId = "00d4cf20-b761-40cc-baf2-7c40aa53caf9";
-
-  const sellers = useSelector((state) => state.sellers.sellers);
+  const clients = useSelector((state) => state.clients.clients);
   const handleClose = (e) => {
     if (e.target.id === "wrapper") onClose();
   };
 
-  const [file, setFile] = useState(null);
-
-  const [sellerData, setSellerData] = useState({
+  const [clientData, setClientData] = useState({
     name: "",
     email: "",
     phone: "",
-    address: "",
     enable: true,
-    password: "12345",
-    bossId,
+    salesmanId,
   });
 
   const [errors, setErrors] = useState({
     name: "",
     email: "",
     phone: "",
-    address: "",
   });
 
   const handleInputChange = (event) => {
-    const { name, value, files } = event.target;
+    const property = event.target.name;
+    const value = event.target.value;
 
-    if (name === "image") {
-      setFile(files[0]);
-    } else {
-      setSellerData({
-        ...sellerData,
-        [name]: value,
-      });
-    }
+    setClientData({
+      ...clientData,
+      [property]: value,
+    });
 
     setErrors(
       validation({
-        ...sellerData,
-        [name]: value,
+        ...clientData,
+        [property]: value,
       })
     );
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
-
-    const formData = new FormData();
-    formData.append("image", file);
-    formData.append("sellerData", JSON.stringify(sellerData));
-
-    for (let entry of formData.entries()) {
-    }
-
-    if (errors.name || errors.email || errors.phone || errors.address) {
+    if (errors.name || errors.email || errors.phone) {
       swal("Error", "Por favor revise los datos introducidos. ", "error");
-    } else if (sellerId) {
+    } else if (clientId) {
       swal({
-        title: "Estas seguro que deseas modificar los datos del vendedor?",
-        text: `Nombre: ${sellerData.name}
-         Teléfono: ${sellerData.phone}
-         Correo: ${sellerData.email}
-         Dirección:${sellerData.address}`,
+        title: "Estas seguro que deseas modificar los datos del cliente?",
+        text: `Nombre: ${clientData.name}
+         Teléfono: ${clientData.phone}
+         Correo: ${clientData.email}`,
         icon: "warning",
         buttons: true,
         dangerMode: true,
       }).then((edit) => {
         if (edit) {
           swal(
-            "El vendedor fue modificado",
-            dispatch(putSeller(formData)),
+            "El cliente fue modificado",
+            dispatch(putClient(clientData)),
             onClose(),
             {
               icon: "success",
             }
           );
         } else {
-          swal("El vendedor no se ha modificado");
+          swal("El cliente no se ha modificado");
         }
       });
     } else {
       swal({
-        title: "Estas seguro que deseas agregar el vendedor?",
-        text: `Nombre: ${sellerData.name}
-        Teléfono: ${sellerData.phone}
-        Correo: ${sellerData.email}
-        Dirección: ${sellerData.address}`,
+        title: "Estas seguro que deseas agregar el cliente?",
+        text: `Nombre: ${clientData.name}
+        Teléfono: ${clientData.phone}
+        Correo: ${clientData.email}`,
         icon: "warning",
         buttons: true,
         dangerMode: true,
       }).then((edit) => {
         if (edit) {
           swal(
-            "El vendedor fue agregado",
-            dispatch(postSeller(formData)),
-            setSellerData({
+            "El cliente fue agregado",
+            dispatch(postClient(clientData)),
+            setClientData({
               name: "",
               email: "",
               phone: "",
-              address: "",
               enable: true,
-              bossId,
+              salesmanId,
             }),
             onClose(),
             {
@@ -126,27 +101,32 @@ function FormSeller({ isVisible, onClose }) {
             }
           );
         } else {
-          swal("El vendedor no ha sido agregado");
+          swal("El cliente no ha sido agregado");
         }
       });
     }
   };
 
   useEffect(() => {
-    if (sellerId) {
-      const obj = sellers.find((seller) => seller.id === sellerId);
-      setSellerData({ ...obj, id: sellerId });
+    if (clientId) {
+      const obj = clients.find((client) => client.id === clientId);
+
+      setClientData({
+        name: obj.name,
+        email: obj.email,
+        phone: obj.phone,
+        enable: obj.enable,
+        id: obj.id,
+      });
     } else
-      setSellerData({
+      setClientData({
         name: "",
         email: "",
         phone: "",
-        address: "",
         enable: true,
-        password: "12345",
-        bossId,
+        salesmanId,
       });
-  }, [sellerId, sellers, dispatch]);
+  }, [clientId, clients, dispatch]);
 
   if (!isVisible) return null;
   return (
@@ -161,7 +141,7 @@ function FormSeller({ isVisible, onClose }) {
         onSubmit={handleSubmit}
       >
         <h4 className="text-xl font-medium text-light">
-          {sellerId ? "Actualizar vendedor" : "Guardar un vendedor"}
+          {clientId ? "Actualizar cliente" : "Guardar un cliente"}
         </h4>
         <section className="flex flex-col gap-y-2">
           <label className="text-sm font-medium text-light" htmlFor="name">
@@ -171,32 +151,13 @@ function FormSeller({ isVisible, onClose }) {
             <input
               className="bg-base-light/70 py-1 rounded-md outline-none pl-8 pr-4 w-full"
               type="text"
-              value={sellerData.name}
+              value={clientData.name}
               name="name"
               onChange={handleInputChange}
             />
             <RiUserLine className="absolute top-1/2 -translate-y-1/2 left-2 text-xl text-secondary " />
           </div>
           {errors.name && <span style={{ color: "red" }}> {errors.name}</span>}
-        </section>
-
-        <section className="flex flex-col gap-y-2">
-          <label className="text-sm font-medium text-light" htmlFor="image">
-            Imagen:{" "}
-          </label>
-          <div className="relative">
-            <input
-              className="bg-base-light/70 py-1 rounded-md outline-none pl-8 pr-4 w-full"
-              type="file"
-              FileList={file}
-              name="image"
-              onChange={handleInputChange}
-            />
-            <RiImageAddFill className="absolute top-1/2 -translate-y-1/2 left-2 text-xl text-secondary " />
-          </div>
-          {errors.image && (
-            <span style={{ color: "red" }}> {errors.image}</span>
-          )}
         </section>
 
         <section className="flex flex-col gap-y-2">
@@ -207,13 +168,13 @@ function FormSeller({ isVisible, onClose }) {
             <input
               className="bg-base-light/70 py-1 rounded-md outline-none pl-8 pr-4 w-full"
               type="text"
-              value={sellerData.phone}
+              value={clientData.phone}
               name="phone"
               onChange={handleInputChange}
             />
             <RiPhoneLine className="absolute top-1/2 -translate-y-1/2 left-2 text-xl text-secondary " />
           </div>
-          {errors.phone && (
+          {errors.summary && (
             <span style={{ color: "red" }}> {errors.phone}</span>
           )}
         </section>
@@ -226,33 +187,14 @@ function FormSeller({ isVisible, onClose }) {
             <input
               className="bg-base-light/70 py-1 rounded-md outline-none pl-8 pr-4 w-full"
               type="text"
-              value={sellerData.email}
+              value={clientData.email}
               name="email"
               onChange={handleInputChange}
             />
             <RiMailLine className="absolute top-1/2 -translate-y-1/2 left-2 text-xl text-secondary " />
           </div>
-          {errors.email && (
+          {errors.summary && (
             <span style={{ color: "red" }}> {errors.email}</span>
-          )}
-        </section>
-
-        <section className="flex flex-col gap-y-2">
-          <label className="text-sm font-medium text-light" htmlFor="address">
-            Dirección:{" "}
-          </label>
-          <div className="relative">
-            <input
-              className="bg-base-light/70 py-1 rounded-md outline-none pl-8 pr-4 w-full"
-              type="text"
-              value={sellerData.address}
-              name="address"
-              onChange={handleInputChange}
-            />
-            <RiHome2Line className="absolute top-1/2 -translate-y-1/2 left-2 text-xl text-secondary " />
-          </div>
-          {errors.address && (
-            <span style={{ color: "red" }}> {errors.address}</span>
           )}
         </section>
 
@@ -270,7 +212,7 @@ function FormSeller({ isVisible, onClose }) {
             className="p-2 bg-emerald-400 shadow-md shadow-emerald-400/20 rounded-md hover:bg-emerald-400/80 transition-all"
             type="submit"
           >
-            {sellerId ? "Actualizar" : "Guardar"}
+            {clientId ? "Actualizar" : "Guardar"}
           </button>
         </footer>
       </form>
@@ -278,4 +220,4 @@ function FormSeller({ isVisible, onClose }) {
   );
 }
 
-export default FormSeller;
+export default UpdateActivitiesModal;

@@ -20,8 +20,6 @@ const FilterTopProducts = ({ products }) => {
     return accumulator;
   }, []);
 
-  console.log(filteredCategory);
-
   const handleOrderChange = (e) => {
     const value = e.target.value;
     let order = "";

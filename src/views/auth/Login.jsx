@@ -44,8 +44,7 @@ const Login = () => {
     const cookies = new Cookies();
     cookies.set("myToken", response.data.token, { path: "/" });
 
-    console.log("**RESPONSE*", response.data.token);
-
+    // console.log("--->", response.data.token);
     // const loginUser = {
     //   email:email,
     //   password:password,

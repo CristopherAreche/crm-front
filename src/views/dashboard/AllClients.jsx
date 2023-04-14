@@ -6,7 +6,7 @@ import { useSelector } from "react-redux";
 import MainSellerClients from "../../components/MainSellerClients";
 
 const AllClients = () => {
-  const role = useSelector((state) => state.clients.clientRole);
+  const role = useSelector((state) => state.auth.userRole);
 
   return (
     <main className="bg-base h-screen text-white ">

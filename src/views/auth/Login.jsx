@@ -11,6 +11,9 @@ import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import Cookies from "universal-cookie";
+import swal from "sweetalert";
+import { jwtVerify } from "jose"; 
+import { setUser } from "../../services/authServices"
 
 const Login = () => {
   const [password, setPassWord] = useState("");
@@ -23,35 +26,32 @@ const Login = () => {
   const navigate = useNavigate();
 
   const login = async () => {
-    // if (email === "admin" && password === "admin") {
-    //   setAccess(true);
-    //   dispatch(setClient("admin"));
-    //   navigate("/dashboard");
-    // } else if (email === "seller" && password === "seller") {
-    //   setAccess(true);
-    //   dispatch(setClient("seller"));
-    //   navigate("/dashboard");
-    // }
-
-    const response = await axios.post(
-      "https://crm2.up.railway.app/api/login",
-      { email, password },
-      {
-        withCredentials: true,
+    try {
+      const response = await axios.post(
+        "https://crm2.up.railway.app/api/login",
+        { email, password },
+        {
+          withCredentials: true,
+        }
+      );
+      const cookies = new Cookies();
+     
+      if(response.data.token){
+        cookies.set("myToken", response.data.token, { path: "/" })
+        console.log("**RESPONSE*", response.data.token);
+        navigate("/dashboard");
       }
-    );
 
-    const cookies = new Cookies();
-    cookies.set("myToken", response.data.token, { path: "/" });
-
-    console.log("**RESPONSE*", response.data.token);
-
-    // const loginUser = {
-    //   email:email,
-    //   password:password,
-    // };
-    // dispatch(postLogin(loginUser));
+      const { payload } = await jwtVerify(response.data.token, new TextEncoder().encode('secret'))
+      dispatch(setUser(payload));
+      console.log("PAYLOAD", payload);
+    } catch (error) {
+      swal( "Error","Usuario o contraseña incorrectos","error");
+    }
   };
+
+
+  
 
   const valUser = (value) => {
     setEmail(value);

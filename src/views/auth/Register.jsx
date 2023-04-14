@@ -22,24 +22,20 @@ const Register = () => {
   const dispatch = useDispatch();
 
   const register = () => {
-    const formData = new FormData();
-    const formLogin = {
-      name: email,
-      username: email,
-      email: email,
-      password: password.password2,
-    };
-    formData.append("formLogin", JSON.stringify(formLogin));
+   const formData=new FormData();
+   const formLogin = { 
+        name:email,
+        username:email,
+        email:email,
+        password:password.password2,
+      };
+    formData.append("formLogin",JSON.stringify(formLogin));
     for (let entry of formData.entries()) {
     }
     dispatch(postUserLogin(formData));
-    swal(
-      "Usuario registrado",
-      "Tu usuario se ha registrado con exito, ve al panel de inicio de sesión",
-      "success"
-    );
-  };
-
+    swal( "Usuario registrado","Tu usuario se ha registrado con exito, ve al panel de inicio de sesión","success" );
+  }
+  
   const valUser = (value) => {
     if (regularUser.test(value)) SetErrorUser(false);
     else SetErrorUser(true);
@@ -160,3 +156,4 @@ const Register = () => {
 };
 
 export default Register;
+

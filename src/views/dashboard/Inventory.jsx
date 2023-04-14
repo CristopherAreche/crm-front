@@ -13,7 +13,7 @@ import BottomProduct from "../../components/bossComponents/BottomProduct";
 import { getAllProducts } from "../../services/productsServices";
 import FilterTopProducts from "../../components/bossComponents/FilterTopProducts";
 const Inventory = () => {
-  const role = useSelector((state) => state.clients.clientRole);
+  const role = useSelector((state) => state.auth.userRole);
   const products = useSelector((state) => state.products.products);
   const copyProducts = useSelector((state) => state.products.copyProducts);
   const dispatch = useDispatch();

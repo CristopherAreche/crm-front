@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import {
   RiLogoutCircleRLine,
   RiCloseFill,
@@ -8,7 +8,7 @@ import {
   RiTyphoonFill,
   RiHandCoinLine,
 } from "react-icons/ri";
-import { useEffect, useState } from "react";
+import { useEffect, useState,  } from "react";
 import ClientDetailSideBar from "./ClientDetailSideBar";
 import { RiTeamLine } from "react-icons/ri";
 import { MdOutlineInventory2, MdOutlineSpaceDashboard } from "react-icons/md";
@@ -19,16 +19,20 @@ import { useAuth0 } from "@auth0/auth0-react";
 import { getSeller } from "../../services/sellersServices";
 import { getBossById } from "../../app/features/bossSlice";
 
+
 const sellerId = "7155a9d8-acff-4cf9-93fd-385830b9bcae";
 
 function SideBar({ typeSidebar, summary, inventory, clients, sellers }) {
   const [isOpen, setIsOpen] = useState(false);
   const [selected, setSelected] = useState("");
-  const role = useSelector((state) => state.clients.clientRole);
+  const role = useSelector((state) => state.auth.userRole);
+  //const role = useSelector((state) => state.auth.userRole);
+  const userId= useSelector((state) => state.auth.User.id);
+  const userName= useSelector((state) => state.auth.User.name);
   const { seller } = useSelector((state) => state.sellers);
   const { boss } = useSelector((state) => state.boss);
   const dispatch = useDispatch();
-  // const { logout } = useAuth0();
+  const navigate = useNavigate();
 
   // const handleBossRegister = () => {
   //   if (isAuthenticated && user) {
@@ -43,12 +47,20 @@ function SideBar({ typeSidebar, summary, inventory, clients, sellers }) {
   //   }
   // };
 
+console.log("ROLE****", role);
+
   const handleLinkClick = (linkName) => setSelected(linkName);
+
+
+  const handleLogout = () => {
+    navigate("/authentication");
+  };
 
   // const name = user.name;
   useEffect(() => {
-    if (!seller) dispatch(getSeller(sellerId));
-    dispatch(getBossById());
+    if (!seller) dispatch(getSeller(userId));
+    dispatch(getBossById(userId));
+    console.log("SELLER", seller);
   }, []);
 
   return (
@@ -89,7 +101,7 @@ function SideBar({ typeSidebar, summary, inventory, clients, sellers }) {
               </p>
             </div>
             <h3 className="text-light font-medium text-lg text-center ">
-              {role === "admin" ? boss.name : seller.name}
+              {role === "admin" ? userName : userName }
             </h3>
           </section>
           {typeSidebar === "client-detail" && <ClientDetailSideBar />}
@@ -154,15 +166,13 @@ function SideBar({ typeSidebar, summary, inventory, clients, sellers }) {
               Configuración
             </Link>
 
-            <Link to="/">
-              <button
-                // onClick={() => logout()}
-                className="flex px-12 py-2  active:scale-95 active:bg-light/20 gap-x-6 items-center text-lg text-gray-300 font-medium   cursor-pointer  hover:text-gray-100 transition-all"
-              >
-                <RiLogoutCircleRLine className="text-2xl text-secondary" />{" "}
-                Cerrar Sesión
-              </button>
-            </Link>
+            <button
+              onClick={() => handleLogout()}
+              className="flex px-12 py-2  active:scale-95 active:bg-light/20 gap-x-6 items-center text-lg text-gray-300 font-medium   cursor-pointer  hover:text-gray-100 transition-all"
+            >
+              <RiLogoutCircleRLine className="text-2xl text-secondary" /> Cerrar
+              Sesión
+            </button>
           </div>
           {typeSidebar === "client-detail" && (
             <>

@@ -23,11 +23,9 @@ const RegisterActivityTable = () => {
     );
   }
 
-
   if (activitiesStatus === "failed") {
     return <div>Error: {activitiesError}</div>;
   }
-
 
   return (
     <section className="w-auto overflow-x-auto lg:min-w-full  h-96 overflow-y-auto  overflow-hidden mb-4 text-white">

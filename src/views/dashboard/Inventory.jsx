@@ -12,6 +12,9 @@ import {
 import BottomProduct from "../../components/bossComponents/BottomProduct";
 import { getAllProducts } from "../../services/productsServices";
 import FilterTopProducts from "../../components/bossComponents/FilterTopProducts";
+import SearchBar from "../../components/SearchBar";
+import ProductListSellers from "../../components/ProductListSellers";
+import { MdOutlineInventory2 } from "react-icons/md";
 const Inventory = () => {
   const role = useSelector((state) => state.clients.clientRole);
   const products = useSelector((state) => state.products.products);
@@ -24,13 +27,31 @@ const Inventory = () => {
 
   return (
     <main className="bg-base h-screen text-white grid grid-cols-10">
-      <SideBar />
       {role !== "admin" ? (
-        <div className="text-white">
-          Inventory --- aqui va el inventario desde la vista del Vendedor.
+        <div className="  flex flex-row  gap-y-2 ">
+          {/* Inventory --- aqui va el inventario desde la vista del Vendedor. */}
+          <h4 className="text-2xl text-light font-medium flex  mb-2 p-2">
+            <MdOutlineInventory2 className="text-4xl" />
+            Inventario
+          </h4>
+          <section className="flex flex-col gap-y-2 ">
+            <div className="flex gap-x-8 mt-2">
+              <SearchBar
+                data={products}
+                onSearch={(filteredProducts) =>
+                  dispatch(searchProducts(filteredProducts))
+                }
+                onReset={() => dispatch(resetProducts())}
+              />
+            </div>
+            <FilterTopProducts products={copyProducts} />
+
+            <ProductListSellers />
+          </section>
         </div>
       ) : (
         <main className=" px-6 w-full py-[1em] col-start-3 col-end-11 h-[100vh] overflow-y-auto z-40 flex flex-col gap-2 lg:w-auto justify-center items-center">
+          <SideBar />
           <Outlet />
           <div className=" text-white w-full flex flex-col lg:flex-row items-center  lg:justify-between gap-y-2 mb-6">
             <Header

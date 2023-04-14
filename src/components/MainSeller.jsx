@@ -1,7 +1,5 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import {
-  RiTimeLine,
-  RiCheckboxCircleLine,
+  RiCheckboxCircleLine, RiLoader4Fill,
 } from "react-icons/ri";
 import { useAuth0 } from "@auth0/auth0-react";
 import SalesChart from "./charts/SalesChart";
@@ -12,45 +10,25 @@ import { getSeller } from "../services/sellersServices";
 import { useDispatch, useSelector } from "react-redux";
 import SummarySection from "./SummarySection";
 import productImage from "../assets/png images/productImage.png";
-const itemsLastesProducst = [
-  {
-    source:
-      "https://img.freepik.com/fotos-premium/cinturon-seguridad-construccion-cadena-ganchos-mosqueton-metal-tablero-madera_275559-16027.jpg?w=740",
-    name: "Arnes",
-    sale_price: 40,
-    category: "Utensillo",
-    lastest: "1",
-  },
-  {
-    source:
-      "https://img.freepik.com/fotos-premium/botella-leche-chupete-sobre-mesa-madera-sobre-fondo-azul_392895-186990.jpg?w=360",
-    name: "Biberon",
-    sale_price: 100,
-    category: "Utensillo",
-    lastest: "3",
-  },
-  {
-    source:
-      "https://img.freepik.com/foto-gratis/cuchara-juguete-ninos-cubo-sobre-hierba_127675-2898.jpg?w=740&t=st=1680985860~exp=1680986460~hmac=14ecffa79b4cf1c4a9d4be3c72f605b901dbf146029eefe43e3900e8ac0dd969",
-    name: "Arenero",
-    sale_price: 200,
-    category: "Utensillo",
-    lastest: "6",
-  },
-];
-
+import ProductsCards from "./ProductsCards";
+import { getAllProducts } from "../services/productsServices";
 
 const sellerId = '7155a9d8-acff-4cf9-93fd-385830b9bcae'
 
 const MainSeller = () => {
   const { user } = useAuth0();
-  console.log(user)
   const dispatch = useDispatch()
-  const {seller} = useSelector(state => state.sellers)
+  const {seller, status} = useSelector(state => state.sellers)
+  const {products} = useSelector(state => state.products)
+  const statusProducts = useSelector(state => state.status)
 
   useEffect(() => {
-    dispatch(getSeller(sellerId))
-  }, [])
+    if (status === 'idle') dispatch(getSeller(sellerId))
+  }, [dispatch, status])
+
+  useEffect(() => {
+    if (statusProducts === 'idle') dispatch(getAllProducts())
+  }, [dispatch, statusProducts])
 
   const todayFormated = () => {
     const dateToday = new Date();
@@ -68,6 +46,7 @@ const MainSeller = () => {
     <section className="py-6 px-12 z-[2]  grid gird-cols-1 lg:grid-cols-6">
       {/* Left Section */}
       <section className="col-span-4 flex flex-col gap-y-4 items-start ">
+     
         {/* Present Section */}
         <section className="flex flex-col gap-y-3.5">
           <h2 className="text-3xl font-medium text-light">
@@ -83,6 +62,7 @@ const MainSeller = () => {
         </section>
         {/* Section Resume */}
         <SummarySection data={seller} sellerId={sellerId}/>
+      
         {/* Section Estadistics Sales */}
         <section className="flex flex-col items-start gap-y-2 pr-0 lg:pr-12 w-full pt-0  ">
           <div className="flex items-center justify-between w-full">
@@ -94,7 +74,7 @@ const MainSeller = () => {
           <SalesChart />
         </section>
         {/* Tasks Section */}
-        <section className="">
+        <section className="pr-0 lg:pr-12">
           <ToDoList />
         </section>
       </section>
@@ -108,31 +88,21 @@ const MainSeller = () => {
           </div>
           {/* Lastest Products Cards */}
           <section className="flex flex-col gap-y-5">
-            {itemsLastesProducst.map((item) => (
-              <article
-                key={item.name}
-                className="flex items-center justify-between bg-base-light/30 pr-2 shadow-md rounded-md"
-              >
-                <div className="flex items-center gap-x-2">
-                  <img
-                    src={item.source}
-                    className="w-14 h-14 object-cover rounded-tl-md rounded-bl-md"
-                    alt="product"
-                  />
-                  <div>
-                    <p className="text-sm font-medium text-light/90">
-                      {item.name}
-                    </p>
-                    <p className="text-xs text-light/80">
-                      {item.category} - ${item.sale_price}
-                    </p>
-                  </div>
-                </div>
-                <p className="flex gap-x-1 items-center text-sm font-medium text-secondary">
-                  <RiTimeLine /> {item.lastest}h
-                </p>
-              </article>
-            ))}
+            {
+              statusProducts === 'loading' && statusProducts === 'idle'
+              ? 
+              <div className="flex justify-center w-full">
+                <RiLoader4Fill className="animate-spin text-4xl text-secondary mt-8" />
+              </div>
+              : 
+              <>
+                  {products
+                .slice(0, 3)
+                .map((item) => (
+                  <ProductsCards key={item.id} item={item}/>
+                ))}
+              </>
+            }
           </section>
         </section>
         {/* Section Graphic Stock */}

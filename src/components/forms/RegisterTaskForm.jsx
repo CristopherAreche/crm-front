@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { createActivity } from "../../services/activityService";
+import { editTask } from "../../app/features/clientActivitiesSlice";
 import { useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import DatePicker from "react-datepicker";
@@ -19,10 +19,11 @@ const RegisterTaskForm = ({ onClose }) => {
     const obj = {
       salesmanId,
       clientId: id,
+      state: "Pendiente",
       description,
       due_date: selectedDate,
     };
-    dispatch(createActivity(obj));
+    dispatch(editTask(obj));
     onClose();
   };
 
@@ -37,7 +38,7 @@ const RegisterTaskForm = ({ onClose }) => {
           <div className="  w-[100%] h-[25%] flex gap-x-16 justify-center items-center">
             {/* Estado */}
             <label className="block">
-              <span className="text-white">Estado</span>
+              {/* <span className="text-white">Estado</span>
               <select
                 className="form-select mt-1 block w-full"
                 value={state}
@@ -45,7 +46,7 @@ const RegisterTaskForm = ({ onClose }) => {
               >
                 <option value="Concretado">Concretado</option>
                 <option value="Pendiente">Pendiente</option>
-              </select>
+              </select> */}
             </label>
           </div>
           <div className=" w-[100%] h-[75%] flex  flex-col justify-center items-center gap-y-3">

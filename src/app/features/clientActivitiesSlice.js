@@ -27,6 +27,14 @@ export const obtainTask = createAsyncThunk(
   }
 );
 
+export const editTask = createAsyncThunk(
+  "activities/editTask",
+  async (task) => {
+    const response = await axios.post(`${API_URL_TASK}`, task);
+    return response.data;
+  }
+);
+
 const activitySlice = createSlice({
   name: "activities",
   initialState: {
@@ -71,6 +79,15 @@ const activitySlice = createSlice({
         state.statusTask = "succeeded";
         state.tasks = action.payload;
       })
+
+      .addCase(editTask.pending, (state) => {
+        state.statusTask = "loading";
+      })
+      .addCase(editTask.fulfilled, (state, action) => {
+        state.statusTask = "succeeded";
+        state.tasks = [...state.tasks, action.payload];
+      })
+
       .addCase(createActivity.pending, (state) => {
         state.status = "loading";
         state.error = null;

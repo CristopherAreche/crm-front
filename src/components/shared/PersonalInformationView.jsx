@@ -1,5 +1,4 @@
 import {
-  RiMailLine,
   RiMapPinLine,
   RiPhoneLine,
   RiUser3Line,

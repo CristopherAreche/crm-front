@@ -40,9 +40,9 @@ export const postLogin = createAsyncThunk(
         loginUser,
         { withCredentials: true }
       );
-      console.log(response.data);
+      console.alert(response.data);
     } catch (error) {
-      console.log(error);
+      console.alert(error);
       return thunkAPI.rejectWithValue(error.response.data);
     }
   }

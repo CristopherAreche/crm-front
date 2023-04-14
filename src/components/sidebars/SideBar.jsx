@@ -15,7 +15,7 @@ import { MdOutlineInventory2, MdOutlineSpaceDashboard } from "react-icons/md";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 // import { postUserInfo } from "../../services/authServices";
-import { useAuth0 } from "@auth0/auth0-react";
+// import { useAuth0 } from "@auth0/auth0-react";
 import { getSeller } from "../../services/sellersServices";
 import { getBossById } from "../../app/features/bossSlice";
 

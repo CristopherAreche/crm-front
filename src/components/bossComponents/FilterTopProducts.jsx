@@ -1,4 +1,4 @@
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import {
   sortProducts,
   sortEnabledProducts,
@@ -19,8 +19,6 @@ const FilterTopProducts = ({ products }) => {
     }
     return accumulator;
   }, []);
-
-  console.log(filteredCategory);
 
   const handleOrderChange = (e) => {
     const value = e.target.value;

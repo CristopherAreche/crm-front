@@ -1,18 +1,36 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { RiMailLine, RiMapPinLine, RiPhoneLine, RiUser3Line,  RiCopyrightLine, RiGlobalLine, RiHonourLine, RiStarSmileLine  } from "react-icons/ri"
 import { useDispatch, useSelector } from 'react-redux'
 import { putBoss } from '../../app/features/bossSlice'
+import swal from 'sweetalert'
 
 
 const FormEditPerfilBoss = ({onClose, inView}) => {
+
+  const [file, setFile] = useState(null)
   const { register, handleSubmit, formState: { errors },reset, } = useForm()
 
   const { boss } = useSelector(state => state.boss)  
   const dispatch = useDispatch()
   const onSubmit = handleSubmit((data) => {
-        dispatch(putBoss(data))
+        const form = new FormData()
+        form.append('image', file)
+        form.append('bossData', JSON.stringify(data))
+        swal({
+            title: "Estas seguro que quieres modificar tus cambios?",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+          }).then((accept) => {
+            if (accept) dispatch(putBoss(data)) 
+            else swal("La modificacion no se concreto");
+          })
+          onClose()
+       
   })
+
+  const handleChange = (e) => setFile(e.target.files[0])
 
   useEffect(() => {
     if (boss) {
@@ -96,6 +114,13 @@ const FormEditPerfilBoss = ({onClose, inView}) => {
                             {errors.address && (
                                 <span className='text-sm font-medium text-red-400'>Este campo es requerido!</span>
                             )}
+                        </div>
+                        <div className='flex iems-center gap-x-4'>
+                            <img src={boss.image ? boss.image : 'https://cdn-icons-png.flaticon.com/512/219/219983.png'} alt='user icon' className='w-16 h-16 rounded-md'/>  
+                            <input
+                                onChange={(e) => handleChange(e)}
+                                name='image'
+                                type='file' className="bg-base-light/70 py-1 rounded-md outline-none  "/>
                         </div>
                     </>
                     : 

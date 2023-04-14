@@ -44,7 +44,7 @@ export const putSeller = createAsyncThunk(
   async (payload) => {
     try {
       const { data } = await axios.put(API_URL_SELLER, payload);
-
+      
       await swal(
         "Modificación",
         `El vendedor ${data.name} fua actualizado correctamente`,
@@ -61,9 +61,17 @@ export const putSeller = createAsyncThunk(
 
 export const toggleStatusSeller = createAsyncThunk(
   "clients/toggleStatusSeller",
-  async ({ id, enable }) => {
+  async ({enable, id}) => {
     try {
-      await axios.put(API_URL_SELLER, { enable, id });
+      const form = new FormData()
+      const data = {enable, id}
+      form.append('sellerData', JSON.stringify(data))
+      await axios.put(API_URL_SELLER, form);
+      await swal(
+        "Modificación",
+        `Su estado ha sido modificado correctamente`,
+        "success"
+      );
       return enable;
     } catch (error) {
       return error.response.data.error;

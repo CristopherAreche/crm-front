@@ -19,6 +19,7 @@ const initialState = {
   seller : {},
   message: "",
   status: "idle",
+  statusSeller: "idle" ,
   error: null,
   sellerSelected: "",
 };
@@ -112,7 +113,11 @@ export const sellerSlice = createSlice({
       .addCase(putSeller.fulfilled, (state, action) => {
         statePutSeller(state, action);
       })
+      .addCase(getSeller.pending, (state, action) => {
+        state.statusSeller = 'loading'
+      })
       .addCase(getSeller.fulfilled, (state, action) => {
+        state.statusSeller = 'success'
         state.seller = action.payload
       })
       .addCase(toggleStatusSeller.fulfilled, (state, action) => {

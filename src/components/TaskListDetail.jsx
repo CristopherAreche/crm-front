@@ -4,16 +4,14 @@ import { useDispatch, useSelector } from "react-redux";
 import { cleanTasks, obtainTask } from "../app/features/clientActivitiesSlice";
 import TaskCard from "./TaskCard";
 
-const TaskListDetail = ({ clientId }) => {
-
-
-  const { tasks, statusTask } = useSelector(state => state.activities)
-  const dispatch = useDispatch()
+const TaskListDetail = ({  clientId  }) => {
+  const {  tasks, statusTask  } = useSelector((state) => state.activities);
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    if (statusTask === 'idle') dispatch(obtainTask(clientId))
-    return () => dispatch(cleanTasks())
-  }, [])
+    if (statusTask === "idle") dispatch(obtainTask(clientId));
+    return () => dispatch(cleanTasks());
+  }, []);
 
   if (statusTask === "loading") {
     return (
@@ -27,10 +25,16 @@ const TaskListDetail = ({ clientId }) => {
     return (
       <section className="flex items-center w-full  gap-x-4 ">
         <div>
-          <h3 className="text-xl text-light font-medium">No tiene ninguna tarea pendiente con este cliente</h3>
+          <h3 className="text-xl text-light font-medium">
+            No tiene ninguna tarea pendiente con este cliente
+          </h3>
           <p className="text-light/90">Agende una tarea con este cliente</p>
         </div>
-        <img src='https://cdn-icons-png.flaticon.com/512/5058/5058432.png' alt="task not found" className="w-20 h-20" />
+        <img
+          src="https://cdn-icons-png.flaticon.com/512/5058/5058432.png"
+          alt="task not found"
+          className="w-20 h-20"
+        />
       </section>
     );
   }

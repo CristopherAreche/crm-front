@@ -16,7 +16,7 @@ const FormEditPerfilBoss = ({onClose, inView}) => {
   const onSubmit = handleSubmit((data) => {
         const form = new FormData()
         form.append('image', file)
-        form.append('bossData', JSON.stringify(data))
+        form.append('formLogin', JSON.stringify(data))
         swal({
             title: "Estas seguro que quieres modificar tus cambios?",
             icon: "warning",

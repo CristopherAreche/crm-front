@@ -9,6 +9,7 @@ import AllClients from "./views/dashboard/AllClients";
 import Home from "./views/Home";
 import Inventory from "./views/dashboard/Inventory";
 import Perfil from "./views/dashboard/Perfil";
+import StartFeedback from "./components/StartFeedback";
 
 function App() {
   return (
@@ -21,6 +22,8 @@ function App() {
         <Route path="/dashboard/sellers" element={<Sellers />}/>
         <Route path="/dashboard/all_clients" element={<AllClients />} />
         <Route path="/dashboard/perfil" element={<Perfil />} />
+        {/*Prueba feedback */}
+        <Route path="/feedback"  element={<StartFeedback />}/>
 
         {/* Rutas de Registracion y Login */}
         <Route exact path="/authentication" element={<AuthLayout />}>

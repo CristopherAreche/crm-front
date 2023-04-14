@@ -12,7 +12,7 @@ const TaskListDetail = ({  clientId  }) => {
     if (statusTask === "idle") dispatch(obtainTask(clientId));
     return () => dispatch(cleanTasks());
   }, []);
-
+ 
   if (statusTask === "loading") {
     return (
       <div className="flex justify-center w-full">

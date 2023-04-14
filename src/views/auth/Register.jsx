@@ -4,13 +4,13 @@ import { Link } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
 import { useDispatch } from "react-redux";
 import { postUserLogin } from "../../services/authServices";
-import {useState } from "react";
+import { useState } from "react";
 import swal from "sweetalert";
 
 const Register = () => {
   const [password, setPassWord] = useState({
-    password: '',
-    password2: ''
+    password: "",
+    password2: "",
   });
   const [email, setEmail] = useState("");
   const [errorUser, SetErrorUser] = useState(true);
@@ -31,7 +31,6 @@ const Register = () => {
       };
     formData.append("formLogin",JSON.stringify(formLogin));
     for (let entry of formData.entries()) {
-      console.log(entry[0] + ": " + entry[1]);
     }
     dispatch(postUserLogin(formData));
     swal( "Usuario registrado","Tu usuario se ha registrado con exito, ve al panel de inicio de sesión","success" );
@@ -39,29 +38,29 @@ const Register = () => {
   
   const valUser = (value) => {
     if (regularUser.test(value)) SetErrorUser(false);
-    else SetErrorUser(true)
+    else SetErrorUser(true);
 
     setEmail(value);
   };
 
   const valPassword = (e) => {
-    if (regularPassword.test(e.target.value))  setErrorPassword(false);
+    if (regularPassword.test(e.target.value)) setErrorPassword(false);
     else setErrorPassword(false);
 
-    setPassWord({...password, [e.target.name] : e.target.value})
+    setPassWord({ ...password, [e.target.name]: e.target.value });
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if(password.password.toString() !== password.password2.toString())  swal({
-      title: "Error",
-      text: "Las contraseñas no coinciden. Por favor, inténtelo de nuevo.",
-      icon: "error",
-      button: "Aceptar",
-    });
-    else register()
+    if (password.password.toString() !== password.password2.toString())
+      swal({
+        title: "Error",
+        text: "Las contraseñas no coinciden. Por favor, inténtelo de nuevo.",
+        icon: "error",
+        button: "Aceptar",
+      });
+    else register();
   };
-  
 
   return (
     <section className="flex flex-col items-start justify-center min-h-screen px-8 lg:px-20 gap-y-4">
@@ -79,15 +78,16 @@ const Register = () => {
       </h2>
       <p className="text-gray-400 ">No olvide sus datos ingresados</p>
       <form
-      onSubmit={(e) => {
-        handleSubmit(e);
-      }}
-      className="flex flex-col w-full gap-y-4 mb-4">
+        onSubmit={(e) => {
+          handleSubmit(e);
+        }}
+        className="flex flex-col w-full gap-y-4 mb-4"
+      >
         <div className="relative flex flex-col gap-y-1 mb-2">
           <label className="font-medium text-gray-300">Email</label>
           <input
-          value={email}
-          onChange={(e) => valUser(e.target.value)}
+            value={email}
+            onChange={(e) => valUser(e.target.value)}
             type="text"
             className="bg-base-light/60 py-2 pl-10 pr-4 w-full rounded-md outline-none shadow-md"
           />
@@ -96,20 +96,22 @@ const Register = () => {
         <div className="relative flex flex-col gap-y-1">
           <label className="font-medium text-gray-300">Contraseña</label>
           <input
-          onChange={(e) => valPassword(e)}
-          name='password'
-          value={password.password}
+            onChange={(e) => valPassword(e)}
+            name="password"
+            value={password.password}
             type="password"
             className="bg-base-light/60 py-2 pl-10 pr-4  w-full rounded-md outline-none shadow-md"
           />
           <RiLock2Line className="absolute top-1/2 translate-y-1 left-2 text-2xl text-secondary " />
         </div>
         <div className="relative flex flex-col gap-y-1">
-          <label className="font-medium text-gray-300">Repita su contraseña</label>
+          <label className="font-medium text-gray-300">
+            Repita su contraseña
+          </label>
           <input
-          onChange={(e) => valPassword(e)}
-          name='password2'
-          value={password.password2}
+            onChange={(e) => valPassword(e)}
+            name="password2"
+            value={password.password2}
             type="password"
             className="bg-base-light/60 py-2 pl-10 pr-4  w-full rounded-md outline-none shadow-md"
           />
@@ -154,3 +156,4 @@ const Register = () => {
 };
 
 export default Register;
+

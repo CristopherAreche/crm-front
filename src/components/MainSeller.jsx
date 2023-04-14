@@ -1,6 +1,4 @@
-import {
-  RiCheckboxCircleLine, RiLoader4Fill,
-} from "react-icons/ri";
+import { RiCheckboxCircleLine, RiLoader4Fill } from "react-icons/ri";
 import { useAuth0 } from "@auth0/auth0-react";
 import SalesChart from "./charts/SalesChart";
 import StockChart from "./charts/StockChart";
@@ -13,40 +11,52 @@ import productImage from "../assets/png images/productImage.png";
 import ProductsCards from "./ProductsCards";
 import { getAllProducts } from "../services/productsServices";
 
-const sellerId = '7155a9d8-acff-4cf9-93fd-385830b9bcae'
+const sellerId = "7155a9d8-acff-4cf9-93fd-385830b9bcae";
 
 const MainSeller = () => {
   const { user } = useAuth0();
-  const dispatch = useDispatch()
-  const {seller, status} = useSelector(state => state.sellers)
-  const {products} = useSelector(state => state.products)
-  const statusProducts = useSelector(state => state.status)
+  const dispatch = useDispatch();
+  const { seller, status } = useSelector((state) => state.sellers);
+  const { products } = useSelector((state) => state.products);
+  const statusProducts = useSelector((state) => state.status);
 
   useEffect(() => {
-    if (status === 'idle') dispatch(getSeller(sellerId))
-  }, [dispatch, status])
+    if (status === "idle") dispatch(getSeller(sellerId));
+  }, [dispatch, status]);
 
   useEffect(() => {
-    if (statusProducts === 'idle') dispatch(getAllProducts())
-  }, [dispatch, statusProducts])
+    if (statusProducts === "idle") dispatch(getAllProducts());
+  }, [dispatch, statusProducts]);
 
   const todayFormated = () => {
     const dateToday = new Date();
 
-    const nameMounth = ['ene', 'feb', 'mar', 'abr', 'may', 'jun', 'jul', 'ago', 'sep', 'oct', 'nov', 'dic'];
+    const nameMounth = [
+      "ene",
+      "feb",
+      "mar",
+      "abr",
+      "may",
+      "jun",
+      "jul",
+      "ago",
+      "sep",
+      "oct",
+      "nov",
+      "dic",
+    ];
 
     const day = dateToday.getDate();
     const mounth = nameMounth[dateToday.getMonth()];
     const year = dateToday.getFullYear();
 
     return `Hoy, ${day} ${mounth} ${year}`;
-  }
+  };
 
   return (
     <section className="py-6 px-12 z-[2]  grid gird-cols-1 lg:grid-cols-6">
       {/* Left Section */}
       <section className="col-span-4 flex flex-col gap-y-4 items-start ">
-     
         {/* Present Section */}
         <section className="flex flex-col gap-y-3.5">
           <h2 className="text-3xl font-medium text-light">
@@ -61,8 +71,8 @@ const MainSeller = () => {
           </p>
         </section>
         {/* Section Resume */}
-        <SummarySection data={seller} sellerId={sellerId}/>
-      
+        <SummarySection data={seller} sellerId={sellerId} />
+
         {/* Section Estadistics Sales */}
         <section className="flex flex-col items-start gap-y-2 pr-0 lg:pr-12 w-full pt-0  ">
           <div className="flex items-center justify-between w-full">
@@ -88,21 +98,17 @@ const MainSeller = () => {
           </div>
           {/* Lastest Products Cards */}
           <section className="flex flex-col gap-y-5">
-            {
-              statusProducts === 'loading' && statusProducts === 'idle'
-              ? 
+            {statusProducts === "loading" && statusProducts === "idle" ? (
               <div className="flex justify-center w-full">
                 <RiLoader4Fill className="animate-spin text-4xl text-secondary mt-8" />
               </div>
-              : 
+            ) : (
               <>
-                  {products
-                .slice(0, 3)
-                .map((item) => (
-                  <ProductsCards key={item.id} item={item}/>
+                {products.slice(0, 3).map((item) => (
+                  <ProductsCards key={item.id} item={item} />
                 ))}
               </>
-            }
+            )}
           </section>
         </section>
         {/* Section Graphic Stock */}
@@ -114,16 +120,37 @@ const MainSeller = () => {
         <section className="bg-gradient-to-r from-primary to-secondary relative w-full h-52 flex justify-center items-center cursor-pointer group rounded-md">
           <div className="absolute top-0 left-0 bg-black/30 w-full h-full  opacity-0 translate-y-1 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-200 ease-in-out rounded-md shadow-md flex flex-col gap-y-4 items-start justify-center px-6">
             <div className="flex justify-between  w-full items-center ">
-                <h5 className="text-xl font-medium ">Pasa al plan <span className="text-orange-400">Professional</span></h5>
-                <p className="font-medium text-white text-lg"><span className="font-medium bg-orange-400 p-1 rounded-md shadow-md text-xl">50%</span> de descuento</p>
+              <h5 className="text-xl font-medium ">
+                Pasa al plan{" "}
+                <span className="text-orange-400">Professional</span>
+              </h5>
+              <p className="font-medium text-white text-lg">
+                <span className="font-medium bg-orange-400 p-1 rounded-md shadow-md text-xl">
+                  50%
+                </span>{" "}
+                de descuento
+              </p>
             </div>
             <div className="flex flex-col gap-y-2 text-sm font-bold">
-              <p className="flex gap-x-2 items-center"><RiCheckboxCircleLine className="text-lg text-orange-400"/>CRM x5</p>
-              <p className="flex gap-x-2 items-center"><RiCheckboxCircleLine className="text-lg text-orange-400"/>Automatizacion x5</p>
-              <p className="flex gap-x-2 items-center"><RiCheckboxCircleLine className="text-lg text-orange-400"/>Stock x5</p>
+              <p className="flex gap-x-2 items-center">
+                <RiCheckboxCircleLine className="text-lg text-orange-400" />
+                CRM x5
+              </p>
+              <p className="flex gap-x-2 items-center">
+                <RiCheckboxCircleLine className="text-lg text-orange-400" />
+                Automatizacion x5
+              </p>
+              <p className="flex gap-x-2 items-center">
+                <RiCheckboxCircleLine className="text-lg text-orange-400" />
+                Stock x5
+              </p>
             </div>
-          </div>    
-          <img src={productImage} alt='product 3d icon' className="w-44 h-44 group-hover:w-36 group-hover:h-36 transition-all duration-200 ease-in-out " />
+          </div>
+          <img
+            src={productImage}
+            alt="product 3d icon"
+            className="w-44 h-44 group-hover:w-36 group-hover:h-36 transition-all duration-200 ease-in-out "
+          />
         </section>
       </section>
     </section>

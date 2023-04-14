@@ -15,6 +15,7 @@ const RegisterActivityTable = () => {
     dispatch(obtainActivities(id));
   }, [dispatch, id]);
 
+  console.log(activities);
   if (activitiesStatus === "loading") {
     return (
       <div className="pt-2 flex justify-center">
@@ -29,7 +30,7 @@ const RegisterActivityTable = () => {
 
   return (
     <section className="w-auto overflow-x-auto lg:min-w-full  h-96 overflow-y-auto  overflow-hidden mb-4 text-white">
-      <table className="min-w-full text-center text-sm font-regular shadow-md rounded-sm">
+      <table className=" text-center w-full text-sm font-regular shadow-md rounded-sm">
         <thead className=" font-medium text-white  dark:bg-base-light/30 rounded-md">
           <tr>
             <th scope="col" className=" px-6 py-4">
@@ -46,15 +47,9 @@ const RegisterActivityTable = () => {
         <tbody className=" dark:border-light dark:bg-base-light/60">
           {activities.map((item, index) => (
             <tr key={index} className="border-b dark:border-base/30">
-              <td className="whitespace-nowrap  px-6 py-4 font-medium">
-                {item.method}
-              </td>
-              <td className="whitespace-nowrap  px-6 py-4  font-medium">
-                {item.state}
-              </td>
-              <td className="whitespace-nowrap  px-6 py-4">
-                {item.createdAt.split("T")[0]}
-              </td>
+              <td className="  px-6 py-4 font-medium">{item.method}</td>
+              <td className="  px-6 py-4  font-medium">{item.state}</td>
+              <td className="  px-6 py-4">{item.createdAt.split("T")[0]}</td>
             </tr>
           ))}
         </tbody>

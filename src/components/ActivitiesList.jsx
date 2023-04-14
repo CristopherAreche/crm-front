@@ -10,7 +10,7 @@ const ActivitiesList = () => {
         <RiBarChart2Line className="text-4xl" />
         Actividades
       </h4>
-      <div className="flex gap-x-8">
+      <div className="flex  gap-x-8">
         <DateFilter />
         <ActivitiesFilter />
       </div>

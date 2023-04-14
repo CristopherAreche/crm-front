@@ -26,15 +26,15 @@ const Inventory = () => {
   }, [dispatch]);
 
   return (
-    <main className="bg-base h-screen text-white grid grid-cols-10">
+    <main className=" h-screen  text-white ">
       {role !== "admin" ? (
         <div className="  flex flex-row  gap-y-2 ">
           {/* Inventory --- aqui va el inventario desde la vista del Vendedor. */}
-          <h4 className="text-2xl text-light font-medium flex  mb-2 p-2">
-            <MdOutlineInventory2 className="text-4xl" />
-            Inventario
-          </h4>
-          <section className="flex flex-col gap-y-2 ">
+          <section className="flex flex-col gap-y-2 w-full">
+            <h4 className="text-2xl text-light font-medium flex  mb-2 p-2">
+              <MdOutlineInventory2 className="text-4xl" />
+              Inventario
+            </h4>
             <div className="flex gap-x-8 mt-2">
               <SearchBar
                 data={products}
@@ -50,32 +50,32 @@ const Inventory = () => {
           </section>
         </div>
       ) : (
-        <main className=" px-6 w-full py-[1em] col-start-3 col-end-11 h-[100vh] overflow-y-auto z-40 flex flex-col gap-2 lg:w-auto justify-center items-center">
+        <main className="bg-base h-screen text-white">
           <SideBar />
-          <Outlet />
-          <div className=" text-white w-full flex flex-col lg:flex-row items-center  lg:justify-between gap-y-2 mb-6">
-            <Header
-              mainText={"INVENTARIO"}
-              data={products}
-              onSearch={(filteredProducts) =>
-                dispatch(searchProducts(filteredProducts))
-              }
-              onReset={() => dispatch(resetProducts())}
-            />
-          </div>
 
-          <div className=" h-[20em] w-full flex justify-center items-center text-black">
-            <MayorStockChart products={products} />
-          </div>
-          <div className="h-[20em] w-full  flex justify-center items-center text-white font-normal">
-            <FilterTopProducts products={copyProducts} />
-          </div>
-          <div className="h-[20em] w-full  flex justify-center items-center text-white font-normal">
-            <ProductList />
-          </div>
-          <div className=" h-[5em] w-full  flex justify-center items-center text-black">
-            <BottomProduct />
-          </div>
+          <section className="lg:pl-72 h-[100vh] overflow-y-auto flex flex-col z-[2] w-[100vw] lg:w-auto">
+            <section className="py-6 px-12 z-[2]  ">
+              <div className=" text-white w-full flex flex-col lg:flex-row items-center  lg:justify-between gap-y-2 mb-6">
+                <Header
+                  mainText={"INVENTARIO"}
+                  data={products}
+                  onSearch={(filteredProducts) =>
+                    dispatch(searchProducts(filteredProducts))
+                  }
+                  onReset={() => dispatch(resetProducts())}
+                />
+              </div>
+              <section className="flex flex-col">
+                <MayorStockChart products={products} />
+
+                <FilterTopProducts products={copyProducts} />
+
+                <ProductList />
+
+                <BottomProduct />
+              </section>
+            </section>
+          </section>
         </main>
       )}
     </main>

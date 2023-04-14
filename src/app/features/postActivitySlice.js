@@ -2,11 +2,17 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
 const API_URL = "https://crm.up.railway.app/api/activity";
+const API_URL_SALE = "https://crm.up.railway.app/api/sale_product";
 
 export const createActivity = createAsyncThunk(
   "activity/createActivity",
-  async (activity) => {
+  async (activity, sale) => {
     const response = await axios.post(`${API_URL}`, activity);
+
+    const sales = { ...sale, activityId: response.data.id };
+
+    const salePost = await axios.post(`${API_URL_SALE}`, sales);
+
     return response.data;
   }
 );

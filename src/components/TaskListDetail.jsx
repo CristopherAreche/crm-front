@@ -2,15 +2,16 @@ import React, { useEffect } from "react";
 import { RiBookReadLine, RiLoader4Fill } from "react-icons/ri";
 import { useDispatch, useSelector } from "react-redux";
 import { cleanTasks, obtainTask } from "../app/features/clientActivitiesSlice";
+import TaskCard from "./TaskCard";
 
-const TaskListDetail = ({clientId}) => {
+const TaskListDetail = ({ clientId }) => {
 
 
-  const {tasks, statusTask} = useSelector(state => state.activities)
+  const { tasks, statusTask } = useSelector(state => state.activities)
   const dispatch = useDispatch()
 
   useEffect(() => {
-    if(statusTask === 'idle')  dispatch(obtainTask(clientId))
+    if (statusTask === 'idle') dispatch(obtainTask(clientId))
     return () => dispatch(cleanTasks())
   }, [])
 
@@ -25,11 +26,11 @@ const TaskListDetail = ({clientId}) => {
   if (!tasks.length && statusTask !== "loading") {
     return (
       <section className="flex items-center w-full  gap-x-4 ">
-       <div>
-        <h3 className="text-xl text-light font-medium">No tiene ninguna tarea pendiente con este cliente</h3>
-        <p className="text-light/90">Agende una tarea con este cliente</p>
-       </div>
-       <img src='https://cdn-icons-png.flaticon.com/512/5058/5058432.png' alt="task not found" className="w-20 h-20"/>
+        <div>
+          <h3 className="text-xl text-light font-medium">No tiene ninguna tarea pendiente con este cliente</h3>
+          <p className="text-light/90">Agende una tarea con este cliente</p>
+        </div>
+        <img src='https://cdn-icons-png.flaticon.com/512/5058/5058432.png' alt="task not found" className="w-20 h-20" />
       </section>
     );
   }
@@ -42,18 +43,9 @@ const TaskListDetail = ({clientId}) => {
       <section className="grid grid-cols-2 lg:grid-cols-3 gap-4">
 
         {
-          tasks.map(task => (
-            <article key={task.id} className="bg-base-light/40 px-4 py-3 rounded-md shadow-md flex flex-col gap-y-3 items-start">
-                <p className="text-ellipsis overflow-hidden  w-24 lg:w-auto lg:h-auto h-14 text-sm font-medium text-gray-300 ">
-                  {task.description}
-                </p>
-                <label className={`${task.state === 'Pediente' ? 'bg-red-400 shadow-red-400/50' : 'bg-emerald-400 shadow-emerald-400/50'}text-sm font-medium text-gray-200 py-1 px-2 rounded-md shadow-md flex flex-col gap-y-3 items-start `}>
-                  {task.state}
-                </label>
-            </article>
-          ))
+          tasks.map((task, index) => <TaskCard key={index} task={task} clientId={clientId} />)
         }
-        
+
       </section>
     </section>
   );

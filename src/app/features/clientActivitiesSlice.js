@@ -3,6 +3,7 @@ import {
   stateDateFilter,
   stateActivitiesFilter,
 } from "../../handlers/handlerActivitiesClient";
+import { createActivity } from "../../services/activityService";
 import axios from "axios";
 
 const API_URL_ACTIVITY = "https://crm.up.railway.app/api/activity";
@@ -69,6 +70,19 @@ const activitySlice = createSlice({
       .addCase(obtainTask.fulfilled, (state, action) => {
         state.statusTask = "succeeded";
         state.tasks = action.payload;
+      })
+      .addCase(createActivity.pending, (state) => {
+        state.status = "loading";
+        state.error = null;
+      })
+      .addCase(createActivity.fulfilled, (state, action) => {
+        state.status = "succeeded";
+        state.activities = [action.payload, ...state.activities];
+        state.activitiesFilter = [action.payload, ...state.activities];
+      })
+      .addCase(createActivity.rejected, (state, action) => {
+        state.status = "failed";
+        state.error = action.error.message;
       });
   },
 });

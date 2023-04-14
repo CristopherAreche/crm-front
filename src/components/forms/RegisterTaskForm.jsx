@@ -2,14 +2,13 @@ import React, { useState } from "react";
 import { createActivity } from "../../services/activityService";
 import { useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
-const RegisterActivitiesModal = ({ onClose }) => {
-  const [method, setMethod] = useState("Llamada");
+const RegisterTaskForm = ({ onClose }) => {
+  const [description, setDescription] = useState("");
   const [state, setState] = useState("Concretado");
-  const [subject, setSubject] = useState("");
-  const [from, setFrom] = useState("");
-  const [to, setTo] = useState("");
-  const [message, setMessage] = useState("");
+  const [selectedDate, setSelectedDate] = useState(new Date());
   const dispatch = useDispatch();
 
   const salesmanId = "7155a9d8-acff-4cf9-93fd-385830b9bcae";
@@ -20,12 +19,8 @@ const RegisterActivitiesModal = ({ onClose }) => {
     const obj = {
       salesmanId,
       clientId: id,
-      method,
-      state,
-      subject,
-      from,
-      to,
-      message,
+      description,
+      due_date: selectedDate,
     };
     dispatch(createActivity(obj));
     onClose();
@@ -40,17 +35,6 @@ const RegisterActivitiesModal = ({ onClose }) => {
         <div className=" flex flex-col justify-center items-center w-[100%] h-[85%]">
           {/* Metodo */}
           <div className="  w-[100%] h-[25%] flex gap-x-16 justify-center items-center">
-            <label className="block">
-              <span className="text-white">Metodo</span>
-              <select
-                className="form-select mt-1 block w-full"
-                value={method}
-                onChange={(e) => setMethod(e.target.value)}
-              >
-                <option value="Llamada">Llamada</option>
-                <option value="Correo-E">Correo-E</option>
-              </select>
-            </label>
             {/* Estado */}
             <label className="block">
               <span className="text-white">Estado</span>
@@ -65,49 +49,34 @@ const RegisterActivitiesModal = ({ onClose }) => {
             </label>
           </div>
           <div className=" w-[100%] h-[75%] flex  flex-col justify-center items-center gap-y-3">
-            {/* Asunto */}
-            <label className="block">
-              <span className="text-white">Asunto: </span>
-              <input
-                type="text"
-                className="w-[100%]"
-                value={subject}
-                onChange={(e) => setSubject(e.target.value)}
-              />
-            </label>
-            {/* from */}
-            <label className="block">
-              <span className="text-white">Desde: </span>
-              <input
-                type="email"
-                className="w-[100%]"
-                value={from}
-                onChange={(e) => setFrom(e.target.value)}
-              />
-            </label>
-            {/* To */}
-            <label className="block">
-              <span className="text-white">Para: </span>
-              <input
-                type="email"
-                className="w-[100%]"
-                value={to}
-                onChange={(e) => setTo(e.target.value)}
-              />
-            </label>
             {/* text */}
             <label className="block">
-              <span className="text-white">Mensaje </span>
+              <span className="text-white">Descripcion </span>
               {/* <input type="text" className="h-[6em] w-[100%]" /> */}
               <textarea
                 id="message"
                 rows="4"
                 className="w-[100%] block p-2.5 text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 placeholder="Escribe aqui..."
-                value={message}
-                onChange={(e) => setMessage(e.target.value)}
+                value={description}
+                onChange={(e) => setDescription(e.target.value)}
               ></textarea>
             </label>
+            <div className="mb-4">
+              <label
+                htmlFor="date"
+                className="block text-gray-700 font-bold mb-2"
+              >
+                Fecha
+              </label>
+              <DatePicker
+                value={selectedDate}
+                selected={selectedDate}
+                onChange={(date) => setSelectedDate(date)}
+                dateFormat="dd/MM/yyyy"
+                className="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              />
+            </div>
           </div>
         </div>
         <div className=" flex  w-[100%] h-[15%] justify-center items-center gap-x-20">
@@ -129,4 +98,4 @@ const RegisterActivitiesModal = ({ onClose }) => {
   );
 };
 
-export default RegisterActivitiesModal;
+export default RegisterTaskForm;

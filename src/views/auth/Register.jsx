@@ -41,7 +41,6 @@ const Register = () => {
   const valUser = (value) => {
     if (regularUser.test(value)) SetErrorUser(false);
     else SetErrorUser(true);
-
     setEmail(value);
   };
 

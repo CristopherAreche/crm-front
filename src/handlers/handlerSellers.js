@@ -7,7 +7,7 @@ export const statePostSeller = (state, action) => {
 export const statePutSeller = (state, action) => {
   const { id, name, email, phone, image } = action.payload;
   const indexSeller = state.sellers.findIndex((seller) => seller.id === id);
-
+  state.seller = action.payload
   if (indexSeller !== -1) {
     state.sellers[indexSeller].name = name;
     state.sellers[indexSeller].email = email;
@@ -17,6 +17,8 @@ export const statePutSeller = (state, action) => {
 };
 
 export const stateToggleStatusSeller = (state, action, status) => {
+  const sellerModify = {...state.seller, enable : status}
+  state.seller = sellerModify
   const sellerFounded = state.sellers.find(
     (seller) => seller.id === state.sellerSelected
   );

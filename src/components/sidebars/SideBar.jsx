@@ -28,7 +28,7 @@ function SideBar({ typeSidebar, summary, inventory, clients, sellers }) {
   const { seller } = useSelector((state) => state.sellers);
   const { boss } = useSelector((state) => state.boss);
   const dispatch = useDispatch();
-  const { logout } = useAuth0();
+  // const { logout } = useAuth0();
 
   // const handleBossRegister = () => {
   //   if (isAuthenticated && user) {
@@ -154,13 +154,15 @@ function SideBar({ typeSidebar, summary, inventory, clients, sellers }) {
               Configuración
             </Link>
 
-            <button
-              onClick={() => logout()}
-              className="flex px-12 py-2  active:scale-95 active:bg-light/20 gap-x-6 items-center text-lg text-gray-300 font-medium   cursor-pointer  hover:text-gray-100 transition-all"
-            >
-              <RiLogoutCircleRLine className="text-2xl text-secondary" /> Cerrar
-              Sesión
-            </button>
+            <Link to="/">
+              <button
+                // onClick={() => logout()}
+                className="flex px-12 py-2  active:scale-95 active:bg-light/20 gap-x-6 items-center text-lg text-gray-300 font-medium   cursor-pointer  hover:text-gray-100 transition-all"
+              >
+                <RiLogoutCircleRLine className="text-2xl text-secondary" />{" "}
+                Cerrar Sesión
+              </button>
+            </Link>
           </div>
           {typeSidebar === "client-detail" && (
             <>

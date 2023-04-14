@@ -1,11 +1,14 @@
-import { createAsyncThunk } from '@reduxjs/toolkit';
-import axios from 'axios';
+import { createAsyncThunk } from "@reduxjs/toolkit";
+import axios from "axios";
 
 export const postUserInfo = createAsyncThunk(
-  'userInfo/postUserInfo',
+  "userInfo/postUserInfo",
   async (userInfo, thunkAPI) => {
     try {
-      const response = await axios.post('https://crm.up.railway.app/api/boss', userInfo);
+      const response = await axios.post(
+        "https://crm.up.railway.app/api/boss",
+        userInfo
+      );
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.response.data);
@@ -14,23 +17,29 @@ export const postUserInfo = createAsyncThunk(
 );
 
 export const postUserLogin = createAsyncThunk(
-  'userLogin/postUserLogin',
+  "userLogin/postUserLogin",
   async (formData, thunkAPI) => {
     try {
-      const response = await axios.post('https://crm2.up.railway.app/api/boss', formData);
+      const response = await axios.post(
+        "https://crm2.up.railway.app/api/boss",
+        formData
+      );
       return response.data;
     } catch (error) {
-      console.log(error);
       return thunkAPI.rejectWithValue(error.response.data);
     }
   }
 );
 
 export const postLogin = createAsyncThunk(
-  'loginUser/postLogin',
+  "loginUser/postLogin",
   async (loginUser, thunkAPI) => {
     try {
-      const response = await axios.post('https://crm2.up.railway.app/api/login', loginUser, {  withCredentials: true});
+      const response = await axios.post(
+        "https://crm2.up.railway.app/api/login",
+        loginUser,
+        { withCredentials: true }
+      );
       console.log(response.data);
     } catch (error) {
       console.log(error);

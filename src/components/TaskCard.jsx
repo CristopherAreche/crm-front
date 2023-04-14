@@ -4,6 +4,7 @@ import { obtainTask } from '../app/features/clientActivitiesSlice';
 import { useDispatch } from 'react-redux';
 import swal from 'sweetalert';
 import { RiDeleteBin3Line } from "react-icons/ri";
+import {FiEdit} from 'react-icons/fi'
 
 export default function TaskCard({ task, clientId }) {
     const item = { ...task }
@@ -57,7 +58,7 @@ export default function TaskCard({ task, clientId }) {
     return (
         <article key={item.id} className="justify-between bg-base-light/40 w-89 px-4 py-3 rounded-md shadow-md flex flex-col gap-y-3 items-start">
             <div className='flex flex-row justify-between w-full'>
-                <div className='hover:opacity-40'>
+                <div>
                     <p className="text-ellipsis overflow-hidden  w-10/12 lg:w-auto lg:h-auto h-14 text-sm font-medium text-gray-300 ">
                         {item.description}
                     </p>
@@ -81,9 +82,11 @@ export default function TaskCard({ task, clientId }) {
                     <p className={`text-ellipsis overflow-hidden  w-10/12 lg:w-auto lg:h-auto h-14 text-sm font-medium text-gray-300 
                     ${isExpired() ? 'text-orange-200' : 'text-white'}`}
                     >
-                        {`${due_date.getDay()}/${due_date.getMonth() + 1}/${due_date.getFullYear()}`}
+                        {`Exp: ${due_date.getDay()}/${due_date.getMonth() + 1}/${due_date.getFullYear()}`}
                     </p>
                 </div>
+                <FiEdit
+                className="text-2xl text-green-400 hover:text-green-400/70 active:text-green-500 cursor-pointer"/>
             </div>
         </article >
     )

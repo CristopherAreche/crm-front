@@ -1,19 +1,36 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { RiMailLine, RiMapPinLine, RiPhoneLine, RiUser3Line } from "react-icons/ri"
 import { useDispatch, useSelector } from 'react-redux'
 import { putSeller } from '../../services/sellersServices'
+import swal from 'sweetalert'
 
 
 const FormEditPerfilSeller = ({onClose}) => {
-  const { register, handleSubmit, formState: { errors },reset, } = useForm()
 
-  const { seller } = useSelector(state => state.sellers)  
   const dispatch = useDispatch()
+  const [file, setFile] = useState(null)
+  const { register, handleSubmit, formState: { errors },reset, } = useForm()
+  const { seller } = useSelector(state => state.sellers)  
+
+  const handleChange = (e) => setFile(e.target.files[0])
+  
+
   const onSubmit = handleSubmit((data) => {
-    dispatch(putSeller(data))
-    onClose()
+    const form = new FormData()
+    form.append('image', file)
+    form.append('sellerData', JSON.stringify(data))
+    swal({
+        title: "Estas seguro que quieres modificar tus cambios?",
+        icon: "warning",
+        buttons: true,
+        dangerMode: true,
+      }).then((accept) => {
+        if (accept) dispatch(putSeller(form))
+        else swal("La modificacion no se concreto");
+      })
   })
+
 
   useEffect(() => {
     if (seller) reset({
@@ -80,6 +97,15 @@ const FormEditPerfilSeller = ({onClose}) => {
                     <span className='text-sm font-medium text-red-400'>Este campo es requerido!</span>
                  )}
             </div>
+                    
+            <div className='flex iems-center gap-x-4'>
+                  <img src={seller.image ? seller.image : 'https://cdn-icons-png.flaticon.com/512/219/219983.png'} alt='user icon' className='w-16 h-16 rounded-md'/>  
+                  <input
+                    onChange={(e) => handleChange(e)}
+                    name='image'
+                    type='file' className="bg-base-light/70 py-1 rounded-md outline-none  "/>
+            </div>
+
             <section className='flex justify-between items-center w-full'>
                 <button type="button"
                 className="p-2 rounded-md font-medium text-base bg-gray-300 shadow-md shadow-gray-300/20 hover:bg-gray-300/80 transition-all" onClick={onClose}>Cerrar</button>

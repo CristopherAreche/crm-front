@@ -1,10 +1,11 @@
 import React, { useState } from "react";
-import { createActivity } from "../app/features/postActivitySlice";
+import { createActivity } from "../../services/activityService";
 import { useDispatch, useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
 
 const RegisterActivitiesModal = ({ onClose }) => {
   const [method, setMethod] = useState("Llamada");
-  const [status, setStatus] = useState("Pendiente");
+  const [state, setState] = useState("Pendiente");
   const [subject, setSubject] = useState("");
   const [from, setFrom] = useState("");
   const [to, setTo] = useState("");
@@ -12,20 +13,30 @@ const RegisterActivitiesModal = ({ onClose }) => {
   const dispatch = useDispatch();
 
   const [quantity_sale, setQuantity_sale] = useState("");
-  const [producId, setProductId] = useState("");
+  const [productData, setProductData] = useState({
+    productId: "",
+    price_sale: "",
+  });
   const products = useSelector((state) => state.products.products);
+  const salesmanId = "7155a9d8-acff-4cf9-93fd-385830b9bcae";
+  const { id } = useParams();
 
   const handleSubmit = (e) => {
     e.preventDefault();
     const obj = {
-      // salesmanId,
-      // clientId,
+      salesmanId,
+      clientId: id,
       method,
-      status,
+      state,
       subject,
       from,
       to,
       message,
+    };
+
+    const sale = {
+      quantity_sale,
+      productData,
     };
 
     dispatch(createActivity(obj));
@@ -34,35 +45,16 @@ const RegisterActivitiesModal = ({ onClose }) => {
     onClose();
   };
 
-  // const handleCreateActivity = async (salesmanId) => {
-  //   try {
-  //     dispatch(
-  //       createActivity({
-  //         salesmanId,
-  //         method,
-  //         status,
-  //         subject,
-  //         from,
-  //         to,
-  //         message,
-  //       })
-  //     );
-  //     onClose();
-  //   } catch (error) {
-  //     console.error(error);
-  //   }
-  // };
-
   return (
-    <div className="fixed inset-0  bg-black  bg-opacity-25 backdrop-blur-sm flex justify-center items-center">
+    <div className=" fixed inset-0  bg-black  bg-opacity-25 backdrop-blur-sm flex justify-center items-center">
       <form
-        onSubmit={handleSubmit}
-        className=" w-[100vw] lg:w-[70vw] bg-base/60 rounded-md flex flex-col items-center justify-center h-[45em]"
+        onSubmit={(e) => handleSubmit(e)}
+        className=" w-[100vw] lg:w-[60vw] bg-base/60 rounded-md flex flex-col items-center justify-center h-[35em]"
       >
-        <div className=" bg-red-200 flex    w-[100%] h-[85%]">
+        <div className="  flex    w-[100%] h-[85%]">
           {/* Metodo */}
-          <div className="bg-green-200 w-[50%] flex flex-col justify-center items-center">
-            <div className=" bg-blue-200 w-[100%] h-[25%]  flex gap-x-16 justify-center items-center">
+          <div className=" w-[50%] flex flex-col justify-center items-center">
+            <div className=" w-[100%] h-[25%]  flex gap-x-16 justify-center items-center">
               <label className="block">
                 <span className="text-white">Metodo</span>
                 <select
@@ -79,8 +71,8 @@ const RegisterActivitiesModal = ({ onClose }) => {
                 <span className="text-white">Estado</span>
                 <select
                   className="form-select mt-1 block w-full"
-                  value={status}
-                  onChange={(e) => setStatus(e.target.value)}
+                  value={state}
+                  onChange={(e) => setState(e.target.value)}
                 >
                   <option value="Pendiente">Pendiente</option>
                   <option value="Concretado">Concretado</option>
@@ -88,7 +80,7 @@ const RegisterActivitiesModal = ({ onClose }) => {
               </label>
             </div>
 
-            <div className=" bg-yellow-200 w-[100%] h-[75%] flex  flex-col justify-center items-center gap-y-3">
+            <div className="  w-[100%] h-[75%] flex  flex-col justify-center items-center gap-y-3">
               {/* Asunto */}
               <label className="block">
                 <span className="text-white">Asunto: </span>
@@ -134,18 +126,26 @@ const RegisterActivitiesModal = ({ onClose }) => {
               </label>
             </div>
           </div>
-          <div className="bg-purple-300 w-[50%] flex flex-col justify-center items-center">
-            {status === "Concretado" ? (
+          <div className=" w-[50%] flex flex-col justify-center items-center">
+            {state === "Concretado" ? (
               <>
                 <label className="block">
                   <span className="text-white">Producto vendido </span>
                   <select
                     className="form-select mt-1 block w-full"
-                    value={producId}
-                    onChange={(e) => setProductId(e.target.value)}
+                    value={productData}
                   >
                     {products.map((product, index) => (
-                      <option key={index} value={product.name}>
+                      <option
+                        key={index}
+                        value={product.id}
+                        onChange={(e) =>
+                          setProductData({
+                            productId: product.id,
+                            price_sale: product.withDiscount,
+                          })
+                        }
+                      >
                         {product.name}
                       </option>
                     ))}
@@ -167,7 +167,7 @@ const RegisterActivitiesModal = ({ onClose }) => {
         </div>
         <div className="  flex  w-[100%] h-[15%] justify-center items-center gap-x-20">
           <button
-            onClick={handleSubmit}
+            type="submit"
             className=" p-2 rounded-md font-medium text-base bg-green-300 shadow-md shadow-gray-300/20 hover:bg-gray-300/80 transition-all"
           >
             Crear

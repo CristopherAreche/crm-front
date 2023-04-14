@@ -1,3 +1,4 @@
+
 import spotlight1 from "../../assets/svg/Spotlight1.svg";
 import spotlight2 from "../../assets/svg/Spotlight2.svg";
 import SideBar from "../../components/sidebars/SideBar";
@@ -13,7 +14,7 @@ import { getBoss } from "../../app/features/bossSlice";
 const Summary = () => {
   const dispatch = useDispatch();
   const dashboard = useSelector((state) => state.boss.bossDashboard);
-  const role = useSelector((state) => state.clients.clientRole);
+  const role = useSelector((state) => state.auth.userRole);
 
   useEffect(() => {
     dispatch(getBoss());

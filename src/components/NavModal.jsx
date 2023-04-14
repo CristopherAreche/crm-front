@@ -1,12 +1,11 @@
 import { RiCloseLine, RiUserLine } from "react-icons/ri";
 import { Link } from "react-router-dom";
-import {Link as LinkRoll} from 'react-scroll'
+import { Link as LinkRoll } from "react-scroll";
 
 const NavModal = ({ isOpen, onOpen }) => {
-
   const closeModal = () => {
-    onOpen(false)
-  }
+    onOpen(false);
+  };
 
   return (
     <section
@@ -28,33 +27,57 @@ const NavModal = ({ isOpen, onOpen }) => {
           className="font-medium text-xl
             py-4 hover:bg-base/40 text-gray-300 hover:text-white transition-all cursor-pointer"
         >
-         <LinkRoll  to="precios" smooth={true}  duration={500} spy={true} onClick={closeModal}>
+          <LinkRoll
+            to="precios"
+            smooth={true}
+            duration={500}
+            spy={true}
+            onClick={closeModal}
+          >
             Precios
-         </LinkRoll>         
+          </LinkRoll>
         </li>
         <li
           className="font-medium text-xl
             py-4 hover:bg-base/40 text-gray-300 hover:text-white transition-all cursor-pointer"
         >
-           <LinkRoll  to="funcionalidades" smooth={true}  duration={500} spy={true} onClick={closeModal}>
-           Funcionalidades
-         </LinkRoll> 
+          <LinkRoll
+            to="funcionalidades"
+            smooth={true}
+            duration={500}
+            spy={true}
+            onClick={closeModal}
+          >
+            Funcionalidades
+          </LinkRoll>
         </li>
         <li
           className="font-medium text-xl
             py-4 hover:bg-base/40 text-gray-300 hover:text-white transition-all cursor-pointer"
         >
-           <LinkRoll  to="sobre nosotros" smooth={true}  duration={500} spy={true} onClick={closeModal}>
-           Sobre nosotros
-         </LinkRoll> 
+          <LinkRoll
+            to="sobre nosotros"
+            smooth={true}
+            duration={500}
+            spy={true}
+            onClick={closeModal}
+          >
+            Sobre nosotros
+          </LinkRoll>
         </li>
         <li
           className="font-medium text-xl
             py-4 hover:bg-base/40 text-gray-300 hover:text-white transition-all cursor-pointer"
         >
-           <LinkRoll  to="faq" smooth={true}  duration={500} spy={true} onClick={closeModal}>
-           FAQ
-         </LinkRoll> 
+          <LinkRoll
+            to="faq"
+            smooth={true}
+            duration={500}
+            spy={true}
+            onClick={closeModal}
+          >
+            FAQ
+          </LinkRoll>
         </li>
       </ul>
       <div className="flex gap-x-8 w-full justify-center items-center">

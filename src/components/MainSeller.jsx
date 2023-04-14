@@ -1,5 +1,5 @@
 import { RiCheckboxCircleLine, RiLoader4Fill } from "react-icons/ri";
-import { useAuth0 } from "@auth0/auth0-react";
+// import { useAuth0 } from "@auth0/auth0-react";
 import SalesChart from "./charts/SalesChart";
 import StockChart from "./charts/StockChart";
 import ToDoList from "./ToDoList";
@@ -14,7 +14,7 @@ import { getAllProducts } from "../services/productsServices";
 const sellerId = "7155a9d8-acff-4cf9-93fd-385830b9bcae";
 
 const MainSeller = () => {
-  const { user } = useAuth0();
+  // const { user } = useAuth0();
   const dispatch = useDispatch();
   const { seller, status } = useSelector((state) => state.sellers);
   const { products } = useSelector((state) => state.products);

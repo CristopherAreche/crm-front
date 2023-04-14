@@ -4,13 +4,15 @@ import { BiTask } from "react-icons/bi";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-import { getClient } from "../services/clientsServices";
-import { cleanDetail } from "../app/features/clientSlice";
-import RegisterActivitiesModal from "./RegisterActivitiesModal";
+import { getClient } from "../../services/clientsServices";
+import { cleanDetail } from "../../app/features/clientSlice";
+import RegisterActivitiesModal from "../forms/RegisterActivitiesForm";
+import RegisterTaskForm from "../forms/RegisterTaskForm";
 
 const ContentDetailSidebar = () => {
   const dispatch = useDispatch();
   const [isShow, setIsShow] = useState(false);
+  const [isShown, setIsShown] = useState(false);
   const { clientDetail } = useSelector((state) => state.clients);
   const { id } = useParams();
 
@@ -48,7 +50,11 @@ const ContentDetailSidebar = () => {
         <span className="text-gray-300">Teléfono:</span> {clientDetail.phone}
       </p>
       <div className="flex gap-x-4">
-        <BiTask className="bg-light p-3 box-content text-xl rounded-full " />
+        <button onClick={() => setIsShown(true)}>
+          <BiTask className="bg-light p-3 box-content text-xl rounded-full " />
+        </button>
+        {isShown && <RegisterTaskForm onClose={() => setIsShown(false)} />}
+
         <button
           className="flex bg-light rounded-full"
           onClick={() => setIsShow(true)}

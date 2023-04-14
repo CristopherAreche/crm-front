@@ -17,7 +17,7 @@ export const getBoss = createAsyncThunk("boss/getBoss", async (id) => {
 });
 
 export const getBossById = createAsyncThunk("boss/getBossById",
-  async () => {
+  async (bossId) => {
     const {data} = await axios.get(API_URL_ALLS_BOSS)
     const bossFounded = data.find(boss => boss.id === bossId)
     return bossFounded

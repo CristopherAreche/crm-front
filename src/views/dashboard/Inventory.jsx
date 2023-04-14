@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 import SideBar from "../../components/sidebars/SideBar";
 import { useDispatch, useSelector } from "react-redux";
-import { Outlet } from "react-router-dom";
 import ProductList from "../../components/bossComponents/ProductList";
 import MayorStockChart from "../../components/charts/MayorStockChart";
 import Header from "../../components/Header";
@@ -16,7 +15,7 @@ import SearchBar from "../../components/SearchBar";
 import ProductListSellers from "../../components/ProductListSellers";
 import { MdOutlineInventory2 } from "react-icons/md";
 const Inventory = () => {
-  const role = useSelector((state) => state.clients.clientRole);
+  const role = useSelector((state) => state.auth.userRole);
   const products = useSelector((state) => state.products.products);
   const copyProducts = useSelector((state) => state.products.copyProducts);
   const dispatch = useDispatch();

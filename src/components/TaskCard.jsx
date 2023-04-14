@@ -9,10 +9,8 @@ import {FiEdit} from 'react-icons/fi'
 export default function TaskCard({ task, clientId }) {
     const item = { ...task }
     const [state, setState] = useState(item.state)
-
     const dispatch = useDispatch()
     let due_date = new Date(item.due_date)
-
 
     const changeState = async () => {
         if (state === "Completado") {
@@ -80,9 +78,9 @@ export default function TaskCard({ task, clientId }) {
                 </div>
                 <div>
                     <p className={`text-ellipsis overflow-hidden  w-10/12 lg:w-auto lg:h-auto h-14 text-sm font-medium text-gray-300 
-                    ${isExpired() ? 'text-orange-200' : 'text-white'}`}
+                    ${isExpired() ? 'text-red-300' : 'text-white'}`}
                     >
-                        {`Exp: ${due_date.getDay()}/${due_date.getMonth() + 1}/${due_date.getFullYear()}`}
+                        {`Exp: ${due_date.getDate()}/${due_date.getMonth() + 1}/${due_date.getFullYear()}`}
                     </p>
                 </div>
                 <FiEdit

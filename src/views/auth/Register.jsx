@@ -30,6 +30,8 @@ const Register = () => {
       password: password.password2,
     };
     formData.append("formLogin", JSON.stringify(formLogin));
+    for (let entry of formData.entries()) {
+    }
     dispatch(postUserLogin(formData));
     swal(
       "Usuario registrado",

@@ -5,7 +5,7 @@ import { RiCloseFill, RiLogoutCircleRLine, RiMenu3Fill } from "react-icons/ri";
 import ContentDetailSidebar from "./ContentDetailSidebar";
 
 const ClientDetailSideBar = () => {
-  const role = useSelector((state) => state.clients.clientRole);
+  const role = useSelector((state) => state.auth.userRole);
   const [isOpen, setIsOpen] = useState(false);
   return (
     <>

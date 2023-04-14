@@ -6,7 +6,7 @@ import PrincipalInformation from "../shared/PrincipalInformation";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getBossById } from "../../app/features/bossSlice";
-import FormEditPerfilBoss from "../forms/FormEditPerfilBoss";
+import FormEditPerfilBoss from "../../components/forms/FormEditPerfilBoss"
 
 const MainPerfilBoss = () => {
   const [view, setView] = useState("personal");

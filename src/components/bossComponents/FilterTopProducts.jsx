@@ -1,4 +1,4 @@
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import {
   sortProducts,
   sortEnabledProducts,
@@ -19,8 +19,6 @@ const FilterTopProducts = ({ products }) => {
     }
     return accumulator;
   }, []);
-
-  console.log(filteredCategory);
 
   const handleOrderChange = (e) => {
     const value = e.target.value;
@@ -72,7 +70,7 @@ const FilterTopProducts = ({ products }) => {
   };
 
   return (
-    <section className="text-white text-bold flex justify-evenly w-full  lg:items-center py-2 border-b-2 border-light/10  flex-row flex-wrap lg:flex-nowrap lg:pt-6 ">
+    <section className="text-white text-bold flex justify-evenly  lg:items-center py-2 border-b-2 border-light/10  flex-row flex-wrap lg:flex-nowrap lg:pt-6 ">
       <div className="flex gap-x-2 items-center">
         <button
           className="bg-slate-700 rounded-lg mr-12 px-4"

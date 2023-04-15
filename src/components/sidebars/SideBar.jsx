@@ -15,10 +15,11 @@ import { MdOutlineInventory2, MdOutlineSpaceDashboard } from "react-icons/md";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 // import { postUserInfo } from "../../services/authServices";
-import { useAuth0 } from "@auth0/auth0-react";
+// import { useAuth0 } from "@auth0/auth0-react";
 import { getSeller } from "../../services/sellersServices";
 import { getBossById } from "../../app/features/bossSlice";
 import Cookies from 'js-cookie';
+import { logoutUser } from "../../app/features/authSlice";
 
 
 const sellerId = "7155a9d8-acff-4cf9-93fd-385830b9bcae";
@@ -26,12 +27,7 @@ const sellerId = "7155a9d8-acff-4cf9-93fd-385830b9bcae";
 function SideBar({ typeSidebar, summary, inventory, clients, sellers }) {
   const [isOpen, setIsOpen] = useState(false);
   const [selected, setSelected] = useState("");
-  const role = useSelector((state) => state.auth.userRole);
-  //const role = useSelector((state) => state.auth.userRole);
-  const userId= useSelector((state) => state.auth.User.id);
-  const userName= useSelector((state) => state.auth.User.name);
-  const { seller } = useSelector((state) => state.sellers);
-  const { boss } = useSelector((state) => state.boss);
+ const user=useSelector((state)=>state.auth.User);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -48,23 +44,17 @@ function SideBar({ typeSidebar, summary, inventory, clients, sellers }) {
   //   }
   // };
 
-console.log("ROLE****", role);
+
 
   const handleLinkClick = (linkName) => setSelected(linkName);
 
 
   const handleLogout = () => {
    Cookies.remove('myToken');
-   console.log("LOGOUT");
+   dispatch (logoutUser());
    navigate("/");
   };
-  // const name = user.name;
-  useEffect(() => {
-    if (!seller) dispatch(getSeller(userId));
-    dispatch(getBossById(userId));
-    console.log("SELLER", seller);
-  }, []);
-
+  
   return (
     <>
       <section
@@ -81,7 +71,7 @@ console.log("ROLE****", role);
           </div>
           <section className="flex flex-col gap-y-1 items-center mb-4">
             <div className="relative">
-              {role === "admin" ? (
+              {user.role === "admin" ? (
                 <img
                   src="https://cdn-icons-png.flaticon.com/512/219/219983.png"
                   alt="placeholder"
@@ -90,8 +80,8 @@ console.log("ROLE****", role);
               ) : (
                 <img
                   src={
-                    seller.image
-                      ? seller.image
+                    user.image
+                      ? user.image
                       : "https://cdn-icons-png.flaticon.com/512/219/219983.png"
                   }
                   alt="placeholder"
@@ -99,11 +89,11 @@ console.log("ROLE****", role);
                 />
               )}
               <p className="bg-green-400 text-black absolute rounded-full px-2 bottom-0 right-0">
-                {role === "admin" ? "admin" : "seller"}
+                {user.role === "admin" ? "admin" : "seller"}
               </p>
             </div>
             <h3 className="text-light font-medium text-lg text-center ">
-              {role === "admin" ? userName : userName }
+              {user.role === "admin" ? user.name : user.name }
             </h3>
           </section>
           {typeSidebar === "client-detail" && <ClientDetailSideBar />}
@@ -120,7 +110,7 @@ console.log("ROLE****", role);
               <MdOutlineSpaceDashboard className="text-3xl text-secondary" />{" "}
               Resumen
             </Link>
-            {role === "admin" && (
+            {user.role === "admin" && (
               <>
                 <Link
                   to="/dashboard/inventory"

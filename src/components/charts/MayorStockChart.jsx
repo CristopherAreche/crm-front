@@ -32,7 +32,7 @@ const MayorStockChart = ({ products }) => {
   };
 
   return (
-    <div className="bg-base/40 rounded-lg shadow-md p-6 w-full h-full justify-center flex">
+    <div className="w-[30rem] mx-auto">
       <Bar data={data} options={options} />
     </div>
   );

@@ -6,22 +6,19 @@ import swal from 'sweetalert'
 
 const HeaderPerfil = () => {
 
-  const userId= useSelector((state) => state.auth.User.id);
-  const userName= useSelector((state) => state.auth.User.name);
-  const role = useSelector((state) => state.auth.userRole);
-  const enable = useSelector((state) => state.auth.User.enable);
+  const user=useSelector((state)=>state.auth.User);
   const dispatch = useDispatch()
 
   const onToggleEnable = () => {
     swal({
-      title: `${enable ? 'Estas seguro que quieres darte de baja?' : 'Estas seguro que quiere habilitar tu perfil?'}`,
+      title: `${user.enable ? 'Estas seguro que quieres darte de baja?' : 'Estas seguro que quiere habilitar tu perfil?'}`,
       icon: "warning",
       buttons: true,
       dangerMode: true,
     }).then((accept) => {
       if (accept) {
-        if(role !== 'admin') dispatch(toggleStatusSeller({enable : !enable, id: userId}))
-        else dispatch(putBoss({enable : !enable, Id: userId}))
+        if(user.role !== 'admin') dispatch(toggleStatusSeller({enable : !user.enable, id: user.id}))
+        else dispatch(putBoss({enable : !user.enable, Id: user.id}))
       }
       else swal("La modificacion no se concreto");
     })
@@ -30,10 +27,10 @@ const HeaderPerfil = () => {
 
   return (
     <header className='flex justify-between mb-6 border-b border-light/50 pb-6'>
-        <h3 className='text-2xl font-medium text-light'>Perfil de {userName || userName}</h3>
+        <h3 className='text-2xl font-medium text-light'>Perfil de {user.name}</h3>
         <button 
         onClick={onToggleEnable}
-        className={`${enable ? 'text-red-400 border-red-500 ' : 'text-emerald-400 border-emerald-500 '} text-sm  border p-1 rounded-md hover:scale-[1.03] transition-all`}>{enable ? 'Dar de baja' : 'Habilitar'}</button>
+        className={`${user.enable ? 'text-red-400 border-red-500 ' : 'text-emerald-400 border-emerald-500 '} text-sm  border p-1 rounded-md hover:scale-[1.03] transition-all`}>{user.enable ? 'Dar de baja' : 'Habilitar'}</button>
     </header>
   )
 }

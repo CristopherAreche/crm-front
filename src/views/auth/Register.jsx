@@ -13,33 +13,36 @@ const Register = () => {
     password2: "",
   });
   const [email, setEmail] = useState("");
-  const [errorUser, SetErrorUser] = useState(true);
-  const [errorPassword, setErrorPassword] = useState(true);
-  const [access, setAccess] = useState(false);
+  const [SetErrorUser] = useState(true);
+  const [setErrorPassword] = useState(true);
+  // const [access, setAccess] = useState(false);
   const regularPassword = /^(?=.\d)(?=.[a-z])(?=.*[A-Z])\w{8,}$/; //al menos una letra, al menos un numero, al menos una letra mayúscula, al menos 8 caracteres, no permite espacios.
   const regularUser = /\S+@\S+\.\S+/; //un correo electronico
   const { loginWithRedirect } = useAuth0();
   const dispatch = useDispatch();
 
   const register = () => {
-   const formData=new FormData();
-   const formLogin = { 
-        name:email,
-        username:email,
-        email:email,
-        password:password.password2,
-      };
-    formData.append("formLogin",JSON.stringify(formLogin));
+    const formData = new FormData();
+    const formLogin = {
+      name: email,
+      username: email,
+      email: email,
+      password: password.password2,
+    };
+    formData.append("formLogin", JSON.stringify(formLogin));
     for (let entry of formData.entries()) {
     }
     dispatch(postUserLogin(formData));
-    swal( "Usuario registrado","Tu usuario se ha registrado con exito, ve al panel de inicio de sesión","success" );
-  }
-  
+    swal(
+      "Usuario registrado",
+      "Tu usuario se ha registrado con exito, ve al panel de inicio de sesión",
+      "success"
+    );
+  };
+
   const valUser = (value) => {
     if (regularUser.test(value)) SetErrorUser(false);
     else SetErrorUser(true);
-
     setEmail(value);
   };
 
@@ -156,4 +159,3 @@ const Register = () => {
 };
 
 export default Register;
-

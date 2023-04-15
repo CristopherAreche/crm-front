@@ -9,18 +9,18 @@ import { useState } from "react";
 const MainPerfilSeller = () => {
 
 
-  const {seller} = useSelector(state => state.sellers)
+  const user=useSelector((state)=>state.auth.User);
   const [isOpen, setIsOpen] = useState(false);
 
   return (
     <section className="py-6 px-12 z-[2] min-h-screen">
-      <HeaderPerfil data={seller} />
+      <HeaderPerfil data={user} />
       <section className="grid grid-cols-1 lg:grid-cols-8 ">
         <section className=" col-span-2 flex flex-col gap-y-6 items-center lg:items-start mb-6 lg:mb-0">
-          <PrincipalInformation data={seller} />
+          <PrincipalInformation data={user} />
           <p className="flex gap-x-2 items-center text-yellow-400 mb-4">
             {[...new Array(5)].map((star, index) => {
-              return index < seller.avgFeedback ? (
+              return index < user.avgFeedback ? (
                 <RiStarFill key={index} />
               ) : (
                 <RiStarLine key={index} />
@@ -31,7 +31,7 @@ const MainPerfilSeller = () => {
             <RiEdit2Line className="text-xl text-base-light" />
           </button>
         </section>
-        <PersonalInformationView data={seller} type='seller'/>
+        <PersonalInformationView data={user} type='seller'/>
       </section>
       {isOpen && <FormEditPerfilSeller onClose={() => setIsOpen(false)} />}
     </section>

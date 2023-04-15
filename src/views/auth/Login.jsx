@@ -9,47 +9,26 @@ import {
 } from "react-icons/ri";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import Cookies from "universal-cookie";
+import { useDispatch, useSelector } from "react-redux";
+import {login} from "../../services/authServices";
+// import Cookies from "universal-cookie";
 import swal from "sweetalert";
-import { jwtVerify } from "jose"; 
-import { setUser } from "../../services/authServices"
+import Cookies from "js-cookie";
+import { useEffect } from "react";
+// import { jwtVerify } from "jose";
+// import { setUser } from "../../services/authServices";
 
 const Login = () => {
   const [password, setPassWord] = useState("");
   const [email, setEmail] = useState("");
   const [showPassword, setShowPassword] = useState(false);
+  const status =useSelector((state)=>state.auth.status);
   const [access, setAccess] = useState(false);
-
+  const user= useSelector((state) => state.auth.User);
+const navigate = useNavigate();
+const dispatch = useDispatch();
   //const { loginWithRedirect } = useAuth0();
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
-
-  const login = async () => {
-    try {
-      const response = await axios.post(
-        "https://crm2.up.railway.app/api/login",
-        { email, password },
-        {
-          withCredentials: true,
-        }
-      );
-      const cookies = new Cookies();
-     
-      if(response.data.token){
-        cookies.set("myToken", response.data.token, { path: "/" })
-        console.log("**RESPONSE*", response.data.token);
-        navigate("/dashboard");
-      }
-
-      const { payload } = await jwtVerify(response.data.token, new TextEncoder().encode('secret'))
-      dispatch(setUser(payload));
-      console.log("PAYLOAD", payload);
-    } catch (error) {
-      swal( "Error","Usuario o contraseña incorrectos","error");
-    }
-  };
-
+  
 
   
 
@@ -61,9 +40,16 @@ const Login = () => {
     setPassWord(value);
   };
 
+
+  
   const handleSubmit = (e) => {
     e.preventDefault();
-    login();
+    dispatch(login({email, password}))
+    if(status==="succeeded"){
+    navigate ("/dashboard");
+    }
+    console.log("STATUS**********",status);
+    console.log("USER************",user);
   };
 
   return (
@@ -136,13 +122,13 @@ const Login = () => {
             Olvidaste tu contraseña?
           </p>
         </div>
-        <Link
-          onClick={login}
-          to={access ? "/dashboard" : null}
+        <button
+          type="submit"
+          disabled={status === "loading"}
           className="text-center bg-gradient-to-r from-primary to-secondary py-2 px-4 rounded-md font-bold text-lg hover:scale-[1.02] transition-all"
         >
-          Iniciar Sesión
-        </Link>
+          {status === "loading" ? "Cargando..." : "Iniciar sesión"}
+        </button>
       </form>
       <section className="flex gap-x-2 items-center justify-center w-full bg-white py-2 hover:scale-[1.03] transition-all cursor-pointer rounded-md px-2 lg:px-0">
         <img

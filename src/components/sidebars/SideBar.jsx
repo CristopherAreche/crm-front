@@ -18,6 +18,7 @@ import { useDispatch } from "react-redux";
 import { useAuth0 } from "@auth0/auth0-react";
 import { getSeller } from "../../services/sellersServices";
 import { getBossById } from "../../app/features/bossSlice";
+import Cookies from 'js-cookie';
 
 
 const sellerId = "7155a9d8-acff-4cf9-93fd-385830b9bcae";
@@ -53,9 +54,10 @@ console.log("ROLE****", role);
 
 
   const handleLogout = () => {
-    navigate("/authentication");
+   Cookies.remove('myToken');
+   console.log("LOGOUT");
+   navigate("/");
   };
-
   // const name = user.name;
   useEffect(() => {
     if (!seller) dispatch(getSeller(userId));

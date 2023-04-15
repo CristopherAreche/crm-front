@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { editTask } from "../../app/features/clientActivitiesSlice";
+import { postTask } from "../../app/features/clientActivitiesSlice";
 import { useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import DatePicker from "react-datepicker";
@@ -23,8 +23,7 @@ const RegisterTaskForm = ({ onClose }) => {
       description,
       due_date: selectedDate,
     };
-    console.log("--->", obj);
-    dispatch(editTask(obj));
+    dispatch(postTask(obj));
     onClose();
   };
 
@@ -53,8 +52,8 @@ const RegisterTaskForm = ({ onClose }) => {
                 Fecha
               </label>
               <DatePicker
-                value={selectedDate}
-                selected={selectedDate}
+                // value={selectedDate}
+                // selected={selectedDate}
                 onChange={(date) => setSelectedDate(date)}
                 dateFormat="dd/MM/yyyy"
                 className="bg-gray-700 text-white appearance-none border rounded w-full py-2 px-6 leading-tight focus:outline-none focus:shadow-outline text-center"

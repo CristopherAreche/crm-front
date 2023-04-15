@@ -45,9 +45,9 @@ const ProductList = () => {
       //       Tus productos
       //     </h3>
       //   </header>
-      <div className="flex-col flex h-full w-full">
+      <div className="flex-col flex h-96 overflow-&-auto pb-6 w-full">
         <div className="overflow-x-auto ">
-          <table className="table-auto w-full text-center text-sm font-regular shadow-md rounded-sm">
+          <table className="table-auto w-full text-center text-sm font-regular shadow-md rounded-smx">
             <thead className=" font-medium text-light/75  dark:bg-base-light/30 rounded-md">
               <tr>
                 <th scope="col" className=" px-6 py-4">

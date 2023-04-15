@@ -8,7 +8,7 @@ import {
   RiTyphoonFill,
   RiHandCoinLine,
 } from "react-icons/ri";
-import { useEffect, useState,  } from "react";
+import { useEffect, useState } from "react";
 import ClientDetailSideBar from "./ClientDetailSideBar";
 import { RiTeamLine } from "react-icons/ri";
 import { MdOutlineInventory2, MdOutlineSpaceDashboard } from "react-icons/md";
@@ -19,7 +19,6 @@ import { useDispatch } from "react-redux";
 import { getSeller } from "../../services/sellersServices";
 import { getBossById } from "../../app/features/bossSlice";
 
-
 const sellerId = "7155a9d8-acff-4cf9-93fd-385830b9bcae";
 
 function SideBar({ typeSidebar, summary, inventory, clients, sellers }) {
@@ -27,8 +26,8 @@ function SideBar({ typeSidebar, summary, inventory, clients, sellers }) {
   const [selected, setSelected] = useState("");
   const role = useSelector((state) => state.auth.userRole);
   //const role = useSelector((state) => state.auth.userRole);
-  const userId= useSelector((state) => state.auth.User.id);
-  const userName= useSelector((state) => state.auth.User.name);
+  const userId = useSelector((state) => state.auth.User.id);
+  const userName = useSelector((state) => state.auth.User.name);
   const { seller } = useSelector((state) => state.sellers);
   const { boss } = useSelector((state) => state.boss);
   const dispatch = useDispatch();
@@ -47,10 +46,7 @@ function SideBar({ typeSidebar, summary, inventory, clients, sellers }) {
   //   }
   // };
 
-console.log("ROLE****", role);
-
   const handleLinkClick = (linkName) => setSelected(linkName);
-
 
   const handleLogout = () => {
     navigate("/authentication");
@@ -60,7 +56,6 @@ console.log("ROLE****", role);
   useEffect(() => {
     if (!seller) dispatch(getSeller(userId));
     dispatch(getBossById(userId));
-    console.log("SELLER", seller);
   }, []);
 
   return (
@@ -101,7 +96,7 @@ console.log("ROLE****", role);
               </p>
             </div>
             <h3 className="text-light font-medium text-lg text-center ">
-              {role === "admin" ? userName : userName }
+              {role === "admin" ? userName : userName}
             </h3>
           </section>
           {typeSidebar === "client-detail" && <ClientDetailSideBar />}

@@ -3,16 +3,16 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getSellers } from "../../services/sellersServices";
 import { selectedSellerCheckbox } from "../../app/features/sellerSlice";
-import ModalHistory from "./ModalHistory";
+import { getClientBySeller } from "../../services/clientsServices";
 
-const SellerList = () => {
+const SellerList = ({ data }) => {
   const dispatch = useDispatch();
   const sellers = useSelector((state) => state.sellers.sellers);
   const sellersStatus = useSelector((state) => state.sellers.status);
   const sellersError = useSelector((state) => state.sellers.error);
   const [sellerSelected, setSellerSelected] = useState("");
   const [isSelected, setIsSelected] = useState(false);
-  const [isShow, setIsShow] = useState(false);
+  const sellerClients = getClientBySeller();
 
   useEffect(() => {
     if (sellersStatus === "idle") {
@@ -60,6 +60,9 @@ const SellerList = () => {
                 Nombre
               </th>
               <th scope="col" className=" px-6 py-4">
+                # Clientes
+              </th>
+              <th scope="col" className=" px-6 py-4">
                 Total vendido último mes
               </th>
               <th scope="col" className=" px-6 py-4">
@@ -90,12 +93,19 @@ const SellerList = () => {
                   <td className="px-6 py-4 flex justify-center">
                     <img className="h-24 px-2 py-2 " src={item?.image} alt="" />
                   </td>
-                  <td className="whitespace-nowrap  px-6 py-4  font-medium text-secondary hover:text-secondary/80 hover:underline transition-all">
+                  <td
+                    className="whitespace-nowrap px-6 py-4 font-medium
+                      text-secondary hover:text-secondary/80 hover:underline
+                      transition-all"
+                  >
                     {/* <Link to={`/vendedor/${item.id}`}>{item.name}</Link> */}
                     {item.name}
-                    {isShow && (
-                      <ModalHistory onClose={() => setIsShow(false)} />
-                    )}
+                  </td>
+                  <td className="whitespace-nowrap  px-6 py-4">
+                    {/* {getClientBySeller(
+                      item.id,
+                      "00d4cf20-b761-40cc-baf2-7c40aa53caf9"
+                    )} */}
                   </td>
                   <td className="whitespace-nowrap  px-6 py-4">
                     ${item.total_monthly_sales}

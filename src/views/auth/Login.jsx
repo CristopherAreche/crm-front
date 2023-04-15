@@ -38,7 +38,6 @@ const Login = () => {
 
       if (response.data.token) {
         cookies.set("myToken", response.data.token, { path: "/" });
-        console.log("**RESPONSE*", response.data.token);
         navigate("/dashboard");
       }
 
@@ -47,7 +46,6 @@ const Login = () => {
         new TextEncoder().encode("secret")
       );
       dispatch(setUser(payload));
-      console.log("PAYLOAD", payload);
     } catch (error) {
       swal("Error", "Usuario o contraseña incorrectos", "error");
     }

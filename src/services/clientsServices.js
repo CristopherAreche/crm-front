@@ -103,3 +103,9 @@ export const getClientName = createAsyncThunk(
     return data;
   }
 );
+
+export const getClientBySeller = async (sellerId, bossId) => {
+  const res = await axios(`${API_URL_CLIENT}?id=${sellerId}&bossId=${bossId}`);
+  const data = res.data;
+  return data;
+};

@@ -41,7 +41,6 @@ const RegisterActivitiesModal = ({ onClose }) => {
 
     dispatch(createActivity(obj));
 
-    console.log(obj);
     onClose();
   };
 

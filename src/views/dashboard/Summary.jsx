@@ -1,4 +1,3 @@
-
 import spotlight1 from "../../assets/svg/Spotlight1.svg";
 import spotlight2 from "../../assets/svg/Spotlight2.svg";
 import SideBar from "../../components/sidebars/SideBar";

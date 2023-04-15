@@ -8,10 +8,10 @@ const ClientsItems = ({ item, onCheckbox, onSelected }) => {
   const [isShow, setIsShow] = useState(false);
   const {seller, statusSeller} = useSelector((state) => state.sellers);
   const dispatch = useDispatch();
-
+  const user =useSelector((state)=>state.auth.User.id);
   useEffect(() => {
-    if (item.salesmanId && statusSeller === 'idle') dispatch(getSeller(item.salesmanId));
-  }, [dispatch, item.salesmanId, statusSeller]);
+    if (item.salesmanId && statusSeller === 'idle') dispatch(getSeller({bossId:user, id: item.salesmanId}));
+  }, [dispatch, item.salesmanId, statusSeller, user]);
 
   return (
     <tr key={item.id} className="border-b dark:border-base/30">

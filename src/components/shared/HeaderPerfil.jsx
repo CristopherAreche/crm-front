@@ -4,21 +4,21 @@ import { putBoss } from '../../app/features/bossSlice'
 import { toggleStatusSeller } from '../../services/sellersServices'
 import swal from 'sweetalert'
 
-const HeaderPerfil = ({data}) => {
+const HeaderPerfil = () => {
 
-  const { clientRole } = useSelector(state => state.clients)
+  const user=useSelector((state)=>state.auth.User);
   const dispatch = useDispatch()
 
   const onToggleEnable = () => {
     swal({
-      title: `${data.enable ? 'Estas seguro que quieres darte de baja?' : 'Estas seguro que quiere habilitar tu perfil?'}`,
+      title: `${user.enable ? 'Estas seguro que quieres darte de baja?' : 'Estas seguro que quiere habilitar tu perfil?'}`,
       icon: "warning",
       buttons: true,
       dangerMode: true,
     }).then((accept) => {
       if (accept) {
-        if(clientRole !== 'admin') dispatch(toggleStatusSeller({enable : !data.enable, id: data.id}))
-        else dispatch(putBoss({enable : !data.enable, id: data.id}))
+        if(user.role !== 'admin') dispatch(toggleStatusSeller({enable : !user.enable, id: user.id}))
+        else dispatch(putBoss({enable : !user.enable, Id: user.id}))
       }
       else swal("La modificacion no se concreto");
     })
@@ -27,10 +27,10 @@ const HeaderPerfil = ({data}) => {
 
   return (
     <header className='flex justify-between mb-6 border-b border-light/50 pb-6'>
-        <h3 className='text-2xl font-medium text-light'>Perfil de {data.username || data.name}</h3>
+        <h3 className='text-2xl font-medium text-light'>Perfil de {user.name}</h3>
         <button 
         onClick={onToggleEnable}
-        className={`${data.enable ? 'text-red-400 border-red-500 ' : 'text-emerald-400 border-emerald-500 '} text-sm  border p-1 rounded-md hover:scale-[1.03] transition-all`}>{data.enable ? 'Dar de baja' : 'Habilitar'}</button>
+        className={`${user.enable ? 'text-red-400 border-red-500 ' : 'text-emerald-400 border-emerald-500 '} text-sm  border p-1 rounded-md hover:scale-[1.03] transition-all`}>{user.enable ? 'Dar de baja' : 'Habilitar'}</button>
     </header>
   )
 }

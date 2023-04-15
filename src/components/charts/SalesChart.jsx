@@ -27,11 +27,12 @@ const SalesChart = () => {
   const dispatch = useDispatch()
   const {status, bossDashboard, loading} = useSelector(state => state.boss)
   const annualSales = bossDashboard?.annual_sales
+  const user=useSelector((state)=>state.auth.User)
   //const totalVentas = datosVentas.reduce((total, item) => total + item.ventas, 0)
 
   useEffect(() => {
-    if(status === 'idle') dispatch(getBoss())
-  }, [dispatch, status])
+    if(status === 'idle') dispatch(getBoss(user.bossId))
+  }, [dispatch, status, user.bossId])
   
   if (!!loading) {
     return (

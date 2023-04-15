@@ -11,7 +11,7 @@ const FormEditPerfilSeller = ({onClose}) => {
   const dispatch = useDispatch()
   const [file, setFile] = useState(null)
   const { register, handleSubmit, formState: { errors },reset, } = useForm()
-  const { seller } = useSelector(state => state.sellers)  
+  const seller = useSelector((state) => state.auth.User) 
 
   const handleChange = (e) => setFile(e.target.files[0])
   

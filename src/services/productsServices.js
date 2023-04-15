@@ -3,11 +3,10 @@ import axios from "axios";
 import swal from "sweetalert";
 
 const API_URL_PRODUCTS = "https://crm.up.railway.app/api/product";
-const bossId = "00d4cf20-b761-40cc-baf2-7c40aa53caf9";
 
 export const getAllProducts = createAsyncThunk(
   "products/getAllProducts",
-  async () => {
+  async (bossId) => {
     const response = await axios.get(`${API_URL_PRODUCTS}?bossId=${bossId}`);
     return response.data;
   }

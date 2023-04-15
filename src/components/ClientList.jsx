@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getClients } from "../services/clientsServices";
 import { selectedClientCheckbox } from "../app/features/clientSlice";
 
-const sellerId = "7155a9d8-acff-4cf9-93fd-385830b9bcae";
+
 
 const ClientList = () => {
   const dispatch = useDispatch();
@@ -15,6 +15,7 @@ const ClientList = () => {
   const clientsError = useSelector((state) => state.clients.error);
   const [clientSelected, setClientSelected] = useState("");
   const [isSelected, setIsSelected] = useState(false);
+  const sellerId = useSelector((state) => state.auth.User.id);
 
   useEffect(() => {
     if (clientsStatus === "idle") {
@@ -22,7 +23,7 @@ const ClientList = () => {
         dispatch(getClients(sellerId));
       }
     }
-  }, [clientsStatus, dispatch, clients]);
+  }, [clientsStatus, dispatch, clients, sellerId]);
 
   const handleCheckboxChange = (client) => {
     setClientSelected(client.id);

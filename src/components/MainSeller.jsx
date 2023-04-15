@@ -4,30 +4,26 @@ import SalesChart from "./charts/SalesChart";
 import StockChart from "./charts/StockChart";
 import ToDoList from "./ToDoList";
 import { useEffect } from "react";
-import { getSeller } from "../services/sellersServices";
 import { useDispatch, useSelector } from "react-redux";
 import SummarySection from "./SummarySection";
 import productImage from "../assets/png images/productImage.png";
 import ProductsCards from "./ProductsCards";
 import { getAllProducts } from "../services/productsServices";
 
-const sellerId = "7155a9d8-acff-4cf9-93fd-385830b9bcae";
+
 
 const MainSeller = () => {
   // const { user } = useAuth0();
   const dispatch = useDispatch();
-  const { seller, status } = useSelector((state) => state.sellers);
   const { products } = useSelector((state) => state.products);
   const statusProducts = useSelector((state) => state.status);
+  const user=useSelector((state)=>state.auth.User)
 
-  useEffect(() => {
-    if (status === "idle") dispatch(getSeller(sellerId));
-  }, [dispatch, status]);
 
   useEffect(() => {
     if (statusProducts === "idle") dispatch(getAllProducts());
   }, [dispatch, statusProducts]);
-
+    
   const todayFormated = () => {
     const dateToday = new Date();
 
@@ -62,7 +58,7 @@ const MainSeller = () => {
           <h2 className="text-3xl font-medium text-light">
             Buenos dias,{" "}
             <span className="bg-gradient-to-r from-primary  to-secondary text-transparent bg-clip-text font-bold">
-              {seller?.name}
+              {user?.name}
             </span>
           </h2>
           <p className="text-light/80 text-sm">{todayFormated()}</p>
@@ -71,7 +67,7 @@ const MainSeller = () => {
           </p>
         </section>
         {/* Section Resume */}
-        <SummarySection data={seller} sellerId={sellerId} />
+        <SummarySection data={user} userId={user.id} />
 
         {/* Section Estadistics Sales */}
         <section className="flex flex-col items-start gap-y-2 pr-0 lg:pr-12 w-full pt-0  ">

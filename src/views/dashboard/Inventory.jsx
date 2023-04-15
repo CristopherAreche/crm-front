@@ -15,7 +15,7 @@ import SearchBar from "../../components/SearchBar";
 import ProductListSellers from "../../components/ProductListSellers";
 import { MdOutlineInventory2 } from "react-icons/md";
 const Inventory = () => {
-  const role = useSelector((state) => state.auth.userRole);
+  const role = useSelector((state) => state.auth.User.role);
   const products = useSelector((state) => state.products.products);
   const copyProducts = useSelector((state) => state.products.copyProducts);
   const dispatch = useDispatch();

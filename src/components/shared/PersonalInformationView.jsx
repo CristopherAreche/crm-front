@@ -7,6 +7,7 @@ import {
 } from "react-icons/ri";
 
 const PersonalInformationView = ({ data, type }) => {
+  
   return (
     <section
       className={`${

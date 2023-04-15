@@ -13,14 +13,14 @@ const SellerList = () => {
   const [sellerSelected, setSellerSelected] = useState("");
   const [isSelected, setIsSelected] = useState(false);
   const [isShow, setIsShow] = useState(false);
-
+  const user=useSelector((state)=>state.auth.User.id)
   useEffect(() => {
     if (sellersStatus === "idle") {
       if (!sellers.length) {
-        dispatch(getSellers());
+        dispatch(getSellers(user));
       }
     }
-  }, [sellersStatus, dispatch, sellers]);
+  }, [sellersStatus, dispatch, sellers, user]);
 
   const handleCheckboxChange = (seller) => {
     setSellerSelected(seller.id);

@@ -22,6 +22,10 @@ const ContentDetailSidebar = () => {
     return () => dispatch(cleanDetail());
   }, [dispatch, id]);
 
+  const onCloseModal = () => {
+    dispatch(getClient(id));
+    setIsShow(false);
+  };
   return (
     <section className="flex items-center flex-col gap-y-3 px-8 w-full">
       <div className="relative">
@@ -63,11 +67,11 @@ const ContentDetailSidebar = () => {
           <p className="self-center">|</p>
           <AiOutlinePhone className="bg-light text-xl rounded-full p-3 box-content" />
         </button>
-        {isShow && <RegisterActivitiesModal onClose={() => setIsShow(false)} />}
+        {isShow && <RegisterActivitiesModal onClose={onCloseModal} />}
       </div>
       <div className=" flex flex-col justify-center items-center">
         <p className="text-2xl text-light font-medium">
-          $ {clientDetail.totalPurchased}
+          $ {clientDetail?.totalPurchased}
         </p>
         <p className="text-light/80 font-medium ">Total pagado</p>
       </div>

@@ -10,21 +10,16 @@ import FormEditPerfilBoss from "../../components/forms/FormEditPerfilBoss"
 
 const MainPerfilBoss = () => {
   const [view, setView] = useState("personal");
-  const { boss } = useSelector(state => state.boss)
-  const dispatch = useDispatch()
+  const user = useSelector((state) => state.auth.User);
   const [isOpen, setIsOpen] = useState(false);
-
-  useEffect(() => {
-     if(!boss) dispatch(getBossById())
-  }, [boss, dispatch]);
 
   return (
     <section className="py-6 px-12 z-[2]">
-      <HeaderPerfil data={boss} />
+      <HeaderPerfil data={user} />
       <section className="grid grid-cols-1 lg:grid-cols-6 ">
         {/* Section Principal Information */}
         <section className=" col-span-2 flex flex-col gap-y-6 items-center lg:items-start mb-6 lg:mb-0">
-          <PrincipalInformation data={boss} />
+          <PrincipalInformation data={user} />
           <div className="flex lg:flex-col justify-between w-full lg:gap-y-2 items-start">
             <button
               className={`text-xl hover:text-secondary transition-colors  ${
@@ -55,9 +50,9 @@ const MainPerfilBoss = () => {
         </section>
         {/* Contenido Dinamico */}
         {view === "personal" ? (
-          <PersonalInformationView data={boss} type='boss' />
+          <PersonalInformationView data={user} type='boss' />
         ) : (
-          <CompanyInformationView data={boss} />
+          <CompanyInformationView data={user} />
         )}
       </section>
       {isOpen && <FormEditPerfilBoss inView={view} onClose={() => setIsOpen(false)}/>}

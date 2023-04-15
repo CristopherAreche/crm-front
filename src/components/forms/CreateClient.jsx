@@ -8,7 +8,7 @@ import swal from "sweetalert";
 function CreateClient({ isVisible, onClose }) {
   const dispatch = useDispatch();
   const clientId = useSelector((state) => state.clients.clientSelected);
-  const salesmanId = "ae8b659a-1158-411e-a16c-06ca9c0accc5";
+  const salesmanId=useSelector((state)=>state.auth.User.id);
 
   const clients = useSelector((state) => state.clients.clients);
   const handleClose = (e) => {

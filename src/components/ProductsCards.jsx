@@ -37,6 +37,9 @@ const ProductsCards = ({ item }) => {
               <span className="text-green-300 font-medium">
                 $ {item.withDiscount}
               </span>
+              <span className="text-green-300 font-medium">
+                Stock: {item.quantity}
+              </span>
             </p>
           )}
         </div>

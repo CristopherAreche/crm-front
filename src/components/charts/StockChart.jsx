@@ -29,9 +29,11 @@ const StockChart = () => {
     return quantityProduct
   }
 
+  const user=useSelector((state)=>state.auth.User)
+  
   useEffect(() => {
-   if(status === 'idle') dispatch(getAllProducts())
-  }, [dispatch, status])
+   if(status === 'idle') dispatch(getAllProducts(user.bossId))
+  }, [dispatch, status, user.bossId])
 
   const data = {
     labels: fiveMostStockName(),

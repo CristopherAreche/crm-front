@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { createActivity } from "../../services/activityService";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
+import { getClient } from "../../services/clientsServices";
+import swal from "sweetalert";
 
 const RegisterActivitiesModal = ({ onClose }) => {
   const [method, setMethod] = useState("Llamada");
@@ -43,16 +45,20 @@ const RegisterActivitiesModal = ({ onClose }) => {
       productData,
     };
 
-    dispatch(createActivity(obj));
+    dispatch(createActivity({ activity: obj, sale: productSelected }));
 
-    console.log(obj);
     onClose();
   };
 
   const append = (e) => {
     e.preventDefault();
-    setProductSelected([...productSelected, { ...productData, quantity_sale }]);
-    console.log(productData);
+    if (quantity_sale <= productData.quantity_sale)
+      setProductSelected([
+        ...productSelected,
+        { ...productData, quantity_sale },
+      ]);
+    else
+      swal("Error", `La cantidad indicada supera el stock disponible`, "error");
   };
 
   return (
@@ -157,6 +163,7 @@ const RegisterActivitiesModal = ({ onClose }) => {
                         productId: selectedProduct.id,
                         price_sale: price,
                         name: selectedProduct.name,
+                        quantity_sale: selectedProduct.quantity,
                       });
                     }}
                     value={productData.name}

@@ -82,7 +82,7 @@ export default function TaskCard({ task, clientId }) {
             className={`${
               state === "Pediente"
                 ? "bg-red-400 shadow-red-400/50"
-                : "bg-emerald-400 shadow-emerald-400/50"
+                : "bg-red-400 shadow-red-400/50"
             } hover:scale-110 text-sm font-medium text-gray-200 py-1 px-2 rounded-md shadow-md flex flex-col gap-y-3 items-start `}
           >
             {state}
@@ -105,6 +105,7 @@ export default function TaskCard({ task, clientId }) {
       <UpdateTaskForm
         isVisible={showModal}
         onClose={() => setShowModal(false)}
+        task={{ ...item, due_date }}
       />
     </article>
   );

@@ -6,6 +6,7 @@ import cristopher from "../../assets/profilePictures/me.jpeg";
 import joseph from "../../assets/profilePictures/x.jpeg";
 import ricardo from "../../assets/profilePictures/ricardo.jpg";
 import gaspar from "../../assets/profilePictures/gaspar.jpeg";
+import maca from "../../assets/profilePictures/macarena.jpeg";
 
 const AboutUsSection = () => {
   return (
@@ -57,7 +58,7 @@ const AboutUsSection = () => {
               <div className="photo-wrapper p-2">
                 <img
                   className="w-32 h-32 rounded-full mx-auto"
-                  src="https://cdn.pixabay.com/photo/2017/11/10/05/48/user-2935527_960_720.png"
+                  src={maca}
                   alt="Macarena"
                 />
               </div>

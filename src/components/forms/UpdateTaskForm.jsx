@@ -1,85 +1,147 @@
-import React, { useState } from "react";
-import { editTask } from "../../app/features/clientActivitiesSlice";
-import { useDispatch } from "react-redux";
-import { useParams } from "react-router-dom";
+import React from "react";
+import { useState } from "react";
+import validation from "../../utils/validation";
+import swal from "sweetalert";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import { useDispatch } from "react-redux";
+import { updateTask } from "../../app/features/clientActivitiesSlice";
 
-const UpdateTaskForm = ({ onClose }) => {
-  const [description, setDescription] = useState("");
-  const [state, setState] = useState("Concretado");
-  const [selectedDate, setSelectedDate] = useState(new Date());
+function UpdateTaskForm({ isVisible, onClose, task }) {
   const dispatch = useDispatch();
+  const [taskData, setTaskData] = useState(task);
+  const [startDate, setStartDate] = useState(new Date(taskData.due_date));
 
-  const salesmanId = "7155a9d8-acff-4cf9-93fd-385830b9bcae";
-  const { id } = useParams();
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const obj = {
-      salesmanId,
-      clientId: id,
-      state: "Pendiente",
-      description,
-      due_date: selectedDate,
-    };
-    console.log("--->", obj);
-    dispatch(editTask(obj));
-    onClose();
+  const handleDate = (date) => {
+    setStartDate(date);
+    setTaskData({ ...taskData, due_date: date });
   };
 
+  const handleClose = (e) => {
+    if (e.target.id === "wrapper") onClose();
+  };
+
+  const [errors, setErrors] = useState({
+    description: "",
+    due_date: "",
+  });
+
+  const handleInputChange = (event) => {
+    const property = event.target.name;
+    const value = event.target.value;
+
+    setTaskData({
+      ...taskData,
+      [property]: value,
+    });
+
+    setErrors(
+      validation({
+        ...taskData,
+        [property]: value,
+      })
+    );
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    if (errors.description || errors.due_date) {
+      swal("Error", "Por favor revise los datos introducidos. ", "error");
+    } else {
+      swal({
+        title: "Estas seguro que deseas cambiar los datos?",
+        icon: "warning",
+        buttons: true,
+        dangerMode: true,
+      }).then((edit) => {
+        dispatch(updateTask(taskData));
+        if (edit) {
+          swal(
+            "La tarea fue  agregada",
+            setTaskData({
+              description: "",
+              due_date: "",
+            }),
+            onClose(),
+            {
+              icon: "success",
+            }
+          );
+        } else {
+          swal("La terea no ha sido agregada");
+        }
+      });
+    }
+  };
+  if (!isVisible) return null;
   return (
-    <></>
-    // <div className="fixed inset-0  bg-black  bg-opacity-25 backdrop-blur-sm flex justify-center items-center">
-    //   <form
-    //     onSubmit={(e) => handleSubmit(e)}
-    //     className=" w-[100vw] lg:w-[27vw] bg-base/60 rounded-md flex flex-col items-center justify-center h-[25em]"
-    //   >
-    //     <div className=" flex flex-col justify-center items-center w-[100%] h-[85%]">
-    //       <div className="flex  flex-col justify-center items-center gap-y-3">
-    //         {/* text */}
-    //         <div className="w-[100%]">
-    //           <span className="text-white font-bold mb-2">Descripcion </span>
-    //           <textarea
-    //             id="message"
-    //             rows="4"
-    //             className="w-[100%] block p-2.5 text-sm text-white  rounded-lg border bg-gray-700"
-    //             placeholder="Escribe aqui..."
-    //             value={description}
-    //             onChange={(e) => setDescription(e.target.value)}
-    //           ></textarea>
-    //         </div>
-    //         <div className="mb-4">
-    //           <label htmlFor="date" className="block text-white font-bold mb-2">
-    //             Fecha
-    //           </label>
-    //           <DatePicker
-    //             value={selectedDate}
-    //             selected={selectedDate}
-    //             onChange={(date) => setSelectedDate(date)}
-    //             dateFormat="dd/MM/yyyy"
-    //             className="bg-gray-700 text-white appearance-none border rounded w-full py-2 px-6 leading-tight focus:outline-none focus:shadow-outline text-center"
-    //           />
-    //         </div>
-    //       </div>
-    //     </div>
-    //     <div className=" flex  w-[100%] h-[15%] justify-center items-center gap-x-20">
-    //       <button
-    //         type="submit"
-    //         className=" p-2 rounded-md font-medium text-base bg-green-300 shadow-md shadow-gray-300/20 hover:bg-gray-300/80 transition-all"
-    //       >
-    //         Crear
-    //       </button>
-    //       <button
-    //         className=" p-2 rounded-md font-medium text-base bg-red-300 shadow-md shadow-gray-300/20 hover:bg-gray-300/80 transition-all"
-    //         onClick={onClose}
-    //       >
-    //         Cerrar
-    //       </button>
-    //     </div>
-    //   </form>
-    // </div>
+    <div
+      className="fixed inset-0 z-50  bg-black bg-opacity-25 backdrop-blur-sm flex justify-center items-center"
+      id="wrapper"
+      onClick={handleClose}
+    >
+      {" "}
+      <form
+        className="w-96 bg-base-light/70 py-6 px-4 rounded-md flex flex-col gap-y-4"
+        onSubmit={handleSubmit}
+      >
+        <h4 className="text-xl font-medium text-light">
+          {taskData.clientId ? "Actualizar cliente" : "Editar Tarea"}
+        </h4>
+        <section className="flex flex-col gap-y-2">
+          <label className="text-sm font-medium text-light" htmlFor="name">
+            Descripcion
+          </label>
+          <div className="relative">
+            <input
+              className="bg-base-light/70 py-1 h-[6em] rounded-md outline-none pl-8 pr-4 w-full"
+              type="text"
+              value={taskData.description}
+              name="description"
+              onChange={handleInputChange}
+            />
+          </div>
+          {errors.name && <span style={{ color: "red" }}> {errors.name}</span>}
+        </section>
+
+        <section className="flex flex-col gap-y-2">
+          <label className="text-sm font-medium text-light" htmlFor="phone">
+            Fecha:{" "}
+          </label>
+          <div className="relative">
+            <DatePicker
+              value={startDate}
+              selected={startDate}
+              onChange={(date) => handleDate(date)}
+              dateFormat="dd/MM/yyyy"
+              className="bg-gray-700 text-white appearance-none border rounded w-full py-2 px-6 leading-tight focus:outline-none focus:shadow-outline text-center"
+            />
+          </div>
+          {/* {errors.summary && (
+            <span style={{ color: "red" }}> {errors.phone}</span>
+          )} */}
+        </section>
+
+        <footer className="flex justify-between items-center">
+          <button
+            type="button"
+            className="p-2 rounded-md font-medium text-base bg-gray-300 shadow-md shadow-gray-300/20 hover:bg-gray-300/80 transition-all"
+            onClick={() => {
+              onClose();
+            }}
+          >
+            CERRAR
+          </button>
+          <button
+            className="p-2 bg-emerald-400 shadow-md shadow-emerald-400/20 rounded-md hover:bg-emerald-400/80 transition-all"
+            type="submit"
+          >
+            {taskData.clientId ? "Actualizar" : "Guardar"}
+          </button>
+        </footer>
+      </form>
+    </div>
   );
-};
+}
 
 export default UpdateTaskForm;

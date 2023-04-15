@@ -1,5 +1,9 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
+import { useDispatch } from "react-redux";
+import Cookies from "universal-cookie";
+import swal from "sweetalert";
+import { jwtVerify } from "jose";
 
 export const postUserInfo = createAsyncThunk(
   "userInfo/postUserInfo",
@@ -58,3 +62,27 @@ export const setUser = createAsyncThunk(
     }
   }
 );
+
+export const login = createAsyncThunk("login/login", async (data) => {
+  const { email, password } = data;
+  try {
+    const response = await axios.post(
+      "https://crm2.up.railway.app/api/login",
+      { email, password },
+      {
+        withCredentials: true,
+      }
+    );
+    const cookies = new Cookies();
+    if (response.data.token) {
+      cookies.set("myToken", response.data.token, { path: "/" });
+    }
+    const { payload } = await jwtVerify(
+      response.data.token,
+      new TextEncoder().encode("secret")
+    );
+    return payload;
+  } catch (error) {
+    swal("Error", "Usuario o contraseña incorrectos", "error");
+  }
+});

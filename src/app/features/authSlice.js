@@ -40,10 +40,8 @@ const userInfoSlice = createSlice({
       .addCase(setUser.rejected, (state, action) => {
         state.status = "failed";
         state.error = action.payload;
-      }
-      );
+      });
   },
-
 });
 
 export default userInfoSlice.reducer;

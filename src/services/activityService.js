@@ -13,8 +13,17 @@ export const updateActivity = createAsyncThunk(
 
 export const createActivity = createAsyncThunk(
   "activity/createActivity",
-  async (activity) => {
+  async (activity, sale) => {
     const response = await axios.post(`${API_URL_ACTIVITY}`, activity);
+
+    const promises = sale.map(async (product) => {
+      const response = await axios.post(
+        "https://crm2.up.railway.app/api/activity"
+      );
+      return response.data;
+    });
+
+    const dataPoke = await Promise.all(promises);
     console.log("-->", response.data);
     return response.data;
   }

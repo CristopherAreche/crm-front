@@ -16,8 +16,12 @@ const RegisterActivitiesModal = ({ onClose }) => {
   const [productData, setProductData] = useState({
     productId: "",
     price_sale: "",
+    name: "",
   });
+  const [productSelected, setProductSelected] = useState([]);
+
   const products = useSelector((state) => state.products.products);
+  const { clientDetail } = useSelector((state) => state.clients);
   const salesmanId = "7155a9d8-acff-4cf9-93fd-385830b9bcae";
   const { id } = useParams();
 
@@ -45,6 +49,12 @@ const RegisterActivitiesModal = ({ onClose }) => {
     onClose();
   };
 
+  const append = (e) => {
+    e.preventDefault();
+    setProductSelected([...productSelected, { ...productData, quantity_sale }]);
+    console.log(productData);
+  };
+
   return (
     <div className=" fixed inset-0  bg-black  bg-opacity-25 backdrop-blur-sm flex justify-center items-center">
       <form
@@ -60,7 +70,10 @@ const RegisterActivitiesModal = ({ onClose }) => {
                 <select
                   className="form-select mt-1 block w-full"
                   value={method}
-                  onChange={(e) => setMethod(e.target.value)}
+                  onChange={(e) => {
+                    console.log(e.target.value);
+                    setMethod(e.target.value);
+                  }}
                 >
                   <option value="Llamada">Llamada</option>
                   <option value="Correo-E">Correo-E</option>
@@ -129,26 +142,35 @@ const RegisterActivitiesModal = ({ onClose }) => {
           <div className=" w-[50%] flex flex-col justify-center items-center">
             {state === "Concretado" ? (
               <>
-                <label className="block">
+                <label className="block" htmlFor="name">
                   <span className="text-white">Producto vendido </span>
                   <select
                     className="form-select mt-1 block w-full"
-                    value={productData}
+                    name="name"
+                    onChange={(e) => {
+                      const selectedProduct = JSON.parse(e.target.value);
+                      const price = clientDetail.vip
+                        ? selectedProduct.withDiscount
+                        : selectedProduct.sale_price;
+
+                      setProductData({
+                        productId: selectedProduct.id,
+                        price_sale: price,
+                        name: selectedProduct.name,
+                      });
+                    }}
+                    value={productData.name}
                   >
-                    {products.map((product, index) => (
-                      <option
-                        key={index}
-                        value={product.id}
-                        onChange={(e) =>
-                          setProductData({
-                            productId: product.id,
-                            price_sale: product.withDiscount,
-                          })
-                        }
-                      >
-                        {product.name}
-                      </option>
-                    ))}
+                    <option value={productData.name}>{productData.name}</option>
+                    {/* pendiente por revisar... funciona con alambres */}
+
+                    {products.map((product, index) => {
+                      return (
+                        <option key={index} value={JSON.stringify(product)}>
+                          {product.name}
+                        </option>
+                      );
+                    })}
                   </select>
                 </label>
 
@@ -161,6 +183,32 @@ const RegisterActivitiesModal = ({ onClose }) => {
                     onChange={(e) => setQuantity_sale(e.target.value)}
                   />
                 </label>
+                <button
+                  className=" p-2 mt-2 rounded-md font-medium text-base bg-green-300 shadow-md shadow-gray-300/20 hover:bg-gray-300/80 transition-all"
+                  onClick={append}
+                >
+                  Agregar
+                </button>
+                <table className="text-white text-center shadow-md rounded-sm font-light  p-2">
+                  <thead>
+                    <tr className="text-white font-light  p-2">
+                      <th className="p-2">Producto</th>
+                      <th className="p-2">Cantidad</th>
+                      <th>Precio por unidad</th>
+                    </tr>
+                  </thead>
+                  <tbody className="">
+                    {productSelected.map((p, index) => (
+                      <>
+                        <tr className="border-b p-2">
+                          <td>{p.name}</td>
+                          <td> {p.quantity_sale}</td>
+                          <td>$ {p.price_sale}</td>
+                        </tr>
+                      </>
+                    ))}
+                  </tbody>
+                </table>
               </>
             ) : null}
           </div>

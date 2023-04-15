@@ -1,10 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { postUserInfo } from "../../services/authServices";
 import { setUser } from "../../services/authServices";
+import { login } from "../../services/authServices";
 
 const initialState = {
   userInfo: [],
-  User: [],
+  User: {},
   userRole: null,
   userLogin: [],
   message: "",
@@ -15,7 +16,13 @@ const initialState = {
 const userInfoSlice = createSlice({
   name: "userInfo",
   initialState,
-  reducers: {},
+  reducers: {
+    logoutUser: (state, action) => {
+      state.User = {};
+      state.userRole = null;
+      state.status = "idle";
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(postUserInfo.pending, (state) => {
@@ -40,8 +47,19 @@ const userInfoSlice = createSlice({
       .addCase(setUser.rejected, (state, action) => {
         state.status = "failed";
         state.error = action.payload;
+      })
+      .addCase(login.pending, (state) => {
+        state.status = "loading";
+      })
+      .addCase(login.fulfilled, (state, action) => {
+        state.status = "succeeded";
+        state.User = action.payload;
+      })
+      .addCase(login.rejected, (state, action) => {
+        state.status = "failed";
+        state.error = action.payload;
       });
   },
 });
-
+export const { logoutUser } = userInfoSlice.actions;
 export default userInfoSlice.reducer;

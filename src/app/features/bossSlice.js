@@ -7,22 +7,13 @@ const API_URL_BOSS = "https://crm.up.railway.app/api/dashboard_boss";
 
 const API_URL_ALLS_BOSS = 'https://crm.up.railway.app/api/boss'
 
-const bossId = '00d4cf20-b761-40cc-baf2-7c40aa53caf9'
 
-export const getBoss = createAsyncThunk("boss/getBoss", async (id) => {
+export const getBoss = createAsyncThunk("boss/getBoss", async (bossId) => {
   const response = await axios.get(
     `${API_URL_BOSS}?id=${bossId}`
   );
   return response.data;
 });
-
-export const getBossById = createAsyncThunk("boss/getBossById",
-  async (bossId) => {
-    const {data} = await axios.get(API_URL_ALLS_BOSS)
-    const bossFounded = data.find(boss => boss.id === bossId)
-    return bossFounded
-  }
-)
 
 export const putBoss = createAsyncThunk("boss/putBoss",
   async (payload) => {
@@ -69,9 +60,6 @@ export const bossSlice = createSlice({
       .addCase(getBoss.rejected, (state, action) => {
         state.loading = false;
         state.error = action.error.message;
-      })
-      .addCase(getBossById.fulfilled, (state, action) => {
-        state.boss = action.payload
       })
       .addCase(putBoss.fulfilled, (state, action) => {
         state.boss = action.payload

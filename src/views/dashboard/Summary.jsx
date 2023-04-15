@@ -10,20 +10,39 @@ import MonthlyCompareChart from "../../components/charts/MonthlyCompareChart";
 import BestSeller from "../../components/bossComponents/BestSeller";
 import { useEffect } from "react";
 import { getBoss } from "../../app/features/bossSlice";
+import {useNavigate} from 'react-router-dom'
+import { logoutUser } from "../../app/features/authSlice";
+import { RiLoader4Fill } from "react-icons/ri";
+
 
 const Summary = () => {
   const dispatch = useDispatch();
+  const user=useSelector((state)=>state.auth.User)
   const dashboard = useSelector((state) => state.boss.bossDashboard);
-  const role = useSelector((state) => state.auth.userRole);
+  const navigate=useNavigate()
+  const message=useSelector((state)=>state.auth.message)
+  const status=useSelector((state)=>state.auth.status)
 
-  useEffect(() => {
-    dispatch(getBoss());
-  }, [dispatch]);
+  
+  useEffect (()=>{
+    if(status==='idle'){
+      navigate('/authentication')
+    }
+  },[user,navigate, dispatch, status,])
+
+  if (status === "loading") {
+    return (
+      <div className="flex justify-center w-full">
+        <RiLoader4Fill className="animate-spin text-4xl text-secondary mt-8" />
+      </div>
+    )
+  }
+
 
   return (
     <main className="bg-base h-screen text-white">
       <SideBar />
-      {role !== "admin" ? (
+      {user.role !== "admin" ? (
         <section className=" lg:pl-72 h-[100vh] overflow-y-auto flex flex-col z-[2] w-[100vw] lg:w-auto">
           <MainSeller />
         </section>

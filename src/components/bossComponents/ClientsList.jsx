@@ -1,11 +1,11 @@
 import { RiFilter3Line, RiLoader4Fill } from "react-icons/ri";
 import { useDispatch, useSelector } from "react-redux";
-import { getClients } from "../../services/clientsServices";
+import { getAllClients } from "../../services/clientsServices";
 import { useEffect, useState } from "react";
 import ClientsItems from "./ClientsItems";
 import { cleanClientSelect, selectedClientCheckbox } from "../../app/features/clientSlice";
 
-const sellerId = "7155a9d8-acff-4cf9-93fd-385830b9bcae";
+
 
 const ClientList = () => {
   const dispatch = useDispatch();
@@ -14,6 +14,7 @@ const ClientList = () => {
   const clientHab = clients?.reduce((acc, client) => client.enable ? acc + 1 : acc, 0)
   const clientsStatus = useSelector((state) => state.clients.status);
   const clientsError = useSelector((state) => state.clients.error);
+  const user = useSelector((state) => state.auth.User.id);
 
   const [selectedCheckbox, setSelectedCheckbox] = useState(null);
   const handleCheckboxChange = (event, client) => {
@@ -30,10 +31,10 @@ const ClientList = () => {
   useEffect(() => {
     if (clientsStatus === "idle") {
       if (!clients.length) {
-        dispatch(getClients(sellerId));
+        dispatch(getAllClients(user));
       }
     }
-  }, [clientsStatus, dispatch, clients]);
+  }, [clientsStatus, dispatch, clients, user]);
   if (clientsStatus === "loading") {
     return (
       <div className="flex justify-center w-full">

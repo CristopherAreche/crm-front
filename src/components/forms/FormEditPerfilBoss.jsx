@@ -11,7 +11,7 @@ const FormEditPerfilBoss = ({onClose, inView}) => {
   const [file, setFile] = useState(null)
   const { register, handleSubmit, formState: { errors },reset, } = useForm()
 
-  const { boss } = useSelector(state => state.boss)  
+  const boss = useSelector((state) => state.auth.User)
   const dispatch = useDispatch()
   const onSubmit = handleSubmit((data) => {
         const form = new FormData()

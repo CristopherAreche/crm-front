@@ -17,7 +17,7 @@ function Formproduct({ isVisible, onClose }) {
   const dispatch = useDispatch();
   const productId = useSelector((state) => state.products.productSelected);
 
-  const bossId = useSelector((state) => state.auth.User.bossId);
+  const bossId = useSelector((state) => state.auth.User.id);
 
   const products = useSelector((state) => state.products.products);
   const handleClose = (e) => {

@@ -15,14 +15,14 @@ export const getBoss = createAsyncThunk("boss/getBoss", async (bossId) => {
 
 export const putBoss = createAsyncThunk("boss/putBoss", async (payload) => {
   try {
-    await axios.put(API_URL_ALLS_BOSS, payload);
+    const { data } = await axios.put(API_URL_ALLS_BOSS, payload);
     await swal(
       "Modificación",
       `Tus datos han sido actualizados correctamente`,
       "success"
     );
 
-    return payload;
+    return data;
   } catch (error) {
     await swal("Error", `${error.response.data.error}`, "error");
     return error.response.data.error;
@@ -57,6 +57,7 @@ export const bossSlice = createSlice({
         state.error = action.error.message;
       })
       .addCase(putBoss.fulfilled, (state, action) => {
+        console.log(action.payload);
         state.boss = action.payload;
       });
   },

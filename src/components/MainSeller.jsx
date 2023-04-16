@@ -107,7 +107,7 @@ const MainSeller = () => {
         {/* Section Graphic Stock */}
         <section className="flex flex-col items-center gap-y-4 bg-base-light/30 py-4 rounded-md shadow-md">
           <h5 className="text-light font-medium">5 Productos con mas Stock</h5>
-          <StockChart products={products} />
+          <StockChart />
         </section>
         {/* Upgrade Plan Section */}
         <section className="bg-gradient-to-r from-primary to-secondary relative w-full h-52 flex justify-center items-center cursor-pointer group rounded-md">

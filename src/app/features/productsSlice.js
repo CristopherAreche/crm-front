@@ -67,7 +67,7 @@ const productsSlice = createSlice({
         state.status = "succeeded";
         state.products = action.payload;
         state.copyProducts = action.payload;
-        console.log("ingresado", state.status);
+        console.log("productos" + state.products);
       })
       .addCase(getAllProducts.rejected, (state, action) => {
         state.error = action.payload;

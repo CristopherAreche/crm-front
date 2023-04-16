@@ -32,7 +32,7 @@ const SummarySection = ({ data, products }) => {
   const onQuantityProducts = (key) =>
     products?.reduce((total, client) => (client[key] ? total + 1 : total), 0);
   const onQuantityCategories = () => {
-    const onlyCat = products.map((product) => product.category);
+    const onlyCat = products?.map((product) => product.category);
     const categories = [...new Set(onlyCat)];
     return categories.length;
   };

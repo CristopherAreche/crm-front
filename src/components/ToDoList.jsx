@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import ToDoCard from "./ToDoCard";
 import axios from "axios";
 import swal from "sweetalert";
+import URL from "../utils/env";
 
 export default function ToDoList() {
   const salesmanId = "7155a9d8-acff-4cf9-93fd-385830b9bcae";
@@ -14,9 +15,7 @@ export default function ToDoList() {
   }, []);
 
   const fetchData = async () => {
-    const { data } = await axios.get(
-      "https://crm.up.railway.app/api/task?salesmanId=" + salesmanId
-    );
+    const { data } = await axios.get(`${URL}/task?salesmanId=` + salesmanId);
     if (Array.isArray(data)) {
       setListToDos(data);
       setLoadingStatus("succeeded");
@@ -36,9 +35,7 @@ export default function ToDoList() {
       });
 
       if (result) {
-        const { data } = await axios.delete(
-          "https://crm.up.railway.app/api/task?id=" + id
-        );
+        const { data } = await axios.delete(`${URL}/task?id=` + id);
 
         fetchData();
 
@@ -63,9 +60,7 @@ export default function ToDoList() {
             <RiCalendarCheckFill className="text-2xl" />
             Tareas
           </h3>
-          <div>
-            
-          </div>
+          <div></div>
         </header>
         <table className="min-w-full  text-center text-sm font-regular shadow-md rounded-sm">
           <thead className=" font-medium text-light/75  dark:bg-base-light/30 rounded-md">

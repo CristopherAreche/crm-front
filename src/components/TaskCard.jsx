@@ -6,12 +6,14 @@ import swal from "sweetalert";
 import { RiDeleteBin3Line } from "react-icons/ri";
 import { FiEdit } from "react-icons/fi";
 import UpdateTaskForm from "./forms/UpdateTaskForm";
+import URL from "../utils/env";
 
 export default function TaskCard({ task, clientId }) {
   const item = { ...task };
   const [state, setState] = useState(item.state);
   const [showModal, setShowModal] = useState(false);
   const dispatch = useDispatch();
+
   let due_date = new Date(item.due_date);
 
   const changeState = async () => {
@@ -20,7 +22,7 @@ export default function TaskCard({ task, clientId }) {
     } else {
       item.state = "Completado";
     }
-    const { data } = await axios.put("https://crm.up.railway.app/api/task", {
+    const { data } = await axios.put(`${URL}/task`, {
       id: item.id,
       state: item.state,
     });
@@ -37,9 +39,7 @@ export default function TaskCard({ task, clientId }) {
         dangerMode: true,
       });
       if (result) {
-        const { data } = await axios.delete(
-          "https://crm.up.railway.app/api/task?id=" + id
-        );
+        const { data } = await axios.delete(`${URL}/task?id=` + id);
 
         dispatch(obtainTask(clientId));
 

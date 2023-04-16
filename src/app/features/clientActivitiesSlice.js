@@ -5,9 +5,10 @@ import {
 } from "../../handlers/handlerActivitiesClient";
 import { createActivity } from "../../services/activityService";
 import axios from "axios";
+import URL from "../../utils/env";
 
-const API_URL_ACTIVITY = "https://crm.up.railway.app/api/activity";
-const API_URL_TASK = "https://crm.up.railway.app/api/task";
+const API_URL_ACTIVITY = `${URL}/activity`;
+const API_URL_TASK = `${URL}/task`;
 
 export const obtainActivities = createAsyncThunk(
   "activities/obtainActivities",
@@ -112,7 +113,7 @@ const activitySlice = createSlice({
       .addCase(createActivity.fulfilled, (state, action) => {
         state.status = "succeeded";
         state.activities = [action.payload, ...state.activities];
-        state.activitiesFilter = [action.payload, ...state.activities];
+        state.activitiesFilter = [...state.activities];
       })
       .addCase(createActivity.rejected, (state, action) => {
         state.status = "failed";

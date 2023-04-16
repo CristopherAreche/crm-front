@@ -9,34 +9,32 @@ import MonthlyCompareChart from "../../components/charts/MonthlyCompareChart";
 import BestSeller from "../../components/bossComponents/BestSeller";
 import { useEffect } from "react";
 import { getBoss } from "../../app/features/bossSlice";
-import {useNavigate} from 'react-router-dom'
+import { useNavigate } from "react-router-dom";
 import { logoutUser } from "../../app/features/authSlice";
 import { RiLoader4Fill } from "react-icons/ri";
 
-
 const Summary = () => {
   const dispatch = useDispatch();
-  const user=useSelector((state)=>state.auth.User)
+  const user = useSelector((state) => state.auth.User);
   const dashboard = useSelector((state) => state.boss.bossDashboard);
-  const navigate=useNavigate()
-  const message=useSelector((state)=>state.auth.message)
-  const status=useSelector((state)=>state.auth.status)
+  const navigate = useNavigate();
+  const message = useSelector((state) => state.auth.message);
+  const status = useSelector((state) => state.auth.status);
+  console.log("-->", dashboard?.annual_sales);
 
-  
-  useEffect (()=>{
-    if(status==='idle'){
-      navigate('/authentication')
+  useEffect(() => {
+    if (status === "idle") {
+      navigate("/authentication");
     }
-  },[user,navigate, dispatch, status,])
+  }, [user, navigate, dispatch, status]);
 
   if (status === "loading") {
     return (
       <div className="flex justify-center w-full">
         <RiLoader4Fill className="animate-spin text-4xl text-secondary mt-8" />
       </div>
-    )
+    );
   }
-
 
   return (
     <main className="bg-base h-screen text-white">

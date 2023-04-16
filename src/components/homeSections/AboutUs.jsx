@@ -13,7 +13,6 @@ const AboutUsSection = () => {
         <div>
           <div className="flex gap-5 flex-wrap justify-center">
             {personas.map((item, index) => {
-              console.log(item);
               return (
                 <CardProfile
                   linkedIn={item.linkedIn}

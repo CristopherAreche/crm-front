@@ -1,8 +1,9 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 import swal from "sweetalert";
+import URL from "../utils/env";
 
-const API_URL_SELLER = `https://crm.up.railway.app/api/salesman`;
+const API_URL_SELLER = `${URL}/salesman`;
 
 export const getSellers = createAsyncThunk(
   "sellers/getSellers",

@@ -10,7 +10,7 @@ const API_URL_ALLS_BOSS = `${URL}/boss`;
 
 export const getBoss = createAsyncThunk("boss/getBoss", async (bossId) => {
   const response = await axios.get(`${API_URL_BOSS}?id=${bossId}`);
-  return response.data;
+  console.log("--->", response?.data);
 });
 
 export const putBoss = createAsyncThunk("boss/putBoss", async (payload) => {

@@ -7,7 +7,7 @@ import {
   filterByCategory,
 } from "../../app/features/productsSlice";
 
-const FilterTopProducts = ({ products }) => {
+const FilterTopProducts = ({ products = [] }) => {
   const dispatch = useDispatch();
 
   const filteredCategory = products.reduce((accumulator, product) => {

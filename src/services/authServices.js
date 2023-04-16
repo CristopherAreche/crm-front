@@ -59,6 +59,7 @@ export const setUser = createAsyncThunk(
 
 export const login = createAsyncThunk("user/login", async (data) => {
   const { email, password } = data;
+  console.log("-->", data);
   try {
     const response = await axios.post(
       `${URL}/login`,
@@ -68,14 +69,17 @@ export const login = createAsyncThunk("user/login", async (data) => {
       }
     );
     const cookies = new Cookies();
-    if (response.data.token) {
+    if (response && response.data && response.data.token) {
       cookies.set("myToken", response.data.token, { path: "/" });
     }
-    const { payload } = await jwtVerify(
-      response.data.token,
-      new TextEncoder().encode("secret")
-    );
-    return { data: payload };
+
+    if (response && response.data && response.data.token) {
+      const { payload } = await jwtVerify(
+        response.data.token,
+        new TextEncoder().encode("secret")
+      );
+      return { data: payload };
+    }
   } catch (error) {
     swal("Error", "Usuario o contraseña incorrectos", "error");
   }

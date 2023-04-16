@@ -1,11 +1,10 @@
-import { RiFilter3Line, RiLoader4Fill } from "react-icons/ri";
+import { RiAddFill, RiCustomerService2Fill, RiFilter3Line, RiLoader4Fill } from "react-icons/ri";
 import { Link } from "react-router-dom";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import { getClients } from "../services/clientsServices";
 import { selectedClientCheckbox } from "../app/features/clientSlice";
-import notClients from '../assets/png images/noClients.png'
 
 
 const ClientList = () => {
@@ -46,9 +45,26 @@ const ClientList = () => {
         {
           !clients.length 
           ? 
-          <div>
-            <h3 className="text-xl font-medium text-light flex items-center gap-x-2">Usted no tiene clientes agregue un cliente para poder hacer funcionar esta vista</h3>
-            <img src={notClients} alt='not found clients' className='w-full h-96 object-cover rounded-md'/>
+          <div className='flex justify-center flex-col items-center h-96 pt-16 gap-y-8'>
+            <h3 className="text-lg font-medium text-light flex items-center gap-x-2">Usted no tiene clientes, para usar esa vista y sus funcionalidades obtenga uno.</h3>
+            <div className='flex gap-x-12 items-center'>
+              <button
+              className="group rounded-xl py-2 px-3 shadow-emerald-400/20 hover:scale-[1.03] hover:bg-emerald-400/80 transition-all shadow-md group bg-emerald-400 relative"
+            >
+                <RiAddFill className="text-2xl" />
+                <span className="absolute opacity-0 group-hover:opacity-100  px-2 py-1 bg-gray-700 rounded-lg text-center text-white text-sm ">
+                  Agregar
+                </span>
+            </button>
+            <button
+              className="group rounded-xl py-2 px-3 shadow-orange-400/20 hover:scale-[1.03] hover:bg-orange-400/80 transition-all shadow-md group bg-orange-400 relative"
+            >
+                <RiCustomerService2Fill className="text-2xl" />
+                <span className="absolute opacity-0 group-hover:opacity-100  px-2 py-1 bg-gray-700 rounded-lg text-center text-white text-sm ">
+                  Consultar Soporte
+                </span>
+            </button>
+            </div>
           </div>
           :
          <>

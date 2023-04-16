@@ -17,7 +17,7 @@ import { MdOutlineInventory2 } from "react-icons/md";
 
 const Inventory = () => {
   const role = useSelector((state) => state.auth.User.role);
-  const products = useSelector((state) => state.products.products);
+  const { products } = useSelector((state) => state.products);
   const copyProducts = useSelector((state) => state.products.copyProducts);
   const bossId = useSelector((state) => state.auth.User.id);
   const dispatch = useDispatch();
@@ -25,6 +25,7 @@ const Inventory = () => {
   useEffect(() => {
     dispatch(getAllProducts(bossId));
   }, [dispatch]);
+  console.log(products);
 
   return (
     <main className=" h-screen  text-white ">
@@ -67,7 +68,7 @@ const Inventory = () => {
                 />
               </div>
               <section className="flex flex-col">
-                <MayorStockChart products={products} />
+                {/* <MayorStockChart products={products} /> */}
 
                 <FilterTopProducts products={copyProducts} />
 

@@ -1,7 +1,7 @@
 import React from "react";
 import { Bar } from "react-chartjs-2";
 
-const MayorStockChart = ({ products }) => {
+const MayorStockChart = ({ products = [] }) => {
   const sortedProducts = [...products];
   sortedProducts.sort((a, b) => b.quantity - a.quantity);
   const HighStockProducts = sortedProducts.slice(0, 10);

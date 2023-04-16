@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { putBoss } from '../../app/features/bossSlice'
 import { toggleStatusSeller } from '../../services/sellersServices'
 import swal from 'sweetalert'
+import { toggleStatusMyPerfil } from '../../app/features/authSlice'
 
 const HeaderPerfil = () => {
 
@@ -17,8 +18,11 @@ const HeaderPerfil = () => {
       dangerMode: true,
     }).then((accept) => {
       if (accept) {
-        if(user.role !== 'admin') dispatch(toggleStatusSeller({enable : !user.enable, id: user.id}))
-        else dispatch(putBoss({enable : !user.enable, Id: user.id}))
+        if(user.role !== 'admin') {
+          dispatch(toggleStatusSeller({enable : !user.enable, id: user.id}))
+          dispatch(toggleStatusMyPerfil())
+        }
+        else dispatch(putBoss({enable : !user.enable, id: user.id}))
       }
       else swal("La modificacion no se concreto");
     })

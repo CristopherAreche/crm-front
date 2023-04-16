@@ -26,7 +26,10 @@ const FormEditPerfilSeller = ({onClose}) => {
         buttons: true,
         dangerMode: true,
       }).then((accept) => {
-        if (accept) dispatch(putSeller(form))
+        if (accept) {
+            dispatch(putSeller(form))
+            
+        }
         else swal("La modificacion no se concreto");
       })
   })

@@ -22,6 +22,9 @@ const userInfoSlice = createSlice({
       state.userRole = null;
       state.status = "idle";
     },
+    toggleStatusMyPerfil : (state, action) => {
+      state.User.enable = !state.User.enable;
+    } 
   },
   extraReducers: (builder) => {
     builder
@@ -61,5 +64,5 @@ const userInfoSlice = createSlice({
       });
   },
 });
-export const { logoutUser } = userInfoSlice.actions;
+export const { logoutUser, toggleStatusMyPerfil } = userInfoSlice.actions;
 export default userInfoSlice.reducer;

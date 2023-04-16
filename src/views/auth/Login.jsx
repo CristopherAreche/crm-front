@@ -118,6 +118,7 @@ const Login = () => {
         </div>
         <button
           type="submit"
+          disabled={status === "loading"}
        
           className="text-center bg-gradient-to-r from-primary to-secondary py-2 px-4 rounded-md font-bold text-lg hover:scale-[1.02] transition-all"
         >

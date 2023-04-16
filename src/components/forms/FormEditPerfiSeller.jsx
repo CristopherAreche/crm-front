@@ -37,6 +37,7 @@ const FormEditPerfilSeller = ({ onClose }) => {
         dispatch(putSeller(form));
       } else swal("La modificacion no se concreto");
     });
+    onClose();
   });
 
   useEffect(() => {

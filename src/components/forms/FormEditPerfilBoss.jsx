@@ -11,7 +11,7 @@ import {
   RiStarSmileLine,
 } from "react-icons/ri";
 import { useDispatch, useSelector } from "react-redux";
-import { putBoss } from "../../app/features/bossSlice";
+
 import swal from "sweetalert";
 import { putUser } from "../../services/authServices";
 

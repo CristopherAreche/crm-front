@@ -1,5 +1,5 @@
 import React from "react";
-import  {Bar}  from "react-chartjs-2";
+import { Bar } from "react-chartjs-2";
 import {
   Chart as ChartJS,
   LineController,
@@ -25,6 +25,7 @@ const InventoryChart = ({ lowest_stock }) => {
     quantity: item.quantity,
   }));
   // Ordena la matriz de productos por la propiedad "stock"
+  //un comentario
   const sortedProducts = products?.sort((a, b) => a.quantity - b.quantity);
 
   // Crea los datos para el gráfico de barras

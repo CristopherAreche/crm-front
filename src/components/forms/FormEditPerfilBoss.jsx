@@ -16,7 +16,7 @@ const FormEditPerfilBoss = ({onClose, inView}) => {
   const onSubmit = handleSubmit((data) => {
         const form = new FormData()
         form.append('image', file)
-        form.append('bossData', JSON.stringify(data))
+        form.append('formLogin', JSON.stringify(data))
         swal({
             title: "Estas seguro que quieres modificar tus cambios?",
             icon: "warning",
@@ -116,7 +116,7 @@ const FormEditPerfilBoss = ({onClose, inView}) => {
                             )}
                         </div>
                         <div className='flex iems-center gap-x-4'>
-                            <img src={boss.image ? boss.image : 'https://cdn-icons-png.flaticon.com/512/219/219983.png'} alt='user icon' className='w-16 h-16 rounded-md'/>  
+                            <img src={boss.image ? boss.image : 'https://cdn-icons-png.flaticon.com/512/219/219983.png'} alt='user icon' className='w-16 h-16 rounded-md object-cover'/>  
                             <input
                                 onChange={(e) => handleChange(e)}
                                 name='image'

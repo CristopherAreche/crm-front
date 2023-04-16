@@ -4,19 +4,16 @@ import {
   Tooltip,
   Legend
 } from "chart.js";
-import { useEffect } from "react";
 import { Doughnut } from "react-chartjs-2";
-import { getAllProducts } from "../../services/productsServices";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { RiLoader4Fill } from "react-icons/ri";
 
 Chart.register(Tooltip, Legend, ArcElement);
 
-const StockChart = () => {
+const StockChart = ({products}) => {
 
 
-  const dispatch = useDispatch()
-  const { status, products } = useSelector(state => state.products)
+  const { status } = useSelector(state => state.products)
   const fiveMostStock = [...products].sort((a, b) => b.quantity - a.quantity).slice(0, 5)
 
   const fiveMostStockName = () => {
@@ -29,11 +26,7 @@ const StockChart = () => {
     return quantityProduct
   }
 
-  const user=useSelector((state)=>state.auth.User)
   
-  useEffect(() => {
-   if(status === 'idle') dispatch(getAllProducts(user.bossId))
-  }, [dispatch, status, user.bossId])
 
   const data = {
     labels: fiveMostStockName(),

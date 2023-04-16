@@ -99,7 +99,7 @@ const FormEditPerfilSeller = ({onClose}) => {
             </div>
                     
             <div className='flex iems-center gap-x-4'>
-                  <img src={seller.image ? seller.image : 'https://cdn-icons-png.flaticon.com/512/219/219983.png'} alt='user icon' className='w-16 h-16 rounded-md'/>  
+                  <img src={seller.image ? seller.image : 'https://cdn-icons-png.flaticon.com/512/219/219983.png'} alt='user icon' className='w-16 h-16 rounded-md object-cover'/>  
                   <input
                     onChange={(e) => handleChange(e)}
                     name='image'

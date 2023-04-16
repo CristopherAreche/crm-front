@@ -66,7 +66,7 @@ export const setUser = createAsyncThunk(
 )
 
 export const login = createAsyncThunk(
-  'login/login',
+  'user/login',
   async  (data) => {
   const { email , password}= data;
   try {
@@ -85,7 +85,7 @@ export const login = createAsyncThunk(
       response.data.token,
       new TextEncoder().encode("secret")
     );
-   return payload
+   return {data : payload}
   } catch (error) {
     swal("Error", "Usuario o contraseña incorrectos", "error");
   }

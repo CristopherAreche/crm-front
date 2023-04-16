@@ -9,9 +9,7 @@ import InventoryChart from "../../components/charts/InventoryChart";
 import MonthlyCompareChart from "../../components/charts/MonthlyCompareChart";
 import BestSeller from "../../components/bossComponents/BestSeller";
 import { useEffect } from "react";
-import { getBoss } from "../../app/features/bossSlice";
 import {useNavigate} from 'react-router-dom'
-import { logoutUser } from "../../app/features/authSlice";
 import { RiLoader4Fill } from "react-icons/ri";
 
 
@@ -20,7 +18,6 @@ const Summary = () => {
   const user=useSelector((state)=>state.auth.User)
   const dashboard = useSelector((state) => state.boss.bossDashboard);
   const navigate=useNavigate()
-  const message=useSelector((state)=>state.auth.message)
   const status=useSelector((state)=>state.auth.status)
 
   
@@ -29,6 +26,7 @@ const Summary = () => {
       navigate('/authentication')
     }
   },[user,navigate, dispatch, status,])
+
 
   if (status === "loading") {
     return (

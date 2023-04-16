@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import { postUserInfo } from "../../services/authServices";
 import { setUser, putUser } from "../../services/authServices";
 import { login } from "../../services/authServices";
+import { putSeller } from "../../services/sellersServices";
 
 const initialState = {
   userInfo: [],
@@ -28,6 +29,9 @@ const userInfoSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
+      .addCase(putSeller.fulfilled, (state, action) => {
+        state.User = action.payload;
+      })
       .addCase(putUser.fulfilled, (state, action) => {
         console.log(action.payload);
         state.User = action.payload;

@@ -1,15 +1,20 @@
 import { RiStarFill, RiStarLine, RiEdit2Line } from "react-icons/ri";
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from "react-redux";
 import HeaderPerfil from "./shared/HeaderPerfil";
 import PrincipalInformation from "./shared/PrincipalInformation";
 import PersonalInformationView from "./shared/PersonalInformationView";
-import FormEditPerfilSeller from './forms/FormEditPerfiSeller'
+import FormEditPerfilSeller from "./forms/FormEditPerfiSeller";
 import { useState } from "react";
+import { getSeller } from "../services/sellersServices";
 
 const MainPerfilSeller = () => {
+  const user = useSelector((state) => state.auth.User);
+  // const user = useSelector((state) => state.sellers.seller);
 
+  // const dispatch = useDispatch();
 
-  const user=useSelector((state)=>state.auth.User);
+  // dispatch(getSeller({ bossId, id }));
+
   const [isOpen, setIsOpen] = useState(false);
 
   return (
@@ -27,11 +32,14 @@ const MainPerfilSeller = () => {
               );
             })}
           </p>
-          <button className="bg-secondary p-3 shadow-secondary/25 hover:bg-secondary/70 transition-all rounded-full box-content shadow-md" onClick={() => setIsOpen(!isOpen)}>
+          <button
+            className="bg-secondary p-3 shadow-secondary/25 hover:bg-secondary/70 transition-all rounded-full box-content shadow-md"
+            onClick={() => setIsOpen(!isOpen)}
+          >
             <RiEdit2Line className="text-xl text-base-light" />
           </button>
         </section>
-        <PersonalInformationView data={user} type='seller'/>
+        <PersonalInformationView data={user} type="seller" />
       </section>
       {isOpen && <FormEditPerfilSeller onClose={() => setIsOpen(false)} />}
     </section>

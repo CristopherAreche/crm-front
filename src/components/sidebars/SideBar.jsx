@@ -19,8 +19,6 @@ import { useDispatch } from "react-redux";
 import Cookies from "js-cookie";
 import { logoutUser } from "../../app/features/authSlice";
 
-const sellerId = "7155a9d8-acff-4cf9-93fd-385830b9bcae";
-
 function SideBar({ typeSidebar, summary, inventory, clients, sellers }) {
   const [isOpen, setIsOpen] = useState(false);
   const [selected, setSelected] = useState("");

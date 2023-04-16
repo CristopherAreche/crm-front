@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { RiDeleteBin3Line } from "react-icons/ri";
+import URL from "../utils/env";
 
 export default function ToDoCard({ item, delTask }) {
   const [isChecked, setIsChecked] = useState(false);
@@ -23,7 +24,7 @@ export default function ToDoCard({ item, delTask }) {
       item.state = "Completado";
       setIsChecked(true);
     }
-      await axios.put("https://crm.up.railway.app/api/task", {
+    await axios.put(`${URL}/task`, {
       id: item.id,
       state: item.state,
     });
@@ -58,9 +59,7 @@ export default function ToDoCard({ item, delTask }) {
           {item.description}
         </td>
         <td
-          className={`  py-4 ${
-            isExpired() ? "text-orange-200" : "text-white"
-          }`}
+          className={`  py-4 ${isExpired() ? "text-orange-200" : "text-white"}`}
         >
           {" "}
           {typeof due_date === "string" ? null : due_date.toLocaleDateString()}

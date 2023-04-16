@@ -8,7 +8,7 @@ import {
   RiTyphoonFill,
   RiHandCoinLine,
 } from "react-icons/ri";
-import { useEffect, useState,  } from "react";
+import { useState } from "react";
 import ClientDetailSideBar from "./ClientDetailSideBar";
 import { RiTeamLine } from "react-icons/ri";
 import { MdOutlineInventory2, MdOutlineSpaceDashboard } from "react-icons/md";
@@ -16,18 +16,15 @@ import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 // import { postUserInfo } from "../../services/authServices";
 // import { useAuth0 } from "@auth0/auth0-react";
-import { getSeller } from "../../services/sellersServices";
-import { getBossById } from "../../app/features/bossSlice";
-import Cookies from 'js-cookie';
+import Cookies from "js-cookie";
 import { logoutUser } from "../../app/features/authSlice";
-
 
 const sellerId = "7155a9d8-acff-4cf9-93fd-385830b9bcae";
 
 function SideBar({ typeSidebar, summary, inventory, clients, sellers }) {
   const [isOpen, setIsOpen] = useState(false);
   const [selected, setSelected] = useState("");
- const user=useSelector((state)=>state.auth.User);
+  const user = useSelector((state) => state.auth.User);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -44,17 +41,14 @@ function SideBar({ typeSidebar, summary, inventory, clients, sellers }) {
   //   }
   // };
 
-
-
   const handleLinkClick = (linkName) => setSelected(linkName);
 
-
   const handleLogout = () => {
-   Cookies.remove('myToken');
-   dispatch (logoutUser());
-   navigate("/");
+    Cookies.remove("myToken");
+    dispatch(logoutUser());
+    navigate("/");
   };
-  
+
   return (
     <>
       <section
@@ -93,7 +87,7 @@ function SideBar({ typeSidebar, summary, inventory, clients, sellers }) {
               </p>
             </div>
             <h3 className="text-light font-medium text-lg text-center ">
-              {user.role === "admin" ? user.name : user.name }
+              {user.role === "admin" ? user.name : user.name}
             </h3>
           </section>
           {typeSidebar === "client-detail" && <ClientDetailSideBar />}

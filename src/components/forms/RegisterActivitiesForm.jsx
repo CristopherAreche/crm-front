@@ -77,7 +77,6 @@ const RegisterActivitiesModal = ({ onClose }) => {
                   className="form-select mt-1 block w-full"
                   value={method}
                   onChange={(e) => {
-                    console.log(e.target.value);
                     setMethod(e.target.value);
                   }}
                 >

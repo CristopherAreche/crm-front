@@ -3,13 +3,12 @@ import React, { useEffect, useState } from "react";
 import ToDoCard from "./ToDoCard";
 import axios from "axios";
 import swal from "sweetalert";
-import { useSelector } from 'react-redux';
+import { useSelector } from "react-redux";
 
 export default function ToDoList() {
   const [listToDos, setListToDos] = useState([]);
   const [loadingStatus, setLoadingStatus] = useState("loading");
   const user = useSelector((state) => state.auth.User);
-
 
   useEffect(() => {
     fetchData();
@@ -38,9 +37,7 @@ export default function ToDoList() {
       });
 
       if (result) {
-        const { data } = await axios.delete(
-          "https://crm.up.railway.app/api/task?id=" + id
-        );
+        const { data } = await axios.delete(`${URL}/task?id=` + id);
 
         fetchData();
 
@@ -61,42 +58,43 @@ export default function ToDoList() {
     return (
       <section className="flex flex-col  overflow-x-auto lg:min-w-full mt-6 h-auto overflow-y-auto ">
         <header className=" flex justify-between w-screen lg:w-full px-8 py-4   bg-base-light/30 rounded-tr-md rounded-tl-md  ">
-            <h3 className=" text-xl font-medium text-light flex items-center gap-x-2">
-              <RiCalendarCheckFill className="text-2xl" />
-             {!listToDos.length ? 'No hay tareas disponibles' : 'Tareas'}
-            </h3>
-            <div>
-              
-            </div>
-          </header>
-        {
-          !listToDos.length
-          ? <div>
-            <img src='https://cdni.iconscout.com/illustration/premium/thumb/task-completion-6333613-5230173.png' alt='No hay tareas' className='w-72 h-72'/>
-           </div>
-          :
-        <table className="min-w-full  text-center text-sm font-regular shadow-md rounded-sm">
-          <thead className=" font-medium text-light/75  dark:bg-base-light/30 rounded-md">
-            <tr className=" w-full">
-              <th scope="col" className=" px-6 py-4">
-                cb
-              </th>
-              <th scope="col" className=" px-6 py-4">
-                Descripción
-              </th>
-              <th scope="col" className=" px-6 py-4">
-                Fecha de Vencimiento
-              </th>
-              <th scope="col" className=" px-6 py-4"></th>
-            </tr>
-          </thead>
-          <tbody className=" dark:border-light dark:bg-base-light/60">
-            {listToDos?.map((item) => (
-              <ToDoCard key={item.id} item={item} delTask={delTask} />
-            ))}
-          </tbody>
-        </table>
-        }
+          <h3 className=" text-xl font-medium text-light flex items-center gap-x-2">
+            <RiCalendarCheckFill className="text-2xl" />
+            {!listToDos.length ? "No hay tareas disponibles" : "Tareas"}
+          </h3>
+          <div></div>
+        </header>
+        {!listToDos.length ? (
+          <div>
+            <img
+              src="https://cdni.iconscout.com/illustration/premium/thumb/task-completion-6333613-5230173.png"
+              alt="No hay tareas"
+              className="w-72 h-72"
+            />
+          </div>
+        ) : (
+          <table className="min-w-full  text-center text-sm font-regular shadow-md rounded-sm">
+            <thead className=" font-medium text-light/75  dark:bg-base-light/30 rounded-md">
+              <tr className=" w-full">
+                <th scope="col" className=" px-6 py-4">
+                  cb
+                </th>
+                <th scope="col" className=" px-6 py-4">
+                  Descripción
+                </th>
+                <th scope="col" className=" px-6 py-4">
+                  Fecha de Vencimiento
+                </th>
+                <th scope="col" className=" px-6 py-4"></th>
+              </tr>
+            </thead>
+            <tbody className=" dark:border-light dark:bg-base-light/60">
+              {listToDos?.map((item) => (
+                <ToDoCard key={item.id} item={item} delTask={delTask} />
+              ))}
+            </tbody>
+          </table>
+        )}
       </section>
     );
   } else if (loadingStatus === "failed") {

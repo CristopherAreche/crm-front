@@ -17,7 +17,6 @@ const RegisterActivityTable = () => {
     dispatch(obtainActivities(id));
   }, [dispatch, id]);
 
-  console.log(activities);
   if (activitiesStatus === "loading") {
     return (
       <div className="pt-2 flex justify-center">

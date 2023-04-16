@@ -1,24 +1,32 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 import swal from "sweetalert";
+import URL from "../utils/env";
 
-const API_URL_SELLER = `https://crm.up.railway.app/api/salesman`;
+const API_URL_SELLER = `${URL}/salesman`;
 
-
-export const getSellers = createAsyncThunk("sellers/getSellers", async (bossId) => {
-  const res = await axios.get(`${API_URL_SELLER}?bossId=${bossId}`);
-  return res.data;
-});
-
-export const getSeller = createAsyncThunk('sellers/getSeller', async ({bossId, id}) => {
-  try {
-    const { data } = await axios.get(`${API_URL_SELLER}?bossId=${bossId}&id=${id}`)
-    return data
-  } catch (error) {
-    await swal("Error", `${error.response.data.error}`, "error");
-    return error.response.data.error;
+export const getSellers = createAsyncThunk(
+  "sellers/getSellers",
+  async (bossId) => {
+    const res = await axios.get(`${API_URL_SELLER}?bossId=${bossId}`);
+    return res.data;
   }
-})
+);
+
+export const getSeller = createAsyncThunk(
+  "sellers/getSeller",
+  async ({ bossId, id }) => {
+    try {
+      const { data } = await axios.get(
+        `${API_URL_SELLER}?bossId=${bossId}&id=${id}`
+      );
+      return data;
+    } catch (error) {
+      await swal("Error", `${error.response.data.error}`, "error");
+      return error.response.data.error;
+    }
+  }
+);
 
 export const postSeller = createAsyncThunk(
   `sellers/postSeller`,
@@ -44,7 +52,7 @@ export const putSeller = createAsyncThunk(
   async (payload) => {
     try {
       const { data } = await axios.put(API_URL_SELLER, payload);
-      
+
       await swal(
         "Modificación",
         `El vendedor ${data.name} fua actualizado correctamente`,
@@ -61,11 +69,11 @@ export const putSeller = createAsyncThunk(
 
 export const toggleStatusSeller = createAsyncThunk(
   "clients/toggleStatusSeller",
-  async ({enable, id}) => {
+  async ({ enable, id }) => {
     try {
-      const form = new FormData()
-      const data = {enable, id}
-      form.append('sellerData', JSON.stringify(data))
+      const form = new FormData();
+      const data = { enable, id };
+      form.append("sellerData", JSON.stringify(data));
       await axios.put(API_URL_SELLER, form);
       await swal(
         "Modificación",
@@ -78,4 +86,3 @@ export const toggleStatusSeller = createAsyncThunk(
     }
   }
 );
-

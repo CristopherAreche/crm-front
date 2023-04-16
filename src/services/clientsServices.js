@@ -1,8 +1,9 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 import swal from "sweetalert";
+import URL from "../utils/env";
 
-const API_URL_CLIENT = "https://crm.up.railway.app/api/client";
+const API_URL_CLIENT = `${URL}/client`;
 
 export const getClients = createAsyncThunk(
   "clients/getClients",
@@ -103,3 +104,9 @@ export const getClientName = createAsyncThunk(
     return data;
   }
 );
+
+export const getClientBySeller = async (sellerId, bossId) => {
+  const res = await axios(`${API_URL_CLIENT}?id=${sellerId}&bossId=${bossId}`);
+  const data = res.data;
+  return data;
+};

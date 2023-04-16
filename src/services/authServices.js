@@ -1,19 +1,15 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
-import { useDispatch } from "react-redux";
 import Cookies from "universal-cookie";
 import swal from "sweetalert";
 import { jwtVerify } from "jose";
-
+import URL from "../utils/env";
 
 export const postUserInfo = createAsyncThunk(
   "userInfo/postUserInfo",
   async (userInfo, thunkAPI) => {
     try {
-      const response = await axios.post(
-        "https://crm.up.railway.app/api/boss",
-        userInfo
-      );
+      const response = await axios.post(`${URL}/boss`, userInfo);
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.response.data);
@@ -25,10 +21,7 @@ export const postUserLogin = createAsyncThunk(
   "userLogin/postUserLogin",
   async (formData, thunkAPI) => {
     try {
-      const response = await axios.post(
-        "https://crm2.up.railway.app/api/boss",
-        formData
-      );
+      const response = await axios.post(`${URL}/boss`, formData);
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.response.data);
@@ -40,11 +33,9 @@ export const postLogin = createAsyncThunk(
   "loginUser/postLogin",
   async (loginUser, thunkAPI) => {
     try {
-      const response = await axios.post(
-        "https://crm2.up.railway.app/api/login",
-        loginUser,
-        { withCredentials: true }
-      );
+      const response = await axios.post(`${URL}/login`, loginUser, {
+        withCredentials: true,
+      });
       console.alert(response.data);
     } catch (error) {
       console.alert(error);
@@ -54,24 +45,21 @@ export const postLogin = createAsyncThunk(
 );
 
 export const setUser = createAsyncThunk(
-  'user/setUser',
+  "user/setUser",
   async (user, thunkAPI) => {
     try {
       return user;
     } catch (error) {
-      console.log(error);
       return thunkAPI.rejectWithValue(error.response.data);
     }
   }
-)
+);
 
-export const login = createAsyncThunk(
-  'user/login',
-  async  (data) => {
-  const { email , password}= data;
+export const login = createAsyncThunk("user/login", async (data) => {
+  const { email, password } = data;
   try {
     const response = await axios.post(
-      "https://crm2.up.railway.app/api/login",
+      `${URL}/login`,
       { email, password },
       {
         withCredentials: true,
@@ -85,7 +73,7 @@ export const login = createAsyncThunk(
       response.data.token,
       new TextEncoder().encode("secret")
     );
-   return {data : payload}
+    return { data: payload };
   } catch (error) {
     swal("Error", "Usuario o contraseña incorrectos", "error");
   }

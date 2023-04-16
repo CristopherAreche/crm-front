@@ -1,4 +1,3 @@
-
 import spotlight1 from "../../assets/svg/Spotlight1.svg";
 import spotlight2 from "../../assets/svg/Spotlight2.svg";
 import SideBar from "../../components/sidebars/SideBar";
@@ -9,33 +8,29 @@ import InventoryChart from "../../components/charts/InventoryChart";
 import MonthlyCompareChart from "../../components/charts/MonthlyCompareChart";
 import BestSeller from "../../components/bossComponents/BestSeller";
 import { useEffect } from "react";
-import {useNavigate} from 'react-router-dom'
+import { useNavigate } from "react-router-dom";
 import { RiLoader4Fill } from "react-icons/ri";
-
 
 const Summary = () => {
   const dispatch = useDispatch();
-  const user=useSelector((state)=>state.auth.User)
+  const user = useSelector((state) => state.auth.User);
   const dashboard = useSelector((state) => state.boss.bossDashboard);
-  const navigate=useNavigate()
-  const status=useSelector((state)=>state.auth.status)
+  const navigate = useNavigate();
+  const status = useSelector((state) => state.auth.status);
 
-  
-  useEffect (()=>{
-    if(status==='idle'){
-      navigate('/authentication')
+  useEffect(() => {
+    if (status === "idle") {
+      navigate("/authentication");
     }
-  },[user,navigate, dispatch, status,])
-
+  }, [user, navigate, dispatch, status]);
 
   if (status === "loading") {
     return (
       <div className="flex justify-center w-full">
         <RiLoader4Fill className="animate-spin text-4xl text-secondary mt-8" />
       </div>
-    )
+    );
   }
-
 
   return (
     <main className="bg-base h-screen text-white">

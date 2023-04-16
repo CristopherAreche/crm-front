@@ -19,7 +19,7 @@ function JefeVendedores() {
         onReset={() => dispatch(resetSellers())}
       />
       <BossFilterTop />
-      <SellerList />
+      <SellerList data={sellers} />
       <BossFilterBottom />
     </section>
   );

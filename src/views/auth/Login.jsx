@@ -9,17 +9,14 @@ import {
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import {login} from "../../services/authServices";
-// import Cookies from "universal-cookie";
+import { login } from "../../services/authServices";
 import { useEffect } from "react";
-// import { jwtVerify } from "jose";
-// import { setUser } from "../../services/authServices";
 
 const Login = () => {
   const [password, setPassWord] = useState("");
   const [email, setEmail] = useState("");
   const [showPassword, setShowPassword] = useState(false);
-  const status =useSelector((state)=>state.auth.status);
+  const status = useSelector((state) => state.auth.status);
   const navigate = useNavigate();
   const dispatch = useDispatch();
   //const { loginWithRedirect } = useAuth0();
@@ -32,13 +29,10 @@ const Login = () => {
     setPassWord(value);
   };
 
-
-  
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(login({email, password}))
+    dispatch(login({ email, password }));
   };
-
 
   useEffect(() => {
     if (status === "succeeded") {
@@ -119,7 +113,6 @@ const Login = () => {
         <button
           type="submit"
           disabled={status === "loading"}
-       
           className="text-center bg-gradient-to-r from-primary to-secondary py-2 px-4 rounded-md font-bold text-lg hover:scale-[1.02] transition-all"
         >
           {status === "loading" ? "Cargando..." : "Iniciar sesión"}

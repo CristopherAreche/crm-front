@@ -13,7 +13,7 @@ const SellerList = () => {
   const [sellerSelected, setSellerSelected] = useState("");
   const [isSelected, setIsSelected] = useState(false);
   const [isShow, setIsShow] = useState(false);
-  const user=useSelector((state)=>state.auth.User.id)
+  const user = useSelector((state) => state.auth.User.id);
   useEffect(() => {
     if (sellersStatus === "idle") {
       if (!sellers.length) {

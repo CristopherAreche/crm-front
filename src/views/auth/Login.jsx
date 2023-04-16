@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import axios from "axios";
 import {
   RiArrowLeftLine,
   RiMailLine,
@@ -12,8 +11,6 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import {login} from "../../services/authServices";
 // import Cookies from "universal-cookie";
-import swal from "sweetalert";
-import Cookies from "js-cookie";
 import { useEffect } from "react";
 // import { jwtVerify } from "jose";
 // import { setUser } from "../../services/authServices";
@@ -23,14 +20,9 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const status =useSelector((state)=>state.auth.status);
-  const [access, setAccess] = useState(false);
-  const user= useSelector((state) => state.auth.User);
-const navigate = useNavigate();
-const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
   //const { loginWithRedirect } = useAuth0();
-  
-
-  
 
   const valUser = (value) => {
     setEmail(value);
@@ -45,12 +37,14 @@ const dispatch = useDispatch();
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(login({email, password}))
-    if(status==="succeeded"){
-    navigate ("/dashboard");
-    }
-    console.log("STATUS**********",status);
-    console.log("USER************",user);
   };
+
+
+  useEffect(() => {
+    if (status === "succeeded") {
+      navigate("/dashboard");
+    }
+  }, [status, navigate]);
 
   return (
     <section className="flex flex-col items-start justify-center min-h-screen px-8 lg:px-20 gap-y-4">
@@ -124,7 +118,7 @@ const dispatch = useDispatch();
         </div>
         <button
           type="submit"
-          disabled={status === "loading"}
+       
           className="text-center bg-gradient-to-r from-primary to-secondary py-2 px-4 rounded-md font-bold text-lg hover:scale-[1.02] transition-all"
         >
           {status === "loading" ? "Cargando..." : "Iniciar sesión"}

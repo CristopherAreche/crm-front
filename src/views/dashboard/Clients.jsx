@@ -20,9 +20,9 @@ const Clients = () => {
           }
           onReset={() => dispatch(resetClients())}
         />
-        <FilterTop />
+        {clients.length > 0 && <FilterTop />}
         <ClientList />
-        <BottomsActions />
+        {clients.length > 0 &&<BottomsActions />}
       </section>
     </main>
   );

@@ -4,15 +4,15 @@ import { useDispatch, useSelector } from "react-redux";
 import { cleanTasks, obtainTask } from "../app/features/clientActivitiesSlice";
 import TaskCard from "./TaskCard";
 
-const TaskListDetail = ({  clientId  }) => {
-  const {  tasks, statusTask  } = useSelector((state) => state.activities);
+const TaskListDetail = ({ clientId }) => {
+  const { tasks, statusTask } = useSelector((state) => state.activities);
   const dispatch = useDispatch();
 
   useEffect(() => {
     if (statusTask === "idle") dispatch(obtainTask(clientId));
     return () => dispatch(cleanTasks());
   }, []);
- 
+
   if (statusTask === "loading") {
     return (
       <div className="flex justify-center w-full">
@@ -45,11 +45,9 @@ const TaskListDetail = ({  clientId  }) => {
         <RiBookReadLine className="text-4xl" /> Lista de Tareas
       </h4>
       <section className="grid grid-cols-2 lg:grid-cols-3 gap-4">
-
-        {
-          tasks.map((task, index) => <TaskCard key={index} task={task} clientId={clientId} />)
-        }
-
+        {tasks.map((task, index) => (
+          <TaskCard key={index} task={task} clientId={clientId} />
+        ))}
       </section>
     </section>
   );

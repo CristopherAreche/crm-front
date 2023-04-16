@@ -16,7 +16,7 @@ const initialState = {
 const userInfoSlice = createSlice({
   name: "userInfo",
   initialState,
-  reducers: {
+  reducers: { 
     logoutUser: (state, action) => {
       state.User = {};
       state.userRole = null;
@@ -53,7 +53,7 @@ const userInfoSlice = createSlice({
       })
       .addCase(login.fulfilled, (state, action) => {
         state.status = "succeeded";
-        state.User = action.payload;
+        state.User = action.payload.data;
       })
       .addCase(login.rejected, (state, action) => {
         state.status = "failed";

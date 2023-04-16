@@ -16,9 +16,9 @@ const MainSellerClients = () => {
         onSearch={(filteredClients) => dispatch(searchClients(filteredClients))}
         onReset={() => dispatch(resetClients())}
       />
-      <FilterTop />
+      {clients.length > 0 && <FilterTop />}
       <ClientList />
-      <FilterBottom />
+      {clients.length > 0 && <FilterBottom />}
     </section>
   );
 };

@@ -9,10 +9,6 @@ import AllClients from "./views/dashboard/AllClients";
 import Home from "./views/Home";
 import Inventory from "./views/dashboard/Inventory";
 import Perfil from "./views/dashboard/Perfil";
-import ProtectedRoutes from "./layouts/ProtectedRoutes";
-import axios from "axios";
-import { useLocation, useNavigate } from "react-router-dom";
-import {login} from "../src/services/authServices";
 
 function App() {
 

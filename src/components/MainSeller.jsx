@@ -10,20 +10,17 @@ import productImage from "../assets/png images/productImage.png";
 import ProductsCards from "./ProductsCards";
 import { getAllProducts } from "../services/productsServices";
 
-
-
 const MainSeller = () => {
   // const { user } = useAuth0();
   const dispatch = useDispatch();
   const { products } = useSelector((state) => state.products);
-  const statusProducts = useSelector((state) => state.status);
-  const user=useSelector((state)=>state.auth.User)
-
+  const statusProducts = useSelector((state) => state.products.status);
+  const user = useSelector((state) => state.auth.User);
 
   useEffect(() => {
-    if (statusProducts === "idle") dispatch(getAllProducts());
-  }, [dispatch, statusProducts]);
-    
+    if (statusProducts === "idle") dispatch(getAllProducts(user.bossId));
+  }, [dispatch, statusProducts, user.bossId]);
+
   const todayFormated = () => {
     const dateToday = new Date();
 
@@ -67,7 +64,7 @@ const MainSeller = () => {
           </p>
         </section>
         {/* Section Resume */}
-        <SummarySection data={user} userId={user.id} />
+        <SummarySection data={user} products={products} />
 
         {/* Section Estadistics Sales */}
         <section className="flex flex-col items-start gap-y-2 pr-0 lg:pr-12 w-full pt-0  ">
@@ -94,13 +91,13 @@ const MainSeller = () => {
           </div>
           {/* Lastest Products Cards */}
           <section className="flex flex-col gap-y-5">
-            {statusProducts === "loading" && statusProducts === "idle" ? (
+            {statusProducts === "loading" ? (
               <div className="flex justify-center w-full">
                 <RiLoader4Fill className="animate-spin text-4xl text-secondary mt-8" />
               </div>
             ) : (
               <>
-                {products.slice(0, 3).map((item) => (
+                {products?.slice(0, 3).map((item) => (
                   <ProductsCards key={item.id} item={item} />
                 ))}
               </>
@@ -110,7 +107,7 @@ const MainSeller = () => {
         {/* Section Graphic Stock */}
         <section className="flex flex-col items-center gap-y-4 bg-base-light/30 py-4 rounded-md shadow-md">
           <h5 className="text-light font-medium">5 Productos con mas Stock</h5>
-          <StockChart />
+          <StockChart products={products} />
         </section>
         {/* Upgrade Plan Section */}
         <section className="bg-gradient-to-r from-primary to-secondary relative w-full h-52 flex justify-center items-center cursor-pointer group rounded-md">

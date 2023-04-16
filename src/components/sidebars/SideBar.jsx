@@ -79,7 +79,7 @@ function SideBar({ typeSidebar, summary, inventory, clients, sellers }) {
                       : "https://cdn-icons-png.flaticon.com/512/219/219983.png"
                   }
                   alt="placeholder"
-                  className="w-28 h-28 rounded-full "
+                  className="w-28 h-28 rounded-full object-cover"
                 />
               )}
               <p className="bg-green-400 text-black absolute rounded-full px-2 bottom-0 right-0">

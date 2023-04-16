@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 import { getClients } from "../services/clientsServices";
 import { selectedClientCheckbox } from "../app/features/clientSlice";
-
+import notClients from '../assets/png images/noClients.png'
 
 
 const ClientList = () => {
@@ -19,9 +19,7 @@ const ClientList = () => {
 
   useEffect(() => {
     if (clientsStatus === "idle") {
-      if (!clients.length) {
-        dispatch(getClients(sellerId));
-      }
+      dispatch(getClients(sellerId));
     }
   }, [clientsStatus, dispatch, clients, sellerId]);
 
@@ -43,14 +41,24 @@ const ClientList = () => {
     );
   } else if (clientsStatus === "succeeded") {
     return (
-      <section className="overflow-x-auto lg:min-w-full mt-4 h-96 overflow-y-auto">
-        <header className="flex justify-between w-screen lg:w-full px-8 py-4   bg-base-light/30 rounded-tr-md rounded-tl-md  ">
+      <section className="overflow-x-auto lg:min-w-full mt-4">
+      
+        {
+          !clients.length 
+          ? 
+          <div>
+            <h3 className="text-xl font-medium text-light flex items-center gap-x-2">Usted no tiene clientes agregue un cliente para poder hacer funcionar esta vista</h3>
+            <img src={notClients} alt='not found clients' className='w-full h-96 object-cover rounded-md'/>
+          </div>
+          :
+         <>
+         <header className="flex justify-between w-screen lg:w-full px-8 py-4   bg-base-light/30 rounded-tr-md rounded-tl-md  ">
           <h3 className=" text-xl font-medium text-light flex items-center gap-x-2">
             <RiFilter3Line className="text-2xl" />
             Tus clientes
           </h3>
         </header>
-        <table className="min-w-full  text-center text-sm font-regular shadow-md rounded-sm">
+          <table className="min-w-full  text-center text-sm font-regular shadow-md rounded-sm h-96 overflow-y-auto">
           <thead className=" font-medium text-light/75  dark:bg-base-light/30 rounded-md">
             <tr>
               <th scope="col" className=" px-6 py-4">
@@ -112,6 +120,8 @@ const ClientList = () => {
               ))}
           </tbody>
         </table>
+         </>
+        }
       </section>
     );
   } else if (clientsError === "failed") {

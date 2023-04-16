@@ -55,7 +55,7 @@ export const setUser = createAsyncThunk(
   }
 );
 
-export const login = createAsyncThunk("login/login", async (data) => {
+export const login = createAsyncThunk("user/login", async (data) => {
   const { email, password } = data;
   try {
     const response = await axios.post(
@@ -73,7 +73,7 @@ export const login = createAsyncThunk("login/login", async (data) => {
       response.data.token,
       new TextEncoder().encode("secret")
     );
-    return payload;
+    return { data: payload };
   } catch (error) {
     swal("Error", "Usuario o contraseña incorrectos", "error");
   }

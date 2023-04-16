@@ -4,12 +4,15 @@ import swal from "sweetalert";
 import URL from "../utils/env";
 
 const API_URL_PRODUCTS = `${URL}/product`;
-
 export const getAllProducts = createAsyncThunk(
   "products/getAllProducts",
   async (bossId) => {
-    const response = await axios.get(`${API_URL_PRODUCTS}?bossId=${bossId}`);
-    return response.data;
+    try {
+      const { data } = await axios.get(`${API_URL_PRODUCTS}?bossId=${bossId}`);
+      return data;
+    } catch (error) {
+      console.log(error);
+    }
   }
 );
 

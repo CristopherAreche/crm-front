@@ -9,11 +9,12 @@ const ProductListSellers = () => {
   const products = useSelector((state) => state.products.products);
   const productStatus = useSelector((state) => state.products.status);
   const productError = useSelector((state) => state.products.error);
+  const bossId = useSelector((state) => state.auth.User.id);
 
   useEffect(() => {
     if (productStatus === "idle") {
       if (!products.length) {
-        dispatch(getAllProducts());
+        dispatch(getAllProducts(bossId));
       }
     }
   }, [productStatus, dispatch, products]);

@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { postUserInfo } from "../../services/authServices";
-import { setUser } from "../../services/authServices";
+import { setUser, putUser } from "../../services/authServices";
 import { login } from "../../services/authServices";
 
 const initialState = {
@@ -16,18 +16,23 @@ const initialState = {
 const userInfoSlice = createSlice({
   name: "userInfo",
   initialState,
-  reducers: { 
+  reducers: {
     logoutUser: (state, action) => {
       state.User = {};
       state.userRole = null;
       state.status = "idle";
     },
-    toggleStatusMyPerfil : (state, action) => {
+    toggleStatusMyPerfil: (state, action) => {
       state.User.enable = !state.User.enable;
-    } 
+    },
   },
   extraReducers: (builder) => {
     builder
+      .addCase(putUser.fulfilled, (state, action) => {
+        console.log(action.payload);
+        state.User = action.payload;
+      })
+
       .addCase(postUserInfo.pending, (state) => {
         state.status = "loading";
       })

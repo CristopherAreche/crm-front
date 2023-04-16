@@ -5,6 +5,8 @@ import swal from "sweetalert";
 import { jwtVerify } from "jose";
 import URL from "../utils/env";
 
+const API_URL_ALLS_BOSS = `${URL}/boss`;
+
 export const postUserInfo = createAsyncThunk(
   "userInfo/postUserInfo",
   async (userInfo, thunkAPI) => {
@@ -76,5 +78,21 @@ export const login = createAsyncThunk("user/login", async (data) => {
     return { data: payload };
   } catch (error) {
     swal("Error", "Usuario o contraseña incorrectos", "error");
+  }
+});
+
+export const putUser = createAsyncThunk("boss/putUser", async (payload) => {
+  try {
+    const { data } = await axios.put(API_URL_ALLS_BOSS, payload);
+    await swal(
+      "Modificación",
+      `Tus datos han sido actualizados correctamente`,
+      "success"
+    );
+
+    return data;
+  } catch (error) {
+    await swal("Error", `${error.response.data.error}`, "error");
+    return error.response.data.error;
   }
 });

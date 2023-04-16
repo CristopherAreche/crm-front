@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import Header from "../../components/Header";
 import BottomsActions from "../../components/bossComponents/BottomsActions";
-import ClientList from "../../components/bossComponents/ClientsList";
+import ClientsList from "../../components/bossComponents/ClientsList";
 import { resetClients, searchClients } from "../../app/features/clientSlice";
 import FilterTop from "../../components/FilterTop";
 
@@ -21,8 +21,8 @@ const Clients = () => {
           onReset={() => dispatch(resetClients())}
         />
         {clients.length > 0 && <FilterTop />}
-        <ClientList />
-        {clients.length > 0 &&<BottomsActions />}
+        <ClientsList />
+        {clients.length > 0 && <BottomsActions />}
       </section>
     </main>
   );

@@ -59,7 +59,7 @@ const productsSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(getAllProducts.pending, (state) => {
-        console.log('cargando')
+        console.log("cargando...");
         state.status = "loading";
         state.error = null;
       })
@@ -67,7 +67,7 @@ const productsSlice = createSlice({
         state.status = "succeeded";
         state.products = action.payload;
         state.copyProducts = action.payload;
-        console.log('entro', state.status)
+        console.log("ingresado", state.status);
       })
       .addCase(getAllProducts.rejected, (state, action) => {
         state.error = action.payload;

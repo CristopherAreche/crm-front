@@ -93,6 +93,11 @@ export const clientSlice = createSlice({
       .addCase(getAllClients.fulfilled, (state, action) => {
         stateGetClients(state, action);
       })
+      .addCase(getAllClients.rejected, (state, action) => {
+        state.status = "failed";
+        state.error = "failed";
+        state.message = action.payload;
+      })
 
       .addCase(getClient.fulfilled, (state, action) => {
         state.clientDetail = action.payload;

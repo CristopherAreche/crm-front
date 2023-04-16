@@ -7,9 +7,8 @@ import {
 import { Link } from "react-router-dom";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getClients, postClient } from "../services/clientsServices";
+import { getClients } from "../services/clientsServices";
 import { selectedClientCheckbox } from "../app/features/clientSlice";
-import CreateClient from "./forms/CreateClient";
 
 const ClientList = () => {
   const dispatch = useDispatch();
@@ -58,10 +57,6 @@ const ClientList = () => {
                 <span className="absolute opacity-0 group-hover:opacity-100  px-2 py-1 bg-gray-700 rounded-lg text-center text-white text-sm ">
                   Agregar
                 </span>
-                {/* <CreateClient
-                  isVisible={showModal}
-                  onClose={() => setShowModal(false)}
-                /> */}
               </button>
               <button className="group rounded-xl py-2 px-3 shadow-orange-400/20 hover:scale-[1.03] hover:bg-orange-400/80 transition-all shadow-md group bg-orange-400 relative">
                 <RiCustomerService2Fill className="text-2xl" />

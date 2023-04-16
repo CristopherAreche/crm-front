@@ -24,32 +24,32 @@ ChartJS.register(
 );
 
 const SalesChart = () => {
-  const dispatch = useDispatch()
-  const {status, bossDashboard, loading} = useSelector(state => state.boss)
-  const annualSales = bossDashboard?.annual_sales
-  const user=useSelector((state)=>state.auth.User)
+  const dispatch = useDispatch();
+  const { status, bossDashboard, loading } = useSelector((state) => state.boss);
+  const annualSales = bossDashboard?.annual_sales;
+  const user = useSelector((state) => state.auth.User);
   //const totalVentas = datosVentas.reduce((total, item) => total + item.ventas, 0)
 
   useEffect(() => {
-    if(status === 'idle') dispatch(getBoss(user.bossId))
-  }, [dispatch, status, user.bossId])
-  
+    if (status === "idle") dispatch(getBoss(user.id));
+  }, [dispatch, status, user]);
+
   if (!!loading) {
     return (
       <div className="flex justify-center w-full">
         <RiLoader4Fill className="animate-spin text-4xl text-secondary mt-8" />
       </div>
-    )
+    );
   }
 
-  const annualSalesData = (key) => annualSales?.map(sale => sale[key])
+  const annualSalesData = (key) => annualSales?.map((sale) => sale[key]);
 
   const data = {
-    labels: annualSalesData('month'),
+    labels: annualSalesData("month"),
     datasets: [
       {
         label: "Ventas Mensuales",
-        data: annualSalesData('value'),
+        data: annualSalesData("value"),
         borderColor: "rgb(75, 192, 192)",
         tension: 0.1,
       },
@@ -60,14 +60,13 @@ const SalesChart = () => {
     maintainAspectRatio: false,
     width: 400,
     height: 600,
-    align: 'center',
+    align: "center",
     plugins: {
       legend: {
-        display: false
-      }
+        display: false,
+      },
     },
-    color: 'white'
-
+    color: "white",
   };
 
   return (

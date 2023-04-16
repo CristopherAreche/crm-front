@@ -68,7 +68,7 @@ const Inventory = () => {
                 />
               </div>
               <section className="flex flex-col">
-                {/* <MayorStockChart products={products} /> */}
+                <MayorStockChart products={products} />
 
                 <FilterTopProducts products={copyProducts} />
 

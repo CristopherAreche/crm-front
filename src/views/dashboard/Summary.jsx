@@ -10,6 +10,7 @@ import BestSeller from "../../components/bossComponents/BestSeller";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { RiLoader4Fill } from "react-icons/ri";
+import { getBoss } from "../../app/features/bossSlice";
 
 const Summary = () => {
   const dispatch = useDispatch();
@@ -18,10 +19,12 @@ const Summary = () => {
   const navigate = useNavigate();
   const status = useSelector((state) => state.auth.status);
 
+  console.log(dashboard);
   useEffect(() => {
     if (status === "idle") {
       navigate("/authentication");
     }
+    dispatch(getBoss(user.id));
   }, [user, navigate, dispatch, status]);
 
   if (status === "loading") {

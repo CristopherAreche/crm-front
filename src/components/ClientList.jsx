@@ -17,6 +17,7 @@ const ClientList = () => {
   const clientsError = useSelector((state) => state.clients.error);
   const [clientSelected, setClientSelected] = useState("");
   const [isSelected, setIsSelected] = useState(false);
+  // const [showModal, setShowModal] = useState(false);
   const sellerId = useSelector((state) => state.auth.User.id);
 
   useEffect(() => {

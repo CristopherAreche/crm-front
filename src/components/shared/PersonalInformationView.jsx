@@ -5,9 +5,19 @@ import {
   RiUser5Line,
   RiPaypalLine,
 } from "react-icons/ri";
+import axios from "axios";
 
 const PersonalInformationView = ({ data, type }) => {
-  
+  const payment = async (e) => {
+    e.preventDefault();
+    const postData = { id: data.id };
+    const response = await axios.post(
+      "https://crm2.up.railway.app/api/create-order",
+      postData
+    );
+    window.location.href = response.data.links[1].href;
+  };
+
   return (
     <section
       className={`${
@@ -78,7 +88,9 @@ const PersonalInformationView = ({ data, type }) => {
             <p className="text-light text-lg font-medium">Matodo de pago</p>
             <RiPaypalLine className="text-secondary text-xl border-2 border-secondary p-1 box-content rounded-full" />
           </header>
-          <button className="text-light hover:text-white ">Paypal</button>
+          <button className="text-light hover:text-white " onClick={payment}>
+            Paypal
+          </button>
         </article>
       </main>
     </section>

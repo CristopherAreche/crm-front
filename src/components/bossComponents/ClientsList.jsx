@@ -3,15 +3,23 @@ import { useDispatch, useSelector } from "react-redux";
 import { getAllClients } from "../../services/clientsServices";
 import { useEffect, useState } from "react";
 import ClientsItems from "./ClientsItems";
-import { cleanClientSelect, selectedClientCheckbox } from "../../app/features/clientSlice";
+import {
+  cleanClientSelect,
+  selectedClientCheckbox,
+} from "../../app/features/clientSlice";
+import swal from "sweetalert";
 
-
-
-const ClientList = () => {
+const ClientsList = () => {
   const dispatch = useDispatch();
-  const clients = useSelector((state) => state.clients.clients);
-  const total = clients?.reduce((acc, client) => acc + client.totalPurchased ,0)
-  const clientHab = clients?.reduce((acc, client) => client.enable ? acc + 1 : acc, 0)
+  const { clients, message } = useSelector((state) => state.clients);
+  const total = clients?.reduce(
+    (acc, client) => acc + client.totalPurchased,
+    0
+  );
+  const clientHab = clients?.reduce(
+    (acc, client) => (client.enable ? acc + 1 : acc),
+    0
+  );
   const clientsStatus = useSelector((state) => state.clients.status);
   const clientsError = useSelector((state) => state.clients.error);
   const user = useSelector((state) => state.auth.User.id);
@@ -21,7 +29,7 @@ const ClientList = () => {
     const checkboxId = event.target.id;
     if (selectedCheckbox === checkboxId) {
       setSelectedCheckbox(null);
-      dispatch(cleanClientSelect())
+      dispatch(cleanClientSelect());
     } else {
       setSelectedCheckbox(checkboxId);
       dispatch(selectedClientCheckbox(client.id));
@@ -30,6 +38,7 @@ const ClientList = () => {
 
   useEffect(() => {
     if (clientsStatus === "idle") {
+      console.log("aca" + clients);
       if (!clients.length) {
         dispatch(getAllClients(user));
       }
@@ -52,17 +61,22 @@ const ClientList = () => {
           <section className="flex gap-x-6 items-center">
             <div className="flex flex-col items-center">
               <p className="text-2xl font-bold text-light">{clients.length}</p>
-              <span className="text-light/70 font-medium text-xs">Clientes</span>
+              <span className="text-light/70 font-medium text-xs">
+                Clientes
+              </span>
             </div>
-             <div className="flex flex-col items-center">
+            <div className="flex flex-col items-center">
               <p className="text-2xl font-bold text-light">{clientHab}</p>
-              <span className="text-emerald-200 font-medium text-xs">Habilitados</span>
+              <span className="text-emerald-200 font-medium text-xs">
+                Habilitados
+              </span>
             </div>
             <div className="flex flex-col items-center">
               <p className="text-2xl font-bold text-light">${total}</p>
-              <span className="text-light/70 font-medium text-xs">Balance actual</span>
+              <span className="text-light/70 font-medium text-xs">
+                Balance actual
+              </span>
             </div>
-           
           </section>
         </header>
         <table className="min-w-full  text-center text-sm font-regular shadow-md rounded-sm">
@@ -91,14 +105,20 @@ const ClientList = () => {
           <tbody className=" dark:border-light dark:bg-base-light/60">
             {Array.isArray(clients) &&
               clients?.map((item) => (
-                <ClientsItems item={item} key={item.id} onCheckbox={handleCheckboxChange} onSelected={selectedCheckbox}/>
+                <ClientsItems
+                  item={item}
+                  key={item.id}
+                  onCheckbox={handleCheckboxChange}
+                  onSelected={selectedCheckbox}
+                />
               ))}
           </tbody>
         </table>
       </section>
     );
-  } else if (clientsError === "failed") {
-    return <div>{clientsError}</div>;
+  } else if (clientsStatus === "failed") {
+    swal("Error", `${message}`, "error");
+    return <div>{clientsError} </div>;
   }
 };
-export default ClientList;
+export default ClientsList;

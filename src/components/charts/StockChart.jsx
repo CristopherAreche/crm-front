@@ -5,8 +5,8 @@ import { RiLoader4Fill } from "react-icons/ri";
 
 Chart.register(Tooltip, Legend, ArcElement);
 
-const StockChart = ({ products = [] }) => {
-  const { status } = useSelector((state) => state.products);
+const StockChart = () => {
+  const { status, products } = useSelector((state) => state.products);
   const fiveMostStock = [...products]
     .sort((a, b) => b.quantity - a.quantity)
     .slice(0, 5);

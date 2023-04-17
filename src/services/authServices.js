@@ -6,6 +6,7 @@ import { jwtVerify } from "jose";
 import URL from "../utils/env";
 
 const API_URL_ALLS_BOSS = `${URL}/boss`;
+const API_URL_SELLER = `${URL}/salesman`;
 
 export const postUserInfo = createAsyncThunk(
   "userInfo/postUserInfo",
@@ -57,6 +58,23 @@ export const setUser = createAsyncThunk(
   }
 );
 
+export const putSeller = createAsyncThunk(`user/putSeller`, async (payload) => {
+  try {
+    const { data } = await axios.put(API_URL_SELLER, payload);
+
+    await swal(
+      "Modificación",
+      `El vendedor ${data.name} fua actualizado correctamente`,
+      "success"
+    );
+
+    return data;
+  } catch (error) {
+    await swal("Error", `${error.response.data.error}`, "error");
+    return error.response.data.error;
+  }
+});
+
 export const login = createAsyncThunk("user/login", async (data) => {
   const { email, password } = data;
   console.log("-->", data);
@@ -72,16 +90,14 @@ export const login = createAsyncThunk("user/login", async (data) => {
     if (response && response.data && response.data.token) {
       cookies.set("myToken", response.data.token, { path: "/" });
     }
-
-    if (response && response.data && response.data.token) {
-      const { payload } = await jwtVerify(
-        response.data.token,
-        new TextEncoder().encode("secret")
-      );
-      return { data: payload };
-    }
+    const { payload } = await jwtVerify(
+      response.data.token,
+      new TextEncoder().encode("secret")
+    );
+    return payload;
   } catch (error) {
     swal("Error", "Usuario o contraseña incorrectos", "error");
+    return error.response.data.error;
   }
 });
 

@@ -37,6 +37,10 @@ export const clientSlice = createSlice({
   name: "clients",
   initialState,
   reducers: {
+    cleanAllClients: (state, action) => {
+      state.clients = [];
+      state.copyClients = [];
+    },
     setClient: (state, action) => {
       state.clientRole = action.payload;
     },
@@ -135,5 +139,6 @@ export const {
   sortPurchases,
   resetClients,
   setClient,
+  cleanAllClients,
 } = clientSlice.actions;
 export default clientSlice.reducer;

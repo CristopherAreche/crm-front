@@ -40,6 +40,7 @@ const Login = () => {
     }
   }, [status, navigate]);
 
+
   return (
     <section className="flex flex-col items-start justify-center min-h-screen px-8 lg:px-20 gap-y-4">
       <div className="block lg:hidden absolute top-4 left-4">
@@ -112,9 +113,10 @@ const Login = () => {
         </div>
         <button
           type="submit"
+          disabled={status === 'loading'}
           className="text-center bg-gradient-to-r from-primary to-secondary py-2 px-4 rounded-md font-bold text-lg hover:scale-[1.02] transition-all"
         >
-          {status === "loading" ? "Cargando..." : "Iniciar sesión"}
+          {status === "loading" ? "Cargando..." : status === 'failed' ? "Iniciar sesión" : "Iniciar sesión"}
         </button>
       </form>
       <section className="flex gap-x-2 items-center justify-center w-full bg-white py-2 hover:scale-[1.03] transition-all cursor-pointer rounded-md px-2 lg:px-0">

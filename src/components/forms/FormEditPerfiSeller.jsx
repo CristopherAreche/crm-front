@@ -7,7 +7,7 @@ import {
   RiUser3Line,
 } from "react-icons/ri";
 import { useDispatch, useSelector } from "react-redux";
-import { putSeller } from "../../services/sellersServices";
+import { putSeller } from "../../services/authServices";
 import swal from "sweetalert";
 
 const FormEditPerfilSeller = ({ onClose }) => {

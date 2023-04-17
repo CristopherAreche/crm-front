@@ -26,12 +26,12 @@ ChartJS.register(
 const SalesChart = () => {
   const dispatch = useDispatch();
   const { status, bossDashboard, loading } = useSelector((state) => state.boss);
-  const annualSales = bossDashboard?.annual_sales;
+  const annualSales = bossDashboard?.annual_sales
   const user = useSelector((state) => state.auth.User);
   //const totalVentas = datosVentas.reduce((total, item) => total + item.ventas, 0)
 
   useEffect(() => {
-    if (status === "idle") dispatch(getBoss(user.id));
+    if (status === "idle") dispatch(getBoss(user.bossId));
   }, [dispatch, status, user]);
 
   if (!!loading) {
@@ -68,6 +68,14 @@ const SalesChart = () => {
     },
     color: "white",
   };
+
+  if (status === "loading") {
+    return (
+      <div className="flex justify-center w-full">
+        <RiLoader4Fill className="animate-spin text-4xl text-secondary mt-8" />
+      </div>
+    );
+  }
 
   return (
     <div className="w-full h-full rounded-md bg-base-light/30 shadow-md pt-2">

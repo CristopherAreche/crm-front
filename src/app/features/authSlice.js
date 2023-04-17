@@ -1,8 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { postUserInfo } from "../../services/authServices";
-import { setUser, putUser } from "../../services/authServices";
+import { setUser, putUser, putSeller } from "../../services/authServices";
 import { login } from "../../services/authServices";
-import { putSeller } from "../../services/sellersServices";
 
 const initialState = {
   userInfo: [],
@@ -64,13 +63,13 @@ const userInfoSlice = createSlice({
         state.status = "loading";
       })
       .addCase(login.fulfilled, (state, action) => {
+        if(typeof action.payload === 'string') {
+          state.status = 'failed'
+          return
+        }
         state.status = "succeeded";
-        state.User = action.payload.data;
+        state.User = action.payload;
       })
-      .addCase(login.rejected, (state, action) => {
-        state.status = "failed";
-        state.error = action.payload;
-      });
   },
 });
 export const { logoutUser, toggleStatusMyPerfil } = userInfoSlice.actions;

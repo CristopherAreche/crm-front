@@ -31,6 +31,7 @@ export const sellerSlice = createSlice({
     cleanSellers: (state, action) => {
       state.sellers = [];
       state.copySellers = [];
+      state.seller = {};
     },
     selectedSellerCheckbox: (state, action) => {
       state.sellerSelected = action.payload;

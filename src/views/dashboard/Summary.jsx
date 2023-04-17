@@ -14,16 +14,17 @@ import { getBoss } from "../../app/features/bossSlice";
 import { useAuth0 } from "@auth0/auth0-react";
 import { postLogin } from "../../services/authServices";
 
+
 const Summary = () => {
   const dispatch = useDispatch();
   const User = useSelector((state) => state.auth.User);
   const dashboard = useSelector((state) => state.boss.bossDashboard);
-
+  const navigate = useNavigate();
   const status = useSelector((state) => state.auth.status);
   console.log("dashboard jefe -->", dashboard);
 
   useEffect(() => {
-    if (User.enable === false) {
+    if (status==="idle") {
       navigate("/authentication");
     }
     dispatch(getBoss(User.id));

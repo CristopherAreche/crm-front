@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { selectedProductCheckbox } from "../../app/features/productsSlice";
 import { getAllProducts } from "../../services/productsServices";
+import { cleanProducts } from "../../app/features/productsSlice";
 
 const ProductList = () => {
   const dispatch = useDispatch();
@@ -20,7 +21,8 @@ const ProductList = () => {
         dispatch(getAllProducts(bossId));
       }
     }
-  }, [productStatus, dispatch, products]);
+    return () => dispatch(cleanProducts());
+  }, [dispatch]);
 
   const handleCheckboxChange = (products) => {
     setProductSelected(products.id);

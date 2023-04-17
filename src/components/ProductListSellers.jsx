@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllProducts } from "../services/productsServices";
 import ProductsCards from "./ProductsCards";
+import { cleanProducts } from "../app/features/productsSlice";
 
 const ProductListSellers = () => {
   const dispatch = useDispatch();
@@ -17,6 +18,7 @@ const ProductListSellers = () => {
         dispatch(getAllProducts(bossId));
       }
     }
+    return () => dispatch(cleanProducts());
   }, [productStatus, dispatch, products]);
 
   if (productStatus === "loading") {

@@ -77,7 +77,7 @@ export const putSeller = createAsyncThunk(`user/putSeller`, async (payload) => {
 
 export const login = createAsyncThunk("user/login", async (data) => {
   const { email, password } = data;
-  console.log("-->", data);
+
   try {
     const response = await axios.post(
       `${URL}/login`,

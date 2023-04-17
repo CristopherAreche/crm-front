@@ -20,13 +20,13 @@ const ClientList = () => {
   const [clientSelected, setClientSelected] = useState("");
   const [isSelected, setIsSelected] = useState(false);
   const [showModal, setShowModal] = useState(false);
-  const sellerId = useSelector((state) => state.auth.User.id);
+  const user = useSelector((state) => state.auth.User);
 
   useEffect(() => {
-    if (clientsStatus === "idle") {
-      dispatch(getClients(sellerId));
+    if (clientsStatus === "idle" && user?.id) {
+      dispatch(getClients(user?.id));
     }
-  }, [dispatch]);
+  }, [clientsStatus, dispatch, clients, user?.id]);
 
   const handleCheckboxChange = (client) => {
     setClientSelected(client.id);

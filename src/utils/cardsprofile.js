@@ -56,7 +56,7 @@ export const personas = [
   },
   {
     name: " Jhoan Jianpierre",
-    image: image.defaultImage,
+    image: image.han,
     github: "https://github.com/HanJian16",
     linkedIn: "https://www.linkedin.com/in/jhohan-jianpierre/",
     role: "Back-end",

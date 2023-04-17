@@ -20,8 +20,6 @@ const Inventory = () => {
   const { products } = useSelector((state) => state.products);
   const copyProducts = useSelector((state) => state.products.copyProducts);
   const { id, bossId } = useSelector((state) => state.auth.User);
-  console.log(id);
-  console.log(bossId);
 
   const dispatch = useDispatch();
 

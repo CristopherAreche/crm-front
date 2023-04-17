@@ -13,6 +13,7 @@ const RegisterActivitiesModal = ({ onClose }) => {
   const [to, setTo] = useState("");
   const [message, setMessage] = useState("");
   const dispatch = useDispatch();
+  const salesmanId = useSelector((state) => state.auth.User.id);
 
   const [quantity_sale, setQuantity_sale] = useState("");
   const [productData, setProductData] = useState({
@@ -24,7 +25,6 @@ const RegisterActivitiesModal = ({ onClose }) => {
 
   const products = useSelector((state) => state.products.products);
   const { clientDetail } = useSelector((state) => state.clients);
-  const salesmanId = "7155a9d8-acff-4cf9-93fd-385830b9bcae";
   const { id } = useParams();
 
   const handleSubmit = (e) => {

@@ -3,10 +3,10 @@ import PersonalInformationView from "../shared/PersonalInformationView";
 import CompanyInformationView from "./CompanyInformationView";
 import HeaderPerfil from "../shared/HeaderPerfil";
 import PrincipalInformation from "../shared/PrincipalInformation";
-import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { getBossById } from "../../app/features/bossSlice";
-import FormEditPerfilBoss from "../../components/forms/FormEditPerfilBoss"
+import { useState } from "react";
+import { useSelector } from "react-redux";
+
+import FormEditPerfilBoss from "../../components/forms/FormEditPerfilBoss";
 
 const MainPerfilBoss = () => {
   const [view, setView] = useState("personal");
@@ -42,20 +42,27 @@ const MainPerfilBoss = () => {
               Informacion de Empresa
             </button>
           </div>
-          <button 
+          <button
             onClick={() => setIsOpen(!isOpen)}
-            className={`${view === 'personal' ? 'bg-secondary p-3 shadow-secondary/25 hover:bg-secondary/70' : 'bg-orange-400 p-3 shadow-orange-400/25 hover:bg-orange-400/70'} transition-all rounded-full box-content shadow-md`}>
+            className={`${
+              view === "personal"
+                ? "bg-secondary p-3 shadow-secondary/25 hover:bg-secondary/70"
+                : "bg-orange-400 p-3 shadow-orange-400/25 hover:bg-orange-400/70"
+            } transition-all rounded-full box-content shadow-md`}
+          >
             <RiEdit2Line className="text-xl text-base-light" />
           </button>
         </section>
         {/* Contenido Dinamico */}
         {view === "personal" ? (
-          <PersonalInformationView data={user} type='boss' />
+          <PersonalInformationView data={user} type="boss" />
         ) : (
           <CompanyInformationView data={user} />
         )}
       </section>
-      {isOpen && <FormEditPerfilBoss inView={view} onClose={() => setIsOpen(false)}/>}
+      {isOpen && (
+        <FormEditPerfilBoss inView={view} onClose={() => setIsOpen(false)} />
+      )}
     </section>
   );
 };

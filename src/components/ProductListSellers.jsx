@@ -31,7 +31,7 @@ const ProductListSellers = () => {
     return (
       <section className="w-auto  overflow-x-auto  h-96 overflow-y-auto  overflow-hidden mb-4 text-white">
         <div className="flex flex-col gap-2">
-          {products.map((item) => (
+          {products?.map((item) => (
             <ProductsCards key={item.id} item={item} />
           ))}
         </div>

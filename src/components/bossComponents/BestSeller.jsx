@@ -11,7 +11,9 @@ const BestSeller = ({ best_salesman }) => {
       <div className="py-6 w-full text-white flex justify-center flex-col">
         <div className="flex justify-center mb-3">
           <img
-            src={bs === null ? `https://via.placeholder.com/150` : bs}
+            src={
+              !bs ? `https://cdn-icons-png.flaticon.com/512/219/219983.png` : bs
+            }
             alt="placeholder"
             className="w-28 h-28 rounded-full "
           />

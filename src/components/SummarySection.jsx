@@ -24,8 +24,8 @@ const SummarySection = ({ data, products }) => {
   );
 
   useEffect(() => {
-    if (status === "idle") dispatch(getClients(data.id));
-  }, [status, dispatch, data.id]);
+    if (status === "idle" && data?.id) dispatch(getClients(data?.id));
+  }, [status, dispatch, data?.id]);
 
   const onQuantity = (key) =>
     clients?.reduce((total, client) => (client[key] ? total + 1 : total), 0);

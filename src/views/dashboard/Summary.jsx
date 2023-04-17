@@ -8,7 +8,6 @@ import InventoryChart from "../../components/charts/InventoryChart";
 import MonthlyCompareChart from "../../components/charts/MonthlyCompareChart";
 import BestSeller from "../../components/bossComponents/BestSeller";
 import { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
 import { RiLoader4Fill } from "react-icons/ri";
 import { getBoss } from "../../app/features/bossSlice";
 
@@ -16,16 +15,12 @@ const Summary = () => {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.auth.User);
   const dashboard = useSelector((state) => state.boss.bossDashboard);
-  const navigate = useNavigate();
+
   const status = useSelector((state) => state.auth.status);
-  console.log("dashboard jefe -->", dashboard);
 
   useEffect(() => {
-    if (status === "idle") {
-      navigate("/authentication");
-    }
     dispatch(getBoss(user.id));
-  }, [user, navigate, dispatch, status]);
+  }, [user.id]);
 
   if (status === "loading") {
     return (

@@ -23,14 +23,14 @@ const Summary = () => {
   console.log("dashboard jefe -->", dashboard);
 
   useEffect(() => {
-    // if (status === "idle") {
-    //   navigate("/authentication");
-    // }
+    if (User.enable === false) {
+      navigate("/authentication");
+    }
     dispatch(getBoss(User.id));
   }, );
  
   console.log(User)
-  if (status === "loading") {
+  if (status === "loading" ) {
     return (
       <div className="flex justify-center w-full">
         <RiLoader4Fill className="animate-spin text-4xl text-secondary mt-8" />

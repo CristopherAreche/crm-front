@@ -11,21 +11,39 @@ import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { RiLoader4Fill } from "react-icons/ri";
 import { getBoss } from "../../app/features/bossSlice";
+import { useAuth0 } from "@auth0/auth0-react";
+import { postLogin } from "../../services/authServices";
 
 const Summary = () => {
   const dispatch = useDispatch();
-  const user = useSelector((state) => state.auth.User);
+  const User = useSelector((state) => state.auth.User);
   const dashboard = useSelector((state) => state.boss.bossDashboard);
   const navigate = useNavigate();
   const status = useSelector((state) => state.auth.status);
+  const { isAuthenticated, user } = useAuth0();
 
-  console.log(dashboard);
+  console.log("User*****", user);
+  console.log("isAuthenticated*****", isAuthenticated);
+
+  const register = () => {
+    const formLogin = {
+      email: user.email,
+      name: user.name,
+      nickname: user.nickname,
+    };
+    dispatch(postLogin(formLogin));
+  };
+
   useEffect(() => {
-    if (status === "idle") {
-      navigate("/authentication");
+    // if (status === "idle") {
+    //   navigate("/authentication");
+    // }
+    if (isAuthenticated) {
+      register();
     }
-    dispatch(getBoss(user.id));
-  }, [user, navigate, dispatch, status]);
+    console.log("User Auuth0******", user?.nickname);
+    dispatch(getBoss(user?.nickname ? user?.nickname : User.id));
+  }, );
 
   if (status === "loading") {
     return (
@@ -38,7 +56,7 @@ const Summary = () => {
   return (
     <main className="bg-base h-screen text-white">
       <SideBar />
-      {user.role !== "admin" ? (
+      {User.role !== "admin" ? (
         <section className=" lg:pl-72 h-[100vh] overflow-y-auto flex flex-col z-[2] w-[100vw] lg:w-auto">
           <MainSeller />
         </section>

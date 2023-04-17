@@ -11,6 +11,7 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { login } from "../../services/authServices";
 import { useEffect } from "react";
+import { useAuth0 } from "@auth0/auth0-react";
 
 const Login = () => {
   const [password, setPassWord] = useState("");
@@ -19,7 +20,9 @@ const Login = () => {
   const status = useSelector((state) => state.auth.status);
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  //const { loginWithRedirect } = useAuth0();
+  const { loginWithRedirect } = useAuth0();
+
+  
 
   const valUser = (value) => {
     setEmail(value);
@@ -125,8 +128,9 @@ const Login = () => {
         />
         <button
           className="text-base font-medium "
-          // onClick={() => loginWithRedirect({ screen_hint: "signup" })}
-          onClick={login}
+          onClick={async() => 
+          {loginWithRedirect({ screen_hint: "signup" })}
+          }
         >
           Ingresa con Google o Microsoft
         </button>

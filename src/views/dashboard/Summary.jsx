@@ -13,15 +13,14 @@ import { getBoss } from "../../app/features/bossSlice";
 
 const Summary = () => {
   const dispatch = useDispatch();
-  const user = useSelector((state) => state.auth.User);
+  const User = useSelector((state) => state.auth.User);
   const dashboard = useSelector((state) => state.boss.bossDashboard);
-
   const status = useSelector((state) => state.auth.status);
   console.log("dashboard jefe -->", dashboard);
 
   useEffect(() => {
-    dispatch(getBoss(user.id));
-  }, [user.id, dispatch]);
+    dispatch(getBoss(User.id));
+  }, [User.id, dispatch]);
   
 
   if (status === "loading") {
@@ -35,7 +34,7 @@ const Summary = () => {
   return (
     <main className="bg-base h-screen text-white">
       <SideBar />
-      {user.role !== "admin" ? (
+      {User.role !== "admin" ? (
         <section className=" lg:pl-72 h-[100vh] overflow-y-auto flex flex-col z-[2] w-[100vw] lg:w-auto">
           <MainSeller />
         </section>

@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import { postUserInfo } from "../../services/authServices";
 import { setUser, putUser, putSeller } from "../../services/authServices";
 import { login } from "../../services/authServices";
+import swal from "sweetalert";
 
 const initialState = {
   userInfo: [],
@@ -37,7 +38,7 @@ const userInfoSlice = createSlice({
       })
       .addCase(putUser.fulfilled, (state, action) => {
         console.log(action.payload);
-        state.User = action.payload;
+        if (action.payload !== undefined) state.User = action.payload;
       })
 
       .addCase(postUserInfo.pending, (state) => {

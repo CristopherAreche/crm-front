@@ -65,15 +65,19 @@ function SideBar({ typeSidebar, summary, inventory, clients, sellers }) {
             <div className="relative">
               {user.role === "admin" ? (
                 <img
-                  src="https://cdn-icons-png.flaticon.com/512/219/219983.png"
+                  src={
+                    user.logo
+                      ? user.logo
+                      : "https://cdn-icons-png.flaticon.com/512/219/219983.png"
+                  }
                   alt="placeholder"
-                  className="w-28 h-28 rounded-full "
+                  className="w-32 h-32 object-cover rounded-full "
                 />
               ) : (
                 <img
                   src={
-                    user.image
-                      ? user.image
+                    user.logo
+                      ? user.logo
                       : "https://cdn-icons-png.flaticon.com/512/219/219983.png"
                   }
                   alt="placeholder"

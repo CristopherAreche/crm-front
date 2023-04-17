@@ -6,6 +6,7 @@ import { jwtVerify } from "jose";
 import URL from "../utils/env";
 
 const API_URL_ALLS_BOSS = `${URL}/boss`;
+const API_URL_SELLER = `${URL}/salesman`;
 
 export const postUserInfo = createAsyncThunk(
   "userInfo/postUserInfo",
@@ -56,6 +57,23 @@ export const setUser = createAsyncThunk(
     }
   }
 );
+
+export const putSeller = createAsyncThunk(`user/putSeller`, async (payload) => {
+  try {
+    const { data } = await axios.put(API_URL_SELLER, payload);
+
+    await swal(
+      "Modificación",
+      `El vendedor ${data.name} fua actualizado correctamente`,
+      "success"
+    );
+
+    return data;
+  } catch (error) {
+    await swal("Error", `${error.response.data.error}`, "error");
+    return error.response.data.error;
+  }
+});
 
 export const login = createAsyncThunk("user/login", async (data) => {
   const { email, password } = data;

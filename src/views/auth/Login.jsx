@@ -11,6 +11,8 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { login } from "../../services/authServices";
 import { useEffect } from "react";
+import Cookies from 'universal-cookie';
+
 
 const Login = () => {
   const [password, setPassWord] = useState("");
@@ -20,6 +22,9 @@ const Login = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   //const { loginWithRedirect } = useAuth0();
+
+  const cookies = new Cookies();
+  const myToken = cookies.get('myToken');
 
   const valUser = (value) => {
     setEmail(value);
@@ -35,10 +40,10 @@ const Login = () => {
   };
 
   useEffect(() => {
-    if (status === "succeeded") {
+    if (myToken !== undefined) {
       navigate("/dashboard");
     }
-  }, [status, navigate]);
+  }, [myToken, navigate]);
 
 
   return (

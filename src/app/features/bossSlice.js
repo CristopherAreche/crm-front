@@ -51,7 +51,6 @@ export const bossSlice = createSlice({
         state.loading = false;
         state.status = "success";
         state.bossDashboard = action.payload;
-        console.log("boss.dashboard " + state.bossDashboard);
       })
       .addCase(getBoss.rejected, (state, action) => {
         state.loading = false;

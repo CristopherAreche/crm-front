@@ -5,7 +5,7 @@ import {
   postSeller,
   putSeller,
   getSeller,
-  toggleStatusSeller
+  toggleStatusSeller,
 } from "../../services/sellersServices";
 import {
   statePostSeller,
@@ -16,10 +16,10 @@ import {
 const initialState = {
   sellers: [],
   copySellers: [],
-  seller : {},
+  seller: {},
   message: "",
   status: "idle",
-  statusSeller: "idle" ,
+  statusSeller: "idle",
   error: null,
   sellerSelected: "",
 };
@@ -28,6 +28,10 @@ export const sellerSlice = createSlice({
   name: "sellers",
   initialState,
   reducers: {
+    cleanSellers: (state, action) => {
+      state.sellers = [];
+      state.copySellers = [];
+    },
     selectedSellerCheckbox: (state, action) => {
       state.sellerSelected = action.payload;
     },
@@ -114,16 +118,16 @@ export const sellerSlice = createSlice({
         statePutSeller(state, action);
       })
       .addCase(getSeller.pending, (state, action) => {
-        state.statusSeller = 'loading'
+        state.statusSeller = "loading";
       })
       .addCase(getSeller.fulfilled, (state, action) => {
-        state.statusSeller = 'success'
-        state.seller = action.payload
+        state.statusSeller = "success";
+        state.seller = action.payload;
       })
       .addCase(toggleStatusSeller.fulfilled, (state, action) => {
-        const status = action.payload; 
-        stateToggleStatusSeller(state, action, status)
-      })
+        const status = action.payload;
+        stateToggleStatusSeller(state, action, status);
+      });
   },
 });
 
@@ -136,5 +140,6 @@ export const {
   resetSellers,
   searchSellers,
   cleanSellertSelect,
+  cleanSellers,
 } = sellerSlice.actions;
 export default sellerSlice.reducer;

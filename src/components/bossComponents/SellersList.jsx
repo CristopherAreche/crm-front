@@ -2,7 +2,10 @@ import { RiFilter3Line, RiLoader4Fill } from "react-icons/ri";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getSellers } from "../../services/sellersServices";
-import { selectedSellerCheckbox } from "../../app/features/sellerSlice";
+import {
+  selectedSellerCheckbox,
+  cleanSellers,
+} from "../../app/features/sellerSlice";
 import ModalHistory from "./ModalHistory";
 
 const SellerList = () => {
@@ -20,7 +23,8 @@ const SellerList = () => {
         dispatch(getSellers(user));
       }
     }
-  }, [sellersStatus, dispatch, sellers, user]);
+    return () => dispatch(cleanSellers());
+  }, [dispatch]);
 
   const handleCheckboxChange = (seller) => {
     setSellerSelected(seller.id);

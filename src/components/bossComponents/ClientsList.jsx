@@ -6,6 +6,7 @@ import ClientsItems from "./ClientsItems";
 import {
   cleanClientSelect,
   selectedClientCheckbox,
+  cleanAllClients,
 } from "../../app/features/clientSlice";
 import swal from "sweetalert";
 
@@ -43,7 +44,8 @@ const ClientsList = () => {
         dispatch(getAllClients(user));
       }
     }
-  }, [clientsStatus, dispatch, clients, user]);
+    return () => dispatch(cleanAllClients());
+  }, [dispatch]);
   if (clientsStatus === "loading") {
     return (
       <div className="flex justify-center w-full">

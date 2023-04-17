@@ -20,7 +20,7 @@ const Login = () => {
   const status = useSelector((state) => state.auth.status);
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { loginWithRedirect } = useAuth0();
+  const { loginWithRedirect} = useAuth0();
 
   
 
@@ -128,9 +128,7 @@ const Login = () => {
         />
         <button
           className="text-base font-medium "
-          onClick={async() => 
-          {loginWithRedirect({ screen_hint: "signup" })}
-          }
+          onClick={async() => loginWithRedirect({ screen_hint: "signup" })}
         >
           Ingresa con Google o Microsoft
         </button>

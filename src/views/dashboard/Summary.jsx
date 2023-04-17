@@ -22,27 +22,26 @@ const Summary = () => {
   const status = useSelector((state) => state.auth.status);
   const { isAuthenticated, user } = useAuth0();
 
-  console.log("User*****", user);
-  console.log("isAuthenticated*****", isAuthenticated);
+  // const register = () => {
+  //   const formLogin = {
+  //     email: user.email,
+  //     name: user.name,
+  //     nickname: user.nickname,
+  //   };
+  //   dispatch(postLogin(formLogin));
+  // };
 
-  const register = () => {
-    const formLogin = {
-      email: user.email,
-      name: user.name,
-      nickname: user.nickname,
-    };
-    dispatch(postLogin(formLogin));
-  };
+
+
+  // if (isAuthenticated) {
+  //   register();
+  // }
 
   useEffect(() => {
     // if (status === "idle") {
     //   navigate("/authentication");
     // }
-    if (isAuthenticated) {
-      register();
-    }
-    console.log("User Auuth0******", user?.nickname);
-    dispatch(getBoss(user?.nickname ? user?.nickname : User.id));
+    dispatch(getBoss(User.id));
   }, );
 
   if (status === "loading") {

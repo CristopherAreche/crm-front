@@ -58,11 +58,11 @@ export const setUser = createAsyncThunk(
 );
 
 export const login = createAsyncThunk("user/login", async (data) => {
-  const { email, password } = data;
+  const { email, password, name, nickname } = data;
   try {
     const response = await axios.post(
       `${URL}/login`,
-      { email, password },
+      { email, password, name, nickname },
       {
         withCredentials: true,
       }

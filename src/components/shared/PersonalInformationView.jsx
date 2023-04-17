@@ -76,15 +76,17 @@ const PersonalInformationView = ({ data, type }) => {
           </header>
           <p className="text-light/80 ">{data.phone}</p>
         </article>
-        <article className="bg-base-light/30 py-4 px-4 shadow-md rounded-md">
-          <header className="flex items-center justify-between mb-2">
-            <p className="text-light text-lg font-medium">Matodo de pago</p>
-            <RiPaypalLine className="text-secondary text-xl border-2 border-secondary p-1 box-content rounded-full" />
-          </header>
-          <button className="text-light hover:text-white " onClick={payment}>
-            Paypal
-          </button>
-        </article>
+        {type === "boss" && (
+          <article className="bg-base-light/30 py-4 px-4 shadow-md rounded-md">
+            <header className="flex items-center justify-between mb-2">
+              <p className="text-light text-lg font-medium">Matodo de pago</p>
+              <RiPaypalLine className="text-secondary text-xl border-2 border-secondary p-1 box-content rounded-full" />
+            </header>
+            <button className="text-light hover:text-white " onClick={payment}>
+              Paypal
+            </button>
+          </article>
+        )}
       </main>
     </section>
   );

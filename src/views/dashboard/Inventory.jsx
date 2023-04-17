@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useCallback, useEffect } from "react";
 import SideBar from "../../components/sidebars/SideBar";
 import { useDispatch, useSelector } from "react-redux";
 import ProductList from "../../components/bossComponents/ProductList";
@@ -19,13 +19,23 @@ const Inventory = () => {
   const role = useSelector((state) => state.auth.User.role);
   const { products } = useSelector((state) => state.products);
   const copyProducts = useSelector((state) => state.products.copyProducts);
-  const bossId = useSelector((state) => state.auth.User.id);
+  const { id, bossId } = useSelector((state) => state.auth.User);
+  console.log(id);
+  console.log(bossId);
+
   const dispatch = useDispatch();
 
+  const fetchData = useCallback(() => {
+    if (role === "admin") {
+      dispatch(getAllProducts(id));
+    } else {
+      dispatch(getAllProducts(bossId));
+    }
+  }, [dispatch, role, id, bossId]);
+
   useEffect(() => {
-    dispatch(getAllProducts(bossId));
-  }, [dispatch]);
-  console.log("-->", products);
+    fetchData();
+  }, [fetchData]);
 
   return (
     <main className=" h-screen  text-white ">

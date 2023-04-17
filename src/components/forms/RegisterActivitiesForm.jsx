@@ -205,13 +205,11 @@ const RegisterActivitiesModal = ({ onClose }) => {
                   </thead>
                   <tbody className="">
                     {productSelected.map((p, index) => (
-                      <>
-                        <tr className="border-b p-2">
-                          <td>{p.name}</td>
-                          <td> {p.quantity_sale}</td>
-                          <td>$ {p.price_sale}</td>
-                        </tr>
-                      </>
+                      <tr key={index} className="border-b p-2">
+                        <td>{p.name}</td>
+                        <td> {p.quantity_sale}</td>
+                        <td>$ {p.price_sale}</td>
+                      </tr>
                     ))}
                   </tbody>
                 </table>

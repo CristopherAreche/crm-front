@@ -26,6 +26,10 @@ const userInfoSlice = createSlice({
     toggleStatusMyPerfil: (state, action) => {
       state.User.enable = !state.User.enable;
     },
+
+    persistenceLogin: (state, action) => {
+      state.User = action.payload
+    }
   },
   extraReducers: (builder) => {
     builder
@@ -68,10 +72,13 @@ const userInfoSlice = createSlice({
           state.status = 'failed'
           return
         }
+        
+        
+        
         state.status = "succeeded";
         state.User = action.payload;
       })
   },
 });
-export const { logoutUser, toggleStatusMyPerfil } = userInfoSlice.actions;
+export const { logoutUser, toggleStatusMyPerfil, persistenceLogin } = userInfoSlice.actions;
 export default userInfoSlice.reducer;

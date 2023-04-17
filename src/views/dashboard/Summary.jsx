@@ -16,16 +16,14 @@ const Summary = () => {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.auth.User);
   const dashboard = useSelector((state) => state.boss.bossDashboard);
-  const navigate = useNavigate();
+
   const status = useSelector((state) => state.auth.status);
   console.log("dashboard jefe -->", dashboard);
 
-  useEffect(() => {
-    if (status === "idle") {
-      navigate("/authentication");
-    }
-    dispatch(getBoss(user.id));
-  }, [user, navigate, dispatch, status]);
+  // useEffect(() => {
+  //   dispatch(getBoss(user.id));
+  // }, [user.id]);
+  
 
   if (status === "loading") {
     return (

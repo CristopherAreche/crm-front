@@ -1,4 +1,4 @@
-import { RiCheckboxCircleLine, RiLoader4Fill, RiStarFill, RiStarLine } from "react-icons/ri";
+import { RiLoader4Fill, RiStarFill, RiStarLine } from "react-icons/ri";
 // import { useAuth0 } from "@auth0/auth0-react";
 import SalesChart from "./charts/SalesChart";
 import StockChart from "./charts/StockChart";
@@ -6,9 +6,12 @@ import ToDoList from "./ToDoList";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import SummarySection from "./SummarySection";
-import productImage from "../assets/png images/productImage.png";
 import ProductsCards from "./ProductsCards";
 import { getAllProducts } from "../services/productsServices";
+import Cookies from 'universal-cookie';
+import { jwtVerify } from "jose";
+import { useNavigate } from "react-router-dom";
+import { persistenceLogin } from "../app/features/authSlice";
 
 const MainSeller = () => {
   // const { User } = useAuth0();
@@ -16,10 +19,35 @@ const MainSeller = () => {
   const { products } = useSelector((state) => state.products);
   const statusProducts = useSelector((state) => state.products.status);
   const {User, status} = useSelector((state) => state.auth);
+  const navigate = useNavigate();
+
+  const cookies = new Cookies();
+  const myToken = cookies.get('myToken');
+  
+
+  const persitenceAuth = async (token) => {
+    const { payload } = await jwtVerify(
+      token,
+      new TextEncoder().encode("secret")
+    );
+    return payload
+  }
 
   useEffect(() => {
-    if (statusProducts === "idle") dispatch(getAllProducts(User.bossId));
-  }, [dispatch, statusProducts, User.bossId]);
+    if (myToken === undefined) {
+      navigate('/authentication')
+    } else {
+      persitenceAuth(myToken).then(res => dispatch(persistenceLogin(res)))
+    }
+  }, [dispatch, myToken, navigate]);
+
+
+  useEffect(() => {
+    if (statusProducts === "idle" && User?.bossId) {
+      dispatch(getAllProducts(User.bossId));
+    }
+  }, [dispatch, statusProducts, User?.bossId]);
+  
 
   const todayFormated = () => {
     const dateToday = new Date();
@@ -45,6 +73,8 @@ const MainSeller = () => {
 
     return `Hoy, ${day} ${mounth} ${year}`;
   };
+
+
 
   return (
     <section className="py-6 px-12 z-[2]  grid gird-cols-1 lg:grid-cols-6">

@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import { postUserInfo } from "../../services/authServices";
 import { setUser, putUser, putSeller } from "../../services/authServices";
 import { login } from "../../services/authServices";
+import swal from "sweetalert";
 
 const initialState = {
   userInfo: [],
@@ -25,6 +26,10 @@ const userInfoSlice = createSlice({
     toggleStatusMyPerfil: (state, action) => {
       state.User.enable = !state.User.enable;
     },
+
+    persistenceLogin: (state, action) => {
+      state.User = action.payload
+    }
   },
   extraReducers: (builder) => {
     builder
@@ -33,7 +38,7 @@ const userInfoSlice = createSlice({
       })
       .addCase(putUser.fulfilled, (state, action) => {
         console.log(action.payload);
-        state.User = action.payload;
+        if (action.payload !== undefined) state.User = action.payload;
       })
 
       .addCase(postUserInfo.pending, (state) => {
@@ -67,10 +72,13 @@ const userInfoSlice = createSlice({
           state.status = 'failed'
           return
         }
+        
+        
+        
         state.status = "succeeded";
         state.User = action.payload;
       })
   },
 });
-export const { logoutUser, toggleStatusMyPerfil } = userInfoSlice.actions;
+export const { logoutUser, toggleStatusMyPerfil, persistenceLogin } = userInfoSlice.actions;
 export default userInfoSlice.reducer;

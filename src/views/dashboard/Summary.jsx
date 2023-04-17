@@ -18,7 +18,7 @@ const Summary = () => {
   const dispatch = useDispatch();
   const User = useSelector((state) => state.auth.User);
   const dashboard = useSelector((state) => state.boss.bossDashboard);
-  const navigate = useNavigate();
+
   const status = useSelector((state) => state.auth.status);
   console.log("dashboard jefe -->", dashboard);
 

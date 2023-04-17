@@ -12,6 +12,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { login } from "../../services/authServices";
 import { useEffect } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
+import Cookies from 'universal-cookie';
+
 
 const Login = () => {
   const [password, setPassWord] = useState("");
@@ -23,6 +25,9 @@ const Login = () => {
   const { loginWithRedirect} = useAuth0();
 
   
+
+  const cookies = new Cookies();
+  const myToken = cookies.get('myToken');
 
   const valUser = (value) => {
     setEmail(value);
@@ -38,10 +43,10 @@ const Login = () => {
   };
 
   useEffect(() => {
-    if (status === "succeeded") {
+    if (myToken !== undefined) {
       navigate("/dashboard");
     }
-  }, [status, navigate]);
+  }, [myToken, navigate]);
 
 
   return (

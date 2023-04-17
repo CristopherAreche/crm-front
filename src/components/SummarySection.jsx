@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useEffect } from "react";
 import {
   RiAddFill,
@@ -9,9 +9,11 @@ import {
 } from "react-icons/ri";
 import { getClients } from "../services/clientsServices";
 import { useDispatch, useSelector } from "react-redux";
+import CreateClient from "./forms/CreateClient";
 
 const SummarySection = ({ data, products }) => {
   const dispatch = useDispatch();
+  const [showModal, setShowModal] = useState(false)
   const { status, clients } = useSelector((state) => state.clients);
   const statusProducts = useSelector((state) => state.products.status);
   const cantDes = clients?.reduce(
@@ -45,8 +47,6 @@ const SummarySection = ({ data, products }) => {
     );
   }
 
-  console.log(clients)
-
   return (
     <section className="grid grid-cols-2 lg:grid-cols-3 gap-4 mb-4">
       <article className="bg-base-light/30 shadow-md rounded-md py-2 px-3 flex flex-col items-start gap-y-2">
@@ -65,7 +65,7 @@ const SummarySection = ({ data, products }) => {
             <p className="text-sm font-medium text-light/80">
               Implemente clientes
             </p>
-            <button className="bg-emerald-400 p-2 rounded-md flex items-center gap-x-2 hover:bg-emerald-500 transition-colors">
+            <button className="bg-emerald-400 p-2 rounded-md flex items-center gap-x-2 hover:bg-emerald-500 transition-colors"  onClick={() => setShowModal(!showModal)}>
               <RiAddFill />
             </button>
           </div>
@@ -120,6 +120,7 @@ const SummarySection = ({ data, products }) => {
           </p>
         </footer>
       </article>
+      <CreateClient isVisible={showModal} onClose={() => setShowModal(false)} />
     </section>
   );
 };

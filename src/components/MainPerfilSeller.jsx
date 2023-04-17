@@ -1,19 +1,12 @@
 import { RiStarFill, RiStarLine, RiEdit2Line } from "react-icons/ri";
-import { useDispatch, useSelector } from "react-redux";
-import HeaderPerfil from "./shared/HeaderPerfil";
+import { useSelector } from "react-redux";
 import PrincipalInformation from "./shared/PrincipalInformation";
 import PersonalInformationView from "./shared/PersonalInformationView";
 import FormEditPerfilSeller from "./forms/FormEditPerfiSeller";
 import { useState } from "react";
-import { getSeller } from "../services/sellersServices";
 
 const MainPerfilSeller = () => {
   const user = useSelector((state) => state.auth.User);
-  // const user = useSelector((state) => state.sellers.seller);
-
-  // const dispatch = useDispatch();
-
-  // dispatch(getSeller({ bossId, id }));
 
   const [isOpen, setIsOpen] = useState(false);
 

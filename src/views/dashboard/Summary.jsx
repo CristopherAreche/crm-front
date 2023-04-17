@@ -8,7 +8,6 @@ import InventoryChart from "../../components/charts/InventoryChart";
 import MonthlyCompareChart from "../../components/charts/MonthlyCompareChart";
 import BestSeller from "../../components/bossComponents/BestSeller";
 import { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
 import { RiLoader4Fill } from "react-icons/ri";
 import { getBoss } from "../../app/features/bossSlice";
 
@@ -20,9 +19,9 @@ const Summary = () => {
   const status = useSelector((state) => state.auth.status);
   console.log("dashboard jefe -->", dashboard);
 
-  // useEffect(() => {
-  //   dispatch(getBoss(user.id));
-  // }, [user.id]);
+  useEffect(() => {
+    dispatch(getBoss(user.id));
+  }, [user.id, dispatch]);
   
 
   if (status === "loading") {

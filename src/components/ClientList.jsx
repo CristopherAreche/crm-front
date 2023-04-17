@@ -37,6 +37,11 @@ const ClientList = () => {
     }
   };
 
+  // const onCreateClient = () => {
+  //   dispatch(cleanClientSelect());
+  //   setShowModal(true);
+  // };
+
   if (clientsStatus === "loading") {
     return (
       <div className="flex justify-center w-full">
@@ -53,9 +58,12 @@ const ClientList = () => {
               obtenga uno.
             </h3>
             <div className="flex gap-x-12 items-center">
-              <button className="group rounded-xl py-2 px-3 shadow-emerald-400/20 hover:scale-[1.03] hover:bg-emerald-400/80 transition-all shadow-md group bg-emerald-400 relative" onClick={() => setShowModal(!showModal)}>
+              <button
+                className="group rounded-xl py-2 px-3 shadow-emerald-400/20 hover:scale-[1.03] hover:bg-emerald-400/80 transition-all shadow-md group bg-emerald-400 relative"
+                onClick={() => setShowModal(!showModal)}
+              >
                 <RiAddFill className="text-2xl" />
-                <span className="absolute opacity-0 group-hover:opacity-100  px-2 py-1 bg-gray-700 rounded-lg text-center text-white text-sm ">
+                <span className="absolute hidden group-hover:flex -left-3 -top-2 -translate-y-full w-auto px-2 py-1 bg-gray-700 rounded-lg text-center text-white text-sm after:content-[''] after:absolute after:left-1/2 after:top-[100%] after:-translate-x-1/2 after:border-8 after:border-x-transparent after:border-b-transparent after:border-t-gray-700">
                   Agregar
                 </span>
               </button>
@@ -142,7 +150,10 @@ const ClientList = () => {
           </>
         )}
 
-        <CreateClient isVisible={showModal} onClose={() => setShowModal(false)} />
+        <CreateClient
+          isVisible={showModal}
+          onClose={() => setShowModal(false)}
+        />
       </section>
     );
   } else if (clientsError === "failed") {

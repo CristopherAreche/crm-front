@@ -9,7 +9,7 @@ const CardProfile = ({ image, name, role, github, linkedIn }) => {
       <div className=" w-[14em] bg-base-light shadow-xl rounded-lg py-3 px-4">
         <div className="photo-wrapper p-2">
           <img
-            className="w-32 h-32 rounded-full mx-auto"
+            className="w-32 h-32 object-cover rounded-full mx-auto"
             src={image}
             alt={name}
           />

@@ -11,7 +11,7 @@ export const getAllProducts = createAsyncThunk(
       const { data } = await axios.get(`${API_URL_PRODUCTS}?bossId=${bossId}`);
       return data;
     } catch (error) {
-      console.log(error);
+      console.alert(error);
     }
   }
 );

@@ -39,7 +39,6 @@ const ClientsList = () => {
 
   useEffect(() => {
     if (clientsStatus === "idle") {
-      console.log("aca" + clients);
       if (!clients.length) {
         dispatch(getAllClients(user));
       }

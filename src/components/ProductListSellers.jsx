@@ -1,5 +1,5 @@
-import { RiShoppingBag3Fill, RiLoader4Fill } from "react-icons/ri";
-import React, { useEffect, useState } from "react";
+import { RiLoader4Fill } from "react-icons/ri";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllProducts } from "../services/productsServices";
 import ProductsCards from "./ProductsCards";
@@ -10,7 +10,7 @@ const ProductListSellers = () => {
   const products = useSelector((state) => state.products.products);
   const productStatus = useSelector((state) => state.products.status);
   const productError = useSelector((state) => state.products.error);
-  const bossId = useSelector((state) => state.auth.User.id);
+  const { bossId } = useSelector((state) => state.auth.User);
 
   useEffect(() => {
     if (productStatus === "idle") {
@@ -19,7 +19,7 @@ const ProductListSellers = () => {
       }
     }
     return () => dispatch(cleanProducts());
-  }, [productStatus, dispatch, products]);
+  }, [dispatch]);
 
   if (productStatus === "loading") {
     return (
@@ -31,7 +31,7 @@ const ProductListSellers = () => {
     return (
       <section className="w-auto  overflow-x-auto  h-96 overflow-y-auto  overflow-hidden mb-4 text-white">
         <div className="flex flex-col gap-2">
-          {products.map((item) => (
+          {products?.map((item) => (
             <ProductsCards key={item.id} item={item} />
           ))}
         </div>

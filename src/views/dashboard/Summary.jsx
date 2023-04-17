@@ -16,12 +16,10 @@ const Summary = () => {
   const User = useSelector((state) => state.auth.User);
   const dashboard = useSelector((state) => state.boss.bossDashboard);
   const status = useSelector((state) => state.auth.status);
-  console.log("dashboard jefe -->", dashboard);
 
   useEffect(() => {
     dispatch(getBoss(User.id));
   }, [User.id, dispatch]);
-  
 
   if (status === "loading") {
     return (

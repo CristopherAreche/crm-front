@@ -93,9 +93,10 @@ export const login = createAsyncThunk("user/login", async (data) => {
       response.data.token,
       new TextEncoder().encode("secret")
     );
-    return { data: payload };
+    return  payload ;
   } catch (error) {
     swal("Error", "Usuario o contraseña incorrectos", "error");
+    return error.response.data.error;
   }
 });
 

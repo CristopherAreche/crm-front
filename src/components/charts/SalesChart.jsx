@@ -31,7 +31,7 @@ const SalesChart = () => {
   //const totalVentas = datosVentas.reduce((total, item) => total + item.ventas, 0)
 
   useEffect(() => {
-    if (status === "idle") dispatch(getBoss(user.id));
+    if (status === "idle") dispatch(getBoss(user.bossId));
   }, [dispatch, status, user]);
 
   if (!!loading) {
@@ -68,6 +68,13 @@ const SalesChart = () => {
     },
     color: "white",
   };
+
+  if(!annualSales.length && status !== 'loading') {
+    return(<div className="w-full h-full rounded-md bg-base-light/30 shadow-md pt-2">
+      <h2 className="text-lg font-medium text-light px-2">Cuando usted comienze sus ventas apareceran su grafica</h2>
+      <img src='https://static.vecteezy.com/system/resources/previews/001/187/079/non_2x/chart-png.png' alt='graphic vector' className='w-40 h-40 mx-auto '/>
+    </div>)
+  }
 
   return (
     <div className="w-full h-full rounded-md bg-base-light/30 shadow-md pt-2">

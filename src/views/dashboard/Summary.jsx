@@ -20,22 +20,7 @@ const Summary = () => {
   const dashboard = useSelector((state) => state.boss.bossDashboard);
   const navigate = useNavigate();
   const status = useSelector((state) => state.auth.status);
-  const { isAuthenticated, user } = useAuth0();
-
-  // const register = () => {
-  //   const formLogin = {
-  //     email: user.email,
-  //     name: user.name,
-  //     nickname: user.nickname,
-  //   };
-  //   dispatch(postLogin(formLogin));
-  // };
-
-
-
-  // if (isAuthenticated) {
-  //   register();
-  // }
+  console.log("dashboard jefe -->", dashboard);
 
   useEffect(() => {
     // if (status === "idle") {

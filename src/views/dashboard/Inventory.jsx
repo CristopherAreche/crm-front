@@ -25,7 +25,7 @@ const Inventory = () => {
   useEffect(() => {
     dispatch(getAllProducts(bossId));
   }, [dispatch]);
-  console.log(products);
+  console.log("-->", products);
 
   return (
     <main className=" h-screen  text-white ">

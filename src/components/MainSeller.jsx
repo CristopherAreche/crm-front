@@ -1,4 +1,4 @@
-import { RiCheckboxCircleLine, RiLoader4Fill } from "react-icons/ri";
+import { RiCheckboxCircleLine, RiLoader4Fill, RiStarFill, RiStarLine } from "react-icons/ri";
 // import { useAuth0 } from "@auth0/auth0-react";
 import SalesChart from "./charts/SalesChart";
 import StockChart from "./charts/StockChart";
@@ -11,15 +11,15 @@ import ProductsCards from "./ProductsCards";
 import { getAllProducts } from "../services/productsServices";
 
 const MainSeller = () => {
-  // const { user } = useAuth0();
+  // const { User } = useAuth0();
   const dispatch = useDispatch();
   const { products } = useSelector((state) => state.products);
   const statusProducts = useSelector((state) => state.products.status);
-  const user = useSelector((state) => state.auth.User);
+  const {User, status} = useSelector((state) => state.auth);
 
   useEffect(() => {
-    if (statusProducts === "idle") dispatch(getAllProducts(user.bossId));
-  }, [dispatch, statusProducts, user.bossId]);
+    if (statusProducts === "idle") dispatch(getAllProducts(User.bossId));
+  }, [dispatch, statusProducts, User.bossId]);
 
   const todayFormated = () => {
     const dateToday = new Date();
@@ -55,7 +55,7 @@ const MainSeller = () => {
           <h2 className="text-3xl font-medium text-light">
             Buenos dias,{" "}
             <span className="bg-gradient-to-r from-primary  to-secondary text-transparent bg-clip-text font-bold">
-              {user?.name}
+              {User?.name}
             </span>
           </h2>
           <p className="text-light/80 text-sm">{todayFormated()}</p>
@@ -64,7 +64,7 @@ const MainSeller = () => {
           </p>
         </section>
         {/* Section Resume */}
-        <SummarySection data={user} products={products} />
+        <SummarySection data={User} products={products} />
 
         {/* Section Estadistics Sales */}
         <section className="flex flex-col items-start gap-y-2 pr-0 lg:pr-12 w-full pt-0  ">
@@ -109,8 +109,46 @@ const MainSeller = () => {
           <h5 className="text-light font-medium">5 Productos con mas Stock</h5>
           <StockChart />
         </section>
+
+        <section className="">
+           {
+            !User.avgFeedback && status !== 'loading'
+            ?
+            <section className="bg-gradient-to-r from-primary to-secondary relative w-full h-52 flex justify-center items-center cursor-pointer group rounded-md">
+             <div className="absolute top-0 left-0 bg-black/30 w-full h-full  opacity-0 translate-y-1 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-200 ease-in-out rounded-md shadow-md flex flex-col gap-y-4 items-start justify-center px-6">
+            <div className="flex items-start flex-col  w-full  ">
+             <h5 className='text-lg text-orange-300 font-medium'>Usted no tiene feedbacks</h5>
+             <p className="text-light font-medium">Comienze a obtenerlos y obten grandes recompensas!</p>
+             <div className="flex gap-x-2 items-center text-yellow-300">
+              <RiStarFill/>
+              <RiStarFill/>
+              <RiStarFill/>
+              <RiStarFill/>
+              <RiStarFill/>
+             </div>
+            </div>
+            </div>
+          <img
+            src='https://img.freepik.com/free-vector/organic-flat-feedback-concept_23-2148957030.jpg?w=740&t=st=1681751480~exp=1681752080~hmac=400658311d24c14e51ef7ece4af074b5151795cbf81211cb28676f3dc4aa71ff'
+            alt="not feedback vector"
+            className="w-44 h-44 group-hover:w-36 group-hover:h-36 transition-all duration-200 ease-in-out "
+          />
+        </section>
+            :
+           <>
+             {[...new Array(5)].map((star, index) => {
+              return index < User.avgFeedback ? (
+                <RiStarFill key={index} />
+              ) : (
+                <RiStarLine key={index} />
+              );
+            })}
+           </>
+
+           }
+        </section>
         {/* Upgrade Plan Section */}
-        <section className="bg-gradient-to-r from-primary to-secondary relative w-full h-52 flex justify-center items-center cursor-pointer group rounded-md">
+        {/* <section className="bg-gradient-to-r from-primary to-secondary relative w-full h-52 flex justify-center items-center cursor-pointer group rounded-md">
           <div className="absolute top-0 left-0 bg-black/30 w-full h-full  opacity-0 translate-y-1 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-200 ease-in-out rounded-md shadow-md flex flex-col gap-y-4 items-start justify-center px-6">
             <div className="flex justify-between  w-full items-center ">
               <h5 className="text-xl font-medium ">
@@ -144,7 +182,7 @@ const MainSeller = () => {
             alt="product 3d icon"
             className="w-44 h-44 group-hover:w-36 group-hover:h-36 transition-all duration-200 ease-in-out "
           />
-        </section>
+        </section> */}
       </section>
     </section>
   );

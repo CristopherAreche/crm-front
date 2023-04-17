@@ -19,7 +19,6 @@ const Summary = () => {
   const navigate = useNavigate();
   const status = useSelector((state) => state.auth.status);
 
-  console.log(dashboard);
   useEffect(() => {
     if (status === "idle") {
       navigate("/authentication");

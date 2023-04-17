@@ -82,13 +82,13 @@ const NavModal = ({ isOpen, onOpen }) => {
       </ul>
       <div className="flex gap-x-8 w-full justify-center items-center">
         <Link
-          to="/auth/register"
+          to="/authentication/register"
           className="bg-gradient-to-r from-primary to-secondary px-2 py-1 rounded-md text-white font-medium text-xl hover:scale-[1.03] transition-all"
         >
           Empezar Ahora
         </Link>
         <Link
-          to="/auth"
+          to="/authentication"
           className=" flex gap-x-1 items-center text-white text-xl font-medium hover:text-light transition-colors border border-secondary px-2 py-1 rounded-md"
         >
           <RiUserLine className="text-2xl" /> LOG IN

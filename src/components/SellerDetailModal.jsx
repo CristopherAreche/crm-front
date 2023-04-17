@@ -1,14 +1,11 @@
 import { useEffect, useState } from "react";
-import validation from "../utils/validation";
 import { useDispatch, useSelector } from "react-redux";
 import {
   RiUserLine,
   RiPhoneLine,
   RiMailLine,
   RiHome2Line,
-  RiImageAddFill,
 } from "react-icons/ri";
-import swal from "sweetalert";
 
 function SellerDetailModal({ isVisible, onClose }) {
   const dispatch = useDispatch();
@@ -20,8 +17,6 @@ function SellerDetailModal({ isVisible, onClose }) {
   const handleClose = (e) => {
     if (e.target.id === "wrapper") onClose();
   };
-
-  const [file, setFile] = useState(null);
 
   const [sellerData, setSellerData] = useState({
     name: "",
@@ -57,31 +52,15 @@ function SellerDetailModal({ isVisible, onClose }) {
       onClick={handleClose}
     >
       {" "}
-      <form className="w-96 bg-base-light/70 py-6 px-4 rounded-md flex flex-col gap-y-4">
-        <h4 className="text-xl font-medium text-light">
-          {sellerId ? "Actualizar vendedor" : "Guardar un vendedor"}
-        </h4>
+      <form className="w-96 bg-base-light/70 py-6 px-6 rounded-md flex flex-col gap-y-4">
+        <h4 className="text-xl font-medium text-light">Detalles</h4>
         <section className="flex flex-col gap-y-2">
           <label className="text-sm font-medium text-light" htmlFor="name">
             Nombre completo:
           </label>
           <div className="relative">
-            <label>{sellerData.name}</label>
+            <label className="mx-[2em]">{sellerData.name}</label>
             <RiUserLine className="absolute top-1/2 -translate-y-1/2 left-2 text-xl text-secondary " />
-          </div>
-        </section>
-
-        <section className="flex flex-col gap-y-2">
-          <label className="text-sm font-medium text-light" htmlFor="image">
-            Imagen:{" "}
-          </label>
-          <div className="relative">
-            <input
-              className="bg-base-light/70 py-1 rounded-md outline-none pl-8 pr-4 w-full"
-              type="file"
-              name="image"
-            />
-            <RiImageAddFill className="absolute top-1/2 -translate-y-1/2 left-2 text-xl text-secondary " />
           </div>
         </section>
 
@@ -90,7 +69,7 @@ function SellerDetailModal({ isVisible, onClose }) {
             Teléfono:{" "}
           </label>
           <div className="relative">
-            <label>{sellerData.phone}</label>
+            <label className="mx-[2em]">{sellerData.phone}</label>
             <RiPhoneLine className="absolute top-1/2 -translate-y-1/2 left-2 text-xl text-secondary " />
           </div>
         </section>
@@ -100,7 +79,7 @@ function SellerDetailModal({ isVisible, onClose }) {
             Correo:{" "}
           </label>
           <div className="relative">
-            <label>{sellerData.email}</label>
+            <label className="mx-[2em]">{sellerData.email}</label>
             <RiMailLine className="absolute top-1/2 -translate-y-1/2 left-2 text-xl text-secondary " />
           </div>
         </section>
@@ -110,12 +89,12 @@ function SellerDetailModal({ isVisible, onClose }) {
             Dirección:{" "}
           </label>
           <div className="relative">
-            <label>{sellerData.address}</label>
+            <label className="mx-[2em]">{sellerData.address}</label>
             <RiHome2Line className="absolute top-1/2 -translate-y-1/2 left-2 text-xl text-secondary " />
           </div>
         </section>
 
-        <footer className="flex justify-between items-center">
+        <footer className="flex justify-center items-center">
           <button
             type="button"
             className="p-2 rounded-md font-medium text-base bg-gray-300 shadow-md shadow-gray-300/20 hover:bg-gray-300/80 transition-all"

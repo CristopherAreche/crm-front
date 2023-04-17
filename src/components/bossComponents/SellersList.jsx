@@ -8,7 +8,7 @@ import {
 } from "../../app/features/sellerSlice";
 import ModalHistory from "./ModalHistory";
 import SellerDetailModal from "../SellerDetailModal";
-
+import { image } from "../../assets/profilePictures";
 const SellerList = () => {
   const dispatch = useDispatch();
   const sellers = useSelector((state) => state.sellers.sellers);
@@ -94,8 +94,13 @@ const SellerList = () => {
                     />
                   </td>
                   <td className="px-6 py-4 flex justify-center">
-                    <button onClick={() => setShowModal(true)}> </button>
-                    <img className="h-24 px-2 py-2 " src={item?.image} alt="" />
+                    <button onClick={() => setShowModal(true)}>
+                      <img
+                        className="h-24 px-2 py-2 "
+                        src={item?.image ? item?.image : image?.defaultImage}
+                        alt=""
+                      />{" "}
+                    </button>
                   </td>
                   <td className="whitespace-nowrap  px-6 py-4  font-medium text-secondary hover:text-secondary/80 hover:underline transition-all">
                     {/* <Link to={`/vendedor/${item.id}`}>{item.name}</Link> */}

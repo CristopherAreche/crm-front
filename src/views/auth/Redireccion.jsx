@@ -2,12 +2,13 @@ import React from 'react'
 import { useEffect } from 'react'
 import { useAuth0 } from "@auth0/auth0-react";
 import { login } from "../../services/authServices";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from 'react-router-dom';
 
 
 const Redireccion = () => {
     const { user, isAuthenticated } = useAuth0();
+    const User=useSelector(state=>state.auth.user)
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
@@ -23,11 +24,12 @@ const Redireccion = () => {
     console.log(isAuthenticated);
       if (isAuthenticated) {
         register();
-        navigate("/dashboard");
       }
-
+    console.log("GLOBAL USER ***********",User);
+ 
   return (
-    <div>Redireccionando...</div>
+    
+    <div>{navigate("/dashboard")}</div>
   )
 }
 

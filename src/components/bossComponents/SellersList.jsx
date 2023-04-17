@@ -18,11 +18,11 @@ const SellerList = () => {
   const [isShow, setIsShow] = useState(false);
   const user = useSelector((state) => state.auth.User.id);
   useEffect(() => {
-    if (sellersStatus === "idle") {
-      if (!sellers.length) {
-        dispatch(getSellers(user));
-      }
-    }
+    dispatch(getSellers(user));
+    // if (sellersStatus === "idle") {
+    //   if (!sellers.length) {
+    //   }
+    // }
     return () => dispatch(cleanSellers());
   }, [dispatch]);
 

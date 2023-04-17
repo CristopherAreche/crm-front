@@ -4,6 +4,7 @@ import { useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import { useSelector } from "react-redux";
 
 const RegisterTaskForm = ({ onClose }) => {
   const [description, setDescription] = useState("");
@@ -11,7 +12,7 @@ const RegisterTaskForm = ({ onClose }) => {
   const [selectedDate, setSelectedDate] = useState(new Date());
   const dispatch = useDispatch();
 
-  const salesmanId = "7155a9d8-acff-4cf9-93fd-385830b9bcae";
+  const salesmanId = useSelector((state) => state.auth.User.id);
   const { id } = useParams();
 
   const handleSubmit = (e) => {
@@ -36,6 +37,7 @@ const RegisterTaskForm = ({ onClose }) => {
         <div className=" flex flex-col justify-center items-center w-[100%] h-[85%]">
           <div className="flex  flex-col justify-center items-center gap-y-3">
             {/* text */}
+            <p className="text-white font-bold text-[1.2em]">Crear Tarea</p>
             <div className="w-[100%]">
               <span className="text-white font-bold mb-2">Descripcion </span>
               <textarea
@@ -52,8 +54,8 @@ const RegisterTaskForm = ({ onClose }) => {
                 Fecha
               </label>
               <DatePicker
-                // value={selectedDate}
-                // selected={selectedDate}
+                value={selectedDate}
+                selected={selectedDate}
                 onChange={(date) => setSelectedDate(date)}
                 dateFormat="dd/MM/yyyy"
                 className="bg-gray-700 text-white appearance-none border rounded w-full py-2 px-6 leading-tight focus:outline-none focus:shadow-outline text-center"

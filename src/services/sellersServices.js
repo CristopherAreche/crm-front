@@ -9,6 +9,7 @@ export const getSellers = createAsyncThunk(
   "sellers/getSellers",
   async (bossId) => {
     const res = await axios.get(`${API_URL_SELLER}?bossId=${bossId}`);
+    console.log("imaaaginateee --->", res.data);
     return res.data;
   }
 );

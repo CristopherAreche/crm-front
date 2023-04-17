@@ -8,9 +8,7 @@ import FormSeller from "../../components/forms/FormSeller";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import {
-  toggleStatusSeller
-} from "../../services/sellersServices";
+import { toggleStatusSeller } from "../../services/sellersServices";
 import { cleanSellertSelect } from "../../app/features/sellerSlice";
 
 const BossFilterBottom = () => {
@@ -19,8 +17,10 @@ const BossFilterBottom = () => {
   const dispatch = useDispatch();
   const { sellerSelected } = useSelector((state) => state.sellers);
 
-  const onEnabled = () => dispatch(toggleStatusSeller({enable : true, id : sellerSelected}))
-  const onDisabled = () => dispatch(toggleStatusSeller({enable : false, id : sellerSelected}))
+  const onEnabled = () =>
+    dispatch(toggleStatusSeller({ enable: true, id: sellerSelected }));
+  const onDisabled = () =>
+    dispatch(toggleStatusSeller({ enable: false, id: sellerSelected }));
 
   const onCreate = () => {
     dispatch(cleanSellertSelect());

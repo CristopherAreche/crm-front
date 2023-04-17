@@ -17,6 +17,7 @@ const Redireccion = () => {
           email: user.email,
           name: user.name,
           nickname: user.nickname,
+          password:"12345"
         };
         dispatch(login(formLogin));
       };

@@ -28,7 +28,8 @@ const Summary = () => {
     // }
     dispatch(getBoss(User.id));
   }, );
-
+ 
+  console.log(User)
   if (status === "loading") {
     return (
       <div className="flex justify-center w-full">

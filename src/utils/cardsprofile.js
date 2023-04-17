@@ -48,7 +48,7 @@ export const personas = [
   },
   {
     name: " Matias Vazquez",
-    image: image.defaultImage,
+    image: image.matias,
     github: "https://github.com/CristopherAreche",
     linkedIn:
       "https://www.linkedin.com/in/matias-exequiel-vazquez-jaque-b42595254/",

@@ -8,30 +8,22 @@ import InventoryChart from "../../components/charts/InventoryChart";
 import MonthlyCompareChart from "../../components/charts/MonthlyCompareChart";
 import BestSeller from "../../components/bossComponents/BestSeller";
 import { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
 import { RiLoader4Fill } from "react-icons/ri";
 import { getBoss } from "../../app/features/bossSlice";
-import { useAuth0 } from "@auth0/auth0-react";
-import { postLogin } from "../../services/authServices";
-
 
 const Summary = () => {
   const dispatch = useDispatch();
   const User = useSelector((state) => state.auth.User);
   const dashboard = useSelector((state) => state.boss.bossDashboard);
-  const navigate = useNavigate();
   const status = useSelector((state) => state.auth.status);
   console.log("dashboard jefe -->", dashboard);
 
   useEffect(() => {
-    if (status==="idle") {
-      navigate("/authentication");
-    }
     dispatch(getBoss(User.id));
-  }, );
- 
-  console.log(User)
-  if (status === "loading" ) {
+  }, [User.id, dispatch]);
+  
+
+  if (status === "loading") {
     return (
       <div className="flex justify-center w-full">
         <RiLoader4Fill className="animate-spin text-4xl text-secondary mt-8" />

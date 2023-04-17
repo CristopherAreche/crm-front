@@ -9,6 +9,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getClients } from "../services/clientsServices";
 import { selectedClientCheckbox } from "../app/features/clientSlice";
+import CreateClient from "./forms/CreateClient";
 
 const ClientList = () => {
   const dispatch = useDispatch();
@@ -17,7 +18,7 @@ const ClientList = () => {
   const clientsError = useSelector((state) => state.clients.error);
   const [clientSelected, setClientSelected] = useState("");
   const [isSelected, setIsSelected] = useState(false);
-  // const [showModal, setShowModal] = useState(false);
+  const [showModal, setShowModal] = useState(false);
   const user = useSelector((state) => state.auth.User);
 
   useEffect(() => {
@@ -52,7 +53,7 @@ const ClientList = () => {
               obtenga uno.
             </h3>
             <div className="flex gap-x-12 items-center">
-              <button className="group rounded-xl py-2 px-3 shadow-emerald-400/20 hover:scale-[1.03] hover:bg-emerald-400/80 transition-all shadow-md group bg-emerald-400 relative">
+              <button className="group rounded-xl py-2 px-3 shadow-emerald-400/20 hover:scale-[1.03] hover:bg-emerald-400/80 transition-all shadow-md group bg-emerald-400 relative" onClick={() => setShowModal(!showModal)}>
                 <RiAddFill className="text-2xl" />
                 <span className="absolute opacity-0 group-hover:opacity-100  px-2 py-1 bg-gray-700 rounded-lg text-center text-white text-sm ">
                   Agregar
@@ -140,6 +141,8 @@ const ClientList = () => {
             </table>
           </>
         )}
+
+        <CreateClient isVisible={showModal} onClose={() => setShowModal(false)} />
       </section>
     );
   } else if (clientsError === "failed") {

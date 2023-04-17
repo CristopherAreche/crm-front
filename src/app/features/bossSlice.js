@@ -10,6 +10,7 @@ const API_URL_ALLS_BOSS = `${URL}/boss`;
 
 export const getBoss = createAsyncThunk("boss/getBoss", async (bossId) => {
   const response = await axios.get(`${API_URL_BOSS}?id=${bossId}`);
+  console.log(" data --->", response?.data);
   return response.data;
 });
 
@@ -51,6 +52,7 @@ export const bossSlice = createSlice({
         state.loading = false;
         state.status = "success";
         state.bossDashboard = action.payload;
+        console.log("boss.dashboard ->" + state.bossDashboard);
       })
       .addCase(getBoss.rejected, (state, action) => {
         state.loading = false;

@@ -1,8 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { postUserInfo } from "../../services/authServices";
-import { setUser, putUser } from "../../services/authServices";
+import { setUser, putUser, putSeller } from "../../services/authServices";
 import { login } from "../../services/authServices";
-import { putSeller } from "../../services/sellersServices";
 
 const initialState = {
   userInfo: [],

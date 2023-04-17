@@ -7,6 +7,7 @@ import {
   cleanSellers,
 } from "../../app/features/sellerSlice";
 import ModalHistory from "./ModalHistory";
+import SellerDetailModal from "../SellerDetailModal";
 
 const SellerList = () => {
   const dispatch = useDispatch();
@@ -16,6 +17,7 @@ const SellerList = () => {
   const [sellerSelected, setSellerSelected] = useState("");
   const [isSelected, setIsSelected] = useState(false);
   const [isShow, setIsShow] = useState(false);
+  const [showModal, setShowModal] = useState(false);
   const user = useSelector((state) => state.auth.User.id);
   useEffect(() => {
     if (sellersStatus === "idle") {
@@ -92,6 +94,7 @@ const SellerList = () => {
                     />
                   </td>
                   <td className="px-6 py-4 flex justify-center">
+                    <button onClick={() => setShowModal(true)}> </button>
                     <img className="h-24 px-2 py-2 " src={item?.image} alt="" />
                   </td>
                   <td className="whitespace-nowrap  px-6 py-4  font-medium text-secondary hover:text-secondary/80 hover:underline transition-all">
@@ -125,6 +128,10 @@ const SellerList = () => {
               ))}
           </tbody>
         </table>
+        <SellerDetailModal
+          isVisible={showModal}
+          onClose={() => setShowModal(false)}
+        />
       </section>
     );
   } else if (sellersError === "failed") {

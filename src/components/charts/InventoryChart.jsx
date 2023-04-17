@@ -20,7 +20,7 @@ ChartJS.register(
 );
 
 const InventoryChart = ({ lowest_stock }) => {
-  console.log(lowest_stock);
+  console.log("lowest -->", lowest_stock);
   const products = lowest_stock?.map((item) => ({
     name: item.name,
     quantity: item.quantity,
@@ -34,7 +34,7 @@ const InventoryChart = ({ lowest_stock }) => {
     labels: products?.map((p) => p.name),
     datasets: [
       {
-        label: "Top 10 productos con menor stock",
+        label: "Productos con menor stock",
         data: sortedProducts?.map((p) => p.quantity),
         backgroundColor: "rgba(255, 99, 132, 0.2)",
         borderColor: "rgba(255, 99, 132, 1)",

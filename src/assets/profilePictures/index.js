@@ -4,6 +4,7 @@ import ricardo from "./ricardo.jpg";
 import gaspar from "./gaspar.jpeg";
 import maca from "./macarena.jpeg";
 import han from "./han.jpeg";
+import mati from "./mati.jpeg";
 export const image = {
   cristopher,
   joseph,
@@ -11,6 +12,7 @@ export const image = {
   gaspar,
   maca,
   han,
+  mati,
   defaultImage:
     "https://cdn.pixabay.com/photo/2017/11/10/05/48/user-2935527_960_720.png",
 };

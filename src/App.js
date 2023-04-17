@@ -9,6 +9,7 @@ import AllClients from "./views/dashboard/AllClients";
 import Home from "./views/Home";
 import Inventory from "./views/dashboard/Inventory";
 import Perfil from "./views/dashboard/Perfil";
+import Redireccion from "./views/auth/Redireccion";
 
 function App() {
 
@@ -17,6 +18,7 @@ function App() {
       <Routes>
         <Route exact path="/" element={<Home />} />
  
+        {/* Rutas de Dashboard */}
         <Route exact path="/dashboard" element={<Summary />} />
         <Route path="/dashboard/client/:id" element={<ClientDetail />} />
         <Route path="/dashboard/inventory" element={<Inventory />} />
@@ -28,6 +30,7 @@ function App() {
         <Route exact path="/authentication" element={<AuthLayout />}>
           <Route index element={<Login />} />
           <Route path="/authentication/register" element={<Register />} />
+          <Route path="/authentication/redireccion" element={<Redireccion/>} />
         </Route>
       </Routes>
     </div>

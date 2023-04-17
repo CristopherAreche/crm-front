@@ -41,7 +41,7 @@ export const personas = [
   },
   {
     name: "Matias Cabrera",
-    image: image.defaultImage,
+    image: image.mati,
     github: "https://github.com/matias-d",
     linkedIn: "",
     role: "Front-end",

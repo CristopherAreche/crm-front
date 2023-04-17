@@ -8,19 +8,23 @@ import InventoryChart from "../../components/charts/InventoryChart";
 import MonthlyCompareChart from "../../components/charts/MonthlyCompareChart";
 import BestSeller from "../../components/bossComponents/BestSeller";
 import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { RiLoader4Fill } from "react-icons/ri";
 import { getBoss } from "../../app/features/bossSlice";
 
 const Summary = () => {
   const dispatch = useDispatch();
-  const user = useSelector((state) => state.auth.User);
+  const User = useSelector((state) => state.auth.User);
   const dashboard = useSelector((state) => state.boss.bossDashboard);
-
+  const navigate = useNavigate();
   const status = useSelector((state) => state.auth.status);
 
   useEffect(() => {
-    dispatch(getBoss(user.id));
-  }, [user.id]);
+    if (status === "idle") {
+      navigate("/authentication");
+    }
+    dispatch(getBoss(User.id));
+  });
 
   if (status === "loading") {
     return (
@@ -33,7 +37,7 @@ const Summary = () => {
   return (
     <main className="bg-base h-screen text-white">
       <SideBar />
-      {user.role !== "admin" ? (
+      {User.role !== "admin" ? (
         <section className=" lg:pl-72 h-[100vh] overflow-y-auto flex flex-col z-[2] w-[100vw] lg:w-auto">
           <MainSeller />
         </section>

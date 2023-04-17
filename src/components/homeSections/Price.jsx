@@ -116,7 +116,7 @@ const Price = () => {
               para todos los usuarios
             </p>
             <Link
-              to="/auth/register"
+              to="/authentication/register"
               className="bg-gray-400 py-2 px-3 rounded-md shadow-md shadow-gray-500/20 hover:scale-[1.03] transition-transform cursor pointer text-white font-medium"
             >
               Comprar

@@ -31,6 +31,10 @@ const productsSlice = createSlice({
   name: "products",
   initialState,
   reducers: {
+    cleanProducts: (state, action) => {
+      state.products = [];
+      state.copyProducts = [];
+    },
     searchProducts: (state, action) => {
       state.products = action.payload;
     },
@@ -136,6 +140,7 @@ export const {
   sortProducts,
   sortPrice,
   filterByCategory,
+  cleanProducts,
 } = productsSlice.actions;
 
 export default productsSlice.reducer;

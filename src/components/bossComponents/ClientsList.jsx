@@ -39,7 +39,7 @@ const ClientsList = () => {
 
   useEffect(() => {
 
-    dispatch(getAllClients(user));
+    dispatch(getAllClients(userId));
 
     return () => dispatch(cleanAllClients());
   }, [dispatch]);

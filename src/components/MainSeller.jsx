@@ -43,12 +43,12 @@ const MainSeller = () => {
 
 
   useEffect(() => {
-    if (statusProducts === "idle" && User?.bossId) {
+    if (User?.bossId) {
       dispatch(getAllProducts(User.bossId));
     }
-  }, [dispatch, statusProducts, User?.bossId]);
+  }, [dispatch, User?.bossId]);
   
-
+  console.log(products)
   const todayFormated = () => {
     const dateToday = new Date();
 

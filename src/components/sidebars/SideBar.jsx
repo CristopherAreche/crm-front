@@ -76,8 +76,8 @@ function SideBar({ typeSidebar, summary, inventory, clients, sellers }) {
               ) : (
                 <img
                   src={
-                    user.logo
-                      ? user.logo
+                    user.image
+                      ? user.image
                       : "https://cdn-icons-png.flaticon.com/512/219/219983.png"
                   }
                   alt="placeholder"

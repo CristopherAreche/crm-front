@@ -38,11 +38,8 @@ const ClientsList = () => {
   };
 
   useEffect(() => {
-    if (clientsStatus === "idle") {
-      if (!clients.length) {
-        dispatch(getAllClients(user));
-      }
-    }
+    dispatch(getAllClients(user));
+
     return () => dispatch(cleanAllClients());
   }, [dispatch]);
   if (clientsStatus === "loading") {

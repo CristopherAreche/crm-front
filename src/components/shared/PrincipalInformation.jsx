@@ -3,6 +3,7 @@ import React from "react";
 const PrincipalInformation = ({ data }) => {
   return (
     <section className="flex flex-row lg:flex-col gap-x-4 lg:gap-y-2 items-center lg:items-start">
+
       {data.role === "admin" ? (
         <img
           src={

@@ -10,8 +10,8 @@ const Clients = () => {
   const dispatch = useDispatch();
 
   return (
-    <main className="lg:pl-72 h-[100vh] overflow-y-auto flex flex-col z-[2] w-[100vw] lg:w-auto">
-      <section className="py-6 px-12 z-[2]">
+    <main className="lg:pl-72 h-[100vh] overflow-y-auto flex flex-col z-20 w-[100vw] lg:w-auto">
+      <section className="py-6 px-12 z-20">
         <Header
           mainText={"CLIENTES"}
           data={clients}

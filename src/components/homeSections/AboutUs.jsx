@@ -6,12 +6,11 @@ const AboutUsSection = () => {
   return (
     <section
       name="creadores"
-      className="h-[100vh] pt-28  flex-col lg:flex-row justify-center flex"
+      className="flex-col justify-center  items-center flex px-12 gap-y-3 pb-6"
     >
-      <div className=" text-white h-[90%] lg:w-[70%] flex flex-col justify-evenly lg:items-center">
-        <h1 className="text-[2.5em] font-bold mb-4">CREADORES</h1>
+        <h3 className="bg-gradient-to-r from-primary  to-secondary text-transparent bg-clip-text text-6xl font-extrabold">CREADORES</h3>
         <div>
-          <div className="flex gap-5 flex-wrap justify-center">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 w-full">
             {personas.map((item, index) => {
               return (
                 <CardProfile
@@ -26,7 +25,6 @@ const AboutUsSection = () => {
             })}
           </div>
         </div>
-      </div>
     </section>
   );
 };

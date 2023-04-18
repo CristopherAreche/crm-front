@@ -4,7 +4,6 @@ import {
   getSellers,
   postSeller,
   putSeller,
-  getSeller,
   toggleStatusSeller,
 } from "../../services/sellersServices";
 import {
@@ -117,13 +116,6 @@ export const sellerSlice = createSlice({
 
       .addCase(putSeller.fulfilled, (state, action) => {
         statePutSeller(state, action);
-      })
-      .addCase(getSeller.pending, (state, action) => {
-        state.statusSeller = "loading";
-      })
-      .addCase(getSeller.fulfilled, (state, action) => {
-        state.statusSeller = "success";
-        state.seller = action.payload;
       })
       .addCase(toggleStatusSeller.fulfilled, (state, action) => {
         const status = action.payload;

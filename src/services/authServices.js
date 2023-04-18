@@ -27,6 +27,11 @@ export const postUserLogin = createAsyncThunk(
       const response = await axios.post(`${URL}/boss`, formData);
       return response.data;
     } catch (error) {
+      swal(
+        "Error",
+        "Hubo un error al intentar registrarse. Por favor, inténtelo de nuevo.",
+        "error"
+      );
       return thunkAPI.rejectWithValue(error.response.data);
     }
   }

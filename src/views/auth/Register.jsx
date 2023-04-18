@@ -6,6 +6,8 @@ import { useDispatch } from "react-redux";
 import { postUserLogin } from "../../services/authServices";
 import { useState } from "react";
 import swal from "sweetalert";
+import { useNavigate } from "react-router-dom";
+import { login } from "../../services/authServices";
 
 const Register = () => {
   const [password, setPassWord] = useState({
@@ -20,26 +22,22 @@ const Register = () => {
   const regularUser = /\S+@\S+\.\S+/; //un correo electronico
   const { loginWithRedirect } = useAuth0();
   const dispatch = useDispatch();
+  const navigate= useNavigate();
 
   const register = () => {
-    const formData = new FormData();
-    const formLogin = {
-      name: email.split("@")[0],
-      username: email.split("@")[0],
-      email: email,
-      password: password.password2,
-      enable: false,
-    };
-    formData.append("formLogin", JSON.stringify(formLogin));
-    for (let entry of formData.entries()) {
-    }
-    dispatch(postUserLogin(formData));
-    swal(
-      "Usuario registrado",
-      "Tu usuario se ha registrado con exito, ve al panel de inicio de sesión",
-      "success"
-    );
-  };
+      const formData = new FormData();
+      const formLogin = {
+        name: email.split("@")[0],
+        username: email.split("@")[0],
+        email: email,
+        password: password.password2,
+        enable: false,
+      };
+      formData.append("formLogin", JSON.stringify(formLogin));
+      for (let entry of formData.entries()) {
+      }
+      dispatch(postUserLogin(formData));
+}
 
   const valUser = (value) => {
     if (regularUser.test(value)) SetErrorUser(false);

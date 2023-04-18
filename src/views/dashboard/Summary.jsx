@@ -1,5 +1,4 @@
-import spotlight1 from "../../assets/svg/Spotlight1.svg";
-import spotlight2 from "../../assets/svg/Spotlight2.svg";
+
 import SideBar from "../../components/sidebars/SideBar";
 import MainSeller from "../../components/MainSeller";
 import { useDispatch, useSelector } from "react-redux";
@@ -10,6 +9,7 @@ import BestSeller from "../../components/bossComponents/BestSeller";
 import { useEffect } from "react";
 import { RiLoader4Fill } from "react-icons/ri";
 import { getBoss } from "../../app/features/bossSlice";
+import LightsSvg from "../../components/LightsSvg";
 
 const Summary = () => {
   const dispatch = useDispatch();
@@ -30,15 +30,15 @@ const Summary = () => {
   }
 
   return (
-    <main className="bg-base h-screen text-white">
+    <main className="bg-base h-screen text-white ">
       <SideBar />
       {User.role !== "admin" ? (
-        <section className=" lg:pl-72 h-[100vh] overflow-y-auto flex flex-col z-[2] w-[100vw] lg:w-auto">
+        <section className=" lg:pl-72 h-[100vh] overflow-y-auto flex flex-col z-20 w-[100vw] lg:w-auto">
           <MainSeller />
         </section>
       ) : (
         <>
-          <section className="bg-base lg:pl-72 overflow-y-auto h-auto flex lg:w-auto py-[3em]">
+          <section className="bg-base lg:pl-72 z-20 overflow-y-auto h-auto flex lg:w-auto py-[3em]">
             <div className=" w-full flex-col flex justify-center items-center gap-4">
               <div className=" h-[20em] w-full flex justify-center items-center text-black">
                 <TotalSalesChart annual_sales={dashboard?.annual_sales} />
@@ -59,16 +59,7 @@ const Summary = () => {
         </>
       )}
       {/* Luces */}
-      <img
-        src={spotlight1}
-        className="absolute top-0 left-0 opacity-80 z-[1]"
-        alt="light glow"
-      />
-      <img
-        src={spotlight2}
-        className="absolute bottom-0 right-0 opacity-80 z-[1]"
-        alt="light glow"
-      />
+      <LightsSvg />
     </main>
   );
 };

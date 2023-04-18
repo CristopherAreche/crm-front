@@ -95,6 +95,22 @@ const HomeHeader = () => {
             </LinkRoll>
           </li>
 
+         
+          <li
+            className={`${
+              activeSection === "faq" && "text-white border-b border-white"
+            } font-medium text-light/80 hover:text-white transition-colors cursor-pointer`}
+          >
+            <LinkRoll
+              to="faq"
+              smooth={true}
+              duration={500}
+              spy={true}
+              onSetActive={handleSetActive}
+            >
+              FAQ
+            </LinkRoll>
+          </li>
           <li
             className={`${
               activeSection === "creadores" &&
@@ -109,21 +125,6 @@ const HomeHeader = () => {
               onSetActive={handleSetActive}
             >
               Creadores
-            </LinkRoll>
-          </li>
-          <li
-            className={`${
-              activeSection === "faq" && "text-white border-b border-white"
-            } font-medium text-light/80 hover:text-white transition-colors cursor-pointer`}
-          >
-            <LinkRoll
-              to="faq"
-              smooth={true}
-              duration={500}
-              spy={true}
-              onSetActive={handleSetActive}
-            >
-              FAQ
             </LinkRoll>
           </li>
         </ul>

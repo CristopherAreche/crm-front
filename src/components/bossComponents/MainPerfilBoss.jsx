@@ -14,7 +14,7 @@ const MainPerfilBoss = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <section className="py-6 px-12 z-[2]">
+    <section className="py-6 px-12 z-20">
       <HeaderPerfil data={user} />
       <section className="grid grid-cols-1 lg:grid-cols-6 ">
         {/* Section Principal Information */}

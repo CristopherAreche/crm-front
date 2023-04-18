@@ -18,7 +18,7 @@ export default function TaskCard({ task, clientId }) {
 
   const changeState = async () => {
     if (state === "Completado") {
-      item.state = "Pediente";
+      item.state = "Pendiente";
     } else {
       item.state = "Completado";
     }
@@ -80,9 +80,9 @@ export default function TaskCard({ task, clientId }) {
           <label
             onClick={changeState}
             className={`${
-              state === "Pediente"
+              state === "Pendiente"
                 ? "bg-red-400 shadow-red-400/50"
-                : "bg-red-400 shadow-red-400/50"
+                : "bg-green-400 shadow-green-400/50"
             } hover:scale-110 text-sm font-medium text-gray-200 py-1 px-2 rounded-md shadow-md flex flex-col gap-y-3 items-start `}
           >
             {state}

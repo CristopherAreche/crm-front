@@ -83,7 +83,7 @@ const ClientList = () => {
                 Tus clientes
               </h3>
             </header>
-            <table className="min-w-full  text-center text-sm font-regular shadow-md rounded-sm h-96 overflow-y-auto">
+            <table className="min-w-full  text-center text-sm font-regular shadow-md rounded-sm">
               <thead className=" font-medium text-light/75  dark:bg-base-light/30 rounded-md">
                 <tr>
                   <th scope="col" className=" px-6 py-4">
@@ -107,7 +107,7 @@ const ClientList = () => {
                 {Array.isArray(clients) &&
                   clients?.map((item) => (
                     <tr key={item.id} className="border-b dark:border-base/30">
-                      <td className="whitespace-nowrap  px-6 py-4 font-medium">
+                      <td className="whitespace-nowrap  px-6 py-2 font-medium">
                         <input
                           id={`checkbox-${item.id}`}
                           type="checkbox"
@@ -119,16 +119,16 @@ const ClientList = () => {
                           }}
                         />
                       </td>
-                      <td className="whitespace-nowrap  px-6 py-4  font-medium text-secondary hover:text-secondary/80 hover:underline transition-all">
+                      <td className="whitespace-nowrap  px-6 py-2  font-medium text-secondary hover:text-secondary/80 hover:underline transition-all">
                         <Link to={`/dashboard/client/${item.id}`}>
                           {item.name}
                         </Link>
                       </td>
-                      <td className="whitespace-nowrap  px-6 py-4">
+                      <td className="whitespace-nowrap  px-6 py-2">
                         ${item.totalPurchased}
                       </td>
                       <td
-                        className={`whitespace-nowrap  px-6 py-4 ${
+                        className={`whitespace-nowrap  px-6 py-2 ${
                           item.enable ? "text-emerald-200" : "text-red-200"
                         }`}
                       >
@@ -136,7 +136,7 @@ const ClientList = () => {
                         {item.enable ? "Habilitado" : "Desabilitado"}
                       </td>
                       <td
-                        className={`whitespace-nowrap  px-6 py-4 ${
+                        className={`whitespace-nowrap  px-6 py-2 ${
                           item.vip ? "text-orange-200" : "text-white"
                         }`}
                       >

@@ -95,7 +95,13 @@ export const login = createAsyncThunk("user/login", async (data) => {
     );
     return payload;
   } catch (error) {
-    swal("Error", "Usuario o contraseña incorrectos", "error");
+    if (error.response.data.error === "user blocked")
+      swal(
+        "Error",
+        "Tu usuario ha sido deshabilitado, por favor comunicate con tu jefe",
+        "error"
+      );
+    else swal("Error", "Usuario o contraseña incorrectos", "error");
     return error.response.data.error;
   }
 });

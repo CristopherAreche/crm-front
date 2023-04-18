@@ -6,7 +6,7 @@ const AboutUsSection = () => {
   return (
     <section
       name="creadores"
-      className="h-[100vh] pt-28  flex-col lg:flex-row justify-center flex"
+      className=" h-[100vh] pt-28  flex-col lg:flex-row justify-center flex"
     >
       <div className=" text-white h-[90%] lg:w-[70%] flex flex-col justify-evenly lg:items-center">
         <h1 className="text-[2.5em] font-bold mb-4">CREADORES</h1>

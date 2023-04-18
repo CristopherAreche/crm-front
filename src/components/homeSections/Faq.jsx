@@ -51,7 +51,11 @@ const FAQ = () => {
 
   return (
     <>
-      <section className=" justify-center items-center flex flex-col gap-y-6 lg:gap-y-10 pb-12">
+      <section
+        className="
+        py-[6em]
+         justify-center items-center flex flex-col gap-y-6 lg:gap-y-10 pb-12"
+      >
         <h3 className="w-full text-3xl lg:text-5xl lg:w-[40rem]  text-center font-extrabold text-white">
           El mejor software de{" "}
           <span className="bg-gradient-to-r from-primary  to-secondary text-transparent bg-clip-text">
@@ -73,9 +77,9 @@ const FAQ = () => {
 
       <section
         name="faq"
-        className="h-[100vh] pt-16 flex-col gap-y-4  items-center flex "
+        className=" mb-[12em] pt-[9em] flex flex-col gap-y-4  items-center"
       >
-        <main className="pt-28 flex flex-col gap-y-6">
+        <main className=" pt-16 flex flex-col gap-y-6">
           <h3 className="text-4xl  text-center font-extrabold text-white">
             Preguntas frecuentes
           </h3>

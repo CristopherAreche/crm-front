@@ -29,8 +29,26 @@ const RegisterActivityTable = () => {
     return <div>Error: {activitiesError}</div>;
   }
 
+  // if(!reversedActivities.length && activitiesStatus !== 'loading') {
+  //   return (
+  //     <section className="flex items-center w-full  gap-x-4 ">
+  //       <div>
+  //         <h3 className="text-xl text-light font-medium">
+  //           No tiene ninguna tarea pendiente con este cliente
+  //         </h3>
+  //         <p className="text-light/90">Agende una tarea con este cliente</p>
+  //       </div>
+  //       <img
+  //         src="https://cdn-icons-png.flaticon.com/512/5058/5058432.png"
+  //         alt="task not found"
+  //         className="w-20 h-20"
+  //       />
+  //     </section>
+  //   );
+  // } 
+
   return (
-    <section className="w-auto overflow-x-auto lg:min-w-full  h-96 overflow-y-auto  overflow-hidden mb-4 text-white">
+    <section className="w-auto overflow-x-auto lg:min-w-full  min-h-96 overflow-y-auto  overflow-hidden mb-4 text-white">
       <table className=" text-center w-full text-sm font-regular shadow-md rounded-sm">
         <thead className=" font-medium text-white  dark:bg-base-light/30 rounded-md">
           <tr>

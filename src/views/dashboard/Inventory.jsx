@@ -90,7 +90,7 @@ const Inventory = () => {
         </main>
       )}
 
-      <LightsSvg />
+      {/* //<LightsSvg /> */}
     </main>
   );
 };

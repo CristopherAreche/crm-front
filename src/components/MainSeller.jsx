@@ -6,12 +6,12 @@ import ToDoList from "./ToDoList";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import SummarySection from "./SummarySection";
-import ProductsCards from "./ProductsCards";
 import { getAllProducts } from "../services/productsServices";
 import Cookies from 'universal-cookie';
 import { jwtVerify } from "jose";
 import { useNavigate } from "react-router-dom";
 import { persistenceLogin } from "../app/features/authSlice";
+import ProductsCardSummary from "./ProductsCardSummary";
 
 const MainSeller = () => {
   // const { User } = useAuth0();
@@ -48,7 +48,6 @@ const MainSeller = () => {
     }
   }, [dispatch, User?.bossId]);
   
-  console.log(products)
   const todayFormated = () => {
     const dateToday = new Date();
 
@@ -128,7 +127,7 @@ const MainSeller = () => {
             ) : (
               <>
                 {products?.slice(0, 3).map((item) => (
-                  <ProductsCards key={item.id} item={item} />
+                  <ProductsCardSummary key={item.id} item={item}/>
                 ))}
               </>
             )}

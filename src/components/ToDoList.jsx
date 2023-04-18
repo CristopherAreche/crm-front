@@ -10,21 +10,31 @@ export default function ToDoList() {
   const [loadingStatus, setLoadingStatus] = useState("loading");
   const user = useSelector((state) => state.auth.User);
 
-  useEffect(() => {
-    fetchData();
-  }, []);
-
-  const fetchData = async () => {
-    const { data } = await axios.get(
-      "https://crm.up.railway.app/api/task?salesmanId=" + user.id
-    );
-    if (Array.isArray(data)) {
-      setListToDos(data);
-      setLoadingStatus("succeeded");
-    } else {
-      setLoadingStatus("failed");
+  const fetchData = async (salesmanId) => {
+    try {
+      const { data } = await axios.get(
+        "https://crm.up.railway.app/api/task?salesmanId=" + salesmanId
+      );
+      return data
+    } catch (error) {
+      setLoadingStatus("failed")
+      await swal("Error", `${error.response.data.error}`, "error");
     }
   };
+
+  useEffect(() => {
+    (async () => {
+      if(user?.id) {
+        setLoadingStatus("loading")
+        const todos = await fetchData(user?.id)
+        setListToDos(todos)
+        setLoadingStatus("succeeded")
+      }
+    })()
+   
+  }, [user?.id]);
+
+
 
   const delTask = async (id) => {
     try {

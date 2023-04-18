@@ -26,14 +26,13 @@ export const createActivity = createAsyncThunk(
             ...product,
             activityId,
           });
-          console.log("response.data-->" + response);
+
           return response.data;
         });
 
         const dataSale = await Promise.all(promises);
-        console.log("dataSale--->" + dataSale);
       }
-      console.log(data);
+
       return data;
     } catch (error) {
       swal("Error", `${error.response.data.error}`, "error");

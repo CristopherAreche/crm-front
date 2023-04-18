@@ -20,7 +20,6 @@ ChartJS.register(
 );
 
 const InventoryChart = ({ lowest_stock }) => {
-  console.log("lowest -->", lowest_stock);
   const products = lowest_stock?.map((item) => ({
     name: item.name,
     quantity: item.quantity,

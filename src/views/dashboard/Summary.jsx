@@ -20,7 +20,6 @@ const Summary = () => {
   useEffect(() => {
     dispatch(getBoss(User.id));
   }, [User.id, dispatch]);
-  
 
   if (status === "loading") {
     return (

@@ -24,6 +24,9 @@ const ProductsCards = ({ item }) => {
               <span className="text-green-300 font-medium">
                 - ${item.sale_price}
               </span>
+              <span className="text-white mx-10 font-medium">
+                Stock: {item.quantity}
+              </span>
             </p>
           ) : (
             <p className="flex gap-x-1">
@@ -37,9 +40,7 @@ const ProductsCards = ({ item }) => {
               <span className="text-green-300 font-medium">
                 $ {item.withDiscount}
               </span>
-              <span className="text-green-300 font-medium">
-                Stock: {item.quantity}
-              </span>
+              <span className="font-medium">Stock: {item.quantity}</span>
             </p>
           )}
         </div>

@@ -41,14 +41,14 @@ export const personas = [
   },
   {
     name: "Matias Cabrera",
-    image: image.defaultImage,
+    image: image.mati,
     github: "https://github.com/matias-d",
     linkedIn: "",
     role: "Front-end",
   },
   {
     name: " Matias Vazquez",
-    image: image.defaultImage,
+    image: image.matias,
     github: "https://github.com/CristopherAreche",
     linkedIn:
       "https://www.linkedin.com/in/matias-exequiel-vazquez-jaque-b42595254/",
@@ -56,7 +56,7 @@ export const personas = [
   },
   {
     name: " Jhoan Jianpierre",
-    image: image.defaultImage,
+    image: image.han,
     github: "https://github.com/HanJian16",
     linkedIn: "https://www.linkedin.com/in/jhohan-jianpierre/",
     role: "Back-end",

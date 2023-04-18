@@ -28,8 +28,8 @@ const userInfoSlice = createSlice({
     },
 
     persistenceLogin: (state, action) => {
-      state.User = action.payload
-    }
+      state.User = action.payload;
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -37,7 +37,6 @@ const userInfoSlice = createSlice({
         state.User = action.payload;
       })
       .addCase(putUser.fulfilled, (state, action) => {
-        console.log(action.payload);
         if (action.payload !== undefined) state.User = action.payload;
       })
 
@@ -68,17 +67,16 @@ const userInfoSlice = createSlice({
         state.status = "loading";
       })
       .addCase(login.fulfilled, (state, action) => {
-        if(typeof action.payload === 'string') {
-          state.status = 'failed'
-          return
+        if (typeof action.payload === "string") {
+          state.status = "failed";
+          return;
         }
-        
-        
-        
+
         state.status = "succeeded";
         state.User = action.payload;
-      })
+      });
   },
 });
-export const { logoutUser, toggleStatusMyPerfil, persistenceLogin } = userInfoSlice.actions;
+export const { logoutUser, toggleStatusMyPerfil, persistenceLogin } =
+  userInfoSlice.actions;
 export default userInfoSlice.reducer;

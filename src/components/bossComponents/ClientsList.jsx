@@ -23,7 +23,7 @@ const ClientsList = () => {
   );
   const clientsStatus = useSelector((state) => state.clients.status);
   const clientsError = useSelector((state) => state.clients.error);
-  const userId = useSelector((state) => state.auth.User.id);
+  const user = useSelector((state) => state.auth.User.id);
 
   const [selectedCheckbox, setSelectedCheckbox] = useState(null);
   const handleCheckboxChange = (event, client) => {

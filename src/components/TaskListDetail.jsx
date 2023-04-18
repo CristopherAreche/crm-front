@@ -9,8 +9,8 @@ const TaskListDetail = ({ clientId }) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (statusTask === "idle") dispatch(obtainTask(clientId));
-  }, [clientId, dispatch, statusTask]);
+    dispatch(obtainTask(clientId));
+  }, [clientId, dispatch]);
 
   if (statusTask === "loading") {
     return (

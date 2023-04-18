@@ -5,8 +5,8 @@ const PrincipalInformation = ({ data }) => {
     <section className="flex flex-row lg:flex-col gap-x-4 lg:gap-y-2 items-center lg:items-start">
       <img
         src={
-          data.logo
-            ? data.logo
+          data.image
+            ? data.image
             : "https://cdn-icons-png.flaticon.com/512/219/219983.png"
         }
         alt="placeholde"

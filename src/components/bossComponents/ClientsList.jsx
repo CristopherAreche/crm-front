@@ -23,7 +23,7 @@ const ClientsList = () => {
   );
   const clientsStatus = useSelector((state) => state.clients.status);
   const clientsError = useSelector((state) => state.clients.error);
-  const user = useSelector((state) => state.auth.User.id);
+  const userId = useSelector((state) => state.auth.User.id);
 
   const [selectedCheckbox, setSelectedCheckbox] = useState(null);
   const handleCheckboxChange = (event, client) => {
@@ -39,13 +39,10 @@ const ClientsList = () => {
 
   useEffect(() => {
     if (clientsStatus === "idle") {
-      console.log("aca" + clients);
-      if (!clients.length) {
-        dispatch(getAllClients(user));
-      }
+        dispatch(getAllClients(userId));
     }
-    return () => dispatch(cleanAllClients());
-  }, [dispatch]);
+  }, [dispatch, clientsStatus, userId]);
+
   if (clientsStatus === "loading") {
     return (
       <div className="flex justify-center w-full">

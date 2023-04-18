@@ -9,7 +9,7 @@ const MainSellerClients = () => {
   const dispatch = useDispatch();
   const clients = useSelector((state) => state.clients.clients);
   return (
-    <section className="py-6 px-12 z-[2] flex-col">
+    <section className="py-6 px-12 z-20 flex-col">
       <Header
         mainText={"CLIENTES"}
         data={clients}

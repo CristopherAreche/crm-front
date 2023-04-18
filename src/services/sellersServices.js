@@ -9,13 +9,11 @@ export const getSellers = createAsyncThunk(
   "sellers/getSellers",
   async (bossId) => {
     const res = await axios.get(`${API_URL_SELLER}?bossId=${bossId}`);
-    console.log("imaaaginateee --->", res.data);
     return res.data;
   }
 );
 
-export const getSeller = createAsyncThunk(
-  "sellers/getSeller",
+export const getSeller = 
   async ({ bossId, id }) => {
     try {
       const { data } = await axios.get(
@@ -27,7 +25,7 @@ export const getSeller = createAsyncThunk(
       return error.response.data.error;
     }
   }
-);
+
 
 export const postSeller = createAsyncThunk(
   `sellers/postSeller`,

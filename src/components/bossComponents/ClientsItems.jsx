@@ -6,12 +6,17 @@ import { RiLoader4Fill } from "react-icons/ri";
 
 const ClientsItems = ({ item, onCheckbox, onSelected }) => {
   const [isShow, setIsShow] = useState(false);
-  const {seller, statusSeller} = useSelector((state) => state.sellers);
+  const [loading, setLoading] = useState(true)
+  const [sellerName, setSellerName] = useState('')
   const dispatch = useDispatch();
   const user =useSelector((state)=>state.auth.User.id);
   useEffect(() => {
-    if (item.salesmanId && statusSeller === 'idle') dispatch(getSeller({bossId:user, id: item.salesmanId}));
-  }, [dispatch, item.salesmanId, statusSeller, user]);
+    if (item.salesmanId) getSeller({bossId: user, id : item.salesmanId}).then(res => {
+      setLoading(true)
+      setSellerName(res.name)
+      setLoading(false)
+    })
+  }, [dispatch, item.salesmanId, user]);
 
   return (
     <tr key={item.id} className="border-b dark:border-base/30">
@@ -35,9 +40,9 @@ const ClientsItems = ({ item, onCheckbox, onSelected }) => {
       </td>
       <td className="whitespace-nowrap  px-6 py-4  font-medium text-yellow-400 hover:text-yellow-400/80 hover:underline transition-all">
         {
-          statusSeller === 'loading'
+          loading
           ? <RiLoader4Fill className="animate-spin text-4xl text-secondary text-center" />
-          : <>{seller?.name}</>   
+          : <>{sellerName}</>   
         }
       </td>
       <td className="whitespace-nowrap  px-6 py-4 text-white">

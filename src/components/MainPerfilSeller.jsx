@@ -11,7 +11,7 @@ const MainPerfilSeller = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <section className="py-6 px-12 z-[2] min-h-screen">
+    <section className="py-6 px-12 z-20 flex justify-center items-center min-h-screen">
       <section className="grid grid-cols-1 lg:grid-cols-8 ">
         <section className=" col-span-2 flex flex-col gap-y-6 items-center lg:items-start mb-6 lg:mb-0">
           <PrincipalInformation data={user} />

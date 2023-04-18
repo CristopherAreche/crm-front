@@ -1,8 +1,6 @@
 import diff1 from "../../assets/differential1.png";
 import diff2 from "../../assets/differential2.png";
 import diff3 from "../../assets/differential3.png";
-import spotlight2 from "../../assets/svg/Spotlight2.svg";
-import React from "react";
 
 const Detail = () => {
   return (
@@ -58,11 +56,6 @@ const Detail = () => {
           </p>
         </article>
       </section>
-      <img
-        src={spotlight2}
-        alt="lights glows"
-        className="absolute -bottom-44 -right-96 opacity-50 z-[-1] animate-pulse"
-      />
     </section>
   );
 };

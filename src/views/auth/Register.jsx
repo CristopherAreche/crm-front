@@ -36,7 +36,7 @@ const Register = () => {
     dispatch(postUserLogin(formData));
     swal(
       "Usuario registrado",
-      "Tu usuario se ha registrado con exito, ve al panel de inicio de sesión",
+      "Tu usuario se ha registrado con exito",
       "success"
     );
   };

@@ -38,11 +38,12 @@ const ClientsList = () => {
   };
 
   useEffect(() => {
-    if (clientsStatus === "idle") {
-        dispatch(getAllClients(userId));
-    }
-  }, [dispatch, clientsStatus, userId]);
 
+    dispatch(getAllClients(user));
+
+    return () => dispatch(cleanAllClients());
+  }, [dispatch]);
+  
   if (clientsStatus === "loading") {
     return (
       <div className="flex justify-center w-full">

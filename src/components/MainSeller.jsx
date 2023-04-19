@@ -7,10 +7,6 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import SummarySection from "./SummarySection";
 import { getAllProducts } from "../services/productsServices";
-import Cookies from 'universal-cookie';
-import { jwtVerify } from "jose";
-import { useNavigate } from "react-router-dom";
-import { persistenceLogin } from "../app/features/authSlice";
 import ProductsCardSummary from "./ProductsCardSummary";
 
 const MainSeller = () => {
@@ -19,27 +15,6 @@ const MainSeller = () => {
   const { products } = useSelector((state) => state.products);
   const statusProducts = useSelector((state) => state.products.status);
   const {User, status} = useSelector((state) => state.auth);
-  const navigate = useNavigate();
-
-  const cookies = new Cookies();
-  const myToken = cookies.get('myToken');
-  
-
-  const persitenceAuth = async (token) => {
-    const { payload } = await jwtVerify(
-      token,
-      new TextEncoder().encode("secret")
-    );
-    return payload
-  }
-
-  useEffect(() => {
-    if (myToken === undefined) {
-      navigate('/authentication')
-    } else {
-      persitenceAuth(myToken).then(res => dispatch(persistenceLogin(res)))
-    }
-  }, [dispatch, myToken, navigate]);
 
 
   useEffect(() => {
@@ -72,8 +47,6 @@ const MainSeller = () => {
 
     return `Hoy, ${day} ${mounth} ${year}`;
   };
-
-
 
   return (
     <section className="py-6 lg:px-12 px-4 z-20  grid gird-cols-1 lg:grid-cols-6 ">

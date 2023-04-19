@@ -13,20 +13,22 @@ import Redireccion from "./views/auth/Redireccion";
 import FeedbackView from "./views/FeedbackView";
 import SuccessPayment from "./views/SuccessPayment";
 import ChangePass from "./views/auth/ChangePass";
+import ProtectedRoutes from "./layouts/ProtectedRoutes";
 function App() {
 
   return (
     <div className="page-container">
       <Routes>
         <Route exact path="/" element={<Home />} />
-
         {/* Rutas de Dashboard */}
-        <Route exact path="/dashboard" element={<Summary />} />
-        <Route path="/dashboard/client/:id" element={<ClientDetail />} />
-        <Route path="/dashboard/inventory" element={<Inventory />} />
-        <Route path="/dashboard/sellers" element={<Sellers />} />
-        <Route path="/dashboard/all_clients" element={<AllClients />} />
-        <Route path="/dashboard/perfil" element={<Perfil />} />
+        <Route path="/dashboard/*" element={<ProtectedRoutes />}>
+          <Route index element={<Summary />} />
+          <Route path="client/:id" element={<ClientDetail />} />
+          <Route path="inventory" element={<Inventory />} />
+          <Route path="sellers" element={<Sellers />} />
+          <Route path="all_clients" element={<AllClients />} />
+          <Route path="perfil" element={<Perfil />} />
+        </Route>
 
         <Route path="/feedback" element={<FeedbackView />} />
         <Route path="/success" element={<SuccessPayment/>}/>

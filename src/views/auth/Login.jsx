@@ -45,7 +45,7 @@ const Login = () => {
 
   useEffect(() => {
     if (myToken !== undefined) {
-      navigate("/dashboard/perfil");
+      navigate("/dashboard");
     }
   }, [myToken, navigate]);
 

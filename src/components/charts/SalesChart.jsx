@@ -31,7 +31,7 @@ const SalesChart = () => {
   //const totalVentas = datosVentas.reduce((total, item) => total + item.ventas, 0)
 
   useEffect(() => {
-    if (status === "idle" && user.bossId) dispatch(getBoss(user.bossId));
+    if (status === "idle") dispatch(getBoss(user.bossId));
   }, [dispatch, status, user]);
 
   if (!!loading) {

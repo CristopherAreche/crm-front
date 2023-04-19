@@ -14,6 +14,7 @@ import FilterTopProducts from "../../components/bossComponents/FilterTopProducts
 import SearchBar from "../../components/SearchBar";
 import ProductListSellers from "../../components/ProductListSellers";
 import { MdOutlineInventory2 } from "react-icons/md";
+import LightsSvg from "../../components/LightsSvg";
 
 const Inventory = () => {
   const role = useSelector((state) => state.auth.User.role);
@@ -63,8 +64,8 @@ const Inventory = () => {
         <main className="bg-base h-screen text-white">
           <SideBar />
 
-          <section className="lg:pl-72 h-[100vh] overflow-y-auto flex flex-col z-[2] w-[100vw] lg:w-auto">
-            <section className="py-6 px-12 z-[2]  ">
+          <section className="lg:pl-72 h-[100vh] overflow-y-auto flex flex-col z-20 w-[100vw] lg:w-auto">
+            <section className="py-6 px-12 z-20  ">
               <div className=" text-white w-full flex flex-col lg:flex-row items-center  lg:justify-between gap-y-2 mb-6">
                 <Header
                   mainText={"INVENTARIO"}
@@ -76,18 +77,20 @@ const Inventory = () => {
                 />
               </div>
               <section className="flex flex-col">
-                <MayorStockChart products={products} />
-
                 <FilterTopProducts products={copyProducts} />
 
                 <ProductList />
 
                 <BottomProduct />
+
+                <MayorStockChart products={products} />
               </section>
             </section>
           </section>
         </main>
       )}
+
+      <LightsSvg />
     </main>
   );
 };

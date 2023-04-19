@@ -96,8 +96,8 @@ const SellerList = () => {
                   <td className="px-6 py-4 flex justify-center">
                     <button onClick={() => setShowModal(true)}>
                       <img
-                        className="h-24 px-2 py-2 "
-                        src={item?.image ? item?.image : image?.defaultImage}
+                        className="h-12 w-12"
+                        src={item?.image ? item?.image : 'https://cdn-icons-png.flaticon.com/512/5853/5853761.png'}
                         alt=""
                       />{" "}
                     </button>

@@ -31,7 +31,7 @@ function SideBar({ typeSidebar, summary, inventory, clients, sellers }) {
   //     const userInfo = {
   //       email: user.email,
   //       name: user.name,
-  //       logo: user.picture,
+  //       image: user.picture,
   //       username: user.nickname,
   //       password: "12345",
   //     };
@@ -66,8 +66,8 @@ function SideBar({ typeSidebar, summary, inventory, clients, sellers }) {
               {user.role === "admin" ? (
                 <img
                   src={
-                    user.logo
-                      ? user.logo
+                    user.image
+                      ? user.image
                       : "https://cdn-icons-png.flaticon.com/512/219/219983.png"
                   }
                   alt="placeholder"
@@ -76,15 +76,15 @@ function SideBar({ typeSidebar, summary, inventory, clients, sellers }) {
               ) : (
                 <img
                   src={
-                    user.logo
-                      ? user.logo
+                    user.image
+                      ? user.image
                       : "https://cdn-icons-png.flaticon.com/512/219/219983.png"
                   }
                   alt="placeholder"
                   className="w-28 h-28 rounded-full object-cover"
                 />
               )}
-              <p className="bg-green-400 text-black absolute rounded-full px-2 bottom-0 right-0">
+              <p className={`${user.role === 'admin' ? 'bg-orange-400' : 'bg-green-400'} text-black absolute rounded-full px-2 bottom-0 right-0`}>
                 {user.role === "admin" ? "admin" : "seller"}
               </p>
             </div>

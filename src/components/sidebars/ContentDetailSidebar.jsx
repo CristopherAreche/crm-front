@@ -3,9 +3,7 @@ import { AiOutlineMail, AiOutlinePhone } from "react-icons/ai";
 import { BiTask } from "react-icons/bi";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
 import { getClient } from "../../services/clientsServices";
-import { cleanDetail } from "../../app/features/clientSlice";
 import RegisterActivitiesModal from "../forms/RegisterActivitiesForm";
 import RegisterTaskForm from "../forms/RegisterTaskForm";
 
@@ -15,12 +13,6 @@ const ContentDetailSidebar = () => {
   const [isShown, setIsShown] = useState(false);
   const { clientDetail } = useSelector((state) => state.clients);
   const { id } = useParams();
-
-  useEffect(() => {
-    dispatch(getClient(id));
-
-    return () => dispatch(cleanDetail());
-  }, [dispatch, id]);
 
   const onCloseModal = () => {
     dispatch(getClient(id));

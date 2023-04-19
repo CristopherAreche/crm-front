@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { RiBookReadLine, RiLoader4Fill } from "react-icons/ri";
 import { useDispatch, useSelector } from "react-redux";
-import { cleanTasks, obtainTask } from "../app/features/clientActivitiesSlice";
+import { obtainTask } from "../app/features/clientActivitiesSlice";
 import TaskCard from "./TaskCard";
 
 const TaskListDetail = ({ clientId }) => {
@@ -9,9 +9,8 @@ const TaskListDetail = ({ clientId }) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (statusTask === "idle") dispatch(obtainTask(clientId));
-    return () => dispatch(cleanTasks());
-  }, []);
+    dispatch(obtainTask(clientId));
+  }, [clientId, dispatch]);
 
   if (statusTask === "loading") {
     return (

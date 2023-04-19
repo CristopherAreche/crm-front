@@ -42,15 +42,8 @@ const ProductList = () => {
     );
   } else if (productStatus === "succeeded") {
     return (
-      //   <header className="overflow-x-auto lg:min-w-full mt-4 h-96 overflow-y-auto">
-      //     <h3 className="flex justify-between w-screen lg:w-full px-8 py-4   bg-base-light/30 rounded-tr-md rounded-tl-md  ">
-      //       <RiShoppingBag3Fill className="text-2xl" />
-      //       Tus productos
-      //     </h3>
-      //   </header>
-      <div className="flex-col flex h-96 overflow-&-auto pb-6 w-full">
-        <div className="overflow-x-auto ">
-          <table className="table-auto w-full text-center text-sm font-regular shadow-md rounded-smx">
+      <div className="flex-col flex min-h-96 overflow-y-auto w-full mb-6">
+          <table className="table-auto w-full text-center text-sm font-regular shadow-md rounded-sm overflow-x-auto">
             <thead className=" font-medium text-light/75  dark:bg-base-light/30 rounded-md">
               <tr>
                 <th scope="col" className=" px-6 py-4">
@@ -119,8 +112,10 @@ const ProductList = () => {
                     <td>{item.category}</td>
                     <td className="px-6 py-4 flex justify-center">
                       <img
-                        className="h-24 px-2 py-2 "
-                        src={item?.image}
+                        className="h-12 w-12 object-cover"
+                        src={ item.image
+                        ? item.image
+                        : "https://cdn.shopify.com/s/files/1/0533/2089/files/placeholder-images-product-6_large.png?format=jpg&quality=90&v=1530129477"}
                         alt=""
                       />
                     </td>
@@ -128,9 +123,7 @@ const ProductList = () => {
                 ))}
             </tbody>
           </table>
-        </div>
       </div>
-      // </section>
     );
   } else if (productError === "failed") {
     return <div>{productError}</div>;

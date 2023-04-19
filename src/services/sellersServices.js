@@ -13,8 +13,7 @@ export const getSellers = createAsyncThunk(
   }
 );
 
-export const getSeller = createAsyncThunk(
-  "sellers/getSeller",
+export const getSeller = 
   async ({ bossId, id }) => {
     try {
       const { data } = await axios.get(
@@ -26,7 +25,7 @@ export const getSeller = createAsyncThunk(
       return error.response.data.error;
     }
   }
-);
+
 
 export const postSeller = createAsyncThunk(
   `sellers/postSeller`,

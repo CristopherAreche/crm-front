@@ -1,5 +1,5 @@
 import React from "react";
-import { RiArrowLeftLine, RiMailLine, RiLock2Line } from "react-icons/ri";
+import { RiArrowLeftLine, RiMailLine, RiLock2Line, RiTyphoonFill } from "react-icons/ri";
 import { Link } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
 import { useDispatch } from "react-redux";
@@ -92,9 +92,12 @@ const Register = () => {
           Volver atras
         </Link>
       </header>
-      <h2 className="text-xl text-white font-bold tracking-widest hover:text-light transition-colors cursor-pointer z-10">
-        LOGO
-      </h2>
+      <div className="text-3xl flex justify-center items-center gap-x-2 px-12 font-bold tracking-widest border-b border-light/40 pb-4 pt-2">
+            <RiTyphoonFill className="text-white" />
+            <p className="bg-gradient-to-r from-primary  to-secondary text-end  text-transparent bg-clip-text hover:underline hover:text-light transition-all cursor-pointer">
+              CRM
+            </p>
+          </div>
       <p className="text-gray-400 ">No olvide sus datos ingresados</p>
       <form
         onSubmit={(e) => {

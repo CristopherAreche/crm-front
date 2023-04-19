@@ -45,14 +45,7 @@ const CompanyInformationView = ({ data }) => {
         </article>
         <article className="bg-base-light/30 py-4 px-4 shadow-md rounded-md">
           <header className="flex items-center justify-between mb-2">
-            <p className="text-light text-base lg:text-lg font-medium">Logo</p>
-            <RiStarSmileLine className="text-secondary text-xl border-2 border-secondary p-1 box-content rounded-full" />
-          </header>
-          <img src={data.logo} className="w-20 h-20  rounded-md object-cover" alt='company logo'/>
-        </article>
-        <article className="bg-base-light/30 py-4 px-4 shadow-md rounded-md">
-          <header className="flex items-center justify-between mb-2">
-            <p className="text-light text-base lg:text-lg font-medium">Telefono</p>
+            <p className="text-light text-lg font-medium">Telefono</p>
             <RiPhoneLine className="text-secondary text-xl border-2 border-secondary p-1 box-content rounded-full" />
           </header>
           <p className="text-light/80 ">{data.phone}</p>

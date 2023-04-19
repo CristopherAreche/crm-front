@@ -5,6 +5,7 @@ import {
   RiLock2Line,
   RiEyeOffLine,
   RiEyeLine,
+  RiTyphoonFill
 } from "react-icons/ri";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
@@ -44,7 +45,7 @@ const Login = () => {
 
   useEffect(() => {
     if (myToken !== undefined) {
-      navigate("/dashboard");
+      navigate("/dashboard/perfil");
     }
   }, [myToken, navigate]);
 
@@ -60,9 +61,12 @@ const Login = () => {
           Volver atras
         </Link>
       </div>
-      <h2 className="text-xl text-white font-bold tracking-widest hover:text-light transition-colors cursor-pointer z-10">
-        LOGO
-      </h2>
+      <div className="text-3xl flex justify-center items-center gap-x-2 px-12 font-bold tracking-widest border-b border-light/40 pb-4 pt-2">
+            <RiTyphoonFill className="text-white" />
+            <p className="bg-gradient-to-r from-primary  to-secondary text-end  text-transparent bg-clip-text hover:underline hover:text-light transition-all cursor-pointer">
+              CRM
+            </p>
+          </div>
       <h3 className="text-2xl font-medium text-light">Hey, Hola de nuevo ✋</h3>
       <p className="text-gray-400 ">
         Ingrese la información que ingresó al registrarse

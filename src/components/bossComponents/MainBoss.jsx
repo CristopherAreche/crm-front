@@ -43,8 +43,8 @@ const MainBoss = () => {
   };
 
   return (
-    <section className="py-6 px-12 z-20 grid gird-cols-1 lg:grid-cols-6">
-        <section className='col-span-4 flex flex-col gap-y-6 pr-6'>
+    <section className="py-6 px-12 z-20 grid gird-cols-1 lg:grid-cols-6 ">
+        <section className='col-span-4 flex flex-col gap-y-6 lg:pr-6 pr-0 mb-4 lg:mb-0'>
             <section className="flex flex-col gap-y-3.5">
             <h2 className="text-3xl font-medium text-light">
                 Buenos dias,{" "}

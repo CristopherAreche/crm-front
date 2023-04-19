@@ -7,10 +7,6 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import SummarySection from "./SummarySection";
 import { getAllProducts } from "../services/productsServices";
-import Cookies from 'universal-cookie';
-import { jwtVerify } from "jose";
-import { useNavigate } from "react-router-dom";
-import { persistenceLogin } from "../app/features/authSlice";
 import ProductsCardSummary from "./ProductsCardSummary";
 
 const MainSeller = () => {
@@ -19,27 +15,6 @@ const MainSeller = () => {
   const { products } = useSelector((state) => state.products);
   const statusProducts = useSelector((state) => state.products.status);
   const {User, status} = useSelector((state) => state.auth);
-  const navigate = useNavigate();
-
-  const cookies = new Cookies();
-  const myToken = cookies.get('myToken');
-  
-
-  const persitenceAuth = async (token) => {
-    const { payload } = await jwtVerify(
-      token,
-      new TextEncoder().encode("secret")
-    );
-    return payload
-  }
-
-  useEffect(() => {
-    if (myToken === undefined) {
-      navigate('/authentication')
-    } else {
-      persitenceAuth(myToken).then(res => dispatch(persistenceLogin(res)))
-    }
-  }, [dispatch, myToken, navigate]);
 
 
   useEffect(() => {
@@ -73,10 +48,8 @@ const MainSeller = () => {
     return `Hoy, ${day} ${mounth} ${year}`;
   };
 
-
-
   return (
-    <section className="py-6 px-12 z-20  grid gird-cols-1 lg:grid-cols-6">
+    <section className="py-6 lg:px-12 px-4 z-20  grid gird-cols-1 lg:grid-cols-6 ">
       {/* Left Section */}
       <section className="col-span-4 flex flex-col gap-y-4 items-start ">
         {/* Present Section */}
@@ -111,7 +84,7 @@ const MainSeller = () => {
         </section>
       </section>
       {/* Right Section */}
-      <section className="col-span-2 flex flex-col gap-y-6">
+      <section className="col-span-2 flex flex-col gap-y-6 ">
         {/* Section Lastest Products */}
         <section className="py-2 ">
           <div className="flex justify-between items-center mb-4">
@@ -134,7 +107,7 @@ const MainSeller = () => {
           </section>
         </section>
         {/* Section Graphic Stock */}
-        <section className="flex flex-col items-center gap-y-4 bg-base-light/30 py-4 rounded-md shadow-md">
+        <section className="flex flex-col items-center gap-y-4 bg-base-light/30 py-4 rounded-md shadow-md w-full ">
           <h5 className="text-light font-medium">5 Productos con mas Stock</h5>
           <StockChart />
         </section>

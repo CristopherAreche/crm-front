@@ -11,7 +11,7 @@ const CompanyInformationView = ({ data }) => {
   return (
     <section className="col-span-4 flex flex-col gap-y-6">
       <header className="flex flex-col gap-y-4">
-        <h4 className="text-light font-medium text-4xl">
+        <h4 className="text-light font-medium text-2xl lg:text-4xl">
           Informacion de la Compañia
         </h4>
         <p className="text-light/80 text-sm">
@@ -22,21 +22,21 @@ const CompanyInformationView = ({ data }) => {
       <main className="grid grid-cols-2 gap-4">
         <article className="bg-base-light/30 py-4 px-4 shadow-md rounded-md">
           <header className="flex items-center justify-between mb-2">
-            <p className="text-light text-lg font-medium">Nombre</p>
+            <p className="text-light text-base lg:text-lg font-medium">Nombre</p>
             <RiGlobalLine className="text-secondary text-xl border-2 border-secondary p-1 box-content rounded-full" />
           </header>
           <p className="text-light/80 ">{data.company}</p>
         </article>
         <article className="bg-base-light/30 py-4 px-4 shadow-md rounded-md">
           <header className="flex items-center justify-between mb-2">
-            <p className="text-light text-lg font-medium">Descripcion</p>
+            <p className="text-light text-base lg:text-lg font-medium">Descripcion</p>
             <RiHonourLine className="text-secondary text-xl border-2 border-secondary p-1 box-content rounded-full" />
           </header>
           <p className="text-light/80 ">{data.company_description}</p>
         </article>
         <article className="bg-base-light/30 py-4 px-4 shadow-md rounded-md">
           <header className="flex items-center justify-between mb-2">
-            <p className="text-light text-lg font-medium">
+            <p className="text-light text-base lg:text-lg font-medium">
               Regristro Comercial
             </p>
             <RiCopyrightLine className="text-secondary text-xl border-2 border-secondary p-1 box-content rounded-full" />
@@ -52,10 +52,10 @@ const CompanyInformationView = ({ data }) => {
         </article>
         <article className="bg-base-light/30 py-4 px-4 shadow-md rounded-md">
           <header className="flex items-center justify-between mb-2">
-            <p className="text-light text-lg font-medium">Correo electronico</p>
+            <p className="text-light text-base lg:text-lg font-medium">Correo electronico</p>
             <RiMailLine className="text-secondary text-xl border-2 border-secondary p-1 box-content rounded-full" />
           </header>
-          <p className="text-light/80 ">{data.email}</p>
+          <p className="text-light/80 lg:w-auto w-28 truncate">{data.email}</p>
         </article>
       </main>
     </section>

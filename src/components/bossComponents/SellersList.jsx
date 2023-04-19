@@ -4,11 +4,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { getSellers } from "../../services/sellersServices";
 import {
   selectedSellerCheckbox,
-  cleanSellers,
 } from "../../app/features/sellerSlice";
 import ModalHistory from "./ModalHistory";
 import SellerDetailModal from "../SellerDetailModal";
-import { image } from "../../assets/profilePictures";
 const SellerList = () => {
   const dispatch = useDispatch();
   const sellers = useSelector((state) => state.sellers.sellers);
@@ -21,12 +19,7 @@ const SellerList = () => {
   const user = useSelector((state) => state.auth.User.id);
   useEffect(() => {
     dispatch(getSellers(user));
-    // if (sellersStatus === "idle") {
-    //   if (!sellers.length) {
-    //   }
-    // }
-    return () => dispatch(cleanSellers());
-  }, [dispatch]);
+  }, [dispatch, user]);
 
   const handleCheckboxChange = (seller) => {
     setSellerSelected(seller.id);

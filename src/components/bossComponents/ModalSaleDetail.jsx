@@ -31,11 +31,11 @@ function ModalSaleDetail({ clientDetail, activitie, onClose }) {
 
   return (
     <div className="z-40 fixed inset-0  bg-black  bg-opacity-25 backdrop-blur-sm flex justify-center items-center">
-      <section className="w-[90vw] lg:w-[60vw] bg-base/60 rounded-md flex items-center justify-center gap-y-4 h-96 overflow-y-auto">
-        <div className="bg-base-light flex flex-col gap-6 items-center justify-center font-medium  text-light/9 w-[30%] h-[100%]">
+      <section className=" bg-base/60 rounded-md  grid grid-cols-6 gap-y-4 h-96 ">
+        <div className="bg-base-light col-span-2 px-12 flex flex-col gap-6 items-center justify-center font-medium  text-light/9   ">
           <span className="text-secondary">Nombre: {clientDetail.name}</span>
           <span className="text-secondary">Email: {clientDetail.email}</span>
-          <span className="text-secondary">Phone: ${clientDetail.phone}</span>
+          <span className="text-secondary">Phone: {clientDetail.phone}</span>
           <span className="text-secondary">
             Total Comprado: ${clientDetail.totalPurchased}
           </span>
@@ -49,45 +49,43 @@ function ModalSaleDetail({ clientDetail, activitie, onClose }) {
             Volver
           </button>
         </div>
-        <div className="flex flex-col gap-y-3 w-[70%] h-80 overflow-y-auto">
+        <div className="flex flex-col gap-y-3 col-span-4  overflow-x-auto  ">
           <h3>Detalle de la actividad</h3>
-          <table
-            key={activitie.id}
-            className="bg-base/40 py-1 px-3 rounded-md flex flex-col"
-          >
-            <header className="flex justify-between gap-x-12">
-              <p className="text-sm  text-light/80 flex gap-x-1 items-center">
-                {activitie.method === "Llamada" ? (
-                  <RiPhoneLine />
-                ) : (
-                  <RiMailLine />
-                )}
-                {activitie.method} - Para:{" "}
-                <span className="text-yellow-400">{activitie.to}</span>
-              </p>
 
-              <span
-                className={`text-2xl ${
-                  activitie.state === "Pendiente"
-                    ? "text-red-200"
-                    : "text-emerald-200"
-                } lowercase `}
-              >
-                {activitie.state === "Pendiente" ? (
-                  <RiCheckboxIndeterminateLine />
-                ) : (
-                  <RiCheckboxLine />
-                )}
-              </span>
-            </header>
-            <p className="tex-sm text-secondary font-medium">
-              "{activitie.subject || "No hay asunto para mostrar"}"
+          <header className="flex justify-between gap-x-12">
+            <p className="text-sm  text-light/80 flex gap-x-1 items-center">
+              {activitie.method === "Llamada" ? (
+                <RiPhoneLine />
+              ) : (
+                <RiMailLine />
+              )}
+              {activitie.method} - Para:{" "}
+              <span className="text-yellow-400">{activitie.to}</span>
             </p>
+            <span
+              className={`text-2xl ${
+                activitie.state === "Pendiente"
+                  ? "text-red-200"
+                  : "text-emerald-200"
+              } lowercase `}
+            >
+              {activitie.state === "Pendiente" ? (
+                <RiCheckboxIndeterminateLine />
+              ) : (
+                <RiCheckboxLine />
+              )}
+            </span>
+          </header>
+          <div className=" flex flex-col  justify-center h-20 w-full overflow-hidden">
             <p className="tex-sm text-secondary font-medium">
-              {activitie.message}
+              Asunto: "{activitie.subject || "No hay asunto para mostrar"}"
             </p>
-          </table>
-          <table className="text-white text-center align-center shadow-md rounded-sm font-light  p-2">
+            <p className="tex-sm text-secondary font-medium w-[40vw] whitespace-break-spaces  h-auto">
+              Mensaje: "{activitie.message}"
+            </p>
+          </div>
+
+          <table className="text-white text-center align-center shadow-md rounded-sm font-light  w-[40vw]  p-2">
             <thead>
               <tr className="text-white font-light  p-2">
                 <th className="p-2">Imagen</th>

@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { getClient } from "../../services/clientsServices";
 import { getAllProducts } from "../../services/productsServices";
+import { RiDeleteBin3Line } from "react-icons/ri";
 import swal from "sweetalert";
 
 const RegisterActivitiesModal = ({ onClose }) => {
@@ -212,6 +213,10 @@ const RegisterActivitiesModal = ({ onClose }) => {
                         <td>{p.name}</td>
                         <td> {p.quantity_sale}</td>
                         <td>$ {p.price_sale}</td>
+                        <td>
+                          {" "}
+                          <RiDeleteBin3Line />{" "}
+                        </td>
                       </tr>
                     ))}
                   </tbody>

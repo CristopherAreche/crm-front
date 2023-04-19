@@ -1,31 +1,18 @@
-import React from "react";
-import { Bar } from "react-chartjs-2";
-import {
-  Chart as ChartJS,
-  LineController,
-  LineElement,
-  PointElement,
-  LinearScale,
-  Title,
-  Tooltip,
-} from "chart.js";
+import { Chart, ArcElement, Tooltip, Legend } from "chart.js";
+import { Doughnut } from "react-chartjs-2";
+import { useSelector } from "react-redux";
+import { RiLoader4Fill } from "react-icons/ri";
 
-ChartJS.register(
-  LineController,
-  LineElement,
-  PointElement,
-  LinearScale,
-  Title,
-  Tooltip
-);
+Chart.register(Tooltip, Legend, ArcElement);
 
-const InventoryChart = ({ lowest_stock }) => {
-  const products = lowest_stock?.map((item) => ({
+const InventoryChart = () => {
+
+  // Ordena la matriz de productos por la propiedad "stock"
+  const {loading, bossDashboard} = useSelector(state => state.boss)
+  const products = bossDashboard?.lowest_stock?.map((item) => ({
     name: item.name,
     quantity: item.quantity,
   }));
-  // Ordena la matriz de productos por la propiedad "stock"
-  //un comentario
   const sortedProducts = products?.sort((a, b) => a.quantity - b.quantity);
 
   // Crea los datos para el gráfico de barras
@@ -33,31 +20,44 @@ const InventoryChart = ({ lowest_stock }) => {
     labels: products?.map((p) => p.name),
     datasets: [
       {
-        label: "Productos con menor stock",
+        label: "Productos con mas Stock",
         data: sortedProducts?.map((p) => p.quantity),
-        backgroundColor: "rgba(255, 99, 132, 0.2)",
-        borderColor: "rgba(255, 99, 132, 1)",
-        borderWidth: 1,
+        backgroundColor: [
+          "rgb(255, 99, 132)",
+          "rgb(54, 162, 235)",
+          "rgb(255, 205, 86)",
+          "rgb(75, 192, 192)",
+          "rgb(153, 102, 255)",
+        ],
+        hoverOffset: 4,
       },
     ],
   };
 
   // Configuración de opciones para el gráfico de barras
   const options = {
-    scales: {
-      // yAxes: [
-      //   {
-      //     ticks: {
-      //       beginAtZero: true,
-      //     },
-      //   },
-      // ],
+    maintainAspectRatio: false,
+    width: 100,
+    height: 100,
+    align: "start",
+    plugins: {
+      legend: {
+        display: false,
+      },
     },
   };
 
+  if (!!loading) {
+    return (
+      <div className="flex justify-center w-full">
+        <RiLoader4Fill className="animate-spin text-4xl text-secondary mt-8" />
+      </div>
+    );
+  }
+
   return (
-    <div className=" rounded-lg shadow-md w-full h-full flex justify-center">
-      <Bar data={data} options={options} />
+    <div className="">
+      <Doughnut data={data} options={options} />
     </div>
   );
 };

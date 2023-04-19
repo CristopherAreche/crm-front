@@ -17,19 +17,17 @@ const ClientDetail = () => {
   }, [dispatch, id]);
 
   return (
-    <main className="bg-base h-screen ">
+    <main className="bg-base h-screen">
       <ClientDetailSideBar />
       <main className="lg:pl-72 h-[100vh] overflow-y-auto flex flex-col w-[100vw] lg:w-auto">
-        <section className="py-6 px-12 z-20 grid grid-cols-1 gap-y-12">
+        <section className="py-6 px-12 grid grid-cols-1 gap-y-12">
           <TaskListDetail clientId={id} />
-          <section className="flex flex-col ">
+          <section className="flex flex-col">
             <ActivitiesList />
             <Inventory />
           </section>
         </section>
       </main>
-
-
     </main>
   );
 };

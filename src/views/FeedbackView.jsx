@@ -27,7 +27,6 @@ const FeedbackView = () => {
             <StartFeedback />
             <LightsSvg />
         </section>
-    
     </main>
   )
 }

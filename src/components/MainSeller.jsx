@@ -175,42 +175,7 @@ const MainSeller = () => {
 
            }
         </section>
-        {/* Upgrade Plan Section */}
-        {/* <section className="bg-gradient-to-r from-primary to-secondary relative w-full h-52 flex justify-center items-center cursor-pointer group rounded-md">
-          <div className="absolute top-0 left-0 bg-black/30 w-full h-full  opacity-0 translate-y-1 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-200 ease-in-out rounded-md shadow-md flex flex-col gap-y-4 items-start justify-center px-6">
-            <div className="flex justify-between  w-full items-center ">
-              <h5 className="text-xl font-medium ">
-                Pasa al plan{" "}
-                <span className="text-orange-400">Professional</span>
-              </h5>
-              <p className="font-medium text-white text-lg">
-                <span className="font-medium bg-orange-400 p-1 rounded-md shadow-md text-xl">
-                  50%
-                </span>{" "}
-                de descuento
-              </p>
-            </div>
-            <div className="flex flex-col gap-y-2 text-sm font-bold">
-              <p className="flex gap-x-2 items-center">
-                <RiCheckboxCircleLine className="text-lg text-orange-400" />
-                CRM x5
-              </p>
-              <p className="flex gap-x-2 items-center">
-                <RiCheckboxCircleLine className="text-lg text-orange-400" />
-                Automatizacion x5
-              </p>
-              <p className="flex gap-x-2 items-center">
-                <RiCheckboxCircleLine className="text-lg text-orange-400" />
-                Stock x5
-              </p>
-            </div>
-          </div>
-          <img
-            src={productImage}
-            alt="product 3d icon"
-            className="w-44 h-44 group-hover:w-36 group-hover:h-36 transition-all duration-200 ease-in-out "
-          />
-        </section> */}
+       
       </section>
     </section>
   );

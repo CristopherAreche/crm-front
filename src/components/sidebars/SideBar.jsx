@@ -66,8 +66,8 @@ function SideBar({ typeSidebar, summary, inventory, clients, sellers }) {
               {user.role === "admin" ? (
                 <img
                   src={
-                    user.image
-                      ? user.image
+                    user.logo
+                      ? user.logo
                       : "https://cdn-icons-png.flaticon.com/512/219/219983.png"
                   }
                   alt="placeholder"

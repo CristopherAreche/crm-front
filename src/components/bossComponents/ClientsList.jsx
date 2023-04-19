@@ -39,10 +39,10 @@ const ClientsList = () => {
 
   useEffect(() => {
 
-    dispatch(getAllClients(userId));
+    dispatch(getAllClients(user));
 
     return () => dispatch(cleanAllClients());
-  }, [dispatch]);
+  }, [dispatch, user]);
   
   if (clientsStatus === "loading") {
     return (

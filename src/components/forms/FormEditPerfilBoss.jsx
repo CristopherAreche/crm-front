@@ -223,7 +223,7 @@ const FormEditPerfilBoss = ({ onClose, inView }) => {
                   Este campo es requerido!
                 </span>
               )}
-            </div>
+            </div> 
           </>
         )}
         <section className="flex justify-between items-center w-full">

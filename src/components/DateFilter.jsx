@@ -16,7 +16,7 @@ function DateFilter() {
     dispatch(dateFilter(newValue));
   };
   return (
-    <div className="w-full lg:w-96 inset-0 z-40">
+    <div className="w-full lg:w-96 inset-0 ">
       <Datepicker
         inputClassName=" font-bold text-center bg-base-light/60 dark:bg-base-light/60 text-black"
         primaryColor={"blue"}

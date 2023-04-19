@@ -3,6 +3,7 @@ import { createActivity } from "../../services/activityService";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { getClient } from "../../services/clientsServices";
+import { getAllProducts } from "../../services/productsServices";
 import swal from "sweetalert";
 
 const RegisterActivitiesModal = ({ onClose }) => {
@@ -13,7 +14,7 @@ const RegisterActivitiesModal = ({ onClose }) => {
   const [to, setTo] = useState("");
   const [message, setMessage] = useState("");
   const dispatch = useDispatch();
-  const salesmanId = useSelector((state) => state.auth.User.id);
+  const { id: salesmanId, bossId } = useSelector((state) => state.auth.User);
 
   const [quantity_sale, setQuantity_sale] = useState("");
   const [productData, setProductData] = useState({
@@ -27,7 +28,7 @@ const RegisterActivitiesModal = ({ onClose }) => {
   const { clientDetail } = useSelector((state) => state.clients);
   const { id } = useParams();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const obj = {
       salesmanId,
@@ -45,8 +46,9 @@ const RegisterActivitiesModal = ({ onClose }) => {
       productData,
     };
 
-    dispatch(createActivity({ activity: obj, sale: productSelected }));
-
+    await dispatch(createActivity({ activity: obj, sale: productSelected }));
+    await dispatch(getClient(id));
+    await dispatch(getAllProducts(bossId));
     onClose();
   };
 
@@ -171,11 +173,12 @@ const RegisterActivitiesModal = ({ onClose }) => {
                     {/* pendiente por revisar... funciona con alambres */}
 
                     {products.map((product, index) => {
-                      return (
-                        <option key={index} value={JSON.stringify(product)}>
-                          {product.name}
-                        </option>
-                      );
+                      if (product.enable === true)
+                        return (
+                          <option key={index} value={JSON.stringify(product)}>
+                            {product.name}
+                          </option>
+                        );
                     })}
                   </select>
                 </label>

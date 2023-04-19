@@ -46,7 +46,7 @@ const Inventory = () => {
               <MdOutlineInventory2 className="text-4xl" />
               Inventario
             </h4>
-            <div className="flex gap-x-8 mt-2">
+            <div className="flex gap-x-8 mt-2 ">
               <SearchBar
                 data={products}
                 onSearch={(filteredProducts) =>

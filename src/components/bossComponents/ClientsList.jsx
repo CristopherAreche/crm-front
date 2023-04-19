@@ -42,7 +42,7 @@ const ClientsList = () => {
     dispatch(getAllClients(user));
 
     return () => dispatch(cleanAllClients());
-  }, [dispatch]);
+  }, [dispatch, user]);
   
   if (clientsStatus === "loading") {
     return (

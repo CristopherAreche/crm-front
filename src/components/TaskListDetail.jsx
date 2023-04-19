@@ -22,7 +22,7 @@ const TaskListDetail = ({ clientId }) => {
 
   if (!tasks.length && statusTask !== "loading") {
     return (
-      <section className="flex items-center w-full  gap-x-4 ">
+      <section className="flex items-center w-full  gap-x-4 z-20">
         <div>
           <h3 className="text-xl text-light font-medium">
             No tiene ninguna tarea pendiente con este cliente
@@ -39,7 +39,7 @@ const TaskListDetail = ({ clientId }) => {
   }
 
   return (
-    <section className=" text-white mb-6">
+    <section className=" text-white mb-6 z-20">
       <h4 className="text-2xl text-light font-medium flex gap-x-4 items-center mb-6">
         <RiBookReadLine className="text-4xl" /> Lista de Tareas
       </h4>

@@ -66,8 +66,8 @@ function SideBar({ typeSidebar, summary, inventory, clients, sellers }) {
               {user.role === "admin" ? (
                 <img
                   src={
-                    user.image
-                      ? user.image
+                    user.logo
+                      ? user.logo
                       : "https://cdn-icons-png.flaticon.com/512/219/219983.png"
                   }
                   alt="placeholder"
@@ -84,7 +84,11 @@ function SideBar({ typeSidebar, summary, inventory, clients, sellers }) {
                   className="w-28 h-28 rounded-full object-cover"
                 />
               )}
-              <p className={`${user.role === 'admin' ? 'bg-orange-400' : 'bg-green-400'} text-black absolute rounded-full px-2 bottom-0 right-0`}>
+              <p
+                className={`${
+                  user.role === "admin" ? "bg-orange-400" : "bg-green-400"
+                } text-black absolute rounded-full px-2 bottom-0 right-0`}
+              >
                 {user.role === "admin" ? "admin" : "seller"}
               </p>
             </div>

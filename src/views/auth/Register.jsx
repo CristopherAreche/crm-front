@@ -37,6 +37,7 @@ const Register = () => {
       for (let entry of formData.entries()) {
       }
       dispatch(postUserLogin(formData));
+     
 }
 
   const valUser = (value) => {

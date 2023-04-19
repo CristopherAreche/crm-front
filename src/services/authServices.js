@@ -25,6 +25,11 @@ export const postUserLogin = createAsyncThunk(
   async (formData, thunkAPI) => {
     try {
       const response = await axios.post(`${URL}/boss`, formData);
+      swal(
+        "Usuario registrado",
+        "Tu usuario ha sido registrado correctamente, ahora puedes iniciar sesión",
+        "success"
+      );
       return response.data;
     } catch (error) {
       swal(

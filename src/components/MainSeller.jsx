@@ -76,7 +76,7 @@ const MainSeller = () => {
 
 
   return (
-    <section className="py-6 px-12 z-20  grid gird-cols-1 lg:grid-cols-6">
+    <section className="py-6 lg:px-12 px-4 z-20  grid gird-cols-1 lg:grid-cols-6 ">
       {/* Left Section */}
       <section className="col-span-4 flex flex-col gap-y-4 items-start ">
         {/* Present Section */}
@@ -111,7 +111,7 @@ const MainSeller = () => {
         </section>
       </section>
       {/* Right Section */}
-      <section className="col-span-2 flex flex-col gap-y-6">
+      <section className="col-span-2 flex flex-col gap-y-6 ">
         {/* Section Lastest Products */}
         <section className="py-2 ">
           <div className="flex justify-between items-center mb-4">
@@ -134,7 +134,7 @@ const MainSeller = () => {
           </section>
         </section>
         {/* Section Graphic Stock */}
-        <section className="flex flex-col items-center gap-y-4 bg-base-light/30 py-4 rounded-md shadow-md">
+        <section className="flex flex-col items-center gap-y-4 bg-base-light/30 py-4 rounded-md shadow-md w-full ">
           <h5 className="text-light font-medium">5 Productos con mas Stock</h5>
           <StockChart />
         </section>

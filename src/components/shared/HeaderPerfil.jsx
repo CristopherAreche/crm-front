@@ -38,7 +38,7 @@ const HeaderPerfil = () => {
           user.enable
             ? "text-red-400 border-red-500 "
             : "text-emerald-400 border-emerald-500 "
-        } text-sm  border p-1 rounded-md hover:scale-[1.03] transition-all`}
+        } text-sm  border p-1 lg:px-0 px-2 rounded-md hover:scale-[1.03] transition-all`}
       >
         {user.enable ? "Dar de baja" : "Habilitar"}
       </button>

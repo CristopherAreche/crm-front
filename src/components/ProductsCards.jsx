@@ -1,5 +1,4 @@
 import React from "react";
-import { RiTimeLine } from "react-icons/ri";
 import { useSelector } from "react-redux";
 
 const ProductsCards = ({ item }) => {

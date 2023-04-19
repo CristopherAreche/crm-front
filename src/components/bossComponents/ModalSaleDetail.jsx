@@ -7,7 +7,6 @@ import {
   RiMailLine,
   RiPhoneLine,
 } from "react-icons/ri";
-import { useSelector } from "react-redux";
 
 function ModalSaleDetail({ clientDetail, activitie, onClose }) {
   const API_URL_SALE = `${URL}/sale_product`;

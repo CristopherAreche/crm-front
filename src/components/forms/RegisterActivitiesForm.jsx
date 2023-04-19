@@ -30,6 +30,7 @@ const RegisterActivitiesModal = ({ onClose }) => {
   const user = useSelector((state) => state.auth.User);
 
   const { id } = useParams();
+  const [total, setTotal] = useState(0);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -75,6 +76,19 @@ const RegisterActivitiesModal = ({ onClose }) => {
     const newProductSelected = productSelected.filter((p, i) => i !== index);
     setProductSelected(newProductSelected);
     setTotalAmount(newProductSelected.reduce((acc, p) => acc + p.subtotal, 0));
+  };
+
+  const deleteProductSelected = (productId) => {
+    console.log(productId);
+    console.log(productSelected);
+    let filterList = productSelected.filter((product) => {
+      console.log(product.productId, productId);
+      if (product.productId !== productId) {
+        return true;
+      } else setTotal(total - product.price_sale * product.quantity_sale);
+    });
+
+    setProductSelected(filterList);
   };
 
   return (
@@ -233,6 +247,10 @@ const RegisterActivitiesModal = ({ onClose }) => {
                       </tr>
                     ))}
                   </tbody>
+                  <th className="border-b " p-2>
+                    {" "}
+                    Total: $ {total}
+                  </th>
                 </table>
                 <span className="font-bold text-white py-8 flex justify-start">
                   Total: ${totalAmount.toFixed(2)}

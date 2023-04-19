@@ -39,8 +39,8 @@ const RegisterActivitiesModal = ({ onClose }) => {
       method,
       state,
       subject,
-      from,
-      to,
+      // from,
+      // to,
       message,
     };
 
@@ -82,9 +82,10 @@ const RegisterActivitiesModal = ({ onClose }) => {
       <form
         onSubmit={(e) => handleSubmit(e)}
         className={`${
-          state === "Pendiente" ? "w-[30vw]" : "w-[60vw]"
-        } bg-base/60 rounded-md flex flex-col items-center justify-center h-[35em]`}
+          state === "Pendiente" ? "w-[30vw]" : "w-[65vw]"
+        } bg-base/60 rounded-md pr-8 flex flex-col items-center justify-center h-[35em]`}
       >
+        <header className="text-white py-6 font-bold">CREAR ACTIVIDAD</header>
         <div className="  flex  w-[100%] h-[85%]">
           {/* Metodo */}
           <div className=" w-[100%] flex flex-col justify-center items-center">
@@ -212,6 +213,7 @@ const RegisterActivitiesModal = ({ onClose }) => {
                       <th className="p-2">Producto</th>
                       <th className="p-2">Cantidad</th>
                       <th>Precio por unidad</th>
+                      <th>Subtotal</th>
                     </tr>
                   </thead>
                   <tbody className="">
@@ -220,6 +222,8 @@ const RegisterActivitiesModal = ({ onClose }) => {
                         <td>{p.name}</td>
                         <td> {p.quantity_sale}</td>
                         <td>$ {p.price_sale}</td>
+                        <td>$ {p.subtotal}</td>
+
                         <td>
                           {" "}
                           <RiDeleteBin3Line

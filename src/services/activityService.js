@@ -17,7 +17,6 @@ export const createActivity = createAsyncThunk(
   "activity/createActivity",
   async ({ activity, sale }) => {
     try {
-      console.log("actividad", activity, "sale", sale);
       const { data } = await axios.post(`${API_URL_ACTIVITY}`, activity);
 
       const activityId = data.id;
@@ -27,7 +26,7 @@ export const createActivity = createAsyncThunk(
             ...product,
             activityId,
           });
-          console.log(response);
+
           return response.data;
         });
 

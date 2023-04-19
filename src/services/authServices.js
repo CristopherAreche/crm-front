@@ -20,18 +20,6 @@ export const postUserInfo = createAsyncThunk(
   }
 );
 
-export const postUserLogin = createAsyncThunk(
-  "userLogin/postUserLogin",
-  async (formData, thunkAPI) => {
-    try {
-      const response = await axios.post(`${URL}/boss`, formData);
-      return response.data;
-    } catch (error) {
-      return thunkAPI.rejectWithValue(error.response.data);
-    }
-  }
-);
-
 export const postLogin = createAsyncThunk(
   "loginUser/postLogin",
   async (loginUser, thunkAPI) => {
@@ -121,3 +109,26 @@ export const putUser = createAsyncThunk("boss/putUser", async (payload) => {
     return error.response.data.error;
   }
 });
+
+export const postUserLogin = createAsyncThunk(
+  "userLogin/postUserLogin",
+  async (formData, thunkAPI) => {
+    try {
+      const response = await axios.post(`${URL}/boss`, formData);
+      swal(
+        `Bienvenido a nuestra CRM ${response.data.name}`,
+        "Tienes una prueba gratuita de 7 dias, luego deberas pagar para seguir usando la plataforma. 😁",
+        "success"
+      );
+
+      return response;
+    } catch (error) {
+      swal(
+        "Error",
+        "Hubo un error al intentar registrarse. Por favor, inténtelo de nuevo.",
+        "error"
+      );
+      return thunkAPI.rejectWithValue(error.response.data);
+    }
+  }
+);

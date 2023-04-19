@@ -16,7 +16,6 @@ function ModalSaleDetail({ clientDetail, activitie, onClose }) {
   useEffect(() => {
     getSale();
   }, []);
-  console.log(activitie);
 
   const getSale = async () => {
     try {
@@ -25,7 +24,7 @@ function ModalSaleDetail({ clientDetail, activitie, onClose }) {
       );
       setSaleDetail(response.data);
     } catch (error) {
-      console.log(error.response.data.error);
+      console.alert(error.response.data.error);
     }
   };
 

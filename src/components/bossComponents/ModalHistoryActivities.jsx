@@ -22,8 +22,9 @@ export default function ModalHistoryActivities({ activitie, clientDetail }) {
       >
         <header className="flex justify-between gap-x-12">
           <p className="text-sm  text-light/80 flex gap-x-1 activities-center">
-            {activitie.method === "Llamada" ? <RiPhoneLine /> : <RiMailLine />}
-            {activitie.method} - Para:{" "}
+            {activitie?.method === "Llamada" ? <RiPhoneLine /> : <RiMailLine />}
+            {activitie?.method} - Para:
+            <span className="text-white">{clientDetail?.email}</span>
             <span className="text-yellow-400">{activitie.to}</span>
             <button
               className=" hover:text-gray-400/80 transition-all"
@@ -43,12 +44,12 @@ export default function ModalHistoryActivities({ activitie, clientDetail }) {
 
           <span
             className={`text-2xl ${
-              activitie.state === "Pendiente"
+              activitie?.state === "Pendiente"
                 ? "text-red-200"
                 : "text-emerald-200"
             } lowercase `}
           >
-            {activitie.state === "Pendiente" ? (
+            {activitie?.state === "Pendiente" ? (
               <RiCheckboxIndeterminateLine />
             ) : (
               <RiCheckboxLine />
@@ -56,7 +57,7 @@ export default function ModalHistoryActivities({ activitie, clientDetail }) {
           </span>
         </header>
         <p className="tex-sm text-secondary font-medium">
-          "{activitie.subject || "No hay sujeto para mostrar"}"
+          "{activitie?.subject || "No hay sujeto para mostrar"}"
         </p>
       </table>
     );
@@ -64,20 +65,22 @@ export default function ModalHistoryActivities({ activitie, clientDetail }) {
     return (
       <tr className=" border-b dark:border-base/30">
         <td className="whitespace-nowrap  px-6 py-4 font-medium">
-          {activitie.method}
+          {activitie?.method}
         </td>
         <td className="whitespace-nowrap px-6 py-4  font-medium">
-          {activitie.state}
+          {activitie?.state}
         </td>
         <td
           className=" whitespace-nowrap px-6 py-4 font-medium"
           onMouseEnter={() => setHoveredSubject(true)}
           onMouseLeave={() => setHoveredSubject(false)}
-          title={hoveredSubject === activitie.subject ? activitie.subject : ""}
+          title={
+            hoveredSubject === activitie?.subject ? activitie?.subject : ""
+          }
         >
-          {activitie.subject.length > 20
-            ? activitie.subject.slice(0, 20) + "..."
-            : activitie.subject}
+          {activitie?.subject.length > 20
+            ? activitie?.subject.slice(0, 20) + "..."
+            : activitie?.subject}
           {hoveredSubject ? (
             <span className="absolute hidden group-hover:flex -left-3 -top-2 -translate-y-full w-auto px-2 py-1 bg-gray-700 rounded-lg text-center text-white text-sm after:content-[''] after:absolute after:left-1/2 after:top-[100%] after:-translate-x-1/2 after:border-8 after:border-x-transparent after:border-b-transparent after:border-t-gray-700">
               Agregar
@@ -85,7 +88,7 @@ export default function ModalHistoryActivities({ activitie, clientDetail }) {
           ) : null}
         </td>
         <td className="whitespace-nowrap  px-6 py-4">
-          {activitie.createdAt.split("T")[0]}
+          {activitie?.createdAt.split("T")[0]}
         </td>
         <td className="whitespace-nowrap  px-6 py-4">
           <button onClick={() => setShowModal(true)}>

@@ -52,7 +52,7 @@ function SideBar({ typeSidebar, summary, inventory, clients, sellers }) {
       <section
         className={`${
           isOpen ? "left-0" : "-left-full"
-        }  bg-base-light/80 lg:bg-base-light/40 w-72 lg:w-72  flex flex-col  justify-between py-4 fixed   h-full z-50 transition-all duration-200 lg:left-0 overflow-y-auto`}
+        }  bg-base-light/80 lg:bg-base-light/40 w-72 lg:w-72  flex flex-col  justify-between py-4 fixed   h-screen z-50 transition-all duration-200 lg:left-0 overflow-y-auto`}
       >
         <section className="flex flex-col gap-y-2">
           <div className="text-3xl flex justify-center items-center gap-x-2 px-12 font-bold tracking-widest border-b border-light/40 pb-4 pt-2">

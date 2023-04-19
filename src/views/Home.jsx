@@ -40,7 +40,7 @@ const Home = () => {
         <Faq />
         <AboutUs />
       </section>
-      <LightsSvg />
+        <LightsSvg /> 
     </main>
   );
 };

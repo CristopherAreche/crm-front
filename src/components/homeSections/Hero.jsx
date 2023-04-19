@@ -9,14 +9,15 @@ const Hero = () => {
       name="inicio"
       className="
     iphone12:pt-12 iphone12:mt-14
+    
     sm:justify-center items-center
-    mt-[6em] flex flex-col lg:flex-row lg:items-center justify-center h-[100vh] pt-12  lg:pt-0"
+    mt-[6em] flex flex-col lg:flex-row lg:items-center justify-center h-[100vh] pt-12  lg:pt-0 z-20"
     >
       {/* Hero Info */}
       <section
         className="
         sm:justify-center sm:items-center lg:items-start 
-       text-white flex flex-col gap-y-8 lg:w-[36rem] lg:h-[30rem] "
+       text-white flex flex-col gap-y-8 lg:w-[36rem] lg:h-[30rem] z-20 "
       >
         {/* Info Principal */}
         <div>

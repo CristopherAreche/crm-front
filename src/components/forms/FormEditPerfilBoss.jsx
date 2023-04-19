@@ -224,25 +224,6 @@ const FormEditPerfilBoss = ({ onClose, inView }) => {
                 </span>
               )}
             </div>
-            {/* Input Company Logo */}
-            <div className="flex flex-col gap-y-2 w-full">
-              <label className="text-sm font-medium text-light">
-                Logo de compania
-              </label>
-              <div className="relative w-full">
-                <input
-                  {...register("logo", { required: true })}
-                  type="text"
-                  className="bg-base-light/70 py-1 rounded-md outline-none pl-8 pr-4 w-full"
-                />
-                <RiStarSmileLine className="absolute top-1/2 -translate-y-1/2 left-2 text-xl text-secondary " />
-              </div>
-              {errors.logo && (
-                <span className="text-sm font-medium text-red-400">
-                  Este campo es requerido!
-                </span>
-              )}
-            </div>
           </>
         )}
         <section className="flex justify-between items-center w-full">

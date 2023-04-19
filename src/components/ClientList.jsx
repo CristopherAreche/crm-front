@@ -22,10 +22,10 @@ const ClientList = () => {
   const user = useSelector((state) => state.auth.User);
 
   useEffect(() => {
-    if (clientsStatus === "idle" && user?.id) {
+    if (user?.id) {
       dispatch(getClients(user?.id));
     }
-  }, [clientsStatus, dispatch, clients, user?.id]);
+  }, [dispatch, user?.id]);
 
   const handleCheckboxChange = (client) => {
     setClientSelected(client.id);

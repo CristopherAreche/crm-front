@@ -6,7 +6,7 @@ import {
   RiPaypalLine,
 } from "react-icons/ri";
 import axios from "axios";
-import URL from "../utils/env";
+import URL from "../../utils/env";
 
 const API_URL_ORDER = `${URL}/create-order`;
 

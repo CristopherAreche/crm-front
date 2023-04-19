@@ -16,13 +16,12 @@ const ProductList = () => {
   const bossId = useSelector((state) => state.auth.User.id);
 
   useEffect(() => {
-    if (productStatus === "idle") {
-      if (!products.length) {
-        dispatch(getAllProducts(bossId));
-      }
+    if (bossId) {
+      dispatch(getAllProducts(bossId));
+      
     }
     return () => dispatch(cleanProducts());
-  }, [dispatch]);
+  }, [dispatch, bossId]);
 
   const handleCheckboxChange = (products) => {
     setProductSelected(products.id);
@@ -112,7 +111,7 @@ const ProductList = () => {
                     <td>{item.category}</td>
                     <td className="px-6 py-4 flex justify-center">
                       <img
-                        className="h-12 w-12 object-cover"
+                        className="h-12 w-12 object-cover rounded-md"
                         src={ item.image
                         ? item.image
                         : "https://cdn.shopify.com/s/files/1/0533/2089/files/placeholder-images-product-6_large.png?format=jpg&quality=90&v=1530129477"}

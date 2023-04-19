@@ -51,7 +51,13 @@ const MonthlyCompareChart = ({ annual_sales }) => {
         ],
       },
       options: {
+        plugins: {
+          legend: {
+            display: false,
+          },
+        },
         scales: {
+          
           // yAxes: [
           //   {
           //     ticks: {
@@ -70,8 +76,8 @@ const MonthlyCompareChart = ({ annual_sales }) => {
   }, [annual_sales]);
 
   return (
-    <div className="w-full h-full flex justify-center">
-      <canvas ref={chartRef} id="myChart" width="400" height="400"></canvas>
+    <div className="">
+      <canvas ref={chartRef} id="myChart"></canvas>
     </div>
   );
 };

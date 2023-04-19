@@ -4,7 +4,7 @@ import { AiFillLinkedin } from "react-icons/ai";
 
 const CardProfile = ({ image, name, role, github, linkedIn }) => {
   return (
-    <div className="border rounded-lg bg-white border-b-8 border-secondary">
+    <div className="border rounded-lg bg-white border-b-8 border-secondary w-full">
     <div className="flex flex-col lg:flex-row items-center lg:items-start gap-6 p-4">
       <img
         src={image}

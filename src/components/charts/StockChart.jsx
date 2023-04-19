@@ -55,7 +55,7 @@ const StockChart = () => {
     );
   }
   return (
-    <div className="">
+    <div className="w-full">
       <Doughnut data={data} options={options} />
     </div>
   );

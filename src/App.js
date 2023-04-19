@@ -11,6 +11,7 @@ import Inventory from "./views/dashboard/Inventory";
 import Perfil from "./views/dashboard/Perfil";
 import Redireccion from "./views/auth/Redireccion";
 import FeedbackView from "./views/FeedbackView";
+import SuccessPayment from "./views/SuccessPayment";
 function App() {
 
   return (
@@ -27,6 +28,7 @@ function App() {
         <Route path="/dashboard/perfil" element={<Perfil />} />
 
         <Route path="/feedback" element={<FeedbackView />} />
+        <Route path="/success" element={<SuccessPayment/>}/>
         
         
         {/* Rutas de Registracion y Login */}

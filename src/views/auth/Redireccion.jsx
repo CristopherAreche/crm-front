@@ -27,7 +27,7 @@ const Redireccion = () => {
   }
   console.log("GLOBAL USER ***********", User);
 
-  return <div>{navigate("/dashboard")}</div>;
+  return <div>{navigate("/dashboard/perfil")}</div>;
 };
 
 export default Redireccion;

@@ -46,7 +46,7 @@ const Inventory = () => {
               <MdOutlineInventory2 className="text-4xl" />
               Inventario
             </h4>
-            <div className="flex gap-x-8 mt-2">
+            <div className="flex gap-x-8 mt-2 ">
               <SearchBar
                 data={products}
                 onSearch={(filteredProducts) =>
@@ -64,7 +64,7 @@ const Inventory = () => {
         <main className="bg-base h-screen text-white">
           <SideBar />
 
-          <section className="lg:pl-72 h-[100vh] overflow-y-auto flex flex-col z-20 w-[100vw] lg:w-auto">
+          <section className="lg:pl-72 h-[100vh] overflow-y-auto flex flex-col w-[100vw] lg:w-auto">
             <section className="py-6 px-12 z-20  ">
               <div className=" text-white w-full flex flex-col lg:flex-row items-center  lg:justify-between gap-y-2 mb-6">
                 <Header
@@ -87,10 +87,11 @@ const Inventory = () => {
               </section>
             </section>
           </section>
+          <LightsSvg />
         </main>
       )}
 
-      <LightsSvg />
+
     </main>
   );
 };

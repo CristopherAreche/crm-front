@@ -81,6 +81,11 @@ const TotalSalesChart = ({ annual_sales = [] }) => {
   const chartOptions = {
     responsive: true,
     maintainAspectRatio: false,
+    plugins: {
+      legend: {
+        display: false,
+      },
+    },
     scales: {
       // yAxes: [
       //   {
@@ -93,7 +98,7 @@ const TotalSalesChart = ({ annual_sales = [] }) => {
   };
 
   return (
-    <div className="w-full h-96">
+    <div className="w-full ">
       <Line data={chartData} options={chartOptions} />
     </div>
   );

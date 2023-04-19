@@ -6,6 +6,9 @@ import { useDispatch } from "react-redux";
 import { postUserLogin } from "../../services/authServices";
 import { useState } from "react";
 import swal from "sweetalert";
+import { useNavigate } from "react-router-dom";
+import { login } from "../../services/authServices";
+import { useEffect } from "react";
 
 const Register = () => {
   const [password, setPassWord] = useState({
@@ -15,31 +18,43 @@ const Register = () => {
   const [email, setEmail] = useState("");
   const [errorUser, SetErrorUser] = useState(true);
   const [errorPassword, setErrorPassword] = useState(true);
+  const [temp, setTemp ] = useState( undefined );
   // const [access, setAccess] = useState(false);
   const regularPassword = /^(?=.\d)(?=.[a-z])(?=.*[A-Z])\w{8,}$/; //al menos una letra, al menos un numero, al menos una letra mayúscula, al menos 8 caracteres, no permite espacios.
   const regularUser = /\S+@\S+\.\S+/; //un correo electronico
   const { loginWithRedirect } = useAuth0();
   const dispatch = useDispatch();
+  const navigate= useNavigate();
 
-  const register = () => {
-    const formData = new FormData();
-    const formLogin = {
-      name: email.split("@")[0],
-      username: email.split("@")[0],
-      email: email,
-      password: password.password2,
-      enable: false,
-    };
-    formData.append("formLogin", JSON.stringify(formLogin));
-    for (let entry of formData.entries()) {
-    }
-    dispatch(postUserLogin(formData));
-    swal(
-      "Usuario registrado",
-      "Tu usuario se ha registrado con exito",
-      "success"
-    );
-  };
+  const register = async() => {
+      const formData = new FormData();
+      const formLogin = {
+        name: email.split("@")[0],
+        username: email.split("@")[0],
+        email: email,
+        password: password.password2,
+        enable: false,
+      };
+
+      if(password.password==="" ||password.password2==="" || email===""){
+        swal(
+          "Error",
+          "Por favor, complete todos los campos.",
+          "error"
+        );
+      }
+      else{
+        formData.append("formLogin", JSON.stringify(formLogin));
+        for (let entry of formData.entries()) {
+        }
+        const temps= await dispatch(postUserLogin(formData));
+        console.log("ESTE ES EL TEMPS****",temps.payload.status);
+        if(temps.payload.status===200){
+          dispatch(login({ email, password: password.password2 }))
+          navigate("/dashboard/perfil");
+         }
+}};
+
 
   const valUser = (value) => {
     if (regularUser.test(value)) SetErrorUser(false);

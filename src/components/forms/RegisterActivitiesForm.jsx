@@ -16,8 +16,8 @@ const RegisterActivitiesModal = ({ onClose }) => {
   const [message, setMessage] = useState("");
   const dispatch = useDispatch();
   const { id: salesmanId, bossId } = useSelector((state) => state.auth.User);
-
   const [quantity_sale, setQuantity_sale] = useState("");
+  const [totalAmount, setTotalAmount] = useState(0);
   const [productData, setProductData] = useState({
     productId: "",
     price_sale: "",
@@ -27,7 +27,8 @@ const RegisterActivitiesModal = ({ onClose }) => {
 
   const products = useSelector((state) => state.products.products);
   const { clientDetail } = useSelector((state) => state.clients);
-  // const salesmanId = "7155a9d8-acff-4cf9-93fd-385830b9bcae";
+  const user = useSelector((state) => state.auth.User);
+
   const { id } = useParams();
 
   const handleSubmit = async (e) => {
@@ -56,24 +57,37 @@ const RegisterActivitiesModal = ({ onClose }) => {
 
   const append = (e) => {
     e.preventDefault();
-    if (quantity_sale <= productData.quantity_sale)
+    const subtotal = quantity_sale * productData.price_sale;
+    if (quantity_sale <= productData.quantity_sale) {
       setProductSelected([
         ...productSelected,
-        { ...productData, quantity_sale },
+        { ...productData, quantity_sale, subtotal },
       ]);
-    else
+      setTotalAmount(totalAmount + subtotal);
+    } else {
       swal("Error", `La cantidad indicada supera el stock disponible`, "error");
+    }
+  };
+
+  const handleDelete = (index) => {
+    // const productToDelete = productSelected[index];
+    // const subtotalToDelete = productToDelete.subtotal;
+    const newProductSelected = productSelected.filter((p, i) => i !== index);
+    setProductSelected(newProductSelected);
+    setTotalAmount(newProductSelected.reduce((acc, p) => acc + p.subtotal, 0));
   };
 
   return (
     <div className=" fixed inset-0  bg-black  bg-opacity-25 backdrop-blur-sm flex justify-center items-center">
       <form
         onSubmit={(e) => handleSubmit(e)}
-        className=" w-[100vw] lg:w-[60vw] bg-base/60 rounded-md flex flex-col items-center justify-center h-[35em]"
+        className={`${
+          state === "Pendiente" ? "w-[30vw]" : "w-[60vw]"
+        } bg-base/60 rounded-md flex flex-col items-center justify-center h-[35em]`}
       >
-        <div className="  flex    w-[100%] h-[85%]">
+        <div className="  flex  w-[100%] h-[85%]">
           {/* Metodo */}
-          <div className=" w-[50%] flex flex-col justify-center items-center">
+          <div className=" w-[100%] flex flex-col justify-center items-center">
             <div className=" w-[100%] h-[25%]  flex gap-x-16 justify-center items-center">
               <label className="block">
                 <span className="text-white">Metodo</span>
@@ -103,6 +117,18 @@ const RegisterActivitiesModal = ({ onClose }) => {
             </div>
 
             <div className="  w-[100%] h-[75%] flex  flex-col justify-center items-center gap-y-3">
+              {method === "Llamada" ? null : (
+                <>
+                  <label className="block">
+                    <span className="text-white">Desde: {user.email}</span>
+                  </label>
+                  <label className="block">
+                    <span className="text-white">
+                      Para: {clientDetail.email}
+                    </span>
+                  </label>
+                </>
+              )}
               {/* Asunto */}
               <label className="block">
                 <span className="text-white">Asunto: </span>
@@ -111,26 +137,6 @@ const RegisterActivitiesModal = ({ onClose }) => {
                   className="w-[100%]"
                   value={subject}
                   onChange={(e) => setSubject(e.target.value)}
-                />
-              </label>
-              {/* from */}
-              <label className="block">
-                <span className="text-white">Desde: </span>
-                <input
-                  type="email"
-                  className="w-[100%]"
-                  value={from}
-                  onChange={(e) => setFrom(e.target.value)}
-                />
-              </label>
-              {/* To */}
-              <label className="block">
-                <span className="text-white">Para: </span>
-                <input
-                  type="email"
-                  className="w-[100%]"
-                  value={to}
-                  onChange={(e) => setTo(e.target.value)}
                 />
               </label>
               {/* text */}
@@ -148,9 +154,9 @@ const RegisterActivitiesModal = ({ onClose }) => {
               </label>
             </div>
           </div>
-          <div className=" w-[50%] flex flex-col justify-center items-center">
+          <>
             {state === "Concretado" ? (
-              <>
+              <div className=" w-[100%] flex flex-col justify-center items-center">
                 <label className="block" htmlFor="name">
                   <span className="text-white">Producto vendido </span>
                   <select
@@ -216,15 +222,20 @@ const RegisterActivitiesModal = ({ onClose }) => {
                         <td>$ {p.price_sale}</td>
                         <td>
                           {" "}
-                          <RiDeleteBin3Line />{" "}
+                          <RiDeleteBin3Line
+                            onClick={() => handleDelete(index)}
+                          />{" "}
                         </td>
                       </tr>
                     ))}
                   </tbody>
                 </table>
-              </>
+                <span className="font-bold text-white py-8 flex justify-start">
+                  Total: ${totalAmount.toFixed(2)}
+                </span>
+              </div>
             ) : null}
-          </div>
+          </>
         </div>
         <div className="  flex  w-[100%] h-[15%] justify-center items-center gap-x-20">
           <button

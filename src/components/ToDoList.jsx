@@ -4,6 +4,9 @@ import ToDoCard from "./ToDoCard";
 import axios from "axios";
 import swal from "sweetalert";
 import { useSelector } from "react-redux";
+import URL from "../utils/env";
+
+const API_URL_TASK = `${URL}/task`;
 
 export default function ToDoList() {
   const [listToDos, setListToDos] = useState([]);
@@ -13,7 +16,7 @@ export default function ToDoList() {
   const fetchData = async (salesmanId) => {
     try {
       const { data } = await axios.get(
-        "https://crm.up.railway.app/api/task?salesmanId=" + salesmanId
+        `${API_URL_TASK}?salesmanId=${salesmanId}`
       );
       return data
     } catch (error) {

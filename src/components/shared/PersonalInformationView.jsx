@@ -6,23 +6,22 @@ import {
   RiPaypalLine,
 } from "react-icons/ri";
 import axios from "axios";
+import URL from "../utils/env";
+
+const API_URL_ORDER = `${URL}/create-order`;
 
 const PersonalInformationView = ({ data, type }) => {
   const payment = async (e) => {
     e.preventDefault();
     const postData = { id: data.id };
-    const response = await axios.post(
-      "https://crm2.up.railway.app/api/create-order",
-      postData
-    );
+    const response = await axios.post(API_URL_ORDER, postData);
     window.location.href = response.data.links[1].href;
   };
 
   return (
     <section
-      className={`${
-        type === "boss" ? "col-span-4" : "col-span-6"
-      } flex flex-col gap-y-6`}
+      className={`${type === "boss" ? "col-span-4" : "col-span-6"
+        } flex flex-col gap-y-6`}
     >
       <header className="flex flex-col gap-y-4">
         <h4 className="text-light font-medium text-4xl">

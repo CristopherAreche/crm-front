@@ -75,6 +75,7 @@ export const login = createAsyncThunk("user/login", async (data) => {
         withCredentials: true,
       }
     );
+    console.log("Entro****", response.data)
     const cookies = new Cookies();
     if (response && response.data && response.data.token) {
       cookies.set("myToken", response.data.token, { path: "/" });
@@ -118,11 +119,13 @@ export const postUserLogin = createAsyncThunk(
 
     try {
       const response = await axios.post(`${URL}/boss`, formData);
+      console.log("ESTE ES EL RESPONSE****", response.data)
       swal(
         `Bienvenido a nuestra CRM ${response.data.name}`,
-        "Tienes una prueba gratuita de 7 dias, luego deberas pagar para seguir usando la plataforma. 😁",
+        "Tienes una prueba gratuita de 7 dias, luego deberas pagar para seguir usando la plataforma. Recuerda cambiar los datos de tu usuario 😁",
         "success"
       );
+      console.log("ESTE ES EL RESPONSE****", response)
       return response
     } catch (error) {
       console.log("ESTE ES EL ERROR***",error)

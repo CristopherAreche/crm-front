@@ -23,9 +23,10 @@ const Register = () => {
   // const [access, setAccess] = useState(false);
   const regularPassword = /^(?=.\d)(?=.[a-z])(?=.*[A-Z])\w{8,}$/; //al menos una letra, al menos un numero, al menos una letra mayúscula, al menos 8 caracteres, no permite espacios.
   const regularUser = /\S+@\S+\.\S+/; //un correo electronico
-  const { loginWithRedirect } = useAuth0();
   const dispatch = useDispatch();
   const navigate= useNavigate();
+
+  const { user, isAuthenticated, loginWithRedirect} = useAuth0();
 
   const register = async() => {
       try {
@@ -43,12 +44,12 @@ const Register = () => {
         if(temps.payload.status===200){
           await dispatch(login({ email, password: password.password2 }))
           navigate("/dashboard/perfil")
-          
         }
       } catch (error) {
         console.error(error.message)
       }
     }
+
 
   const valUser = (value) => {
     if (regularUser.test(value)) SetErrorUser(false);
@@ -169,7 +170,7 @@ const Register = () => {
         />
         <button
           className="text-base font-medium "
-          onClick={() => loginWithRedirect({ screen_hint: "signup" })}
+          onClick={() =>  loginWithRedirect({ screen_hint: 'signup' })}
         >
           Inicia sesión con Google o Microsoft
         </button>

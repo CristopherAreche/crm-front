@@ -17,19 +17,13 @@ const BottomProduct = () => {
   const { productSelected } = useSelector((state) => state.products);
 
   const onDisabled = () => {
-    if (!productSelected) {
-      swal("Seleccione un producto");
-      return;
-    }
+   
     dispatch(cleanProductSelect());
     dispatch(toggleStatusProduct({ productSelected, enable: false }));
   };
 
   const onEnabled = () => {
-    if (!productSelected) {
-      swal("Seleccione un producto");
-      return;
-    }
+    
     dispatch(cleanProductSelect());
     dispatch(toggleStatusProduct({ productSelected, enable: true }));
   };
@@ -39,10 +33,7 @@ const BottomProduct = () => {
   };
 
   const handleShowModal = () => {
-    if (!productSelected) {
-      swal("Seleccione un vendedor");
-      return;
-    }
+    
     setShowModal(true);
   };
   // const onDelete = () => dispatch(deleteProduct(productSelected));

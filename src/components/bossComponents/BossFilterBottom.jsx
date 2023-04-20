@@ -17,19 +17,13 @@ const BossFilterBottom = () => {
   const dispatch = useDispatch();
 
   const onDisabled = () => {
-    if (!sellerSelected) {
-      swal("Seleccione un vendedor");
-      return;
-    }
+  
     dispatch(cleanSellerSelect());
     dispatch(toggleStatusSeller({ enable: false, id: sellerSelected }));
   };
 
   const onEnabled = () => {
-    if (!sellerSelected) {
-      swal("Seleccione un vendedor");
-      return;
-    }
+  
     dispatch(cleanSellerSelect());
     dispatch(toggleStatusSeller({ enable: true, id: sellerSelected }));
   };
@@ -40,10 +34,7 @@ const BossFilterBottom = () => {
   };
 
   const handleShowModal = () => {
-    if (!sellerSelected) {
-      swal("Seleccione un vendedor");
-      return;
-    }
+    
     setShowModal(true);
   };
 

@@ -8,17 +8,11 @@ const BottomsActions = () => {
   const clientSelected = useSelector((state) => state.clients.clientSelected);
   const dispatch = useDispatch();
   const onPromoteVip = () => {
-    if (!clientSelected) {
-      swal("Seleccione un cliente");
-      return;
-    }
+   
     dispatch(toggleVipClient({ clientSelected, vip: true }));
   };
   const OnUnsubscribeVip = () => {
-    if (!clientSelected) {
-      swal("Seleccione un cliente");
-      return;
-    }
+   
     dispatch(toggleVipClient({ clientSelected, vip: false }));
   };
 

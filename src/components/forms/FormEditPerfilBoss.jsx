@@ -8,7 +8,6 @@ import {
   RiCopyrightLine,
   RiGlobalLine,
   RiHonourLine,
-  RiStarSmileLine,
 } from "react-icons/ri";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -50,7 +49,7 @@ const FormEditPerfilBoss = ({ onClose, inView }) => {
         ? reset({
             name: boss.name,
             phone: boss.phone,
-            username: boss.username,
+            email: boss.email,
             address: boss.address,
             id: boss.id,
           })
@@ -80,7 +79,7 @@ const FormEditPerfilBoss = ({ onClose, inView }) => {
               </label>
               <div className="relative w-full">
                 <input
-                  {...register("name", { required: true })}
+                  {...register("name")}
                   type="text"
                   className="bg-base-light/70 py-1 rounded-md outline-none pl-8 pr-4 w-full"
                 />
@@ -88,26 +87,26 @@ const FormEditPerfilBoss = ({ onClose, inView }) => {
               </div>
               {errors.name && (
                 <span className="text-sm font-medium text-red-400">
-                  Este campo es requerido!
+                  Este campo debe tener un max o min de 12 caracteres
                 </span>
               )}
             </div>
-            {/* Input Username */}
+            {/* Input Email */}
             <div className="flex flex-col gap-y-2 w-full">
               <label className="text-sm font-medium text-light">
-                Nombre de usuario
+                Correo electronico
               </label>
               <div className="relative w-full">
                 <input
-                  {...register("username", { required: true })}
+                  {...register("email")}
                   type="text"
                   className="bg-base-light/70 py-1 rounded-md outline-none pl-8 pr-4 w-full"
                 />
                 <RiMailLine className="absolute top-1/2 -translate-y-1/2 left-2 text-xl text-secondary " />
               </div>
-              {errors.username && (
+              {errors.email && (
                 <span className="text-sm font-medium text-red-400">
-                  Este campo es requerido!
+                  Este campo solo acepta numeros!
                 </span>
               )}
             </div>
@@ -116,7 +115,7 @@ const FormEditPerfilBoss = ({ onClose, inView }) => {
               <label className="text-sm font-medium text-light">Telefono</label>
               <div className="relative w-full">
                 <input
-                  {...register("phone", { required: true })}
+                  {...register("phone", {pattern : /^[0-9]+$/})}
                   type="text"
                   className="bg-base-light/70 py-1 rounded-md outline-none pl-8 pr-4 w-full"
                 />
@@ -124,7 +123,7 @@ const FormEditPerfilBoss = ({ onClose, inView }) => {
               </div>
               {errors.phone && (
                 <span className="text-sm font-medium text-red-400">
-                  Este campo es requerido!
+                  Este campo solo acepta numeros!
                 </span>
               )}
             </div>
@@ -135,7 +134,7 @@ const FormEditPerfilBoss = ({ onClose, inView }) => {
               </label>
               <div className="relative w-full">
                 <input
-                  {...register("address", { required: true })}
+                  {...register("address")}
                   type="text"
                   className="bg-base-light/70 py-1 rounded-md outline-none pl-8 pr-4 w-full"
                 />
@@ -174,7 +173,7 @@ const FormEditPerfilBoss = ({ onClose, inView }) => {
               </label>
               <div className="relative w-full">
                 <input
-                  {...register("company", { required: true })}
+                  {...register("company")}
                   type="text"
                   className="bg-base-light/70 py-1 rounded-md outline-none pl-8 pr-4 w-full"
                 />
@@ -193,7 +192,7 @@ const FormEditPerfilBoss = ({ onClose, inView }) => {
               </label>
               <div className="relative w-full">
                 <input
-                  {...register("description", { required: true })}
+                  {...register("description")}
                   type="text"
                   className="bg-base-light/70 py-1 rounded-md outline-none pl-8 pr-4 w-full"
                 />
@@ -212,7 +211,7 @@ const FormEditPerfilBoss = ({ onClose, inView }) => {
               </label>
               <div className="relative w-full">
                 <input
-                  {...register("register", { required: true })}
+                  {...register("register")}
                   type="text"
                   className="bg-base-light/70 py-1 rounded-md outline-none pl-8 pr-4 w-full"
                 />

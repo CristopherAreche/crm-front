@@ -1,9 +1,8 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 import swal from "sweetalert";
-import URL from "../utils/env";
 
-const API_URL_CLIENT = `${URL}/client`;
+const API_URL_CLIENT = `${process.env.REACT_APP_URL}/client`;
 
 export const getClients = createAsyncThunk(
   "clients/getClients",

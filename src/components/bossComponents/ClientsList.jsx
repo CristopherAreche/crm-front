@@ -38,12 +38,11 @@ const ClientsList = () => {
   };
 
   useEffect(() => {
-
     dispatch(getAllClients(user));
 
     return () => dispatch(cleanAllClients());
   }, [dispatch, user]);
-  
+
   if (clientsStatus === "loading") {
     return (
       <div className="flex justify-center w-full">

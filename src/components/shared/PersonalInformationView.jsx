@@ -7,10 +7,9 @@ import {
   RiLockPasswordLine,
 } from "react-icons/ri";
 import axios from "axios";
-import URL from "../../utils/env";
 import { Link } from "react-router-dom";
 
-const API_URL_ORDER = `${URL}/create-order`;
+const API_URL_ORDER = `${process.env.REACT_APP_URL}/create-order`;
 
 const PersonalInformationView = ({ data, type }) => {
   const payment = async (e) => {

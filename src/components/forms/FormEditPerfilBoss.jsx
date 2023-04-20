@@ -55,9 +55,8 @@ const FormEditPerfilBoss = ({ onClose, inView }) => {
           })
         : reset({
             company: boss.company,
-            description: boss.company_description,
-            register: boss.commercial_register,
-            logo: boss.logo,
+            company_description: boss.company_description,
+            commercial_register: boss.commercial_register,
             id: boss.id,
           });
     }
@@ -192,13 +191,13 @@ const FormEditPerfilBoss = ({ onClose, inView }) => {
               </label>
               <div className="relative w-full">
                 <input
-                  {...register("description")}
+                  {...register("company_description")}
                   type="text"
                   className="bg-base-light/70 py-1 rounded-md outline-none pl-8 pr-4 w-full"
                 />
                 <RiHonourLine className="absolute top-1/2 -translate-y-1/2 left-2 text-xl text-secondary " />
               </div>
-              {errors.description && (
+              {errors.company_description && (
                 <span className="text-sm font-medium text-red-400">
                   Este campo es requerido!
                 </span>
@@ -211,13 +210,13 @@ const FormEditPerfilBoss = ({ onClose, inView }) => {
               </label>
               <div className="relative w-full">
                 <input
-                  {...register("register")}
+                  {...register("commercial_register")}
                   type="text"
                   className="bg-base-light/70 py-1 rounded-md outline-none pl-8 pr-4 w-full"
                 />
                 <RiCopyrightLine className="absolute top-1/2 -translate-y-1/2 left-2 text-xl text-secondary " />
               </div>
-              {errors.register && (
+              {errors.commercial_register && (
                 <span className="text-sm font-medium text-red-400">
                   Este campo es requerido!
                 </span>

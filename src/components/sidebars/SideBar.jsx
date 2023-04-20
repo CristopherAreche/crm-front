@@ -99,7 +99,7 @@ function SideBar({ typeSidebar, summary, inventory, clients, sellers }) {
           {typeSidebar === "client-detail" && <ClientDetailSideBar />}
         </section>
         <div className="flex flex-col justify-between h-full">
-          <div className="flex flex-col gap-y-4">
+          {user.enable && (<div className="flex flex-col gap-y-4">
             <Link
               to="/dashboard"
               className={`flex px-12 py-2  active:scale-95 active:bg-light/20 gap-x-6 items-center text-lg text-gray-300 font-medium   cursor-pointer  hover:text-gray-100 transition-all ${
@@ -110,7 +110,7 @@ function SideBar({ typeSidebar, summary, inventory, clients, sellers }) {
               <MdOutlineSpaceDashboard className="text-3xl text-secondary" />{" "}
               Resumen
             </Link>
-            {user.role === "admin" && (
+            {user.role === "admin" &&(
               <>
                 <Link
                   to="/dashboard/inventory"
@@ -140,7 +140,7 @@ function SideBar({ typeSidebar, summary, inventory, clients, sellers }) {
             >
               <RiHandCoinLine className="text-3xl text-secondary" /> Clientes
             </Link>
-          </div>
+          </div>)}
           <div>
             {/* <button
               className="flex px-12 py-2  active:scale-95 active:bg-light/20 gap-x-6 items-center text-lg text-gray-300 font-medium   cursor-pointer  hover:text-gray-100 transition-all"

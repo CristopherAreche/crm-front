@@ -87,11 +87,11 @@ const PersonalInformationView = ({ data, type }) => {
           </header>
           <p className="text-light/80 ">{data.phone}</p>
         </article>
-        <article className="bg-base-light/30 py-4 px-4 shadow-md rounded-md">
+        <article className="bg-base-light/30 py-4 px-4 shadow-md rounded-md border-b border-secondary">
           <header className="flex items-center justify-between mb-2">
             <Link
               to={`/changepass/${data.role}/${data.id}`}
-              className=" flex justify-between items-center mb-2 "
+              className=" flex justify-between items-center mb-2 hover:scale-[1.03] transition-transform cursor-pointer"
             >
               <p className="text-light text-base lg:text-lg font-medium ">
                 Modificar contraseña
@@ -102,14 +102,14 @@ const PersonalInformationView = ({ data, type }) => {
           </header>
         </article>
         {type === "boss" && (
-          <article className="bg-base-light/30 py-4 px-4 shadow-md rounded-md">
+          <article className="bg-base-light/30 py-4 px-4 shadow-md rounded-md hover:scale-[1.03] transition-transform cursor-pointer border-b border-secondary" onClick={payment}>
             <header className="flex items-center justify-between mb-2">
               <p className="text-light text-base lg:text-lg font-medium">
                 Matodo de pago
               </p>
               <RiPaypalLine className="text-secondary text-xl border-2 border-secondary p-1 box-content rounded-full" />
             </header>
-            <button className="text-light hover:text-white " onClick={payment}>
+            <button className="text-light hover:text-white " >
               Paypal
             </button>
           </article>

@@ -59,7 +59,7 @@ export default function TaskCard({ task, clientId }) {
   return (
     <article
       key={item.id}
-      className="justify-between bg-base-light/40 px-4 py-3 rounded-md shadow-md flex flex-col  items-start"
+      className="justify-between bg-base-light/40 px-4 py-3 rounded-md shadow-md flex flex-col  items-start gap-y-4"
     >
       <div className="flex flex-row justify-between w-full">
           <p className="text-ellipsis overflow-hidden  w-10/12 lg:w-auto lg:h-auto h-14 text-sm font-medium text-gray-300 ">

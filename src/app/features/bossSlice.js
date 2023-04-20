@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import swal from "sweetalert";
 import axios from "axios";
+import { putUser } from "../../services/authServices";
 
 const API_URL_BOSS = `${process.env.REACT_APP_URL}/dashboard_boss`;
 
@@ -55,8 +56,7 @@ export const bossSlice = createSlice({
         state.loading = false;
         state.error = action.error.message;
       })
-      .addCase(putBoss.fulfilled, (state, action) => {
-        state.boss = action.payload;
+      .addCase(putUser.fulfilled, (state, action) => {
       });
   },
 });

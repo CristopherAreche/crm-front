@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import URL from "../../utils/env";
 import axios from "axios";
 import {
   RiCheckboxIndeterminateLine,
@@ -9,13 +8,12 @@ import {
 } from "react-icons/ri";
 
 function ModalSaleDetail({ clientDetail, activitie, onClose }) {
-  const API_URL_SALE = `${URL}/sale_product`;
+  const API_URL_SALE = `${process.env.REACT_APP_URL}/sale_product`;
   const [saleDetail, setSaleDetail] = useState([]);
 
   useEffect(() => {
     getSale();
   }, []);
-  console.log(activitie);
 
   const getSale = async () => {
     try {
@@ -24,7 +22,7 @@ function ModalSaleDetail({ clientDetail, activitie, onClose }) {
       );
       setSaleDetail(response.data);
     } catch (error) {
-      console.log(error.response.data.error);
+      console.alert(error.response.data.error);
     }
   };
 

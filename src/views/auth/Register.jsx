@@ -1,5 +1,10 @@
 import React from "react";
-import { RiArrowLeftLine, RiMailLine, RiLock2Line, RiTyphoonFill } from "react-icons/ri";
+import {
+  RiArrowLeftLine,
+  RiMailLine,
+  RiLock2Line,
+  RiTyphoonFill,
+} from "react-icons/ri";
 import { Link } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
 import { useDispatch } from "react-redux";
@@ -9,7 +14,7 @@ import swal from "sweetalert";
 import { useNavigate } from "react-router-dom";
 import { login } from "../../services/authServices";
 import { useEffect } from "react";
-import Cookies from 'universal-cookie';
+import Cookies from "universal-cookie";
 
 const Register = () => {
   const [password, setPassWord] = useState({
@@ -19,12 +24,12 @@ const Register = () => {
   const [email, setEmail] = useState("");
   const [errorUser, SetErrorUser] = useState(true);
   const [errorPassword, setErrorPassword] = useState(true);
-  const [temp, setTemp ] = useState( undefined );
+  const [temp, setTemp] = useState(undefined);
   // const [access, setAccess] = useState(false);
   const regularPassword = /^(?=.\d)(?=.[a-z])(?=.*[A-Z])\w{8,}$/; //al menos una letra, al menos un numero, al menos una letra mayúscula, al menos 8 caracteres, no permite espacios.
   const regularUser = /\S+@\S+\.\S+/; //un correo electronico
   const dispatch = useDispatch();
-  const navigate= useNavigate();
+  const navigate = useNavigate();
 
   const { user, isAuthenticated, loginWithRedirect} = useAuth0();
 
@@ -66,13 +71,9 @@ const Register = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
-    if(password.password==="" ||password.password2==="" || email===""){
-      swal(
-        "Error",
-        "Por favor, complete todos los campos.",
-        "error"
-      );
+
+    if (password.password === "" || password.password2 === "" || email === "") {
+      swal("Error", "Por favor, complete todos los campos.", "error");
     }
     if (password.password.toString() !== password.password2.toString())
       swal({
@@ -83,7 +84,6 @@ const Register = () => {
       });
     else await register();
   };
-
 
   return (
     <section className="flex flex-col items-start justify-center min-h-screen px-8 lg:px-20 gap-y-4">
@@ -97,11 +97,11 @@ const Register = () => {
         </Link>
       </header>
       <div className="text-3xl flex justify-center items-center gap-x-2 font-bold tracking-widest ">
-            <RiTyphoonFill className="text-white" />
-            <p className="bg-gradient-to-r from-primary  to-secondary text-end  text-transparent bg-clip-text hover:underline hover:text-light transition-all cursor-pointer">
-              CRM
-            </p>
-          </div>
+        <RiTyphoonFill className="text-white" />
+        <p className="bg-gradient-to-r from-primary  to-secondary text-end  text-transparent bg-clip-text hover:underline hover:text-light transition-all cursor-pointer">
+          CRM
+        </p>
+      </div>
       <p className="text-gray-400 ">No olvide sus datos ingresados</p>
       <form
         onSubmit={(e) => {

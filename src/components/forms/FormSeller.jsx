@@ -185,7 +185,7 @@ function FormSeller({ isVisible, onClose }) {
             <input
               className="bg-base-light/70 py-1 rounded-md outline-none pl-8 pr-4 w-full"
               type="file"
-              FileList={file}
+              filelist={file}
               name="image"
               onChange={handleInputChange}
             />

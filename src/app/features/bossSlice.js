@@ -2,11 +2,10 @@ import { createSlice } from "@reduxjs/toolkit";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import swal from "sweetalert";
 import axios from "axios";
-import URL from "../../utils/env";
 
-const API_URL_BOSS = `${URL}/dashboard_boss`;
+const API_URL_BOSS = `${process.env.REACT_APP_URL}/dashboard_boss`;
 
-const API_URL_ALLS_BOSS = `${URL}/boss`;
+const API_URL_ALLS_BOSS = `${process.env.REACT_APP_URL}/boss`;
 
 export const getBoss = createAsyncThunk("boss/getBoss", async (bossId) => {
   const response = await axios.get(`${API_URL_BOSS}?id=${bossId}`);

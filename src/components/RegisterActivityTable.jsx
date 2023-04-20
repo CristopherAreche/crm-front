@@ -48,7 +48,7 @@ const RegisterActivityTable = () => {
   //       />
   //     </section>
   //   );
-  // } 
+  // }
 
   return (
     <section className="w-auto overflow-x-auto lg:min-w-full  min-h-96 overflow-y-auto  overflow-hidden mb-4 text-white">
@@ -66,6 +66,9 @@ const RegisterActivityTable = () => {
             </th>
             <th scope="col" className=" px-6 py-4">
               Fecha de creación
+            </th>
+            <th scope="col" className=" px-6 py-4">
+              Detalles
             </th>
           </tr>
         </thead>

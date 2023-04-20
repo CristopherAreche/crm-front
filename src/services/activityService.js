@@ -1,9 +1,8 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 import swal from "sweetalert";
-import URL from "../utils/env";
 
-const API_URL_ACTIVITY = `${URL}/activity`;
+const API_URL_ACTIVITY = `${process.env.REACT_APP_URL}/activity`;
 
 export const updateActivity = createAsyncThunk(
   "activity/createActivity",
@@ -17,17 +16,19 @@ export const createActivity = createAsyncThunk(
   "activity/createActivity",
   async ({ activity, sale }) => {
     try {
-      console.log("actividad", activity, "sale", sale);
       const { data } = await axios.post(`${API_URL_ACTIVITY}`, activity);
 
       const activityId = data.id;
       if (sale.length) {
         const promises = sale.map(async (product) => {
-          const response = await axios.post(`${URL}/sale_product`, {
-            ...product,
-            activityId,
-          });
-          console.log(response);
+          const response = await axios.post(
+            `${process.env.REACT_APP_URL}/sale_product`,
+            {
+              ...product,
+              activityId,
+            }
+          );
+
           return response.data;
         });
 

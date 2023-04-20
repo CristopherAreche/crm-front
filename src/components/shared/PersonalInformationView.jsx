@@ -4,9 +4,11 @@ import {
   RiUser3Line,
   RiUser5Line,
   RiPaypalLine,
+  RiLockPasswordLine,
 } from "react-icons/ri";
 import axios from "axios";
 import URL from "../../utils/env";
+import { Link } from "react-router-dom";
 
 const API_URL_ORDER = `${URL}/create-order`;
 
@@ -20,8 +22,9 @@ const PersonalInformationView = ({ data, type }) => {
 
   return (
     <section
-      className={`${type === "boss" ? "col-span-4" : "col-span-6"
-        } flex flex-col gap-y-6`}
+      className={`${
+        type === "boss" ? "col-span-4" : "col-span-6"
+      } flex flex-col gap-y-6`}
     >
       <header className="flex flex-col gap-y-4">
         <h4 className="text-light font-medium text-2xl lg:text-4xl">
@@ -35,7 +38,9 @@ const PersonalInformationView = ({ data, type }) => {
       <main className="grid grid-cols-2 gap-4">
         <article className="bg-base-light/30 py-4 px-4 shadow-md rounded-md">
           <header className="flex items-center justify-between mb-2">
-            <p className="text-light text-base lg:text-lg font-medium">Nombre completo</p>
+            <p className="text-light text-base lg:text-lg font-medium">
+              Nombre completo
+            </p>
             <RiUser3Line className="text-secondary text-xl border-2 border-secondary p-1 box-content rounded-full" />
           </header>
           <p className="text-light/80 ">{data.name}</p>
@@ -49,12 +54,16 @@ const PersonalInformationView = ({ data, type }) => {
                 </p>
                 <RiUser5Line className="text-secondary text-xl border-2 border-secondary p-1 box-content rounded-full" />
               </header>
-              <p className="text-light/80 lg:w-auto w-28 truncate">{data.email}</p>
+              <p className="text-light/80 lg:w-auto w-28 truncate">
+                {data.email}
+              </p>
             </>
           ) : (
             <>
               <header className="flex items-center justify-between mb-2">
-                <p className="text-light text-base lg:text-lg font-medium">Mi rol</p>
+                <p className="text-light text-base lg:text-lg font-medium">
+                  Mi rol
+                </p>
                 <RiUser5Line className="text-secondary text-xl border-2 border-secondary p-1 box-content rounded-full" />
               </header>
               <p className="text-light/80 ">Vendedor</p>
@@ -63,22 +72,42 @@ const PersonalInformationView = ({ data, type }) => {
         </article>
         <article className="bg-base-light/30 py-4 px-4 shadow-md rounded-md">
           <header className="flex items-center justify-between mb-2">
-            <p className="text-light text-base lg:text-lg font-medium">Direccion</p>
+            <p className="text-light text-base lg:text-lg font-medium">
+              Direccion
+            </p>
             <RiMapPinLine className="text-secondary text-xl border-2 border-secondary p-1 box-content rounded-full" />
           </header>
           <p className="text-light/80 ">{data.address}</p>
         </article>
         <article className="bg-base-light/30 py-4 px-4 shadow-md rounded-md">
           <header className="flex items-center justify-between mb-2">
-            <p className="text-light text-base lg:text-lg font-medium">Telefono</p>
+            <p className="text-light text-base lg:text-lg font-medium">
+              Telefono
+            </p>
             <RiPhoneLine className="text-secondary text-xl border-2 border-secondary p-1 box-content rounded-full" />
           </header>
           <p className="text-light/80 ">{data.phone}</p>
         </article>
+        <article className="bg-base-light/30 py-4 px-4 shadow-md rounded-md">
+          <header className="flex items-center justify-between mb-2">
+            <Link
+              to={`/changepass/${data.role}/${data.id}`}
+              className=" flex justify-between items-center mb-2 "
+            >
+              <p className="text-light text-base lg:text-lg font-medium ">
+                Modificar contraseña
+              </p>
+            </Link>
+
+            <RiLockPasswordLine className="text-secondary text-xl border-2 border-secondary p-1 box-content rounded-full" />
+          </header>
+        </article>
         {type === "boss" && (
           <article className="bg-base-light/30 py-4 px-4 shadow-md rounded-md">
             <header className="flex items-center justify-between mb-2">
-              <p className="text-light text-base lg:text-lg font-medium">Matodo de pago</p>
+              <p className="text-light text-base lg:text-lg font-medium">
+                Matodo de pago
+              </p>
               <RiPaypalLine className="text-secondary text-xl border-2 border-secondary p-1 box-content rounded-full" />
             </header>
             <button className="text-light hover:text-white " onClick={payment}>

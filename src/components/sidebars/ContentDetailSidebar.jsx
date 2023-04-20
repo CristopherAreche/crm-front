@@ -22,7 +22,7 @@ const ContentDetailSidebar = () => {
     <section className="flex items-center flex-col gap-y-3 px-8 w-full">
       <div className="relative">
         <img
-          src="https://via.placeholder.com/150"
+          src="https://cdn-icons-png.flaticon.com/512/219/219983.png"
           alt="placeholder"
           className="w-28 h-28 rounded-full "
         />

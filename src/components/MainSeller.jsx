@@ -70,7 +70,7 @@ const MainSeller = () => {
 
         {/* Section Estadistics Sales */}
         <section className="flex flex-col items-start gap-y-2 pr-0 lg:pr-12 w-full pt-0  ">
-          <h5 className="text-light font-medium">Ganancias</h5>
+          <h5 className="text-light font-medium">Ventas Mensuales</h5>
           <SalesChart />
         </section>
         {/* Tasks Section */}

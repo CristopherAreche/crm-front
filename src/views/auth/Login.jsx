@@ -20,6 +20,7 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const status = useSelector((state) => state.auth.status);
+  const user = useSelector((state) => state.auth.User)
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { loginWithRedirect } = useAuth0();
@@ -42,7 +43,10 @@ const Login = () => {
 
   useEffect(() => {
     if (myToken !== undefined) {
-      navigate("/dashboard");
+      if (user.enable)
+        navigate("/dashboard");
+      else
+        navigate("/dashboard/perfil");
     }
   }, [myToken, navigate]);
 
@@ -127,8 +131,8 @@ const Login = () => {
           {status === "loading"
             ? "Cargando..."
             : status === "failed"
-            ? "Iniciar sesión"
-            : "Iniciar sesión"}
+              ? "Iniciar sesión"
+              : "Iniciar sesión"}
         </button>
       </form>
       <section className="flex gap-x-2 items-center justify-center w-full bg-white py-2 hover:scale-[1.03] transition-all cursor-pointer rounded-md px-2 lg:px-0">

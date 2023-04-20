@@ -39,7 +39,7 @@ const TaskListDetail = ({ clientId }) => {
   }
 
   return (
-    <section className=" text-white mb-6 z-20">
+    <section className=" text-white mb-0 lg:mb-6  z-20">
       <h4 className="text-2xl text-light font-medium flex gap-x-4 items-center mb-6">
         <RiBookReadLine className="text-4xl" /> Lista de Tareas
       </h4>

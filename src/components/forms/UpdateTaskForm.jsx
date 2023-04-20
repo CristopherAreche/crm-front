@@ -82,7 +82,7 @@ function UpdateTaskForm({ isVisible, onClose, task }) {
     >
       {" "}
       <form
-        className="w-96 bg-base-light/70 py-6 px-4 rounded-md flex flex-col gap-y-4"
+        className="w-96 bg-base-light/60 py-6 px-4 rounded-md flex flex-col gap-y-4 z-[60]"
         onSubmit={handleSubmit}
       >
         <h4 className="text-xl font-medium text-light">

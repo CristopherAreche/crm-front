@@ -11,7 +11,7 @@ const PrincipalInformation = ({ data }) => {
               ? data.logo
               : "https://cdn-icons-png.flaticon.com/512/219/219983.png"
           }
-          alt="placeholde"
+          alt="placeholder"
           className="h-32 w-32 rounded-full object-cover"
         />
       ) : (
@@ -27,7 +27,7 @@ const PrincipalInformation = ({ data }) => {
       )}
       <div className="flex flex-col gap-y-2">
         <h4 className="text-2xl font-medium text-light">{data.name}</h4>
-        <p className="text-light/80">{data.email}</p>
+        <p className="text-light/80 w-full  truncate">{data.email}</p>
       </div>
     </section>
   );

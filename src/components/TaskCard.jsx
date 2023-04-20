@@ -59,26 +59,21 @@ export default function TaskCard({ task, clientId }) {
   return (
     <article
       key={item.id}
-      className="justify-between bg-base-light/40 w-89 px-4 py-3 rounded-md shadow-md flex flex-col gap-y-3 items-start"
+      className="justify-between bg-base-light/40 px-4 py-3 rounded-md shadow-md flex flex-col  items-start"
     >
       <div className="flex flex-row justify-between w-full">
-        <div>
           <p className="text-ellipsis overflow-hidden  w-10/12 lg:w-auto lg:h-auto h-14 text-sm font-medium text-gray-300 ">
             {item.description}
           </p>
-        </div>
-        <div>
           <RiDeleteBin3Line
             className="text-2xl text-red-400 hover:text-red-400/70 active:text-red-500 cursor-pointer"
             onClick={() => {
               delTask(item.id);
             }}
           />
-        </div>
       </div>
-      <div className="flex flex-row justify-between w-full">
-        <div>
-          <label
+      <div className="flex flex-col lg:flex-row justify-between w-full gap-4">
+          <button
             onClick={changeState}
             className={`${
               state === "Pendiente"
@@ -87,20 +82,17 @@ export default function TaskCard({ task, clientId }) {
             } hover:scale-110 text-sm font-medium text-gray-200 py-1 px-2 rounded-md shadow-md flex flex-col gap-y-3 items-start `}
           >
             {state}
-          </label>
-        </div>
-        <div>
+          </button>
           <p
-            className={`text-ellipsis overflow-hidden  w-10/12 lg:w-auto lg:h-auto h-14 text-sm font-medium text-gray-300
+            className={`text-ellipsis overflow-hidden  w-10/12 lg:w-auto lg:h-auto  text-sm font-medium text-gray-300
                     ${isExpired() ? "text-red-300" : "text-white"}`}
           >
             {`Exp: ${due_date.getDate()}/${
               due_date.getMonth() + 1
             }/${due_date.getFullYear()}`}
           </p>
-        </div>
         <button onClick={() => setShowModal(true)}>
-          <FiEdit className="text-2xl text-green-400 hover:text-green-400/70 active:text-green-500 cursor-pointer" />
+          <FiEdit className="text-xl lg:text-2xl text-green-400 hover:text-green-400/70 active:text-green-500 cursor-pointer" />
         </button>
       </div>
       <UpdateTaskForm

@@ -13,8 +13,6 @@ import { useState } from "react";
 import swal from "sweetalert";
 import { useNavigate } from "react-router-dom";
 import { login } from "../../services/authServices";
-import { useEffect } from "react";
-import Cookies from "universal-cookie";
 
 const Register = () => {
   const [password, setPassWord] = useState({
@@ -24,14 +22,13 @@ const Register = () => {
   const [email, setEmail] = useState("");
   const [errorUser, SetErrorUser] = useState(true);
   const [errorPassword, setErrorPassword] = useState(true);
-  const [temp, setTemp] = useState(undefined);
   // const [access, setAccess] = useState(false);
   const regularPassword = /^(?=.\d)(?=.[a-z])(?=.*[A-Z])\w{8,}$/; //al menos una letra, al menos un numero, al menos una letra mayúscula, al menos 8 caracteres, no permite espacios.
   const regularUser = /\S+@\S+\.\S+/; //un correo electronico
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const { user, isAuthenticated, loginWithRedirect } = useAuth0();
+  const { loginWithRedirect } = useAuth0();
 
   const register = async () => {
     try {

@@ -16,8 +16,8 @@ const RegisterActivitiesModal = ({ onClose }) => {
   const [message, setMessage] = useState("");
   const dispatch = useDispatch();
   const { id: salesmanId, bossId } = useSelector((state) => state.auth.User);
-
   const [quantity_sale, setQuantity_sale] = useState("");
+  const [totalAmount, setTotalAmount] = useState(0);
   const [productData, setProductData] = useState({
     productId: "",
     price_sale: "",
@@ -27,6 +27,8 @@ const RegisterActivitiesModal = ({ onClose }) => {
 
   const products = useSelector((state) => state.products.products);
   const { clientDetail } = useSelector((state) => state.clients);
+  const user = useSelector((state) => state.auth.User);
+
   const { id } = useParams();
   const [total, setTotal] = useState(0);
 
@@ -38,8 +40,8 @@ const RegisterActivitiesModal = ({ onClose }) => {
       method,
       state,
       subject,
-      from,
-      to,
+      // from,
+      // to,
       message,
     };
 
@@ -56,14 +58,24 @@ const RegisterActivitiesModal = ({ onClose }) => {
 
   const append = (e) => {
     e.preventDefault();
+    const subtotal = quantity_sale * productData.price_sale;
     if (quantity_sale <= productData.quantity_sale) {
       setProductSelected([
         ...productSelected,
-        { ...productData, quantity_sale },
+        { ...productData, quantity_sale, subtotal },
       ]);
-      setTotal(quantity_sale * productData.price_sale + total);
-    } else
+      setTotalAmount(totalAmount + subtotal);
+    } else {
       swal("Error", `La cantidad indicada supera el stock disponible`, "error");
+    }
+  };
+
+  const handleDelete = (index) => {
+    // const productToDelete = productSelected[index];
+    // const subtotalToDelete = productToDelete.subtotal;
+    const newProductSelected = productSelected.filter((p, i) => i !== index);
+    setProductSelected(newProductSelected);
+    setTotalAmount(newProductSelected.reduce((acc, p) => acc + p.subtotal, 0));
   };
 
   const deleteProductSelected = (productId) => {
@@ -83,11 +95,14 @@ const RegisterActivitiesModal = ({ onClose }) => {
     <div className=" fixed inset-0  bg-black  bg-opacity-25 backdrop-blur-sm flex justify-center items-center">
       <form
         onSubmit={(e) => handleSubmit(e)}
-        className=" w-[100vw] lg:w-[60vw] bg-base/60 rounded-md flex flex-col items-center justify-center h-[35em]"
+        className={`${
+          state === "Pendiente" ? "w-[30vw]" : "w-[65vw]"
+        } bg-base/60 rounded-md pr-8 flex flex-col items-center justify-center h-[35em]`}
       >
-        <div className="  flex    w-[100%] h-[85%]">
+        <header className="text-white py-6 font-bold">CREAR ACTIVIDAD</header>
+        <div className="  flex  w-[100%] h-[85%]">
           {/* Metodo */}
-          <div className=" w-[50%] flex flex-col justify-center items-center">
+          <div className=" w-[100%] flex flex-col justify-center items-center">
             <div className=" w-[100%] h-[25%]  flex gap-x-16 justify-center items-center">
               <label className="block">
                 <span className="text-white">Metodo</span>
@@ -117,6 +132,18 @@ const RegisterActivitiesModal = ({ onClose }) => {
             </div>
 
             <div className="  w-[100%] h-[75%] flex  flex-col justify-center items-center gap-y-3">
+              {method === "Llamada" ? null : (
+                <>
+                  <label className="block">
+                    <span className="text-white">Desde: {user.email}</span>
+                  </label>
+                  <label className="block">
+                    <span className="text-white">
+                      Para: {clientDetail.email}
+                    </span>
+                  </label>
+                </>
+              )}
               {/* Asunto */}
               <label className="block">
                 <span className="text-white">Asunto: </span>
@@ -125,26 +152,6 @@ const RegisterActivitiesModal = ({ onClose }) => {
                   className="w-[100%]"
                   value={subject}
                   onChange={(e) => setSubject(e.target.value)}
-                />
-              </label>
-              {/* from */}
-              <label className="block">
-                <span className="text-white">Desde: </span>
-                <input
-                  type="email"
-                  className="w-[100%]"
-                  value={from}
-                  onChange={(e) => setFrom(e.target.value)}
-                />
-              </label>
-              {/* To */}
-              <label className="block">
-                <span className="text-white">Para: </span>
-                <input
-                  type="email"
-                  className="w-[100%]"
-                  value={to}
-                  onChange={(e) => setTo(e.target.value)}
                 />
               </label>
               {/* text */}
@@ -162,9 +169,9 @@ const RegisterActivitiesModal = ({ onClose }) => {
               </label>
             </div>
           </div>
-          <div className=" w-[50%] flex flex-col justify-center items-center">
+          <>
             {state === "Concretado" ? (
-              <>
+              <div className=" w-[100%] flex flex-col justify-center items-center">
                 <label className="block" htmlFor="name">
                   <span className="text-white">Producto vendido </span>
                   <select
@@ -224,34 +231,29 @@ const RegisterActivitiesModal = ({ onClose }) => {
                     </tr>
                   </thead>
                   <tbody className="">
-                    {productSelected.map((p, index) => {
-                      return (
-                        <tr key={index} className="border-b p-2">
-                          <td>{p.name}</td>
-                          <td> {p.quantity_sale}</td>
-                          <td>$ {p.price_sale}</td>
+                    {productSelected.map((p, index) => (
+                      <tr key={index} className="border-b p-2">
+                        <td>{p.name}</td>
+                        <td> {p.quantity_sale}</td>
+                        <td>$ {p.price_sale}</td>
+                        <td>$ {p.subtotal}</td>
 
-                          <td>$ {p.quantity_sale * p.price_sale}</td>
-                          <td>
-                            <label
-                              className=" text-2xl hover:text-red-400"
-                              onClick={() => deleteProductSelected(p.productId)}
-                            >
-                              <RiDeleteBin3Line />{" "}
-                            </label>{" "}
-                          </td>
-                        </tr>
-                      );
-                    })}
+                        <td>
+                          {" "}
+                          <RiDeleteBin3Line
+                            onClick={() => handleDelete(index)}
+                          />{" "}
+                        </td>
+                      </tr>
+                    ))}
                   </tbody>
-                  <th className="border-b " p-2>
-                    {" "}
-                    Total: $ {total}
-                  </th>
                 </table>
-              </>
+                <span className="font-bold text-white py-8 flex justify-start">
+                  Total: ${totalAmount.toFixed(2)}
+                </span>
+              </div>
             ) : null}
-          </div>
+          </>
         </div>
         <div className="  flex  w-[100%] h-[15%] justify-center items-center gap-x-20">
           <button

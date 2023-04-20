@@ -1,6 +1,5 @@
 import { FaStar } from "react-icons/fa";
 import { useState } from "react";
-import URL from "../utils/env";
 import axios from "axios";
 import swal from "sweetalert";
 const ModalSuccessFeedback = () => {
@@ -15,7 +14,10 @@ const StartFeedback = ({ salesmanId }) => {
     const data = { score, salesmanId };
     console.log("data", { data });
     try {
-      const response = await axios.post(`${URL}/feedback`, data);
+      const response = await axios.post(
+        `${process.env.REACT_APP_URL}/feedback`,
+        data
+      );
       swal("Muchas gracias!", "Su opinión fue enviada", "success");
       console.log(response);
 

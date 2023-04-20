@@ -1,9 +1,8 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 import swal from "sweetalert";
-import URL from "../utils/env";
 
-const API_URL_PRODUCTS = `${URL}/product`;
+const API_URL_PRODUCTS = `${process.env.REACT_APP_URL}/product`;
 export const getAllProducts = createAsyncThunk(
   "products/getAllProducts",
   async (bossId) => {

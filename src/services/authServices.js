@@ -3,16 +3,18 @@ import axios from "axios";
 import Cookies from "universal-cookie";
 import swal from "sweetalert";
 import { jwtVerify } from "jose";
-import URL from "../utils/env";
 
-const API_URL_ALLS_BOSS = `${URL}/boss`;
-const API_URL_SELLER = `${URL}/salesman`;
+const API_URL_ALLS_BOSS = `${process.env.REACT_APP_URL}/boss`;
+const API_URL_SELLER = `${process.env.REACT_APP_URL}/salesman`;
 
 export const postUserInfo = createAsyncThunk(
   "userInfo/postUserInfo",
   async (userInfo, thunkAPI) => {
     try {
-      const response = await axios.post(`${URL}/boss`, userInfo);
+      const response = await axios.post(
+        `${process.env.REACT_APP_URL}/boss`,
+        userInfo
+      );
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.response.data);
@@ -20,15 +22,17 @@ export const postUserInfo = createAsyncThunk(
   }
 );
 
-
-
 export const postLogin = createAsyncThunk(
   "loginUser/postLogin",
   async (loginUser, thunkAPI) => {
     try {
-      const response = await axios.post(`${URL}/login`, loginUser, {
-        withCredentials: true,
-      });
+      const response = await axios.post(
+        `${process.env.REACT_APP_URL}/login`,
+        loginUser,
+        {
+          withCredentials: true,
+        }
+      );
       console.alert(response.data);
     } catch (error) {
       console.alert(error);
@@ -69,7 +73,7 @@ export const login = createAsyncThunk("user/login", async (data) => {
   const { email, password, name, nickname } = data;
   try {
     const response = await axios.post(
-      `${URL}/login`,
+      `${process.env.REACT_APP_URL}/login`,
       { email, password, name, nickname },
       {
         withCredentials: true,
@@ -115,17 +119,18 @@ export const putUser = createAsyncThunk("boss/putUser", async (payload) => {
 export const postUserLogin = createAsyncThunk(
   "userLogin/postUserLogin",
   async (formData, thunkAPI) => {
-
     try {
-      const response = await axios.post(`${URL}/boss`, formData);
+      const response = await axios.post(
+        `${process.env.REACT_APP_URL}/boss`,
+        formData
+      );
       swal(
         `Bienvenido a nuestra CRM ${response.data.name}`,
         "Tienes una prueba gratuita de 7 dias, luego deberas pagar para seguir usando la plataforma. 😁",
         "success"
       );
-      return response
+      return response;
     } catch (error) {
-      console.log("ESTE ES EL ERROR***",error)
       swal(
         "Error",
         "Hubo un error al intentar registrarse. Por favor, inténtelo de nuevo.",

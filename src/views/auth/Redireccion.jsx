@@ -20,13 +20,9 @@ const Redireccion = () => {
     };
     dispatch(login(formLogin));
   };
-  console.log(user);
-  console.log(isAuthenticated);
   if (isAuthenticated) {
     register();
   }
-  console.log("GLOBAL USER ***********", User);
-
   return <div>{navigate("/dashboard/perfil")}</div>;
 };
 

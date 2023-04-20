@@ -2,20 +2,21 @@ import React from "react";
 import { RiVipCrown2Line } from "react-icons/ri";
 import { toggleVipClient } from "../../services/clientsServices";
 import { useDispatch, useSelector } from "react-redux";
+import swal from "sweetalert";
 
 const BottomsActions = () => {
   const clientSelected = useSelector((state) => state.clients.clientSelected);
   const dispatch = useDispatch();
   const onPromoteVip = () => {
     if (!clientSelected) {
-      alert("Seleccione un cliente");
+      swal("Seleccione un cliente");
       return;
     }
     dispatch(toggleVipClient({ clientSelected, vip: true }));
   };
   const OnUnsubscribeVip = () => {
     if (!clientSelected) {
-      alert("Seleccione un cliente");
+      swal("Seleccione un cliente");
       return;
     }
     dispatch(toggleVipClient({ clientSelected, vip: false }));

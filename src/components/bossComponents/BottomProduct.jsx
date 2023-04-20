@@ -7,7 +7,7 @@ import {
 import FormProduct from "../forms/FormProduct";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-
+import swal from "sweetalert";
 import { toggleStatusProduct } from "../../services/productsServices";
 import { cleanProductSelect } from "../../app/features/productsSlice";
 
@@ -18,7 +18,7 @@ const BottomProduct = () => {
 
   const onDisabled = () => {
     if (!productSelected) {
-      alert("Selecciona un producto");
+      swal("Seleccione un producto");
       return;
     }
     dispatch(cleanProductSelect());
@@ -27,7 +27,7 @@ const BottomProduct = () => {
 
   const onEnabled = () => {
     if (!productSelected) {
-      alert("Selecciona un producto");
+      swal("Seleccione un producto");
       return;
     }
     dispatch(cleanProductSelect());
@@ -40,7 +40,7 @@ const BottomProduct = () => {
 
   const handleShowModal = () => {
     if (!productSelected) {
-      alert("Selecciona un vendedor"); //esto deberia ser un sweet alert
+      swal("Seleccione un vendedor"); //esto deberia ser un sweet alert
       return;
     }
     setShowModal(true);

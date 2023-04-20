@@ -7,9 +7,9 @@ import {
 import FormSeller from "../../components/forms/FormSeller";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-
 import { toggleStatusSeller } from "../../services/sellersServices";
 import { cleanSellerSelect } from "../../app/features/sellerSlice";
+import swal from "sweetalert";
 
 const BossFilterBottom = () => {
   const [showModal, setShowModal] = useState(false);
@@ -18,7 +18,7 @@ const BossFilterBottom = () => {
 
   const onDisabled = () => {
     if (!sellerSelected) {
-      alert("Selecciona un vendedor"); //esto deberia ser un sweet alert
+      swal("Seleccione un vendedor"); //esto deberia ser un sweet alert
       return;
     }
     dispatch(cleanSellerSelect());
@@ -27,7 +27,7 @@ const BossFilterBottom = () => {
 
   const onEnabled = () => {
     if (!sellerSelected) {
-      alert("Selecciona un vendedor"); //esto deberia ser un sweet alert
+      swal("Seleccione un vendedor"); //esto deberia ser un sweet alert
       return;
     }
     dispatch(cleanSellerSelect());
@@ -41,7 +41,7 @@ const BossFilterBottom = () => {
 
   const handleShowModal = () => {
     if (!sellerSelected) {
-      alert("Selecciona un vendedor"); //esto deberia ser un sweet alert
+      swal("Seleccione un vendedor"); //esto deberia ser un sweet alert
       return;
     }
     setShowModal(true);

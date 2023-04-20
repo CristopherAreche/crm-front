@@ -51,7 +51,7 @@ const ClientsList = () => {
     );
   } else if (clientsStatus === "succeeded") {
     return (
-      <section className="overflow-x-auto lg:min-w-full mt-4 h-96 overflow-y-auto">
+      <section className="overflow-x-auto lg:min-w-full mt-4 min-h-96 lg:h-96 overflow-y-auto pb-4">
         <header className="flex justify-between w-screen lg:w-full px-8 py-4   bg-base-light/30 rounded-tr-md rounded-tl-md  ">
           <h3 className=" text-xl font-medium text-light flex items-center gap-x-2">
             <RiFilter3Line className="text-2xl" />
@@ -78,7 +78,7 @@ const ClientsList = () => {
             </div>
           </section>
         </header>
-        <table className="min-w-full  text-center text-sm font-regular shadow-md rounded-sm">
+        <table className="min-w-full  text-center text-sm font-regular shadow-md rounded-sm pb-4">
           <thead className=" font-medium text-light/75  dark:bg-base-light/30 rounded-md">
             <tr>
               <th scope="col" className=" px-6 py-4">

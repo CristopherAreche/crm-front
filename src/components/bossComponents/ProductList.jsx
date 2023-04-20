@@ -45,8 +45,8 @@ const ProductList = () => {
     );
   } else if (productStatus === "succeeded") {
     return (
-      <div className="flex-col flex h-[19em] overflow-y-auto w-full mb-6">
-        <table className="table-auto w-full text-center text-sm font-regular shadow-md rounded-sm overflow-x-auto">
+      <div className="overflow-x-auto lg:min-w-full my-4 lg:h-96 overflow-y-auto pb-4"  >
+        <table className="min-w-full text-center text-sm font-regular shadow-md rounded-sm">
           <thead className=" font-medium text-light/75  dark:bg-base-light/30 rounded-md">
             <tr>
               <th scope="col" className=" px-6 py-4">

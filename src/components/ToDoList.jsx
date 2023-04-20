@@ -67,8 +67,8 @@ export default function ToDoList() {
     );
   } else if (loadingStatus === "succeeded") {
     return (
-      <section className="flex flex-col  overflow-x-auto lg:min-w-full mt-6 h-auto overflow-y-auto ">
-        <header className=" flex justify-between w-screen lg:w-full px-2 lg:px-8 py-4   bg-base-light/30 rounded-tr-md rounded-tl-md  ">
+      <section className="flex flex-col  overflow-x-auto w-auto lg:min-w-full mt-6 h-auto overflow-y-auto ">
+        <header className=" flex justify-between w-auto lg:w-full px-2 lg:px-8 py-4   bg-base-light/30 rounded-tr-md rounded-tl-md  ">
           <h3 className=" text-xl font-medium text-light flex items-center gap-x-2">
             <RiCalendarCheckFill className="text-2xl" />
             {!listToDos.length ? "No hay tareas disponibles" : "Tareas"}

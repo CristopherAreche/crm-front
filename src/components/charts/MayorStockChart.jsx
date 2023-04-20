@@ -32,7 +32,7 @@ const MayorStockChart = ({ products = [] }) => {
   };
 
   return (
-    <div className="w-[30rem] py-12">
+    <div className="w-auto lg:w-[30rem] py-12">
       <Bar data={data} options={options} />
     </div>
   );

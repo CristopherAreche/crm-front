@@ -70,12 +70,7 @@ const MainSeller = () => {
 
         {/* Section Estadistics Sales */}
         <section className="flex flex-col items-start gap-y-2 pr-0 lg:pr-12 w-full pt-0  ">
-          <div className="flex items-center justify-between w-full">
-            <h5 className="text-light font-medium">Ganancias</h5>
-            <p className="text-xs font-medium text-light/70 hover:underline hover:text-light/90 transition-all cursor-pointer">
-              Comparar
-            </p>
-          </div>
+          <h5 className="text-light font-medium">Ganancias</h5>
           <SalesChart />
         </section>
         {/* Tasks Section */}

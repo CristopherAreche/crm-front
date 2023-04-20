@@ -45,7 +45,7 @@ const Hero = () => {
             to="/authentication/register"
             className="
             iphone12:text-center
-            bg-gradient-to-r from-primary to-secondary px-4 py-2 rounded-xl text-white font-medium text-lg lg:text-2xl hover:scale-[1.03] transition-all flex gap-x-1 items-center"
+            bg-gradient-to-r from-primary to-secondary px-4 py-2 rounded-xl text-white font-medium text-lg lg:text-2xl hover:scale-[1.03] transition-all flex gap-x-1 items-center whitespace-nowrap"
           >
             Empezar Ahora
           </Link>
@@ -53,7 +53,7 @@ const Hero = () => {
             to="detalles"
             smooth={true}
             duration={500}
-            className="border-2 border-secondary rounded-xl p-2 px-4 text-lg lg:text-2xl hover:scale-[1.03] hover:text-white transition-all text-light font-medium flex items-center gap-x-1 cursor-pointer"
+            className="border-2 border-secondary rounded-xl p-2 px-4 text-lg lg:text-2xl hover:scale-[1.03] hover:text-white transition-all text-light font-medium flex items-center gap-x-1 cursor-pointer whitespace-nowrap"
           >
             Descubre mas
           </LinkRoll>

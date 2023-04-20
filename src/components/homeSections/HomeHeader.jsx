@@ -37,7 +37,7 @@ const HomeHeader = () => {
           spy={true}
           onSetActive={handleSetActive}
         >
-          <div className="text-3xl flex justify-center items-center gap-x-2 px-12 font-bold tracking-widest pb-4 pt-2">
+          <div className="text-3xl flex justify-center items-center gap-x-2  font-bold tracking-widest ">
             <RiTyphoonFill className="text-white" />
             <p className="bg-gradient-to-r from-primary  to-secondary text-end  text-transparent bg-clip-text hover:underline hover:text-light transition-all cursor-pointer">
               CRM

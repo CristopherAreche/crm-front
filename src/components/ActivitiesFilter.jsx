@@ -13,8 +13,8 @@ function ActivitiesFilter() {
 
 
   return (
-  <>
-    <div className="flex gap-x-2 items-center">
+  <div className="flex flex-col lg:flex-row gap-6">
+    <div className="flex flex-col lg:flex-row gap-x-2 items-center">
         <p className="text-gray-300 text-sm font-medium">Metodo:</p>
         <select
           name=""
@@ -27,7 +27,7 @@ function ActivitiesFilter() {
           <option value="llamadas" className="text-zinc-900">Llamadas</option>
         </select>
       </div>
-      <div className="flex gap-x-2 items-center">
+      <div className="flex flex-col lg:flex-row gap-x-2 items-center">
         <p className="text-gray-300 text-sm font-medium">Estado:</p>
         <select
           name=""
@@ -40,7 +40,7 @@ function ActivitiesFilter() {
           <option value="pendientes" className="text-zinc-900">Pendientes</option>
         </select>
       </div>
-  </>
+  </div>
   );
 }
 

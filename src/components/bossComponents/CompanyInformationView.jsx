@@ -37,7 +37,7 @@ const CompanyInformationView = ({ data }) => {
         <article className="bg-base-light/30 py-4 px-4 shadow-md rounded-md">
           <header className="flex items-center justify-between mb-2">
             <p className="text-light text-base lg:text-lg font-medium">
-              Regristro Comercial
+              Registro Comercial
             </p>
             <RiCopyrightLine className="text-secondary text-xl border-2 border-secondary p-1 box-content rounded-full" />
           </header>

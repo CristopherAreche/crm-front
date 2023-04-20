@@ -5,7 +5,7 @@ import {
   RiLock2Line,
   RiEyeOffLine,
   RiEyeLine,
-  RiTyphoonFill
+  RiTyphoonFill,
 } from "react-icons/ri";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
@@ -13,8 +13,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { login } from "../../services/authServices";
 import { useEffect } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
-import Cookies from 'universal-cookie';
-
+import Cookies from "universal-cookie";
 
 const Login = () => {
   const [password, setPassWord] = useState("");
@@ -23,12 +22,10 @@ const Login = () => {
   const status = useSelector((state) => state.auth.status);
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { loginWithRedirect} = useAuth0();
-
-  
+  const { loginWithRedirect } = useAuth0();
 
   const cookies = new Cookies();
-  const myToken = cookies.get('myToken');
+  const myToken = cookies.get("myToken");
 
   const valUser = (value) => {
     setEmail(value);
@@ -49,7 +46,6 @@ const Login = () => {
     }
   }, [myToken, navigate]);
 
-
   return (
     <section className="flex flex-col items-start justify-center min-h-screen px-8 lg:px-20 gap-y-4">
       <div className="block lg:hidden absolute top-4 left-4">
@@ -62,10 +58,10 @@ const Login = () => {
         </Link>
       </div>
       <div className="text-3xl flex justify-start items-center gap-x-2  font-bold tracking-widest pt-2">
-            <RiTyphoonFill className="text-white" />
-            <p className="bg-gradient-to-r from-primary  to-secondary text-end  text-transparent bg-clip-text hover:underline hover:text-light transition-all cursor-pointer">
-              CRM
-            </p>
+        <RiTyphoonFill className="text-white" />
+        <p className="bg-gradient-to-r from-primary  to-secondary text-end  text-transparent bg-clip-text hover:underline hover:text-light transition-all cursor-pointer">
+          CRM
+        </p>
       </div>
       <h3 className="text-2xl font-medium text-light">Hey, Hola de nuevo ✋</h3>
       <p className="text-gray-400 ">
@@ -119,16 +115,20 @@ const Login = () => {
           >
             No tienes cuenta? Registrate
           </Link>
-          <p className="bg-gradient-to-r from-primary  to-secondary text-end  text-transparent bg-clip-text hover:underline hover:text-light transition-all cursor-pointer">
+          {/* <p className="bg-gradient-to-r from-primary  to-secondary text-end  text-transparent bg-clip-text hover:underline hover:text-light transition-all cursor-pointer">
             Olvidaste tu contraseña?
-          </p>
+          </p> */}
         </div>
         <button
           type="submit"
-          disabled={status === 'loading'}
+          disabled={status === "loading"}
           className="text-center bg-gradient-to-r from-primary to-secondary py-2 px-4 rounded-md font-bold text-lg hover:scale-[1.02] transition-all"
         >
-          {status === "loading" ? "Cargando..." : status === 'failed' ? "Iniciar sesión" : "Iniciar sesión"}
+          {status === "loading"
+            ? "Cargando..."
+            : status === "failed"
+            ? "Iniciar sesión"
+            : "Iniciar sesión"}
         </button>
       </form>
       <section className="flex gap-x-2 items-center justify-center w-full bg-white py-2 hover:scale-[1.03] transition-all cursor-pointer rounded-md px-2 lg:px-0">
@@ -139,7 +139,7 @@ const Login = () => {
         />
         <button
           className="text-base font-medium "
-          onClick={async() => loginWithRedirect({ screen_hint: "signup" })}
+          onClick={async () => loginWithRedirect({ screen_hint: "signup" })}
         >
           Ingresa con Google o Microsoft
         </button>

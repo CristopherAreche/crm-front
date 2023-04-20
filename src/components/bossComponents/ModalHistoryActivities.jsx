@@ -78,7 +78,7 @@ export default function ModalHistoryActivities({ activitie, clientDetail }) {
             hoveredSubject === activitie?.subject ? activitie?.subject : ""
           }
         >
-          {activitie?.subject.length > 20
+          {activitie?.subject?.length > 20
             ? activitie?.subject.slice(0, 20) + "..."
             : activitie?.subject}
           {hoveredSubject ? (

@@ -19,6 +19,7 @@ function App() {
     <div className="page-container">
       <Routes>
         <Route exact path="/" element={<Home />} />
+        <Route path="/authentication/redireccion" element={<Redireccion />} />
         {/* Rutas de Dashboard */}
         <Route path="/dashboard/*" element={<ProtectedRoutes />}>
           <Route index element={<Summary />} />
@@ -38,7 +39,6 @@ function App() {
         <Route exact path="/authentication" element={<AuthLayout />}>
           <Route index element={<Login />} />
           <Route path="/authentication/register" element={<Register />} />
-          <Route path="/authentication/redireccion" element={<Redireccion />} />
         </Route>
       </Routes>
     </div>

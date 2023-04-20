@@ -28,6 +28,7 @@ const RegisterActivitiesModal = ({ onClose }) => {
   const products = useSelector((state) => state.products.products);
   const { clientDetail } = useSelector((state) => state.clients);
   const { id } = useParams();
+  const [total, setTotal] = useState(0);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -55,13 +56,27 @@ const RegisterActivitiesModal = ({ onClose }) => {
 
   const append = (e) => {
     e.preventDefault();
-    if (quantity_sale <= productData.quantity_sale)
+    if (quantity_sale <= productData.quantity_sale) {
       setProductSelected([
         ...productSelected,
         { ...productData, quantity_sale },
       ]);
-    else
+      setTotal(quantity_sale * productData.price_sale + total);
+    } else
       swal("Error", `La cantidad indicada supera el stock disponible`, "error");
+  };
+
+  const deleteProductSelected = (productId) => {
+    console.log(productId);
+    console.log(productSelected);
+    let filterList = productSelected.filter((product) => {
+      console.log(product.productId, productId);
+      if (product.productId !== productId) {
+        return true;
+      } else setTotal(total - product.price_sale * product.quantity_sale);
+    });
+
+    setProductSelected(filterList);
   };
 
   return (
@@ -205,21 +220,34 @@ const RegisterActivitiesModal = ({ onClose }) => {
                       <th className="p-2">Producto</th>
                       <th className="p-2">Cantidad</th>
                       <th>Precio por unidad</th>
+                      <th>Subtotal</th>
                     </tr>
                   </thead>
                   <tbody className="">
-                    {productSelected.map((p, index) => (
-                      <tr key={index} className="border-b p-2">
-                        <td>{p.name}</td>
-                        <td> {p.quantity_sale}</td>
-                        <td>$ {p.price_sale}</td>
-                        <td>
-                          {" "}
-                          <RiDeleteBin3Line />{" "}
-                        </td>
-                      </tr>
-                    ))}
+                    {productSelected.map((p, index) => {
+                      return (
+                        <tr key={index} className="border-b p-2">
+                          <td>{p.name}</td>
+                          <td> {p.quantity_sale}</td>
+                          <td>$ {p.price_sale}</td>
+
+                          <td>$ {p.quantity_sale * p.price_sale}</td>
+                          <td>
+                            <label
+                              className=" text-2xl hover:text-red-400"
+                              onClick={() => deleteProductSelected(p.productId)}
+                            >
+                              <RiDeleteBin3Line />{" "}
+                            </label>{" "}
+                          </td>
+                        </tr>
+                      );
+                    })}
                   </tbody>
+                  <th className="border-b " p-2>
+                    {" "}
+                    Total: $ {total}
+                  </th>
                 </table>
               </>
             ) : null}

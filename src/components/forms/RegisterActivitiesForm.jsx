@@ -79,13 +79,12 @@ const RegisterActivitiesModal = ({ onClose }) => {
   };
 
   const deleteProductSelected = (productId) => {
-    console.log(productId);
-    console.log(productSelected);
     let filterList = productSelected.filter((product) => {
-      console.log(product.productId, productId);
       if (product.productId !== productId) {
         return true;
-      } else setTotal(total - product.price_sale * product.quantity_sale);
+      } else {
+        setTotal(total - product.price_sale * product.quantity_sale);
+      }
     });
 
     setProductSelected(filterList);

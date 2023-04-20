@@ -40,7 +40,7 @@ const BottomProduct = () => {
 
   const handleShowModal = () => {
     if (!productSelected) {
-      swal("Seleccione un vendedor"); //esto deberia ser un sweet alert
+      swal("Seleccione un vendedor");
       return;
     }
     setShowModal(true);

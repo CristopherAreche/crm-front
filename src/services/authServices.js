@@ -79,7 +79,6 @@ export const login = createAsyncThunk("user/login", async (data) => {
         withCredentials: true,
       }
     );
-    console.log("Entro****", response.data)
     const cookies = new Cookies();
     if (response && response.data && response.data.token) {
       cookies.set("myToken", response.data.token, { path: "/" });

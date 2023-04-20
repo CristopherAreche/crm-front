@@ -18,7 +18,7 @@ const BossFilterBottom = () => {
 
   const onDisabled = () => {
     if (!sellerSelected) {
-      swal("Seleccione un vendedor"); //esto deberia ser un sweet alert
+      swal("Seleccione un vendedor");
       return;
     }
     dispatch(cleanSellerSelect());
@@ -27,7 +27,7 @@ const BossFilterBottom = () => {
 
   const onEnabled = () => {
     if (!sellerSelected) {
-      swal("Seleccione un vendedor"); //esto deberia ser un sweet alert
+      swal("Seleccione un vendedor");
       return;
     }
     dispatch(cleanSellerSelect());
@@ -35,13 +35,13 @@ const BossFilterBottom = () => {
   };
 
   const onCreate = () => {
-    dispatch(cleanSellerSelect()); //esto deberia ser un sweet alert
+    dispatch(cleanSellerSelect());
     setShowModal(true);
   };
 
   const handleShowModal = () => {
     if (!sellerSelected) {
-      swal("Seleccione un vendedor"); //esto deberia ser un sweet alert
+      swal("Seleccione un vendedor");
       return;
     }
     setShowModal(true);

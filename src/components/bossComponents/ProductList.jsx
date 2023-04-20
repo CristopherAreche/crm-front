@@ -1,5 +1,4 @@
-import { RiShoppingBag3Fill, RiLoader4Fill } from "react-icons/ri";
-import { Link } from "react-router-dom";
+import { RiLoader4Fill } from "react-icons/ri";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { selectedProductCheckbox } from "../../app/features/productsSlice";
@@ -40,7 +39,7 @@ const ProductList = () => {
     );
   } else if (productStatus === "succeeded") {
     return (
-      <div className="flex-col flex min-h-96 overflow-y-auto w-full mb-6">
+      <div className="flex-col flex h-[19em] overflow-y-auto w-full mb-6">
         <table className="table-auto w-full text-center text-sm font-regular shadow-md rounded-sm overflow-x-auto">
           <thead className=" font-medium text-light/75  dark:bg-base-light/30 rounded-md">
             <tr>

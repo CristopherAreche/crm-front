@@ -15,7 +15,6 @@ import SuccessPayment from "./views/SuccessPayment";
 import ChangePass from "./views/auth/ChangePass";
 import ProtectedRoutes from "./layouts/ProtectedRoutes";
 function App() {
-
   return (
     <div className="page-container">
       <Routes>
@@ -30,10 +29,9 @@ function App() {
           <Route path="perfil" element={<Perfil />} />
         </Route>
 
-        <Route path="/feedback" element={<FeedbackView />} />
-        <Route path="/success" element={<SuccessPayment/>}/>
-        
-        
+        <Route path="/feedback/:salesmanId" element={<FeedbackView />} />
+        <Route path="/success" element={<SuccessPayment />} />
+
         <Route path="/changepass/:role/:id" element={<ChangePass />} />
 
         {/* Rutas de Registracion y Login */}

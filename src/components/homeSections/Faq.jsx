@@ -21,7 +21,7 @@ const faqs = [
     dropKey: "third_faq",
   },
   {
-    question: "¿El sistema CRM es accesible para todos los dispositivos?",
+    question: "¿El sistema CRM es accesible para todos los dispositivos moviles?",
     answer:
       "¡Sí! Nuestro sistema CRM está en todos los dispositivos web del mercado para que puedas aprovechar esta herramienta al máximo. Esta es una ventaja especial cuando se compara con otros ejemplos de software CRM.",
     dropKey: "four_faq",

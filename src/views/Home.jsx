@@ -7,7 +7,7 @@ import Hero from "../components/homeSections/Hero";
 import Detail from "../components/homeSections/Detail";
 import Testimonials from "../components/homeSections/Testimonials";
 import LightsSvg from "../components/LightsSvg";
-import { Link } from "react-scroll";
+import { Link } from "react-router-dom";
 const Home = () => {
   return (
     <main className="bg-base overflow-hidden px-10 lg:px-0">

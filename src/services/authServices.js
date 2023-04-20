@@ -129,7 +129,6 @@ export const postUserLogin = createAsyncThunk(
         "Tienes una prueba gratuita de 7 dias, luego deberas pagar para seguir usando la plataforma. 😁",
         "success"
       );
-
       return response;
     } catch (error) {
       swal(

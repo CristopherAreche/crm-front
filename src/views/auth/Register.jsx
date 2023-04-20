@@ -14,6 +14,7 @@ import swal from "sweetalert";
 import { useNavigate } from "react-router-dom";
 import { login } from "../../services/authServices";
 import { useEffect } from "react";
+import Cookies from "universal-cookie";
 
 const Register = () => {
   const [password, setPassWord] = useState({
@@ -32,26 +33,24 @@ const Register = () => {
   const navigate = useNavigate();
 
   const register = async () => {
-    const formData = new FormData();
-    const formLogin = {
-      name: email.split("@")[0],
-      username: email.split("@")[0],
-      email: email,
-      password: password.password2,
-      enable: false,
-    };
-
-    if (password.password === "" || password.password2 === "" || email === "") {
-      swal("Error", "Por favor, complete todos los campos.", "error");
-    } else {
+    try {
+      const formData = new FormData();
+      const formLogin = {
+        name: email.split("@")[0],
+        username: email.split("@")[0],
+        email: email,
+        password: password.password2,
+        enable: false,
+      };
       formData.append("formLogin", JSON.stringify(formLogin));
-      for (let entry of formData.entries()) {
-      }
       const temps = await dispatch(postUserLogin(formData));
+      console.log("ESTE ES EL TEMPS****", temps.payload.status);
       if (temps.payload.status === 200) {
-        dispatch(login({ email, password: password.password2 }));
+        await dispatch(login({ email, password: password.password2 }));
         navigate("/dashboard/perfil");
       }
+    } catch (error) {
+      console.error(error.message);
     }
   };
 
@@ -68,8 +67,12 @@ const Register = () => {
     setPassWord({ ...password, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if (password.password === "" || password.password2 === "" || email === "") {
+      swal("Error", "Por favor, complete todos los campos.", "error");
+    }
     if (password.password.toString() !== password.password2.toString())
       swal({
         title: "Error",
@@ -77,7 +80,7 @@ const Register = () => {
         icon: "error",
         button: "Aceptar",
       });
-    else register();
+    else await register();
   };
 
   return (
@@ -91,7 +94,7 @@ const Register = () => {
           Volver atras
         </Link>
       </header>
-      <div className="text-3xl flex justify-center items-center gap-x-2 px-12 font-bold tracking-widest border-b border-light/40 pb-4 pt-2">
+      <div className="text-3xl flex justify-center items-center gap-x-2 font-bold tracking-widest ">
         <RiTyphoonFill className="text-white" />
         <p className="bg-gradient-to-r from-primary  to-secondary text-end  text-transparent bg-clip-text hover:underline hover:text-light transition-all cursor-pointer">
           CRM
@@ -110,6 +113,7 @@ const Register = () => {
             value={email}
             onChange={(e) => valUser(e.target.value)}
             type="text"
+            placeholder="correo@dominio.com"
             className="bg-base-light/60 py-2 pl-10 pr-4 w-full rounded-md outline-none shadow-md"
           />
           <RiMailLine className="absolute top-1/2 translate-y-1 left-2 text-2xl text-secondary " />
@@ -121,6 +125,7 @@ const Register = () => {
             name="password"
             value={password.password}
             type="password"
+            placeholder="********"
             className="bg-base-light/60 py-2 pl-10 pr-4  w-full rounded-md outline-none shadow-md"
           />
           <RiLock2Line className="absolute top-1/2 translate-y-1 left-2 text-2xl text-secondary " />
@@ -134,6 +139,7 @@ const Register = () => {
             name="password2"
             value={password.password2}
             type="password"
+            placeholder="********"
             className="bg-base-light/60 py-2 pl-10 pr-4  w-full rounded-md outline-none shadow-md"
           />
           <RiLock2Line className="absolute top-1/2 translate-y-1 left-2 text-2xl text-secondary " />

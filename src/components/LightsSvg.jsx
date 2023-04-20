@@ -1,7 +1,7 @@
 const LightsSvg = () => {
   return (
     <div>
-      <div className="bottom-0 absolute lg:block top-0 left-0 z-10 opacity-70 hidden">
+      <div className="bottom-0 absolute lg:block top-0 left-0 z-[-1] opacity-70 hidden">
         <svg
           width="783"
           height="388"
@@ -26,9 +26,9 @@ const LightsSvg = () => {
               width="878"
               height="766"
               filterUnits="userSpaceOnUse"
-              colorInterpolationFilters="sRGB"
+              color-interpolation-filters="sRGB"
             >
-              <feFlood floodOpacity="0" result="BackgroundImageFix" />
+              <feFlood flood-opacity="0" result="BackgroundImageFix" />
               <feBlend
                 mode="normal"
                 in="SourceGraphic"
@@ -43,7 +43,7 @@ const LightsSvg = () => {
           </defs>
         </svg>
       </div>
-      <div className="absolute lg:block bottom-0 right-0 z-10 opacity-70 hidden">
+      <div className="absolute lg:block bottom-0 right-0 z-[-1] opacity-70 hidden">
         <svg
           width="512"
           height="615"

@@ -4,8 +4,10 @@ import {
   RiUser3Line,
   RiUser5Line,
   RiPaypalLine,
+  RiLockPasswordLine,
 } from "react-icons/ri";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 const API_URL_ORDER = `${process.env.REACT_APP_URL}/create-order`;
 
@@ -84,6 +86,20 @@ const PersonalInformationView = ({ data, type }) => {
             <RiPhoneLine className="text-secondary text-xl border-2 border-secondary p-1 box-content rounded-full" />
           </header>
           <p className="text-light/80 ">{data.phone}</p>
+        </article>
+        <article className="bg-base-light/30 py-4 px-4 shadow-md rounded-md">
+          <header className="flex items-center justify-between mb-2">
+            <Link
+              to={`/changepass/${data.role}/${data.id}`}
+              className=" flex justify-between items-center mb-2 "
+            >
+              <p className="text-light text-base lg:text-lg font-medium ">
+                Modificar contraseña
+              </p>
+            </Link>
+
+            <RiLockPasswordLine className="text-secondary text-xl border-2 border-secondary p-1 box-content rounded-full" />
+          </header>
         </article>
         {type === "boss" && (
           <article className="bg-base-light/30 py-4 px-4 shadow-md rounded-md">

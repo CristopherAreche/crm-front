@@ -14,7 +14,7 @@ const Funcionalities = () => {
         </h3>
         <p className="text-lg font-medium text-gray-200 flex items-center gap-x-4">
           <RiCheckboxCircleFill className="text-secondary text-4xl" /> Agenda de
-          proveedores/clientes
+          clientes
         </p>
         <p className="text-lg font-medium text-gray-200 flex items-center gap-x-4">
           <RiCheckboxCircleFill className="text-secondary text-4xl" /> Cálculos
@@ -22,14 +22,14 @@ const Funcionalities = () => {
         </p>
         <p className="text-lg font-medium text-gray-200 flex items-center gap-x-4">
           <RiCheckboxCircleFill className="text-secondary text-4xl" /> Control
-          de tus clientes
+          de tus vendedores e inventario
         </p>
         <p className="text-lg font-medium text-gray-200 flex items-center gap-x-4">
           <RiCheckboxCircleFill className="text-secondary text-4xl" /> Sistema
           de ascenso
         </p>
         <p className="text-lg font-medium text-gray-200 flex items-center gap-x-4">
-          <RiCheckboxCircleFill className="text-secondary text-4xl" /> Alertas
+          <RiCheckboxCircleFill className="text-secondary text-4xl" /> Alertas por correo electrónico
         </p>
         <Link
           to="/authentication/register"

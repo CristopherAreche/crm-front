@@ -76,17 +76,17 @@ function UpdateTaskForm({ isVisible, onClose, task }) {
   if (!isVisible) return null;
   return (
     <div
-      className="fixed inset-0 z-50  bg-black bg-opacity-25 backdrop-blur-sm flex justify-center items-center"
+      className="fixed inset-0 z-[-1]  bg-black bg-opacity-25 backdrop-blur-sm flex justify-center items-center"
       id="wrapper"
       onClick={handleClose}
     >
       {" "}
       <form
-        className="w-96 bg-base-light/60 py-6 px-4 rounded-md flex flex-col gap-y-4 z-[60]"
+        className=" w-96 bg-base-light/60 py-6 px-4 rounded-md flex flex-col gap-y-4 z-50"
         onSubmit={handleSubmit}
       >
         <h4 className="text-xl font-medium text-light">
-          {taskData.clientId ? "Actualizar cliente" : "Editar Tarea"}
+          {"Editar Tarea"}
         </h4>
         <section className="flex flex-col gap-y-2">
           <label className="text-sm font-medium text-light" htmlFor="name">

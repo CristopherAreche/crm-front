@@ -6,10 +6,20 @@ import { useDispatch, useSelector } from "react-redux";
 const BottomsActions = () => {
   const clientSelected = useSelector((state) => state.clients.clientSelected);
   const dispatch = useDispatch();
-  const onPromoteVip = () =>
+  const onPromoteVip = () => {
+    if (!clientSelected) {
+      alert("Seleccione un cliente");
+      return;
+    }
     dispatch(toggleVipClient({ clientSelected, vip: true }));
-  const OnUnsubscribeVip = () =>
+  };
+  const OnUnsubscribeVip = () => {
+    if (!clientSelected) {
+      alert("Seleccione un cliente");
+      return;
+    }
     dispatch(toggleVipClient({ clientSelected, vip: false }));
+  };
 
   return (
     <section className=" text-white text-bold flex justify-evenly w-full  items-center rounded-md flex-wrap gap-4 pt-8">

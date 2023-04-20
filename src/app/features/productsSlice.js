@@ -42,7 +42,7 @@ const productsSlice = createSlice({
       state.productSelected = action.payload;
     },
     cleanProductSelect: (state, action) => {
-      state.productSelected = "";
+      state.productSelected = null;
     },
     resetProducts: (state, action) => {
       state.products = state.copyProducts;

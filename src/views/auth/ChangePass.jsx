@@ -1,6 +1,11 @@
 import React, { useState } from "react";
-import { RiLock2Line } from "react-icons/ri";
-import { useNavigate, useParams } from "react-router-dom";
+import {
+  RiLock2Line,
+  RiLogoutCircleRLine,
+  RiTyphoonFill,
+} from "react-icons/ri";
+import { Link, useNavigate, useParams } from "react-router-dom";
+
 import axios from "axios";
 import swal from "sweetalert";
 
@@ -71,16 +76,24 @@ export default function ChangePass() {
       }
     }
   };
-
+  //cambio
   return (
     <main className="min-h-screen bg-base text-white flex z-50 ">
       <section className="hidden lg:block bg-gradient-to-r from-primary to-secondary flex-1 rounded-tr-md rounded-br-md">
+        <Link
+          to="/dashboard/perfil"
+          className="flex px-12 py-2  active:scale-95 active:bg-light/20 gap-x-6 items-center text-lg text-grey-300 font-medium   cursor-pointer  hover:text-gray-100 transition-all"
+        >
+          <RiLogoutCircleRLine className="text-2xl text-secondary" />
+          Volver
+        </Link>
         <article className="flex flex-col  justify-center w-[28rem] 2xl:w-[32rem] mx-auto h-full">
           <div className="bg-base/40 rounded-md px-8 py-4 2xl:px-12 2xl:py-8">
             <h1 className="text-center text-5xl 2xl:text-6xl font-bold mb-4 ">
-              <span className=" bg-gradient-to-r from-primary  to-secondary text-transparent bg-clip-text">
-                CRM LOGO
+              <span className=" bg-gradient-to-r from-primary flex justify-center   to-secondary text-transparent bg-clip-text">
+                <RiTyphoonFill className=" text-white mr-4 " /> CRM
               </span>
+
               <div>
                 <span className="text-center text-2xl">
                   {"\nCambio de contraseña "}
@@ -142,7 +155,7 @@ export default function ChangePass() {
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
         >
-          <g filter="process.env.REACT_APP_URL(#filter0_f_29_36)">
+          <g filter="url(#filter0_f_29_36)">
             <rect
               width="478"
               height="366"

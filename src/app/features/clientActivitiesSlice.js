@@ -5,10 +5,9 @@ import {
 } from "../../handlers/handlerActivitiesClient";
 import { createActivity } from "../../services/activityService";
 import axios from "axios";
-import URL from "../../utils/env";
 
-const API_URL_ACTIVITY = `${URL}/activity`;
-const API_URL_TASK = `${URL}/task`;
+const API_URL_ACTIVITY = `${process.env.REACT_APP_URL}/activity`;
+const API_URL_TASK = `${process.env.REACT_APP_URL}/task`;
 
 export const obtainActivities = createAsyncThunk(
   "activities/obtainActivities",

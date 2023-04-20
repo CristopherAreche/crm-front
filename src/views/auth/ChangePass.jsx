@@ -1,18 +1,11 @@
 import React, { useState } from "react";
 import {
-  RiArrowLeftLine,
   RiLock2Line,
   RiLogoutCircleRLine,
   RiTyphoonFill,
 } from "react-icons/ri";
-import {
-  Link,
-  Outlet,
-  useLocation,
-  useNavigate,
-  useParams,
-} from "react-router-dom";
-import URL from "../../utils/env";
+import { Link, useNavigate, useParams } from "react-router-dom";
+
 import axios from "axios";
 import swal from "sweetalert";
 
@@ -58,12 +51,18 @@ export default function ChangePass() {
         if (role === "admin") {
           const formData = new FormData();
           formData.append("formLogin", JSON.stringify(info));
-          const response = await axios.put(`${URL}/boss`, formData);
+          const response = await axios.put(
+            `${process.env.REACT_APP_URL}/boss`,
+            formData
+          );
           data = response.data;
         } else {
           const formData = new FormData();
           formData.append("sellerData", JSON.stringify(info));
-          const response = await axios.put(`${URL}/salesman`, formData);
+          const response = await axios.put(
+            `${process.env.REACT_APP_URL}/salesman`,
+            formData
+          );
           data = response.data;
         }
         await swal(
@@ -173,9 +172,9 @@ export default function ChangePass() {
               width="878"
               height="766"
               filterUnits="userSpaceOnUse"
-              color-interpolation-filters="sRGB"
+              colorInterpolationFilters="sRGB"
             >
-              <feFlood flood-opacity="0" result="BackgroundImageFix" />
+              <feFlood floodOpacity="0" result="BackgroundImageFix" />
               <feBlend
                 mode="normal"
                 in="SourceGraphic"

@@ -65,7 +65,7 @@ const Price = () => {
           </header>
           <main className="flex flex-col gap-y-2 items-center border-b-2 border-blue-400/20 pb-4">
             <p className="text-lg font-medium">5 usuarios</p>
-            <p className="text-xl font-medium text-blue-500">USD 49/mes</p>
+            <p className="text-xl font-medium text-blue-500">USD 99/mes</p>
             <p className="text-blue-500/80 underline decoration-dashed text-sm font-medium">
               para todos los usuarios
             </p>

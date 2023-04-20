@@ -21,7 +21,7 @@ const faqs = [
     dropKey: "third_faq",
   },
   {
-    question: "¿El sistema CRM es accesible para todos los dispositivos?",
+    question: "¿El sistema CRM es accesible para todos los dispositivos moviles?",
     answer:
       "¡Sí! Nuestro sistema CRM está en todos los dispositivos web del mercado para que puedas aprovechar esta herramienta al máximo. Esta es una ventaja especial cuando se compara con otros ejemplos de software CRM.",
     dropKey: "four_faq",
@@ -49,25 +49,22 @@ const FAQ = () => {
   };
 
   return (
-      <section
-        name="faq"
-        className=" flex-col gap-y-4  items-center flex "
-      >
-        <main className="pt-28 flex flex-col gap-y-6">
-          <h3 className="text-4xl  text-center font-extrabold text-white">
-            Preguntas frecuentes
-          </h3>
-          {faqs.map((f) => (
-            <Faq
-              key={f.dropKey}
-              question={f.question}
-              answer={f.answer}
-              onDrop={() => handleToggleDrop(f.dropKey)}
-              isDrop={dropState.find((faq) => faq.id === f.dropKey)}
-            />
-          ))}
-        </main>
-      </section>
+    <section name="faq" className=" flex-col gap-y-4  items-center flex ">
+      <main className=" pt-16 flex flex-col gap-y-6">
+        <h3 className="text-4xl  text-center font-extrabold text-white">
+          Preguntas frecuentes
+        </h3>
+        {faqs.map((f) => (
+          <Faq
+            key={f.dropKey}
+            question={f.question}
+            answer={f.answer}
+            onDrop={() => handleToggleDrop(f.dropKey)}
+            isDrop={dropState.find((faq) => faq.id === f.dropKey)}
+          />
+        ))}
+      </main>
+    </section>
   );
 };
 

@@ -5,12 +5,8 @@ import MonthlyCompareChart from "../charts/MonthlyCompareChart";
 import BestSeller from "./BestSeller";
 import { useEffect } from "react";
 import { getBoss } from "../../app/features/bossSlice";
-import {
-  RiCheckboxCircleLine,
-  RiAlignVertically,
-  RiNumbersLine,
-} from "react-icons/ri";
-import productImage from "../../assets/png images/productImage.png";
+import { RiAlignVertically, RiNumbersLine } from "react-icons/ri";
+
 const MainBoss = () => {
   const dashboard = useSelector((state) => state.boss.bossDashboard);
   const User = useSelector((state) => state.auth.User);
@@ -75,7 +71,7 @@ const MainBoss = () => {
         <BestSeller best_salesman={dashboard?.best_salesman} />
         <section className="flex flex-col items-center gap-y-4 bg-base-light/30 py-4 rounded-md shadow-md">
           <h5 className="text-light font-medium">
-            5 Productos con menos Stock
+            10 Productos con menos Stock
           </h5>
           <InventoryChart />
         </section>

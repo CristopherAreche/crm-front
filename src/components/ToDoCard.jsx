@@ -1,7 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { RiDeleteBin3Line } from "react-icons/ri";
-import URL from "../utils/env";
 
 export default function ToDoCard({ item, delTask }) {
   const [isChecked, setIsChecked] = useState(false);
@@ -24,7 +23,7 @@ export default function ToDoCard({ item, delTask }) {
       item.state = "Completado";
       setIsChecked(true);
     }
-    await axios.put(`${URL}/task`, {
+    await axios.put(`${process.env.REACT_APP_URL}/task`, {
       id: item.id,
       state: item.state,
     });

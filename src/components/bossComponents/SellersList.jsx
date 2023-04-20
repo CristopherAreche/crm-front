@@ -2,9 +2,7 @@ import { RiFilter3Line, RiLoader4Fill } from "react-icons/ri";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getSellers } from "../../services/sellersServices";
-import {
-  selectedSellerCheckbox,
-} from "../../app/features/sellerSlice";
+import { selectedSellerCheckbox } from "../../app/features/sellerSlice";
 import ModalHistory from "./ModalHistory";
 import SellerDetailModal from "../SellerDetailModal";
 const SellerList = () => {
@@ -17,6 +15,7 @@ const SellerList = () => {
   const [isShow, setIsShow] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const user = useSelector((state) => state.auth.User.id);
+  const selectedSeller = useSelector((state) => state.sellers.sellerSelected);
   useEffect(() => {
     dispatch(getSellers(user));
   }, [dispatch, user]);
@@ -27,6 +26,9 @@ const SellerList = () => {
   };
   const toggleCheckBox = (sellerId) => {
     if (sellerId === sellerSelected) {
+      if (selectedSeller) {
+        dispatch(selectedSellerCheckbox(!selectedSeller));
+      }
       setIsSelected(!isSelected);
     }
   };
@@ -90,7 +92,11 @@ const SellerList = () => {
                     <button onClick={() => setShowModal(true)}>
                       <img
                         className="h-12 w-12 object-cover rounded-md"
-                        src={item?.image ? item?.image : 'https://cdn-icons-png.flaticon.com/512/5853/5853761.png'}
+                        src={
+                          item?.image
+                            ? item?.image
+                            : "https://cdn-icons-png.flaticon.com/512/5853/5853761.png"
+                        }
                         alt=""
                       />{" "}
                     </button>

@@ -4,11 +4,14 @@ import { useDispatch, useSelector } from "react-redux";
 import { selectedProductCheckbox } from "../../app/features/productsSlice";
 import { getAllProducts } from "../../services/productsServices";
 import { cleanProducts } from "../../app/features/productsSlice";
-//hola
+
 const ProductList = () => {
   const dispatch = useDispatch();
   const products = useSelector((state) => state.products.products);
   const productStatus = useSelector((state) => state.products.status);
+  const selectedProduct = useSelector(
+    (state) => state.products.productSelected
+  );
   const productError = useSelector((state) => state.products.error);
   const [productSelected, setProductSelected] = useState("");
   const [isSelected, setIsSelected] = useState(false);
@@ -27,6 +30,9 @@ const ProductList = () => {
   };
   const toggleCheckBox = (productId) => {
     if (productId === productSelected) {
+      if (selectedProduct) {
+        dispatch(selectedProductCheckbox(!selectedProduct));
+      }
       setIsSelected(!isSelected);
     }
   };
@@ -84,7 +90,6 @@ const ProductList = () => {
                       checked={item.id === productSelected && isSelected}
                       onChange={() => {
                         handleCheckboxChange(item);
-
                         toggleCheckBox(productSelected);
                       }}
                     />

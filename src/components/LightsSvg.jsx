@@ -26,9 +26,9 @@ const LightsSvg = () => {
               width="878"
               height="766"
               filterUnits="userSpaceOnUse"
-              color-interpolation-filters="sRGB"
+              // color-interpolation-filters="sRGB"
             >
-              <feFlood flood-opacity="0" result="BackgroundImageFix" />
+              <feFlood floodOpacity="0" result="BackgroundImageFix" />
               <feBlend
                 mode="normal"
                 in="SourceGraphic"

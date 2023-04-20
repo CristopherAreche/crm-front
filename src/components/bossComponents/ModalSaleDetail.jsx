@@ -6,6 +6,7 @@ import {
   RiMailLine,
   RiPhoneLine,
 } from "react-icons/ri";
+import swal from "sweetalert";
 
 function ModalSaleDetail({ clientDetail, activitie, onClose }) {
   const API_URL_SALE = `${process.env.REACT_APP_URL}/sale_product`;
@@ -22,7 +23,7 @@ function ModalSaleDetail({ clientDetail, activitie, onClose }) {
       );
       setSaleDetail(response.data);
     } catch (error) {
-      console.alert(error.response.data.error);
+      swal(error.response.data.error);
     }
   };
 

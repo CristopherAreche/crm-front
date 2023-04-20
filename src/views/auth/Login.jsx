@@ -28,11 +28,11 @@ const Login = () => {
   const myToken = cookies.get("myToken");
 
   const valUser = (value) => {
-    setEmail(value);
+    setEmail(value.trim());
   };
 
   const valPassword = (value) => {
-    setPassWord(value);
+    setPassWord(value.trim());
   };
 
   const handleSubmit = (e) => {

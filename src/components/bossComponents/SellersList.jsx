@@ -16,6 +16,7 @@ const SellerList = () => {
   const [showModal, setShowModal] = useState(false);
   const user = useSelector((state) => state.auth.User.id);
   const selectedSeller = useSelector((state) => state.sellers.sellerSelected);
+
   useEffect(() => {
     dispatch(getSellers(user));
   }, [dispatch, user]);
@@ -83,7 +84,6 @@ const SellerList = () => {
                       checked={item.id === sellerSelected && isSelected}
                       onChange={() => {
                         handleCheckboxChange(item);
-
                         toggleCheckBox(sellerSelected);
                       }}
                     />
@@ -97,7 +97,7 @@ const SellerList = () => {
                             ? item?.image
                             : "https://cdn-icons-png.flaticon.com/512/5853/5853761.png"
                         }
-                        alt=""
+                        alt="imagen de perfil"
                       />{" "}
                     </button>
                   </td>

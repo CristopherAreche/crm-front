@@ -12,18 +12,16 @@ const StartFeedback = ({ salesmanId }) => {
 
   const sendFeedback = async () => {
     const data = { score, salesmanId };
-    console.log("data", { data });
     try {
       const response = await axios.post(
         `${process.env.REACT_APP_URL}/feedback`,
         data
       );
       swal("Muchas gracias!", "Su opinión fue enviada", "success");
-      console.log(response);
 
       return response;
     } catch (error) {
-      console.log(error);
+      swal(error);
     }
   };
   return (

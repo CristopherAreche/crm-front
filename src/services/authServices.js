@@ -123,7 +123,6 @@ export const postUserLogin = createAsyncThunk(
         "Tienes una prueba gratuita de 7 dias, luego deberas pagar para seguir usando la plataforma. 😁",
         "success"
       );
-      console.log("ESTE ES EL RESPONSE****",response)
       return response
     } catch (error) {
       console.log("ESTE ES EL ERROR***",error)

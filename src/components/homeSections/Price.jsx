@@ -18,7 +18,7 @@ const Price = () => {
           <header className="bg-gray-300 py-4 flex flex-col items-center gap-y-2 w-full">
             <h5 className="text-base-light font-medium text-xl">Free</h5>
             <p className="text-base-light/70 font-medium text-sm w-40 text-center ">
-              Proximamente
+              Prueba todo nuestro sistema por 30 dias, <span className="underline">con funciones limitadas</span> 
             </p>
           </header>
           <main className="flex flex-col gap-y-2 items-center border-b-2 border-gray-400/20 pb-4">
@@ -31,7 +31,7 @@ const Price = () => {
               to="#"
               className="bg-gray-400 py-2 px-3 rounded-md shadow-md shadow-gray-500/20 hover:scale-[1.03] transition-transform cursor-not-allowed text-white font-medium"
             >
-              Registrarse
+              Próximamente
             </Link>
           </main>
           <footer className="flex flex-col gap-y-2 items-start px-4 pb-4">
@@ -55,17 +55,17 @@ const Price = () => {
           </footer>
         </article>
 
-        {/* Card Standard */}
+        {/* Card Proffesional */}
         <article className="bg-blue-200 flex flex-col items-center gap-y-4 rounded-md overflow-hidden shadow-md">
           <header className="bg-blue-300 py-4 flex flex-col items-center gap-y-2 w-full">
-            <h5 className="text-base-light font-medium text-xl">Standard</h5>
+            <h5 className="text-base-light font-medium text-xl">Proffesional</h5>
             <p className="text-base-light/70 font-medium text-sm w-40 text-center ">
-              Ideal para pequeños equipos de ventas
+              Ideal para pequeños, medianos y grandes equipos de ventas
             </p>
           </header>
           <main className="flex flex-col gap-y-2 items-center border-b-2 border-blue-400/20 pb-4">
-            <p className="text-lg font-medium">5 usuarios</p>
-            <p className="text-xl font-medium text-blue-500">USD 49/mes</p>
+            <p className="text-lg font-medium ">Usuarios ilimitados</p>
+            <p className="text-xl font-medium text-blue-500 underline">USD 99/mes</p>
             <p className="text-blue-500/80 underline decoration-dashed text-sm font-medium">
               para todos los usuarios
             </p>
@@ -82,6 +82,7 @@ const Price = () => {
               <div className="border border-blue-400 p-0.3 rounded-md flex gap-x-1">
                 <RiStopMiniFill className="text-blue-400" />
                 <RiStopMiniFill className="text-blue-400" />
+                <RiStopMiniFill className="text-blue-400" />
               </div>
             </div>
             <p className="text-sm font-medium text-base-light/90">Calendario</p>
@@ -93,17 +94,35 @@ const Price = () => {
               <div className="border border-blue-400 p-0.3 rounded-md flex gap-x-1">
                 <RiStopMiniFill className="text-blue-400" />
                 <RiStopMiniFill className="text-blue-400" />
+                <RiStopMiniFill className="text-blue-400" />
               </div>
             </div>
-            <p className="text-sm font-medium text-base-light/90">CRM</p>
+            <div className="grid grid-cols-3 gap-1">
+              <p className="text-sm font-medium text-gray-light/90">
+                CRM{" "}
+                <span className="bg-gray-500 px-2 rounded-md text-gray">
+                  x5
+                </span>
+              </p>
+              
+              <p className="text-sm font-medium text-gray-light/90">
+                Stock{" "}
+                <span className="bg-gray-500 px-2 rounded-md text-gray">
+                  x5
+                </span>
+              </p>
+              <p className="text-sm font-medium text-gray-light/90">
+                Automatizacion{" "}
+              </p>
+            </div>
           </footer>
         </article>
 
-        {/* Card Proffesional */}
+        {/* Card Standard */}
         <article className="bg-gray-200 flex flex-col items-center gap-y-4 rounded-md overflow-hidden shadow-md">
           <header className="bg-gray-300 py-4 flex flex-col items-center gap-y-2 w-full">
             <h5 className="text-gray-light font-medium text-xl">
-              Proffesional
+              Standard
             </h5>
             <p className="text-gray-light/70 font-medium text-sm w-40 text-center ">
               Proximamente
@@ -111,7 +130,7 @@ const Price = () => {
           </header>
           <main className="flex flex-col gap-y-2 items-center border-b-2 border-gray-400/20 pb-4">
             <p className="text-lg font-medium">50 usuarios</p>
-            <p className="text-xl font-medium text-gray-500">usd 99/mes</p>
+            <p className="text-xl font-medium text-gray-500">usd 49/mes</p>
             <p className="text-gray-500/80 underline decoration-dashed text-sm font-medium">
               para todos los usuarios
             </p>
@@ -119,14 +138,13 @@ const Price = () => {
               to="#"
               className="cursor-not-allowed bg-gray-400 py-2 px-3 rounded-md shadow-md shadow-gray-500/20 hover:scale-[1.03] transition-transform text-white font-medium"
             >
-              Comprar
+              Próximamente
             </Link>
           </main>
           <footer className="flex flex-col gap-y-2 items-start px-4 pb-4">
             <div className="flex items-center justify-between w-full">
               <h5 className="font-medium ">Colaboración</h5>
               <div className="border border-gray-400 p-0.3 rounded-md flex gap-x-1">
-                <RiStopMiniFill className="text-gray-400" />
                 <RiStopMiniFill className="text-gray-400" />
                 <RiStopMiniFill className="text-gray-400" />
               </div>
@@ -140,24 +158,14 @@ const Price = () => {
               <div className="border border-gray-400 p-0.3 rounded-md flex gap-x-1">
                 <RiStopMiniFill className="text-gray-400" />
                 <RiStopMiniFill className="text-gray-400" />
-                <RiStopMiniFill className="text-gray-400" />
               </div>
             </div>
             <div className="grid grid-cols-3 gap-1">
               <p className="text-sm font-medium text-gray-light/90">
-                CRM{" "}
-                <span className="bg-gray-500 px-2 rounded-md text-gray">
-                  x5
-                </span>
+                CRM
               </p>
               <p className="text-sm font-medium text-gray-light/90">
-                Stock{" "}
-                <span className="bg-gray-500 px-2 rounded-md text-gray">
-                  x5
-                </span>
-              </p>
-              <p className="text-sm font-medium text-gray-light/90">
-                Automatizacion{" "}
+                Stock
               </p>
             </div>
           </footer>

@@ -49,7 +49,7 @@ const PersonalInformationView = ({ data, type }) => {
             <>
               <header className="flex items-center justify-between mb-2">
                 <p className="text-light text-base lg:text-lg font-medium">
-                  Email
+                  Correo electronico
                 </p>
                 <RiUser5Line className="text-secondary text-xl border-2 border-secondary p-1 box-content rounded-full" />
               </header>

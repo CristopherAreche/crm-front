@@ -1,13 +1,6 @@
 import React, { useState } from "react";
-import { RiArrowLeftLine, RiLock2Line } from "react-icons/ri";
-import {
-  Link,
-  Outlet,
-  useLocation,
-  useNavigate,
-  useParams,
-} from "react-router-dom";
-import URL from "../../utils/env";
+import { RiLock2Line } from "react-icons/ri";
+import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import swal from "sweetalert";
 
@@ -53,12 +46,18 @@ export default function ChangePass() {
         if (role === "admin") {
           const formData = new FormData();
           formData.append("formLogin", JSON.stringify(info));
-          const response = await axios.put(`${URL}/boss`, formData);
+          const response = await axios.put(
+            `${process.env.REACT_APP_URL}/boss`,
+            formData
+          );
           data = response.data;
         } else {
           const formData = new FormData();
           formData.append("sellerData", JSON.stringify(info));
-          const response = await axios.put(`${URL}/salesman`, formData);
+          const response = await axios.put(
+            `${process.env.REACT_APP_URL}/salesman`,
+            formData
+          );
           data = response.data;
         }
         await swal(
@@ -143,7 +142,7 @@ export default function ChangePass() {
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
         >
-          <g filter="url(#filter0_f_29_36)">
+          <g filter="process.env.REACT_APP_URL(#filter0_f_29_36)">
             <rect
               width="478"
               height="366"

@@ -36,11 +36,11 @@ const Home = () => {
           Empezar Ahora
         </Link>
       </section>
-      <section className='flex flex-col gap-y-12 '>
+      <section className="flex flex-col gap-y-12 ">
         <Faq />
         <AboutUs />
       </section>
-        <LightsSvg /> 
+      <LightsSvg />
     </main>
   );
 };

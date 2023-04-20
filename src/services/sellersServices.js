@@ -1,9 +1,8 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 import swal from "sweetalert";
-import URL from "../utils/env";
 
-const API_URL_SELLER = `${URL}/salesman`;
+const API_URL_SELLER = `${process.env.REACT_APP_URL}/salesman`;
 
 export const getSellers = createAsyncThunk(
   "sellers/getSellers",
@@ -13,19 +12,17 @@ export const getSellers = createAsyncThunk(
   }
 );
 
-export const getSeller = 
-  async ({ bossId, id }) => {
-    try {
-      const { data } = await axios.get(
-        `${API_URL_SELLER}?bossId=${bossId}&id=${id}`
-      );
-      return data;
-    } catch (error) {
-      await swal("Error", `${error.response.data.error}`, "error");
-      return error.response.data.error;
-    }
+export const getSeller = async ({ bossId, id }) => {
+  try {
+    const { data } = await axios.get(
+      `${API_URL_SELLER}?bossId=${bossId}&id=${id}`
+    );
+    return data;
+  } catch (error) {
+    await swal("Error", `${error.response.data.error}`, "error");
+    return error.response.data.error;
   }
-
+};
 
 export const postSeller = createAsyncThunk(
   `sellers/postSeller`,

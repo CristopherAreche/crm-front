@@ -247,10 +247,6 @@ const RegisterActivitiesModal = ({ onClose }) => {
                       </tr>
                     ))}
                   </tbody>
-                  <th className="border-b " p-2>
-                    {" "}
-                    Total: $ {total}
-                  </th>
                 </table>
                 <span className="font-bold text-white py-8 flex justify-start">
                   Total: ${totalAmount.toFixed(2)}

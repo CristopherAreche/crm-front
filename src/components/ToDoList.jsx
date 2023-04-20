@@ -4,9 +4,8 @@ import ToDoCard from "./ToDoCard";
 import axios from "axios";
 import swal from "sweetalert";
 import { useSelector } from "react-redux";
-import URL from "../utils/env";
 
-const API_URL_TASK = `${URL}/task`;
+const API_URL_TASK = `${process.env.REACT_APP_URL}/task`;
 
 export default function ToDoList() {
   const [listToDos, setListToDos] = useState([]);
@@ -18,26 +17,23 @@ export default function ToDoList() {
       const { data } = await axios.get(
         `${API_URL_TASK}?salesmanId=${salesmanId}`
       );
-      return data
+      return data;
     } catch (error) {
-      setLoadingStatus("failed")
+      setLoadingStatus("failed");
       await swal("Error", `${error.response.data.error}`, "error");
     }
   };
 
   useEffect(() => {
     (async () => {
-      if(user?.id) {
-        setLoadingStatus("loading")
-        const todos = await fetchData(user?.id)
-        setListToDos(todos)
-        setLoadingStatus("succeeded")
+      if (user?.id) {
+        setLoadingStatus("loading");
+        const todos = await fetchData(user?.id);
+        setListToDos(todos);
+        setLoadingStatus("succeeded");
       }
-    })()
-   
+    })();
   }, [user?.id]);
-
-
 
   const delTask = async (id) => {
     try {
@@ -50,7 +46,9 @@ export default function ToDoList() {
       });
 
       if (result) {
-        const { data } = await axios.delete(`${URL}/task?id=` + id);
+        const { data } = await axios.delete(
+          `${process.env.REACT_APP_URL}/task?id=` + id
+        );
 
         fetchData();
 

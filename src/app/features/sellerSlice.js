@@ -35,8 +35,8 @@ export const sellerSlice = createSlice({
     selectedSellerCheckbox: (state, action) => {
       state.sellerSelected = action.payload;
     },
-    cleanSellertSelect: (state, action) => {
-      state.sellerSelected = "";
+    cleanSellerSelect: (state) => {
+      state.sellerSelected = null;
     },
     searchSellers: (state, action) => {
       state.sellers = action.payload;
@@ -132,7 +132,7 @@ export const {
   sortEnabledSellers,
   resetSellers,
   searchSellers,
-  cleanSellertSelect,
+  cleanSellerSelect,
   cleanSellers,
 } = sellerSlice.actions;
 export default sellerSlice.reducer;

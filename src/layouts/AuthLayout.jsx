@@ -63,7 +63,6 @@ const AuthLayout = () => {
               width="878"
               height="766"
               filterUnits="userSpaceOnUse"
-              lorInterpolationFilters="sRGB"
             >
               <feFlood floodOpacity="0" result="BackgroundImageFix" />
               <feBlend

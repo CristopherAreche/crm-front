@@ -62,7 +62,7 @@ const MainBoss = () => {
         </section>
         <section className="bg-base-light/30 px-2 py-4 rounded-md">
           <h5 className="text-light text-xl font-medium flex gap-x-2 items-center">
-            Anual vendido <RiAlignVertically />
+            Mensual vendido <RiAlignVertically />
           </h5>
           <MonthlyCompareChart annual_sales={dashboard?.annual_sales} />
         </section>

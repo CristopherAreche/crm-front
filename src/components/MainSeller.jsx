@@ -14,15 +14,14 @@ const MainSeller = () => {
   const dispatch = useDispatch();
   const { products } = useSelector((state) => state.products);
   const statusProducts = useSelector((state) => state.products.status);
-  const {User, status} = useSelector((state) => state.auth);
-
+  const { User, status } = useSelector((state) => state.auth);
 
   useEffect(() => {
     if (User?.bossId) {
       dispatch(getAllProducts(User.bossId));
     }
   }, [dispatch, User?.bossId]);
-  
+
   const todayFormated = () => {
     const dateToday = new Date();
 
@@ -83,8 +82,9 @@ const MainSeller = () => {
         {/* Section Lastest Products */}
         <section className="py-2 ">
           <div className="flex justify-between items-center mb-4">
-            <h3 className="text-light/95 font-medium">Sus ultimos productos</h3>
-            <p className="text-xs font-medium text-light/80">Ver todos</p>
+            <h3 className="text-light/95 font-medium">
+              Últimos productos vendidos
+            </h3>
           </div>
           {/* Lastest Products Cards */}
           <section className="flex flex-col gap-y-5">
@@ -95,7 +95,7 @@ const MainSeller = () => {
             ) : (
               <>
                 {products?.slice(0, 3).map((item) => (
-                  <ProductsCardSummary key={item.id} item={item}/>
+                  <ProductsCardSummary key={item.id} item={item} />
                 ))}
               </>
             )}
@@ -107,47 +107,48 @@ const MainSeller = () => {
           <StockChart />
         </section>
         <section className="flex flex-col items-center gap-y-4 bg-base-light/30 py-4 rounded-md shadow-md w-full ">
-           {
-            !User.avgFeedback && status !== 'loading'
-            ?
+          {!User.avgFeedback && status !== "loading" ? (
             <section className="bg-gradient-to-r from-primary to-secondary relative w-full h-52 flex justify-center items-center cursor-pointer group rounded-md">
-             <div className="absolute top-0 left-0 bg-black/30 w-full h-full  opacity-0 translate-y-1 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-200 ease-in-out rounded-md shadow-md flex flex-col gap-y-4 items-start justify-center px-6">
-            <div className="flex items-start flex-col  w-full  ">
-             <h5 className='text-lg text-orange-300 font-medium'>Usted no tiene feedbacks</h5>
-             <p className="text-light font-medium">Comienze a obtenerlos y obten grandes recompensas!</p>
-             <div className="flex gap-x-2 items-center text-yellow-300">
-              <RiStarFill/>
-              <RiStarFill/>
-              <RiStarFill/>
-              <RiStarFill/>
-              <RiStarFill/>
-             </div>
-            </div>
-            </div>
-          <img
-            src='https://img.freepik.com/free-vector/organic-flat-feedback-concept_23-2148957030.jpg?w=740&t=st=1681751480~exp=1681752080~hmac=400658311d24c14e51ef7ece4af074b5151795cbf81211cb28676f3dc4aa71ff'
-            alt="not feedback vector"
-            className="w-44 h-44 group-hover:w-36 group-hover:h-36 transition-all duration-200 ease-in-out "
-          />
+              <div className="absolute top-0 left-0 bg-black/30 w-full h-full  opacity-0 translate-y-1 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-200 ease-in-out rounded-md shadow-md flex flex-col gap-y-4 items-start justify-center px-6">
+                <div className="flex items-start flex-col  w-full  ">
+                  <h5 className="text-lg text-orange-300 font-medium">
+                    Usted no tiene feedbacks
+                  </h5>
+                  <p className="text-light font-medium">
+                    Comienze a obtenerlos y obten grandes recompensas!
+                  </p>
+                  <div className="flex gap-x-2 items-center text-yellow-300">
+                    <RiStarFill />
+                    <RiStarFill />
+                    <RiStarFill />
+                    <RiStarFill />
+                    <RiStarFill />
+                  </div>
+                </div>
+              </div>
+              <img
+                src="https://img.freepik.com/free-vector/organic-flat-feedback-concept_23-2148957030.jpg?w=740&t=st=1681751480~exp=1681752080~hmac=400658311d24c14e51ef7ece4af074b5151795cbf81211cb28676f3dc4aa71ff"
+                alt="not feedback vector"
+                className="w-44 h-44 group-hover:w-36 group-hover:h-36 transition-all duration-200 ease-in-out "
+              />
             </section>
-            :
+          ) : (
             <>
-            <h5 className="text-light font-medium">Tu <span className='text-yellow-400'>feedback</span></h5>
-           <section className='flex text-yellow-400 items-center gap-x-4'>
-             {[...new Array(5)].map((star, index) => {
-              return index < User.avgFeedback ? (
-                <RiStarFill key={index} />
-              ) : (
-                <RiStarLine key={index} />
-              );
-            })}
-           </section>
+              <h5 className="text-light font-medium">
+                Tu <span className="text-yellow-400">feedback</span>
+              </h5>
+              <section className="flex text-yellow-400 items-center gap-x-4">
+                {[...new Array(5)].map((star, index) => {
+                  return index < User.avgFeedback ? (
+                    <RiStarFill key={index} />
+                  ) : (
+                    <RiStarLine key={index} />
+                  );
+                })}
+              </section>
             </>
-          
-
-           }
+          )}
         </section>
-       
       </section>
     </section>
   );

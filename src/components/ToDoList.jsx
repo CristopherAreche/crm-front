@@ -46,9 +46,7 @@ export default function ToDoList() {
       });
 
       if (result) {
-        const { data } = await axios.delete(
-          `${process.env.REACT_APP_URL}/task?id=` + id
-        );
+        const { data } = await axios.delete(`${API_URL_TASK}?id=${id}`);
 
         fetchData();
 

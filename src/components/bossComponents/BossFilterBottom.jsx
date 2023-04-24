@@ -17,24 +17,19 @@ const BossFilterBottom = () => {
   const dispatch = useDispatch();
 
   const onDisabled = () => {
-  
-    dispatch(cleanSellerSelect());
     dispatch(toggleStatusSeller({ enable: false, id: sellerSelected }));
   };
 
   const onEnabled = () => {
-  
-    dispatch(cleanSellerSelect());
     dispatch(toggleStatusSeller({ enable: true, id: sellerSelected }));
   };
 
   const onCreate = () => {
-    dispatch(cleanSellerSelect());
     setShowModal(true);
+    dispatch(cleanSellerSelect());
   };
 
   const handleShowModal = () => {
-    
     setShowModal(true);
   };
 

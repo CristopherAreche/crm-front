@@ -25,6 +25,7 @@ const BottomProduct = () => {
   };
   const onCreate = () => {
     setShowModal(true);
+    dispatch(cleanProductSelect());
   };
 
   const handleShowModal = () => {

@@ -78,7 +78,7 @@ const SalesChart = () => {
   }
 
   return (
-    <div className="lg:w-full w-auto h-full rounded-md bg-base-light/30 shadow-md pt-2">
+    <div className="lg:w-full w-96 h-full rounded-md bg-base-light/30 shadow-md pt-2">
       <Line data={data} options={options} />
     </div>
   );

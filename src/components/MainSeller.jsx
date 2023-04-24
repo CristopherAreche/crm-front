@@ -106,7 +106,7 @@ const MainSeller = () => {
           <h5 className="text-light font-medium">5 Productos con mas Stock</h5>
           <StockChart />
         </section>
-        <section className="">
+        <section className="flex flex-col items-center gap-y-4 bg-base-light/30 py-4 rounded-md shadow-md w-full ">
            {
             !User.avgFeedback && status !== 'loading'
             ?
@@ -129,9 +129,11 @@ const MainSeller = () => {
             alt="not feedback vector"
             className="w-44 h-44 group-hover:w-36 group-hover:h-36 transition-all duration-200 ease-in-out "
           />
-        </section>
+            </section>
             :
-           <>
+            <>
+            <h5 className="text-light font-medium">Tu <span className='text-yellow-400'>feedback</span></h5>
+           <section className='flex text-yellow-400 items-center gap-x-4'>
              {[...new Array(5)].map((star, index) => {
               return index < User.avgFeedback ? (
                 <RiStarFill key={index} />
@@ -139,7 +141,9 @@ const MainSeller = () => {
                 <RiStarLine key={index} />
               );
             })}
-           </>
+           </section>
+            </>
+          
 
            }
         </section>

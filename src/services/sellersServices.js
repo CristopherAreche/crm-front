@@ -32,7 +32,7 @@ export const postSeller = createAsyncThunk(
       await swal(
         "Agregar",
         `El vendedor ${data.name} fue creado correctamente`,
-        "succes"
+        "success"
       );
 
       return data;

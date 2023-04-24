@@ -14,15 +14,13 @@ const ProductsCardSummary = ({ item }) => {
           alt="product"
         />
         <div className="flex flex-col">
-            <p className="flex gap-x-1 font-medium text-sm text-gray-200">
-              {item.category} -{" "}
-              <span className="text-sm text-light">
-                ${item.sale_price}
-              </span>
-            </p>
-            <p className="text-gray-300 font-medium text-xs">
-             {item.quantity} - stock
-            </p>
+          <p className="flex gap-x-1 font-medium text-sm text-gray-200">
+            {item.name} -{" "}
+            <span className="text-sm text-light">${item.sale_price}</span>
+          </p>
+          <p className="text-gray-300 font-medium text-xs">
+            {item.quantity} - stock
+          </p>
         </div>
       </div>
       <p

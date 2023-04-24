@@ -112,7 +112,12 @@ const productsSlice = createSlice({
       })
       .addCase(toggleStatusProduct.fulfilled, (state, action) => {
         const status = action.payload;
-        stateToggleStatusProduct(state, action, status);
+
+        const productFounded = state.products.find(
+          (product) => product.id === state.productSelected
+        );
+        console.log(state.productSelected);
+        if (productFounded) productFounded.enable = status;
       })
       .addCase(deleteProduct.pending, (state) => {
         state.isLoading = true;

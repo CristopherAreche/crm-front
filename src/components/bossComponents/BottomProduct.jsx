@@ -17,23 +17,18 @@ const BottomProduct = () => {
   const { productSelected } = useSelector((state) => state.products);
 
   const onDisabled = () => {
-   
-    dispatch(cleanProductSelect());
     dispatch(toggleStatusProduct({ productSelected, enable: false }));
   };
 
   const onEnabled = () => {
-    
-    dispatch(cleanProductSelect());
     dispatch(toggleStatusProduct({ productSelected, enable: true }));
   };
   const onCreate = () => {
-    dispatch(cleanProductSelect());
     setShowModal(true);
+    dispatch(cleanProductSelect());
   };
 
   const handleShowModal = () => {
-    
     setShowModal(true);
   };
   // const onDelete = () => dispatch(deleteProduct(productSelected));
